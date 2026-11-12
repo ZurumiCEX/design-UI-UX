@@ -1,0 +1,1094 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-labelledby="t d">
+<title id="t">Zurumi — Design UI/UX</title><desc id="d">Bandeau animé : logo Zurumi, accroche et graphique en chandeliers aux couleurs de la marque.</desc>
+<defs>
+<linearGradient id="brand" x1="0" y1=".4" x2="1" y2=".6"><stop offset="0" stop-color="#5D3587"/><stop offset="1" stop-color="#596FB7"/></linearGradient>
+<linearGradient id="soft" x1="0" y1=".4" x2="1" y2=".6"><stop offset="0" stop-color="#B794E6"/><stop offset="1" stop-color="#9DB0F2"/></linearGradient>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141A33" stop-opacity="0"/><stop offset=".6" stop-color="#33427A" stop-opacity=".35"/><stop offset="1" stop-color="#8FA1DC" stop-opacity=".28"/></linearGradient>
+<radialGradient id="halo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#5D3587" stop-opacity=".75"/><stop offset=".55" stop-color="#596FB7" stop-opacity=".18"/><stop offset="1" stop-color="#050507" stop-opacity="0"/></radialGradient>
+<radialGradient id="mask-g" cx=".5" cy=".45" r=".6"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+<linearGradient id="fade" x1="0" x2="1"><stop offset="0" stop-color="#000"/><stop offset=".12" stop-color="#fff"/><stop offset="1" stop-color="#fff"/></linearGradient>
+<linearGradient id="sheen" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<mask id="m"><rect width="1280" height="440" fill="url(#mask-g)"/></mask>
+<mask id="cm"><rect x="700" y="60" width="580" height="330" fill="url(#fade)"/></mask>
+<clipPath id="r"><rect width="1280" height="440" rx="18"/></clipPath>
+<filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<style>
+text{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;fill:#B794E6}
+.col{animation:fall linear infinite}
+@keyframes fall{from{transform:translateY(-220px)}to{transform:translateY(220px)}}
+.halo{transform-origin:330px 200px;animation:pulse 6.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.12);opacity:1}}
+.w{opacity:0;animation:word .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes word{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.c{opacity:0;transform-box:fill-box;transform-origin:50% 100%;animation:grow .7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes grow{from{opacity:0;transform:scaleY(.2)}to{opacity:1;transform:none}}
+.ma{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.8s cubic-bezier(.2,.8,.2,1) 1.2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.last{transform-box:fill-box;transform-origin:50% 100%;animation:tick 2.4s ease-in-out 3s infinite}
+@keyframes tick{0%,100%{transform:scaleY(1)}35%{transform:scaleY(1.28)}70%{transform:scaleY(.86)}}
+.dot{animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.coin{animation:float 5s ease-in-out infinite alternate}
+@keyframes float{from{transform:translateY(-7px)}to{transform:translateY(7px)}}
+.sheen{animation:sweep 5s cubic-bezier(.2,.8,.2,1) 2s infinite}
+@keyframes sweep{0%{transform:translateX(-400px)}60%,100%{transform:translateX(1500px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.w,.c{opacity:1}.ma{stroke-dashoffset:0}}
+</style>
+<g clip-path="url(#r)">
+<rect width="1280" height="440" fill="#050507"/>
+<rect width="1280" height="440" fill="url(#sky)"/>
+<ellipse class="halo" cx="330" cy="200" rx="520" ry="330" fill="url(#halo)"/>
+<g mask="url(#m)" opacity=".22">
+<g class="col" style="animation-duration:11.9s;animation-delay:-2.7s">
+<text class="mono" x="20" y="-178" opacity="0.65">1</text>
+<text class="mono" x="20" y="-156" opacity="0.93">0</text>
+<text class="mono" x="20" y="-134" opacity="0.58">0</text>
+<text class="mono" x="20" y="-112" opacity="0.66">0</text>
+<text class="mono" x="20" y="-68" opacity="0.42">0</text>
+<text class="mono" x="20" y="-46" opacity="0.55">0</text>
+<text class="mono" x="20" y="-24" opacity="0.89">1</text>
+<text class="mono" x="20" y="-2" opacity="0.66">1</text>
+<text class="mono" x="20" y="20" opacity="0.76">0</text>
+<text class="mono" x="20" y="42" opacity="0.73">1</text>
+<text class="mono" x="20" y="64" opacity="0.78">0</text>
+<text class="mono" x="20" y="86" opacity="0.62">1</text>
+<text class="mono" x="20" y="130" opacity="0.94">1</text>
+<text class="mono" x="20" y="152" opacity="0.85">0</text>
+<text class="mono" x="20" y="174" opacity="0.48">1</text>
+<text class="mono" x="20" y="240" opacity="0.99">0</text>
+<text class="mono" x="20" y="262" opacity="0.37">1</text>
+<text class="mono" x="20" y="284" opacity="0.62">0</text>
+<text class="mono" x="20" y="328" opacity="0.67">1</text>
+<text class="mono" x="20" y="350" opacity="0.51">1</text>
+<text class="mono" x="20" y="372" opacity="0.59">0</text>
+<text class="mono" x="20" y="416" opacity="0.75">0</text>
+<text class="mono" x="20" y="460" opacity="0.68">1</text>
+<text class="mono" x="20" y="482" opacity="0.54">1</text>
+<text class="mono" x="20" y="504" opacity="0.60">0</text>
+<text class="mono" x="20" y="526" opacity="0.62">0</text>
+<text class="mono" x="20" y="570" opacity="0.44">1</text>
+<text class="mono" x="20" y="614" opacity="0.37">1</text>
+<text class="mono" x="20" y="636" opacity="0.91">1</text>
+</g>
+<g class="col" style="animation-duration:16.8s;animation-delay:-5.0s">
+<text class="mono" x="54" y="-200" opacity="0.52">1</text>
+<text class="mono" x="54" y="-156" opacity="0.38">0</text>
+<text class="mono" x="54" y="-112" opacity="0.87">0</text>
+<text class="mono" x="54" y="-90" opacity="0.25">1</text>
+<text class="mono" x="54" y="-68" opacity="0.71">1</text>
+<text class="mono" x="54" y="-2" opacity="0.71">0</text>
+<text class="mono" x="54" y="20" opacity="0.90">1</text>
+<text class="mono" x="54" y="42" opacity="0.55">1</text>
+<text class="mono" x="54" y="86" opacity="0.30">0</text>
+<text class="mono" x="54" y="108" opacity="0.33">0</text>
+<text class="mono" x="54" y="130" opacity="0.68">0</text>
+<text class="mono" x="54" y="174" opacity="0.30">0</text>
+<text class="mono" x="54" y="196" opacity="0.36">1</text>
+<text class="mono" x="54" y="240" opacity="0.61">0</text>
+<text class="mono" x="54" y="306" opacity="0.61">0</text>
+<text class="mono" x="54" y="328" opacity="0.81">1</text>
+<text class="mono" x="54" y="350" opacity="0.77">0</text>
+<text class="mono" x="54" y="372" opacity="0.96">1</text>
+<text class="mono" x="54" y="394" opacity="0.66">0</text>
+<text class="mono" x="54" y="438" opacity="0.73">0</text>
+<text class="mono" x="54" y="482" opacity="0.53">0</text>
+<text class="mono" x="54" y="504" opacity="0.42">1</text>
+<text class="mono" x="54" y="548" opacity="0.84">0</text>
+<text class="mono" x="54" y="636" opacity="0.64">1</text>
+</g>
+<g class="col" style="animation-duration:15.6s;animation-delay:-17.8s">
+<text class="mono" x="88" y="-178" opacity="0.40">1</text>
+<text class="mono" x="88" y="-156" opacity="0.95">1</text>
+<text class="mono" x="88" y="-112" opacity="0.42">0</text>
+<text class="mono" x="88" y="-90" opacity="0.50">1</text>
+<text class="mono" x="88" y="-2" opacity="0.74">0</text>
+<text class="mono" x="88" y="42" opacity="0.54">0</text>
+<text class="mono" x="88" y="64" opacity="0.38">1</text>
+<text class="mono" x="88" y="86" opacity="0.96">1</text>
+<text class="mono" x="88" y="108" opacity="0.81">0</text>
+<text class="mono" x="88" y="152" opacity="0.35">0</text>
+<text class="mono" x="88" y="174" opacity="0.60">0</text>
+<text class="mono" x="88" y="196" opacity="0.70">1</text>
+<text class="mono" x="88" y="240" opacity="0.66">0</text>
+<text class="mono" x="88" y="262" opacity="0.85">0</text>
+<text class="mono" x="88" y="284" opacity="0.95">1</text>
+<text class="mono" x="88" y="328" opacity="0.91">0</text>
+<text class="mono" x="88" y="350" opacity="0.47">0</text>
+<text class="mono" x="88" y="394" opacity="0.66">0</text>
+<text class="mono" x="88" y="416" opacity="0.80">1</text>
+<text class="mono" x="88" y="482" opacity="0.87">0</text>
+<text class="mono" x="88" y="504" opacity="0.64">0</text>
+<text class="mono" x="88" y="570" opacity="0.83">0</text>
+<text class="mono" x="88" y="592" opacity="0.61">0</text>
+<text class="mono" x="88" y="614" opacity="0.49">1</text>
+</g>
+<g class="col" style="animation-duration:10.0s;animation-delay:-10.1s">
+<text class="mono" x="122" y="-200" opacity="0.46">0</text>
+<text class="mono" x="122" y="-178" opacity="0.67">0</text>
+<text class="mono" x="122" y="-156" opacity="0.71">0</text>
+<text class="mono" x="122" y="-112" opacity="0.65">1</text>
+<text class="mono" x="122" y="-90" opacity="0.44">1</text>
+<text class="mono" x="122" y="-24" opacity="0.59">1</text>
+<text class="mono" x="122" y="-2" opacity="0.58">0</text>
+<text class="mono" x="122" y="42" opacity="0.41">1</text>
+<text class="mono" x="122" y="108" opacity="0.79">1</text>
+<text class="mono" x="122" y="130" opacity="0.91">1</text>
+<text class="mono" x="122" y="152" opacity="0.96">1</text>
+<text class="mono" x="122" y="196" opacity="0.75">0</text>
+<text class="mono" x="122" y="218" opacity="0.57">1</text>
+<text class="mono" x="122" y="240" opacity="0.40">1</text>
+<text class="mono" x="122" y="262" opacity="0.52">1</text>
+<text class="mono" x="122" y="284" opacity="0.58">0</text>
+<text class="mono" x="122" y="306" opacity="0.64">1</text>
+<text class="mono" x="122" y="328" opacity="0.30">0</text>
+<text class="mono" x="122" y="372" opacity="0.45">0</text>
+<text class="mono" x="122" y="416" opacity="0.82">1</text>
+<text class="mono" x="122" y="504" opacity="0.65">1</text>
+<text class="mono" x="122" y="548" opacity="0.29">0</text>
+<text class="mono" x="122" y="570" opacity="0.30">0</text>
+<text class="mono" x="122" y="636" opacity="0.89">0</text>
+</g>
+<g class="col" style="animation-duration:11.4s;animation-delay:-2.2s">
+<text class="mono" x="156" y="-200" opacity="1.00">1</text>
+<text class="mono" x="156" y="-156" opacity="0.35">0</text>
+<text class="mono" x="156" y="-90" opacity="0.39">1</text>
+<text class="mono" x="156" y="-46" opacity="0.40">1</text>
+<text class="mono" x="156" y="-24" opacity="0.38">1</text>
+<text class="mono" x="156" y="42" opacity="0.26">0</text>
+<text class="mono" x="156" y="64" opacity="0.43">1</text>
+<text class="mono" x="156" y="86" opacity="0.86">1</text>
+<text class="mono" x="156" y="130" opacity="0.92">1</text>
+<text class="mono" x="156" y="196" opacity="0.87">0</text>
+<text class="mono" x="156" y="218" opacity="0.51">0</text>
+<text class="mono" x="156" y="262" opacity="0.72">1</text>
+<text class="mono" x="156" y="284" opacity="0.29">1</text>
+<text class="mono" x="156" y="350" opacity="0.43">1</text>
+<text class="mono" x="156" y="372" opacity="0.39">1</text>
+<text class="mono" x="156" y="394" opacity="0.45">1</text>
+<text class="mono" x="156" y="438" opacity="0.43">1</text>
+<text class="mono" x="156" y="460" opacity="0.39">1</text>
+<text class="mono" x="156" y="482" opacity="0.61">0</text>
+<text class="mono" x="156" y="504" opacity="0.83">0</text>
+<text class="mono" x="156" y="526" opacity="0.32">1</text>
+<text class="mono" x="156" y="548" opacity="0.55">1</text>
+<text class="mono" x="156" y="570" opacity="0.42">0</text>
+</g>
+<g class="col" style="animation-duration:12.5s;animation-delay:-5.9s">
+<text class="mono" x="190" y="-178" opacity="0.79">0</text>
+<text class="mono" x="190" y="-156" opacity="0.88">1</text>
+<text class="mono" x="190" y="-90" opacity="0.64">0</text>
+<text class="mono" x="190" y="-46" opacity="0.92">0</text>
+<text class="mono" x="190" y="-24" opacity="0.28">1</text>
+<text class="mono" x="190" y="20" opacity="0.59">0</text>
+<text class="mono" x="190" y="108" opacity="0.25">0</text>
+<text class="mono" x="190" y="152" opacity="0.65">0</text>
+<text class="mono" x="190" y="196" opacity="0.86">1</text>
+<text class="mono" x="190" y="218" opacity="0.82">0</text>
+<text class="mono" x="190" y="284" opacity="0.54">1</text>
+<text class="mono" x="190" y="328" opacity="0.29">0</text>
+<text class="mono" x="190" y="350" opacity="0.36">1</text>
+<text class="mono" x="190" y="438" opacity="0.61">1</text>
+<text class="mono" x="190" y="460" opacity="0.75">0</text>
+<text class="mono" x="190" y="504" opacity="0.64">1</text>
+<text class="mono" x="190" y="526" opacity="0.83">0</text>
+<text class="mono" x="190" y="548" opacity="0.31">1</text>
+<text class="mono" x="190" y="570" opacity="0.59">1</text>
+<text class="mono" x="190" y="614" opacity="0.94">0</text>
+<text class="mono" x="190" y="636" opacity="0.32">1</text>
+</g>
+<g class="col" style="animation-duration:17.6s;animation-delay:-2.4s">
+<text class="mono" x="224" y="-178" opacity="0.92">1</text>
+<text class="mono" x="224" y="-156" opacity="0.92">1</text>
+<text class="mono" x="224" y="-134" opacity="0.37">1</text>
+<text class="mono" x="224" y="-90" opacity="0.80">1</text>
+<text class="mono" x="224" y="-68" opacity="0.49">1</text>
+<text class="mono" x="224" y="-46" opacity="0.81">1</text>
+<text class="mono" x="224" y="-24" opacity="0.94">0</text>
+<text class="mono" x="224" y="20" opacity="0.53">1</text>
+<text class="mono" x="224" y="42" opacity="0.90">0</text>
+<text class="mono" x="224" y="64" opacity="0.57">1</text>
+<text class="mono" x="224" y="108" opacity="0.29">1</text>
+<text class="mono" x="224" y="152" opacity="0.98">1</text>
+<text class="mono" x="224" y="174" opacity="0.39">1</text>
+<text class="mono" x="224" y="218" opacity="0.27">1</text>
+<text class="mono" x="224" y="284" opacity="0.79">0</text>
+<text class="mono" x="224" y="328" opacity="0.71">0</text>
+<text class="mono" x="224" y="372" opacity="0.29">0</text>
+<text class="mono" x="224" y="394" opacity="0.56">1</text>
+<text class="mono" x="224" y="416" opacity="0.80">1</text>
+<text class="mono" x="224" y="438" opacity="0.43">1</text>
+<text class="mono" x="224" y="460" opacity="0.55">0</text>
+<text class="mono" x="224" y="504" opacity="0.63">1</text>
+<text class="mono" x="224" y="526" opacity="0.59">1</text>
+<text class="mono" x="224" y="570" opacity="0.35">0</text>
+<text class="mono" x="224" y="592" opacity="0.38">0</text>
+<text class="mono" x="224" y="614" opacity="0.53">0</text>
+</g>
+<g class="col" style="animation-duration:15.7s;animation-delay:-7.4s">
+<text class="mono" x="258" y="-200" opacity="0.64">1</text>
+<text class="mono" x="258" y="-178" opacity="0.81">1</text>
+<text class="mono" x="258" y="-156" opacity="0.98">0</text>
+<text class="mono" x="258" y="-112" opacity="0.84">0</text>
+<text class="mono" x="258" y="-90" opacity="0.92">1</text>
+<text class="mono" x="258" y="-68" opacity="0.58">1</text>
+<text class="mono" x="258" y="-2" opacity="0.27">1</text>
+<text class="mono" x="258" y="42" opacity="0.30">1</text>
+<text class="mono" x="258" y="86" opacity="0.33">0</text>
+<text class="mono" x="258" y="108" opacity="0.98">0</text>
+<text class="mono" x="258" y="218" opacity="0.66">0</text>
+<text class="mono" x="258" y="240" opacity="0.34">0</text>
+<text class="mono" x="258" y="284" opacity="0.35">1</text>
+<text class="mono" x="258" y="306" opacity="0.58">0</text>
+<text class="mono" x="258" y="328" opacity="0.48">0</text>
+<text class="mono" x="258" y="350" opacity="0.42">0</text>
+<text class="mono" x="258" y="372" opacity="0.48">1</text>
+<text class="mono" x="258" y="394" opacity="0.49">0</text>
+<text class="mono" x="258" y="416" opacity="0.43">0</text>
+<text class="mono" x="258" y="438" opacity="0.56">1</text>
+<text class="mono" x="258" y="460" opacity="0.40">1</text>
+<text class="mono" x="258" y="482" opacity="0.42">1</text>
+<text class="mono" x="258" y="526" opacity="0.28">1</text>
+<text class="mono" x="258" y="570" opacity="0.55">0</text>
+<text class="mono" x="258" y="636" opacity="0.40">0</text>
+</g>
+<g class="col" style="animation-duration:11.8s;animation-delay:-14.8s">
+<text class="mono" x="292" y="-200" opacity="0.42">1</text>
+<text class="mono" x="292" y="-178" opacity="0.72">0</text>
+<text class="mono" x="292" y="-134" opacity="0.93">0</text>
+<text class="mono" x="292" y="-90" opacity="0.55">0</text>
+<text class="mono" x="292" y="-68" opacity="0.70">1</text>
+<text class="mono" x="292" y="-46" opacity="0.30">1</text>
+<text class="mono" x="292" y="-24" opacity="0.78">1</text>
+<text class="mono" x="292" y="64" opacity="0.39">1</text>
+<text class="mono" x="292" y="86" opacity="0.75">1</text>
+<text class="mono" x="292" y="152" opacity="0.33">0</text>
+<text class="mono" x="292" y="174" opacity="0.51">0</text>
+<text class="mono" x="292" y="196" opacity="0.82">1</text>
+<text class="mono" x="292" y="218" opacity="0.87">1</text>
+<text class="mono" x="292" y="240" opacity="0.78">0</text>
+<text class="mono" x="292" y="262" opacity="0.94">0</text>
+<text class="mono" x="292" y="284" opacity="0.80">1</text>
+<text class="mono" x="292" y="306" opacity="0.56">1</text>
+<text class="mono" x="292" y="328" opacity="0.28">0</text>
+<text class="mono" x="292" y="372" opacity="0.40">0</text>
+<text class="mono" x="292" y="416" opacity="0.45">0</text>
+<text class="mono" x="292" y="438" opacity="0.79">1</text>
+<text class="mono" x="292" y="482" opacity="0.79">0</text>
+<text class="mono" x="292" y="504" opacity="0.43">1</text>
+<text class="mono" x="292" y="548" opacity="0.83">1</text>
+<text class="mono" x="292" y="614" opacity="0.62">0</text>
+</g>
+<g class="col" style="animation-duration:15.6s;animation-delay:-14.8s">
+<text class="mono" x="326" y="-178" opacity="0.50">1</text>
+<text class="mono" x="326" y="-156" opacity="0.84">0</text>
+<text class="mono" x="326" y="-134" opacity="0.54">0</text>
+<text class="mono" x="326" y="-112" opacity="0.30">0</text>
+<text class="mono" x="326" y="-90" opacity="0.66">0</text>
+<text class="mono" x="326" y="-2" opacity="0.31">0</text>
+<text class="mono" x="326" y="20" opacity="0.99">1</text>
+<text class="mono" x="326" y="42" opacity="0.35">1</text>
+<text class="mono" x="326" y="174" opacity="0.88">1</text>
+<text class="mono" x="326" y="196" opacity="0.45">1</text>
+<text class="mono" x="326" y="240" opacity="0.44">0</text>
+<text class="mono" x="326" y="262" opacity="0.46">0</text>
+<text class="mono" x="326" y="284" opacity="0.55">0</text>
+<text class="mono" x="326" y="306" opacity="0.42">0</text>
+<text class="mono" x="326" y="372" opacity="0.61">0</text>
+<text class="mono" x="326" y="438" opacity="0.47">0</text>
+<text class="mono" x="326" y="460" opacity="0.70">0</text>
+<text class="mono" x="326" y="504" opacity="0.90">1</text>
+<text class="mono" x="326" y="526" opacity="0.83">0</text>
+<text class="mono" x="326" y="548" opacity="0.70">1</text>
+<text class="mono" x="326" y="570" opacity="0.53">0</text>
+<text class="mono" x="326" y="592" opacity="1.00">0</text>
+<text class="mono" x="326" y="614" opacity="0.74">0</text>
+</g>
+<g class="col" style="animation-duration:16.4s;animation-delay:-7.4s">
+<text class="mono" x="360" y="-200" opacity="0.72">0</text>
+<text class="mono" x="360" y="-178" opacity="0.85">1</text>
+<text class="mono" x="360" y="-156" opacity="0.33">1</text>
+<text class="mono" x="360" y="-112" opacity="0.65">0</text>
+<text class="mono" x="360" y="-90" opacity="0.45">1</text>
+<text class="mono" x="360" y="-46" opacity="0.29">1</text>
+<text class="mono" x="360" y="-24" opacity="0.26">1</text>
+<text class="mono" x="360" y="20" opacity="0.55">0</text>
+<text class="mono" x="360" y="42" opacity="0.37">0</text>
+<text class="mono" x="360" y="86" opacity="0.91">1</text>
+<text class="mono" x="360" y="130" opacity="0.29">0</text>
+<text class="mono" x="360" y="196" opacity="0.72">1</text>
+<text class="mono" x="360" y="240" opacity="0.51">0</text>
+<text class="mono" x="360" y="262" opacity="0.94">0</text>
+<text class="mono" x="360" y="284" opacity="0.82">0</text>
+<text class="mono" x="360" y="306" opacity="0.88">0</text>
+<text class="mono" x="360" y="350" opacity="0.29">1</text>
+<text class="mono" x="360" y="372" opacity="0.78">0</text>
+<text class="mono" x="360" y="460" opacity="0.40">1</text>
+<text class="mono" x="360" y="482" opacity="0.41">1</text>
+<text class="mono" x="360" y="526" opacity="0.52">0</text>
+<text class="mono" x="360" y="548" opacity="0.79">0</text>
+<text class="mono" x="360" y="570" opacity="0.67">0</text>
+<text class="mono" x="360" y="614" opacity="0.54">1</text>
+<text class="mono" x="360" y="636" opacity="0.72">1</text>
+</g>
+<g class="col" style="animation-duration:14.8s;animation-delay:-5.5s">
+<text class="mono" x="394" y="-200" opacity="0.54">1</text>
+<text class="mono" x="394" y="-178" opacity="0.58">0</text>
+<text class="mono" x="394" y="-156" opacity="0.99">1</text>
+<text class="mono" x="394" y="-134" opacity="0.82">1</text>
+<text class="mono" x="394" y="-68" opacity="0.30">1</text>
+<text class="mono" x="394" y="-46" opacity="0.32">1</text>
+<text class="mono" x="394" y="-24" opacity="0.74">0</text>
+<text class="mono" x="394" y="20" opacity="0.80">0</text>
+<text class="mono" x="394" y="42" opacity="0.63">1</text>
+<text class="mono" x="394" y="108" opacity="0.30">0</text>
+<text class="mono" x="394" y="130" opacity="0.99">1</text>
+<text class="mono" x="394" y="152" opacity="0.86">0</text>
+<text class="mono" x="394" y="218" opacity="0.87">1</text>
+<text class="mono" x="394" y="240" opacity="0.92">1</text>
+<text class="mono" x="394" y="284" opacity="0.44">1</text>
+<text class="mono" x="394" y="306" opacity="0.45">0</text>
+<text class="mono" x="394" y="328" opacity="0.28">0</text>
+<text class="mono" x="394" y="350" opacity="0.73">1</text>
+<text class="mono" x="394" y="416" opacity="0.84">0</text>
+<text class="mono" x="394" y="460" opacity="0.89">1</text>
+<text class="mono" x="394" y="482" opacity="0.69">0</text>
+<text class="mono" x="394" y="504" opacity="0.65">1</text>
+<text class="mono" x="394" y="548" opacity="0.53">1</text>
+<text class="mono" x="394" y="570" opacity="0.52">0</text>
+<text class="mono" x="394" y="592" opacity="0.38">0</text>
+<text class="mono" x="394" y="614" opacity="0.64">1</text>
+</g>
+<g class="col" style="animation-duration:17.9s;animation-delay:-10.5s">
+<text class="mono" x="428" y="-178" opacity="0.25">0</text>
+<text class="mono" x="428" y="-156" opacity="0.47">1</text>
+<text class="mono" x="428" y="-134" opacity="0.52">0</text>
+<text class="mono" x="428" y="-112" opacity="0.42">0</text>
+<text class="mono" x="428" y="-90" opacity="0.25">1</text>
+<text class="mono" x="428" y="-68" opacity="0.64">0</text>
+<text class="mono" x="428" y="-46" opacity="0.48">0</text>
+<text class="mono" x="428" y="-24" opacity="0.72">1</text>
+<text class="mono" x="428" y="-2" opacity="0.26">0</text>
+<text class="mono" x="428" y="42" opacity="0.30">0</text>
+<text class="mono" x="428" y="108" opacity="0.45">0</text>
+<text class="mono" x="428" y="130" opacity="0.87">1</text>
+<text class="mono" x="428" y="152" opacity="0.68">1</text>
+<text class="mono" x="428" y="174" opacity="0.93">0</text>
+<text class="mono" x="428" y="196" opacity="0.27">0</text>
+<text class="mono" x="428" y="218" opacity="0.29">0</text>
+<text class="mono" x="428" y="240" opacity="0.66">0</text>
+<text class="mono" x="428" y="262" opacity="0.40">1</text>
+<text class="mono" x="428" y="306" opacity="0.48">1</text>
+<text class="mono" x="428" y="394" opacity="0.65">1</text>
+<text class="mono" x="428" y="460" opacity="0.81">1</text>
+<text class="mono" x="428" y="482" opacity="1.00">1</text>
+<text class="mono" x="428" y="504" opacity="0.28">1</text>
+<text class="mono" x="428" y="592" opacity="0.29">1</text>
+</g>
+<g class="col" style="animation-duration:17.7s;animation-delay:-5.3s">
+<text class="mono" x="462" y="-156" opacity="0.63">0</text>
+<text class="mono" x="462" y="-134" opacity="0.43">0</text>
+<text class="mono" x="462" y="-68" opacity="0.91">1</text>
+<text class="mono" x="462" y="-46" opacity="0.53">1</text>
+<text class="mono" x="462" y="-24" opacity="0.65">0</text>
+<text class="mono" x="462" y="20" opacity="0.79">1</text>
+<text class="mono" x="462" y="64" opacity="0.69">0</text>
+<text class="mono" x="462" y="86" opacity="0.27">0</text>
+<text class="mono" x="462" y="130" opacity="0.98">0</text>
+<text class="mono" x="462" y="152" opacity="0.35">0</text>
+<text class="mono" x="462" y="218" opacity="0.69">1</text>
+<text class="mono" x="462" y="240" opacity="0.97">0</text>
+<text class="mono" x="462" y="328" opacity="0.43">0</text>
+<text class="mono" x="462" y="350" opacity="0.28">0</text>
+<text class="mono" x="462" y="416" opacity="0.32">0</text>
+<text class="mono" x="462" y="482" opacity="0.50">1</text>
+<text class="mono" x="462" y="504" opacity="0.44">1</text>
+<text class="mono" x="462" y="526" opacity="0.82">1</text>
+<text class="mono" x="462" y="570" opacity="0.61">1</text>
+<text class="mono" x="462" y="592" opacity="0.27">1</text>
+<text class="mono" x="462" y="614" opacity="0.64">0</text>
+<text class="mono" x="462" y="636" opacity="0.78">0</text>
+</g>
+<g class="col" style="animation-duration:15.4s;animation-delay:-14.9s">
+<text class="mono" x="496" y="-200" opacity="0.47">1</text>
+<text class="mono" x="496" y="-178" opacity="0.40">0</text>
+<text class="mono" x="496" y="-156" opacity="0.62">1</text>
+<text class="mono" x="496" y="-68" opacity="0.97">1</text>
+<text class="mono" x="496" y="-46" opacity="0.37">0</text>
+<text class="mono" x="496" y="-2" opacity="0.37">0</text>
+<text class="mono" x="496" y="20" opacity="0.99">0</text>
+<text class="mono" x="496" y="64" opacity="0.55">1</text>
+<text class="mono" x="496" y="130" opacity="0.73">1</text>
+<text class="mono" x="496" y="152" opacity="0.45">0</text>
+<text class="mono" x="496" y="174" opacity="0.91">0</text>
+<text class="mono" x="496" y="218" opacity="0.70">0</text>
+<text class="mono" x="496" y="240" opacity="0.49">0</text>
+<text class="mono" x="496" y="284" opacity="0.67">1</text>
+<text class="mono" x="496" y="306" opacity="0.58">1</text>
+<text class="mono" x="496" y="328" opacity="0.34">1</text>
+<text class="mono" x="496" y="394" opacity="0.45">0</text>
+<text class="mono" x="496" y="482" opacity="0.51">0</text>
+<text class="mono" x="496" y="504" opacity="0.39">0</text>
+<text class="mono" x="496" y="526" opacity="0.74">0</text>
+<text class="mono" x="496" y="548" opacity="0.99">1</text>
+<text class="mono" x="496" y="592" opacity="0.40">0</text>
+<text class="mono" x="496" y="614" opacity="0.91">1</text>
+<text class="mono" x="496" y="636" opacity="0.55">1</text>
+</g>
+<g class="col" style="animation-duration:15.2s;animation-delay:-9.0s">
+<text class="mono" x="530" y="-178" opacity="0.36">1</text>
+<text class="mono" x="530" y="-156" opacity="0.43">1</text>
+<text class="mono" x="530" y="-112" opacity="0.74">0</text>
+<text class="mono" x="530" y="-2" opacity="0.42">0</text>
+<text class="mono" x="530" y="42" opacity="0.48">0</text>
+<text class="mono" x="530" y="86" opacity="0.55">0</text>
+<text class="mono" x="530" y="108" opacity="0.57">1</text>
+<text class="mono" x="530" y="130" opacity="0.89">0</text>
+<text class="mono" x="530" y="174" opacity="0.26">1</text>
+<text class="mono" x="530" y="218" opacity="0.44">0</text>
+<text class="mono" x="530" y="240" opacity="0.84">0</text>
+<text class="mono" x="530" y="262" opacity="0.33">1</text>
+<text class="mono" x="530" y="284" opacity="0.79">0</text>
+<text class="mono" x="530" y="350" opacity="0.56">1</text>
+<text class="mono" x="530" y="372" opacity="0.76">1</text>
+<text class="mono" x="530" y="394" opacity="0.95">1</text>
+<text class="mono" x="530" y="438" opacity="0.54">0</text>
+<text class="mono" x="530" y="460" opacity="0.56">1</text>
+<text class="mono" x="530" y="526" opacity="0.33">1</text>
+<text class="mono" x="530" y="592" opacity="0.41">1</text>
+<text class="mono" x="530" y="614" opacity="0.37">0</text>
+</g>
+<g class="col" style="animation-duration:14.7s;animation-delay:-8.4s">
+<text class="mono" x="564" y="-200" opacity="0.42">0</text>
+<text class="mono" x="564" y="-178" opacity="0.73">1</text>
+<text class="mono" x="564" y="-156" opacity="0.47">0</text>
+<text class="mono" x="564" y="-112" opacity="0.84">0</text>
+<text class="mono" x="564" y="-90" opacity="0.53">1</text>
+<text class="mono" x="564" y="-24" opacity="0.85">1</text>
+<text class="mono" x="564" y="-2" opacity="0.74">1</text>
+<text class="mono" x="564" y="20" opacity="0.57">0</text>
+<text class="mono" x="564" y="64" opacity="0.95">1</text>
+<text class="mono" x="564" y="86" opacity="0.87">1</text>
+<text class="mono" x="564" y="130" opacity="0.87">0</text>
+<text class="mono" x="564" y="174" opacity="0.30">1</text>
+<text class="mono" x="564" y="196" opacity="0.33">0</text>
+<text class="mono" x="564" y="240" opacity="0.59">0</text>
+<text class="mono" x="564" y="262" opacity="0.55">0</text>
+<text class="mono" x="564" y="284" opacity="0.77">0</text>
+<text class="mono" x="564" y="394" opacity="0.77">0</text>
+<text class="mono" x="564" y="438" opacity="0.91">0</text>
+<text class="mono" x="564" y="460" opacity="0.43">0</text>
+<text class="mono" x="564" y="482" opacity="0.67">1</text>
+<text class="mono" x="564" y="504" opacity="0.36">1</text>
+<text class="mono" x="564" y="526" opacity="0.37">0</text>
+<text class="mono" x="564" y="548" opacity="0.49">1</text>
+<text class="mono" x="564" y="614" opacity="0.56">0</text>
+<text class="mono" x="564" y="636" opacity="0.52">0</text>
+</g>
+<g class="col" style="animation-duration:9.2s;animation-delay:-0.8s">
+<text class="mono" x="598" y="-134" opacity="0.61">0</text>
+<text class="mono" x="598" y="-112" opacity="0.79">0</text>
+<text class="mono" x="598" y="-90" opacity="0.90">1</text>
+<text class="mono" x="598" y="-68" opacity="0.83">0</text>
+<text class="mono" x="598" y="-46" opacity="0.51">1</text>
+<text class="mono" x="598" y="-24" opacity="0.87">1</text>
+<text class="mono" x="598" y="-2" opacity="0.62">1</text>
+<text class="mono" x="598" y="20" opacity="0.45">1</text>
+<text class="mono" x="598" y="108" opacity="0.49">1</text>
+<text class="mono" x="598" y="130" opacity="0.98">0</text>
+<text class="mono" x="598" y="174" opacity="0.79">1</text>
+<text class="mono" x="598" y="196" opacity="0.29">1</text>
+<text class="mono" x="598" y="218" opacity="0.28">1</text>
+<text class="mono" x="598" y="240" opacity="0.74">1</text>
+<text class="mono" x="598" y="262" opacity="0.72">0</text>
+<text class="mono" x="598" y="284" opacity="0.75">1</text>
+<text class="mono" x="598" y="328" opacity="0.75">0</text>
+<text class="mono" x="598" y="350" opacity="0.33">0</text>
+<text class="mono" x="598" y="372" opacity="0.87">1</text>
+<text class="mono" x="598" y="394" opacity="0.44">1</text>
+<text class="mono" x="598" y="416" opacity="0.28">0</text>
+<text class="mono" x="598" y="438" opacity="0.73">0</text>
+<text class="mono" x="598" y="460" opacity="0.64">0</text>
+<text class="mono" x="598" y="504" opacity="0.77">1</text>
+<text class="mono" x="598" y="526" opacity="0.26">1</text>
+<text class="mono" x="598" y="548" opacity="0.99">0</text>
+<text class="mono" x="598" y="570" opacity="0.56">0</text>
+<text class="mono" x="598" y="592" opacity="0.60">0</text>
+<text class="mono" x="598" y="636" opacity="0.26">0</text>
+</g>
+<g class="col" style="animation-duration:17.9s;animation-delay:-15.5s">
+<text class="mono" x="632" y="-200" opacity="0.34">1</text>
+<text class="mono" x="632" y="-178" opacity="0.79">0</text>
+<text class="mono" x="632" y="-156" opacity="0.81">0</text>
+<text class="mono" x="632" y="-134" opacity="0.81">0</text>
+<text class="mono" x="632" y="-90" opacity="0.72">1</text>
+<text class="mono" x="632" y="-68" opacity="0.95">1</text>
+<text class="mono" x="632" y="-24" opacity="0.27">0</text>
+<text class="mono" x="632" y="-2" opacity="0.74">0</text>
+<text class="mono" x="632" y="20" opacity="0.48">0</text>
+<text class="mono" x="632" y="86" opacity="0.49">1</text>
+<text class="mono" x="632" y="108" opacity="0.37">0</text>
+<text class="mono" x="632" y="130" opacity="0.73">1</text>
+<text class="mono" x="632" y="152" opacity="0.83">1</text>
+<text class="mono" x="632" y="218" opacity="0.47">0</text>
+<text class="mono" x="632" y="306" opacity="0.90">0</text>
+<text class="mono" x="632" y="350" opacity="0.48">1</text>
+<text class="mono" x="632" y="394" opacity="0.54">1</text>
+<text class="mono" x="632" y="416" opacity="0.92">1</text>
+<text class="mono" x="632" y="438" opacity="0.25">1</text>
+<text class="mono" x="632" y="460" opacity="0.37">0</text>
+<text class="mono" x="632" y="482" opacity="0.36">0</text>
+<text class="mono" x="632" y="504" opacity="0.89">1</text>
+<text class="mono" x="632" y="526" opacity="0.31">1</text>
+<text class="mono" x="632" y="570" opacity="0.81">0</text>
+<text class="mono" x="632" y="592" opacity="0.29">1</text>
+<text class="mono" x="632" y="614" opacity="0.40">1</text>
+<text class="mono" x="632" y="636" opacity="0.26">1</text>
+</g>
+<g class="col" style="animation-duration:13.1s;animation-delay:-1.6s">
+<text class="mono" x="666" y="-156" opacity="0.68">1</text>
+<text class="mono" x="666" y="-112" opacity="0.61">0</text>
+<text class="mono" x="666" y="-90" opacity="0.39">0</text>
+<text class="mono" x="666" y="-46" opacity="0.68">1</text>
+<text class="mono" x="666" y="-24" opacity="0.64">0</text>
+<text class="mono" x="666" y="-2" opacity="0.94">1</text>
+<text class="mono" x="666" y="20" opacity="0.33">1</text>
+<text class="mono" x="666" y="64" opacity="0.70">1</text>
+<text class="mono" x="666" y="86" opacity="0.71">0</text>
+<text class="mono" x="666" y="108" opacity="0.99">1</text>
+<text class="mono" x="666" y="130" opacity="0.41">1</text>
+<text class="mono" x="666" y="152" opacity="0.96">0</text>
+<text class="mono" x="666" y="174" opacity="0.28">0</text>
+<text class="mono" x="666" y="218" opacity="0.27">0</text>
+<text class="mono" x="666" y="240" opacity="0.90">1</text>
+<text class="mono" x="666" y="262" opacity="0.88">0</text>
+<text class="mono" x="666" y="372" opacity="0.49">0</text>
+<text class="mono" x="666" y="460" opacity="0.59">0</text>
+<text class="mono" x="666" y="482" opacity="0.43">0</text>
+<text class="mono" x="666" y="504" opacity="0.96">1</text>
+<text class="mono" x="666" y="526" opacity="0.66">0</text>
+<text class="mono" x="666" y="570" opacity="0.84">1</text>
+<text class="mono" x="666" y="592" opacity="0.36">0</text>
+</g>
+<g class="col" style="animation-duration:11.7s;animation-delay:-10.6s">
+<text class="mono" x="700" y="-178" opacity="0.49">1</text>
+<text class="mono" x="700" y="-156" opacity="0.53">1</text>
+<text class="mono" x="700" y="-134" opacity="0.43">0</text>
+<text class="mono" x="700" y="-68" opacity="0.93">0</text>
+<text class="mono" x="700" y="-46" opacity="0.87">0</text>
+<text class="mono" x="700" y="42" opacity="0.59">0</text>
+<text class="mono" x="700" y="86" opacity="0.27">0</text>
+<text class="mono" x="700" y="108" opacity="0.50">0</text>
+<text class="mono" x="700" y="130" opacity="0.72">0</text>
+<text class="mono" x="700" y="152" opacity="0.80">0</text>
+<text class="mono" x="700" y="196" opacity="0.36">0</text>
+<text class="mono" x="700" y="218" opacity="0.56">0</text>
+<text class="mono" x="700" y="240" opacity="0.68">1</text>
+<text class="mono" x="700" y="262" opacity="0.38">1</text>
+<text class="mono" x="700" y="284" opacity="0.59">1</text>
+<text class="mono" x="700" y="306" opacity="0.98">0</text>
+<text class="mono" x="700" y="394" opacity="0.88">0</text>
+<text class="mono" x="700" y="416" opacity="0.40">1</text>
+<text class="mono" x="700" y="438" opacity="0.45">0</text>
+<text class="mono" x="700" y="482" opacity="0.47">0</text>
+<text class="mono" x="700" y="504" opacity="0.79">1</text>
+<text class="mono" x="700" y="526" opacity="0.73">1</text>
+<text class="mono" x="700" y="570" opacity="0.36">0</text>
+<text class="mono" x="700" y="636" opacity="0.52">0</text>
+</g>
+<g class="col" style="animation-duration:17.2s;animation-delay:-3.9s">
+<text class="mono" x="734" y="-200" opacity="0.35">0</text>
+<text class="mono" x="734" y="-178" opacity="0.42">0</text>
+<text class="mono" x="734" y="-156" opacity="0.31">0</text>
+<text class="mono" x="734" y="-68" opacity="0.35">0</text>
+<text class="mono" x="734" y="-46" opacity="0.40">0</text>
+<text class="mono" x="734" y="-2" opacity="0.88">0</text>
+<text class="mono" x="734" y="20" opacity="0.51">1</text>
+<text class="mono" x="734" y="86" opacity="0.26">1</text>
+<text class="mono" x="734" y="108" opacity="0.75">0</text>
+<text class="mono" x="734" y="130" opacity="0.87">1</text>
+<text class="mono" x="734" y="152" opacity="0.78">0</text>
+<text class="mono" x="734" y="174" opacity="0.95">0</text>
+<text class="mono" x="734" y="196" opacity="0.79">1</text>
+<text class="mono" x="734" y="262" opacity="0.92">1</text>
+<text class="mono" x="734" y="328" opacity="0.63">0</text>
+<text class="mono" x="734" y="350" opacity="0.98">0</text>
+<text class="mono" x="734" y="372" opacity="0.38">1</text>
+<text class="mono" x="734" y="394" opacity="0.86">0</text>
+<text class="mono" x="734" y="416" opacity="0.94">0</text>
+<text class="mono" x="734" y="438" opacity="0.88">1</text>
+<text class="mono" x="734" y="460" opacity="0.78">0</text>
+<text class="mono" x="734" y="482" opacity="0.32">0</text>
+<text class="mono" x="734" y="504" opacity="0.34">1</text>
+<text class="mono" x="734" y="526" opacity="0.82">0</text>
+<text class="mono" x="734" y="548" opacity="0.55">0</text>
+<text class="mono" x="734" y="570" opacity="0.42">0</text>
+<text class="mono" x="734" y="592" opacity="0.68">1</text>
+<text class="mono" x="734" y="614" opacity="0.87">1</text>
+</g>
+<g class="col" style="animation-duration:14.4s;animation-delay:-10.9s">
+<text class="mono" x="768" y="-200" opacity="0.98">0</text>
+<text class="mono" x="768" y="-156" opacity="0.43">1</text>
+<text class="mono" x="768" y="-90" opacity="0.99">1</text>
+<text class="mono" x="768" y="-24" opacity="0.64">1</text>
+<text class="mono" x="768" y="-2" opacity="0.57">0</text>
+<text class="mono" x="768" y="20" opacity="0.65">0</text>
+<text class="mono" x="768" y="42" opacity="0.40">0</text>
+<text class="mono" x="768" y="64" opacity="0.57">1</text>
+<text class="mono" x="768" y="218" opacity="0.73">1</text>
+<text class="mono" x="768" y="328" opacity="0.33">0</text>
+<text class="mono" x="768" y="350" opacity="0.58">0</text>
+<text class="mono" x="768" y="372" opacity="0.48">0</text>
+<text class="mono" x="768" y="394" opacity="0.70">1</text>
+<text class="mono" x="768" y="416" opacity="0.69">0</text>
+<text class="mono" x="768" y="438" opacity="0.63">1</text>
+<text class="mono" x="768" y="482" opacity="0.46">0</text>
+<text class="mono" x="768" y="526" opacity="0.59">0</text>
+<text class="mono" x="768" y="570" opacity="0.78">1</text>
+<text class="mono" x="768" y="614" opacity="0.61">1</text>
+<text class="mono" x="768" y="636" opacity="0.50">0</text>
+</g>
+<g class="col" style="animation-duration:13.6s;animation-delay:-6.9s">
+<text class="mono" x="802" y="-200" opacity="0.26">1</text>
+<text class="mono" x="802" y="-178" opacity="0.96">1</text>
+<text class="mono" x="802" y="-156" opacity="0.62">1</text>
+<text class="mono" x="802" y="-112" opacity="0.29">0</text>
+<text class="mono" x="802" y="-90" opacity="0.30">1</text>
+<text class="mono" x="802" y="-68" opacity="0.30">1</text>
+<text class="mono" x="802" y="-24" opacity="0.82">0</text>
+<text class="mono" x="802" y="64" opacity="0.75">0</text>
+<text class="mono" x="802" y="108" opacity="0.89">0</text>
+<text class="mono" x="802" y="196" opacity="0.84">0</text>
+<text class="mono" x="802" y="218" opacity="0.33">1</text>
+<text class="mono" x="802" y="262" opacity="0.62">0</text>
+<text class="mono" x="802" y="284" opacity="0.84">0</text>
+<text class="mono" x="802" y="306" opacity="0.59">1</text>
+<text class="mono" x="802" y="328" opacity="0.51">1</text>
+<text class="mono" x="802" y="350" opacity="0.67">1</text>
+<text class="mono" x="802" y="394" opacity="0.81">1</text>
+<text class="mono" x="802" y="416" opacity="0.48">1</text>
+<text class="mono" x="802" y="460" opacity="0.53">0</text>
+<text class="mono" x="802" y="482" opacity="0.94">1</text>
+<text class="mono" x="802" y="526" opacity="0.43">1</text>
+<text class="mono" x="802" y="548" opacity="0.57">0</text>
+<text class="mono" x="802" y="570" opacity="0.44">1</text>
+<text class="mono" x="802" y="592" opacity="0.65">1</text>
+<text class="mono" x="802" y="614" opacity="1.00">1</text>
+<text class="mono" x="802" y="636" opacity="0.52">1</text>
+</g>
+<g class="col" style="animation-duration:13.1s;animation-delay:-0.2s">
+<text class="mono" x="836" y="-200" opacity="0.42">1</text>
+<text class="mono" x="836" y="-178" opacity="0.55">0</text>
+<text class="mono" x="836" y="-112" opacity="0.58">1</text>
+<text class="mono" x="836" y="-46" opacity="0.52">1</text>
+<text class="mono" x="836" y="20" opacity="0.33">1</text>
+<text class="mono" x="836" y="130" opacity="0.37">1</text>
+<text class="mono" x="836" y="174" opacity="0.92">1</text>
+<text class="mono" x="836" y="196" opacity="0.72">0</text>
+<text class="mono" x="836" y="218" opacity="1.00">0</text>
+<text class="mono" x="836" y="262" opacity="0.25">0</text>
+<text class="mono" x="836" y="306" opacity="0.32">0</text>
+<text class="mono" x="836" y="350" opacity="0.62">1</text>
+<text class="mono" x="836" y="416" opacity="0.36">0</text>
+<text class="mono" x="836" y="438" opacity="0.34">0</text>
+<text class="mono" x="836" y="460" opacity="0.63">0</text>
+<text class="mono" x="836" y="482" opacity="0.38">1</text>
+<text class="mono" x="836" y="526" opacity="0.85">0</text>
+<text class="mono" x="836" y="592" opacity="0.36">0</text>
+<text class="mono" x="836" y="614" opacity="0.38">1</text>
+</g>
+<g class="col" style="animation-duration:16.7s;animation-delay:-17.1s">
+<text class="mono" x="870" y="-200" opacity="0.39">1</text>
+<text class="mono" x="870" y="-178" opacity="0.42">1</text>
+<text class="mono" x="870" y="-156" opacity="0.97">1</text>
+<text class="mono" x="870" y="-134" opacity="0.43">0</text>
+<text class="mono" x="870" y="-112" opacity="0.95">0</text>
+<text class="mono" x="870" y="-90" opacity="0.92">1</text>
+<text class="mono" x="870" y="-68" opacity="0.70">1</text>
+<text class="mono" x="870" y="-24" opacity="0.76">0</text>
+<text class="mono" x="870" y="-2" opacity="0.55">1</text>
+<text class="mono" x="870" y="20" opacity="0.90">0</text>
+<text class="mono" x="870" y="42" opacity="0.52">0</text>
+<text class="mono" x="870" y="64" opacity="0.91">1</text>
+<text class="mono" x="870" y="86" opacity="0.34">1</text>
+<text class="mono" x="870" y="108" opacity="0.74">0</text>
+<text class="mono" x="870" y="130" opacity="0.93">0</text>
+<text class="mono" x="870" y="152" opacity="0.60">1</text>
+<text class="mono" x="870" y="174" opacity="0.28">0</text>
+<text class="mono" x="870" y="196" opacity="0.37">0</text>
+<text class="mono" x="870" y="218" opacity="0.45">0</text>
+<text class="mono" x="870" y="240" opacity="0.60">0</text>
+<text class="mono" x="870" y="262" opacity="0.51">1</text>
+<text class="mono" x="870" y="284" opacity="0.97">0</text>
+<text class="mono" x="870" y="306" opacity="0.61">0</text>
+<text class="mono" x="870" y="328" opacity="0.59">0</text>
+<text class="mono" x="870" y="394" opacity="0.58">1</text>
+<text class="mono" x="870" y="416" opacity="0.55">0</text>
+<text class="mono" x="870" y="438" opacity="0.81">0</text>
+<text class="mono" x="870" y="460" opacity="0.45">1</text>
+<text class="mono" x="870" y="482" opacity="0.79">0</text>
+<text class="mono" x="870" y="504" opacity="0.54">0</text>
+<text class="mono" x="870" y="570" opacity="0.39">0</text>
+<text class="mono" x="870" y="592" opacity="0.94">1</text>
+<text class="mono" x="870" y="614" opacity="0.79">0</text>
+<text class="mono" x="870" y="636" opacity="0.34">1</text>
+</g>
+<g class="col" style="animation-duration:11.5s;animation-delay:-7.3s">
+<text class="mono" x="904" y="-112" opacity="0.46">0</text>
+<text class="mono" x="904" y="-90" opacity="0.85">1</text>
+<text class="mono" x="904" y="-46" opacity="0.78">1</text>
+<text class="mono" x="904" y="-24" opacity="0.89">1</text>
+<text class="mono" x="904" y="20" opacity="0.47">1</text>
+<text class="mono" x="904" y="108" opacity="0.28">0</text>
+<text class="mono" x="904" y="130" opacity="0.82">0</text>
+<text class="mono" x="904" y="152" opacity="0.28">1</text>
+<text class="mono" x="904" y="218" opacity="0.42">1</text>
+<text class="mono" x="904" y="262" opacity="0.58">1</text>
+<text class="mono" x="904" y="306" opacity="0.82">1</text>
+<text class="mono" x="904" y="372" opacity="0.77">0</text>
+<text class="mono" x="904" y="416" opacity="0.49">1</text>
+<text class="mono" x="904" y="460" opacity="0.77">1</text>
+<text class="mono" x="904" y="504" opacity="0.42">0</text>
+<text class="mono" x="904" y="526" opacity="0.96">1</text>
+</g>
+<g class="col" style="animation-duration:13.1s;animation-delay:-1.0s">
+<text class="mono" x="938" y="-178" opacity="0.63">0</text>
+<text class="mono" x="938" y="-156" opacity="0.39">1</text>
+<text class="mono" x="938" y="-134" opacity="0.37">0</text>
+<text class="mono" x="938" y="-112" opacity="0.44">0</text>
+<text class="mono" x="938" y="-90" opacity="0.51">0</text>
+<text class="mono" x="938" y="-68" opacity="0.48">0</text>
+<text class="mono" x="938" y="-24" opacity="0.61">0</text>
+<text class="mono" x="938" y="-2" opacity="0.77">0</text>
+<text class="mono" x="938" y="42" opacity="0.47">0</text>
+<text class="mono" x="938" y="64" opacity="0.43">0</text>
+<text class="mono" x="938" y="86" opacity="0.82">0</text>
+<text class="mono" x="938" y="130" opacity="0.98">1</text>
+<text class="mono" x="938" y="174" opacity="0.47">1</text>
+<text class="mono" x="938" y="196" opacity="0.28">1</text>
+<text class="mono" x="938" y="218" opacity="0.33">1</text>
+<text class="mono" x="938" y="240" opacity="0.33">1</text>
+<text class="mono" x="938" y="262" opacity="0.68">1</text>
+<text class="mono" x="938" y="284" opacity="0.30">0</text>
+<text class="mono" x="938" y="306" opacity="0.98">1</text>
+<text class="mono" x="938" y="328" opacity="0.79">1</text>
+<text class="mono" x="938" y="350" opacity="0.62">1</text>
+<text class="mono" x="938" y="372" opacity="0.84">1</text>
+<text class="mono" x="938" y="394" opacity="0.94">1</text>
+<text class="mono" x="938" y="482" opacity="0.43">0</text>
+<text class="mono" x="938" y="526" opacity="0.55">0</text>
+<text class="mono" x="938" y="548" opacity="0.39">0</text>
+<text class="mono" x="938" y="570" opacity="0.79">1</text>
+<text class="mono" x="938" y="614" opacity="0.39">1</text>
+<text class="mono" x="938" y="636" opacity="0.53">1</text>
+</g>
+<g class="col" style="animation-duration:16.5s;animation-delay:-4.6s">
+<text class="mono" x="972" y="-200" opacity="0.33">1</text>
+<text class="mono" x="972" y="-134" opacity="0.62">0</text>
+<text class="mono" x="972" y="-90" opacity="0.72">0</text>
+<text class="mono" x="972" y="-46" opacity="0.58">1</text>
+<text class="mono" x="972" y="-24" opacity="0.28">1</text>
+<text class="mono" x="972" y="-2" opacity="0.41">1</text>
+<text class="mono" x="972" y="20" opacity="0.88">1</text>
+<text class="mono" x="972" y="42" opacity="0.30">0</text>
+<text class="mono" x="972" y="64" opacity="0.57">1</text>
+<text class="mono" x="972" y="86" opacity="0.26">0</text>
+<text class="mono" x="972" y="130" opacity="0.47">1</text>
+<text class="mono" x="972" y="196" opacity="0.60">1</text>
+<text class="mono" x="972" y="218" opacity="0.57">0</text>
+<text class="mono" x="972" y="284" opacity="0.86">0</text>
+<text class="mono" x="972" y="328" opacity="0.74">1</text>
+<text class="mono" x="972" y="372" opacity="0.74">1</text>
+<text class="mono" x="972" y="416" opacity="0.73">0</text>
+<text class="mono" x="972" y="438" opacity="0.80">0</text>
+<text class="mono" x="972" y="460" opacity="0.68">1</text>
+<text class="mono" x="972" y="482" opacity="0.43">1</text>
+<text class="mono" x="972" y="504" opacity="0.34">0</text>
+<text class="mono" x="972" y="548" opacity="0.81">0</text>
+<text class="mono" x="972" y="592" opacity="0.32">1</text>
+<text class="mono" x="972" y="636" opacity="0.59">0</text>
+</g>
+<g class="col" style="animation-duration:15.6s;animation-delay:-16.4s">
+<text class="mono" x="1006" y="-200" opacity="0.89">0</text>
+<text class="mono" x="1006" y="-156" opacity="0.63">0</text>
+<text class="mono" x="1006" y="-90" opacity="0.59">1</text>
+<text class="mono" x="1006" y="-68" opacity="0.98">0</text>
+<text class="mono" x="1006" y="-46" opacity="0.83">0</text>
+<text class="mono" x="1006" y="-24" opacity="0.71">1</text>
+<text class="mono" x="1006" y="-2" opacity="0.53">0</text>
+<text class="mono" x="1006" y="64" opacity="0.34">0</text>
+<text class="mono" x="1006" y="86" opacity="0.92">0</text>
+<text class="mono" x="1006" y="108" opacity="0.94">1</text>
+<text class="mono" x="1006" y="130" opacity="0.81">1</text>
+<text class="mono" x="1006" y="196" opacity="0.44">0</text>
+<text class="mono" x="1006" y="218" opacity="0.80">1</text>
+<text class="mono" x="1006" y="262" opacity="0.70">0</text>
+<text class="mono" x="1006" y="284" opacity="0.50">0</text>
+<text class="mono" x="1006" y="306" opacity="0.93">0</text>
+<text class="mono" x="1006" y="328" opacity="0.39">1</text>
+<text class="mono" x="1006" y="350" opacity="0.99">1</text>
+<text class="mono" x="1006" y="372" opacity="0.27">0</text>
+<text class="mono" x="1006" y="394" opacity="0.44">0</text>
+<text class="mono" x="1006" y="416" opacity="0.47">1</text>
+<text class="mono" x="1006" y="460" opacity="0.44">1</text>
+<text class="mono" x="1006" y="504" opacity="0.51">0</text>
+<text class="mono" x="1006" y="526" opacity="0.61">0</text>
+<text class="mono" x="1006" y="570" opacity="0.39">1</text>
+</g>
+<g class="col" style="animation-duration:13.0s;animation-delay:-4.1s">
+<text class="mono" x="1040" y="-178" opacity="0.52">0</text>
+<text class="mono" x="1040" y="-156" opacity="0.35">0</text>
+<text class="mono" x="1040" y="-134" opacity="0.86">1</text>
+<text class="mono" x="1040" y="-112" opacity="0.60">1</text>
+<text class="mono" x="1040" y="-90" opacity="0.50">1</text>
+<text class="mono" x="1040" y="-68" opacity="0.27">1</text>
+<text class="mono" x="1040" y="-24" opacity="0.72">0</text>
+<text class="mono" x="1040" y="-2" opacity="0.46">1</text>
+<text class="mono" x="1040" y="20" opacity="0.68">0</text>
+<text class="mono" x="1040" y="64" opacity="0.67">0</text>
+<text class="mono" x="1040" y="174" opacity="0.46">0</text>
+<text class="mono" x="1040" y="262" opacity="0.82">1</text>
+<text class="mono" x="1040" y="284" opacity="0.73">1</text>
+<text class="mono" x="1040" y="350" opacity="0.78">1</text>
+<text class="mono" x="1040" y="416" opacity="0.92">0</text>
+<text class="mono" x="1040" y="460" opacity="0.40">1</text>
+<text class="mono" x="1040" y="482" opacity="0.55">1</text>
+<text class="mono" x="1040" y="526" opacity="0.36">1</text>
+<text class="mono" x="1040" y="548" opacity="0.68">1</text>
+<text class="mono" x="1040" y="570" opacity="0.39">0</text>
+<text class="mono" x="1040" y="592" opacity="0.48">1</text>
+<text class="mono" x="1040" y="636" opacity="0.83">1</text>
+</g>
+<g class="col" style="animation-duration:15.5s;animation-delay:-16.6s">
+<text class="mono" x="1074" y="-178" opacity="0.38">1</text>
+<text class="mono" x="1074" y="-156" opacity="0.82">1</text>
+<text class="mono" x="1074" y="-134" opacity="0.27">0</text>
+<text class="mono" x="1074" y="-112" opacity="0.40">1</text>
+<text class="mono" x="1074" y="-46" opacity="0.80">0</text>
+<text class="mono" x="1074" y="-24" opacity="0.31">1</text>
+<text class="mono" x="1074" y="20" opacity="0.45">0</text>
+<text class="mono" x="1074" y="86" opacity="0.50">0</text>
+<text class="mono" x="1074" y="130" opacity="0.76">1</text>
+<text class="mono" x="1074" y="152" opacity="0.90">0</text>
+<text class="mono" x="1074" y="174" opacity="0.71">1</text>
+<text class="mono" x="1074" y="218" opacity="0.96">0</text>
+<text class="mono" x="1074" y="240" opacity="0.49">1</text>
+<text class="mono" x="1074" y="262" opacity="0.71">1</text>
+<text class="mono" x="1074" y="284" opacity="0.26">0</text>
+<text class="mono" x="1074" y="306" opacity="0.83">0</text>
+<text class="mono" x="1074" y="328" opacity="0.52">1</text>
+<text class="mono" x="1074" y="350" opacity="0.69">0</text>
+<text class="mono" x="1074" y="394" opacity="0.50">1</text>
+<text class="mono" x="1074" y="438" opacity="0.27">1</text>
+<text class="mono" x="1074" y="482" opacity="0.78">1</text>
+<text class="mono" x="1074" y="504" opacity="0.65">1</text>
+<text class="mono" x="1074" y="526" opacity="0.26">1</text>
+<text class="mono" x="1074" y="548" opacity="0.86">1</text>
+<text class="mono" x="1074" y="570" opacity="0.72">1</text>
+<text class="mono" x="1074" y="614" opacity="0.27">0</text>
+<text class="mono" x="1074" y="636" opacity="0.66">0</text>
+</g>
+<g class="col" style="animation-duration:14.0s;animation-delay:-3.3s">
+<text class="mono" x="1108" y="-178" opacity="0.36">0</text>
+<text class="mono" x="1108" y="-90" opacity="0.51">0</text>
+<text class="mono" x="1108" y="-68" opacity="0.89">0</text>
+<text class="mono" x="1108" y="-24" opacity="0.85">1</text>
+<text class="mono" x="1108" y="-2" opacity="0.84">0</text>
+<text class="mono" x="1108" y="20" opacity="0.80">0</text>
+<text class="mono" x="1108" y="108" opacity="0.42">1</text>
+<text class="mono" x="1108" y="130" opacity="0.94">0</text>
+<text class="mono" x="1108" y="152" opacity="0.27">1</text>
+<text class="mono" x="1108" y="174" opacity="0.52">1</text>
+<text class="mono" x="1108" y="240" opacity="1.00">0</text>
+<text class="mono" x="1108" y="306" opacity="0.95">1</text>
+<text class="mono" x="1108" y="350" opacity="0.48">0</text>
+<text class="mono" x="1108" y="372" opacity="0.61">0</text>
+<text class="mono" x="1108" y="394" opacity="0.76">1</text>
+<text class="mono" x="1108" y="416" opacity="0.29">0</text>
+<text class="mono" x="1108" y="482" opacity="0.83">1</text>
+<text class="mono" x="1108" y="504" opacity="0.90">1</text>
+<text class="mono" x="1108" y="570" opacity="0.93">0</text>
+<text class="mono" x="1108" y="614" opacity="0.80">0</text>
+</g>
+<g class="col" style="animation-duration:13.2s;animation-delay:-7.1s">
+<text class="mono" x="1142" y="-200" opacity="0.73">1</text>
+<text class="mono" x="1142" y="-134" opacity="0.43">0</text>
+<text class="mono" x="1142" y="-112" opacity="0.63">0</text>
+<text class="mono" x="1142" y="-90" opacity="0.77">0</text>
+<text class="mono" x="1142" y="-68" opacity="0.92">0</text>
+<text class="mono" x="1142" y="-24" opacity="0.62">0</text>
+<text class="mono" x="1142" y="-2" opacity="0.25">0</text>
+<text class="mono" x="1142" y="42" opacity="0.80">0</text>
+<text class="mono" x="1142" y="64" opacity="0.88">0</text>
+<text class="mono" x="1142" y="86" opacity="0.41">0</text>
+<text class="mono" x="1142" y="130" opacity="0.38">1</text>
+<text class="mono" x="1142" y="152" opacity="0.97">0</text>
+<text class="mono" x="1142" y="174" opacity="0.56">1</text>
+<text class="mono" x="1142" y="196" opacity="0.49">0</text>
+<text class="mono" x="1142" y="240" opacity="0.66">1</text>
+<text class="mono" x="1142" y="328" opacity="0.49">1</text>
+<text class="mono" x="1142" y="350" opacity="0.36">1</text>
+<text class="mono" x="1142" y="460" opacity="0.63">1</text>
+<text class="mono" x="1142" y="592" opacity="0.72">0</text>
+<text class="mono" x="1142" y="636" opacity="0.77">1</text>
+</g>
+<g class="col" style="animation-duration:15.2s;animation-delay:-8.0s">
+<text class="mono" x="1176" y="-178" opacity="0.68">1</text>
+<text class="mono" x="1176" y="-112" opacity="0.69">1</text>
+<text class="mono" x="1176" y="-90" opacity="0.72">1</text>
+<text class="mono" x="1176" y="-68" opacity="0.30">1</text>
+<text class="mono" x="1176" y="-46" opacity="0.76">1</text>
+<text class="mono" x="1176" y="-24" opacity="0.85">0</text>
+<text class="mono" x="1176" y="42" opacity="0.88">1</text>
+<text class="mono" x="1176" y="64" opacity="0.61">0</text>
+<text class="mono" x="1176" y="108" opacity="0.82">1</text>
+<text class="mono" x="1176" y="130" opacity="0.65">1</text>
+<text class="mono" x="1176" y="152" opacity="0.38">1</text>
+<text class="mono" x="1176" y="174" opacity="0.96">0</text>
+<text class="mono" x="1176" y="196" opacity="0.52">1</text>
+<text class="mono" x="1176" y="218" opacity="0.37">1</text>
+<text class="mono" x="1176" y="240" opacity="0.52">1</text>
+<text class="mono" x="1176" y="262" opacity="0.32">1</text>
+<text class="mono" x="1176" y="284" opacity="0.58">0</text>
+<text class="mono" x="1176" y="306" opacity="0.61">0</text>
+<text class="mono" x="1176" y="350" opacity="0.76">1</text>
+<text class="mono" x="1176" y="372" opacity="0.75">1</text>
+<text class="mono" x="1176" y="394" opacity="0.85">1</text>
+<text class="mono" x="1176" y="416" opacity="0.40">1</text>
+<text class="mono" x="1176" y="438" opacity="0.38">1</text>
+<text class="mono" x="1176" y="482" opacity="0.45">1</text>
+<text class="mono" x="1176" y="504" opacity="0.73">0</text>
+<text class="mono" x="1176" y="526" opacity="0.57">1</text>
+<text class="mono" x="1176" y="548" opacity="0.53">0</text>
+<text class="mono" x="1176" y="592" opacity="0.28">1</text>
+<text class="mono" x="1176" y="636" opacity="0.71">1</text>
+</g>
+<g class="col" style="animation-duration:12.2s;animation-delay:-6.9s">
+<text class="mono" x="1210" y="-200" opacity="0.94">0</text>
+<text class="mono" x="1210" y="-134" opacity="0.30">0</text>
+<text class="mono" x="1210" y="-112" opacity="0.30">1</text>
+<text class="mono" x="1210" y="-90" opacity="0.64">1</text>
+<text class="mono" x="1210" y="-2" opacity="0.67">1</text>
+<text class="mono" x="1210" y="42" opacity="1.00">0</text>
+<text class="mono" x="1210" y="86" opacity="0.62">0</text>
+<text class="mono" x="1210" y="152" opacity="0.28">1</text>
+<text class="mono" x="1210" y="174" opacity="0.83">1</text>
+<text class="mono" x="1210" y="196" opacity="0.42">0</text>
+<text class="mono" x="1210" y="218" opacity="0.26">1</text>
+<text class="mono" x="1210" y="240" opacity="0.81">1</text>
+<text class="mono" x="1210" y="262" opacity="0.76">1</text>
+<text class="mono" x="1210" y="284" opacity="0.29">1</text>
+<text class="mono" x="1210" y="328" opacity="0.56">0</text>
+<text class="mono" x="1210" y="372" opacity="0.50">0</text>
+<text class="mono" x="1210" y="394" opacity="0.65">1</text>
+<text class="mono" x="1210" y="416" opacity="0.54">1</text>
+<text class="mono" x="1210" y="438" opacity="0.63">1</text>
+<text class="mono" x="1210" y="482" opacity="0.44">1</text>
+<text class="mono" x="1210" y="548" opacity="0.40">0</text>
+<text class="mono" x="1210" y="570" opacity="0.74">1</text>
+<text class="mono" x="1210" y="636" opacity="0.95">1</text>
+</g>
+<g class="col" style="animation-duration:10.8s;animation-delay:-16.5s">
+<text class="mono" x="1244" y="-200" opacity="0.29">1</text>
+<text class="mono" x="1244" y="-178" opacity="0.30">1</text>
+<text class="mono" x="1244" y="-156" opacity="0.41">1</text>
+<text class="mono" x="1244" y="-134" opacity="0.78">1</text>
+<text class="mono" x="1244" y="-112" opacity="0.80">0</text>
+<text class="mono" x="1244" y="-68" opacity="0.58">0</text>
+<text class="mono" x="1244" y="-46" opacity="0.90">0</text>
+<text class="mono" x="1244" y="-2" opacity="0.26">0</text>
+<text class="mono" x="1244" y="20" opacity="0.76">1</text>
+<text class="mono" x="1244" y="64" opacity="0.37">0</text>
+<text class="mono" x="1244" y="86" opacity="0.60">0</text>
+<text class="mono" x="1244" y="152" opacity="0.74">1</text>
+<text class="mono" x="1244" y="196" opacity="0.57">0</text>
+<text class="mono" x="1244" y="240" opacity="0.37">1</text>
+<text class="mono" x="1244" y="262" opacity="0.42">1</text>
+<text class="mono" x="1244" y="328" opacity="0.44">0</text>
+<text class="mono" x="1244" y="350" opacity="0.85">0</text>
+<text class="mono" x="1244" y="372" opacity="0.27">1</text>
+<text class="mono" x="1244" y="394" opacity="0.47">0</text>
+<text class="mono" x="1244" y="416" opacity="0.36">0</text>
+<text class="mono" x="1244" y="438" opacity="0.76">0</text>
+<text class="mono" x="1244" y="460" opacity="0.51">0</text>
+<text class="mono" x="1244" y="526" opacity="0.47">1</text>
+<text class="mono" x="1244" y="548" opacity="0.84">0</text>
+<text class="mono" x="1244" y="570" opacity="0.46">1</text>
+<text class="mono" x="1244" y="592" opacity="0.66">0</text>
+<text class="mono" x="1244" y="614" opacity="0.60">0</text>
+<text class="mono" x="1244" y="636" opacity="0.47">0</text>
+</g>
+<g class="col" style="animation-duration:17.7s;animation-delay:-6.2s">
+<text class="mono" x="1278" y="-156" opacity="0.50">1</text>
+<text class="mono" x="1278" y="-134" opacity="0.50">1</text>
+<text class="mono" x="1278" y="-112" opacity="0.84">1</text>
+<text class="mono" x="1278" y="-46" opacity="0.81">0</text>
+<text class="mono" x="1278" y="-2" opacity="0.60">0</text>
+<text class="mono" x="1278" y="20" opacity="0.68">1</text>
+<text class="mono" x="1278" y="64" opacity="0.68">1</text>
+<text class="mono" x="1278" y="86" opacity="0.80">0</text>
+<text class="mono" x="1278" y="108" opacity="0.75">0</text>
+<text class="mono" x="1278" y="130" opacity="0.88">1</text>
+<text class="mono" x="1278" y="152" opacity="0.45">0</text>
+<text class="mono" x="1278" y="196" opacity="0.62">0</text>
+<text class="mono" x="1278" y="218" opacity="0.43">0</text>
+<text class="mono" x="1278" y="240" opacity="0.53">0</text>
+<text class="mono" x="1278" y="262" opacity="0.67">0</text>
+<text class="mono" x="1278" y="328" opacity="0.43">0</text>
+<text class="mono" x="1278" y="350" opacity="0.96">1</text>
+<text class="mono" x="1278" y="416" opacity="0.81">0</text>
+<text class="mono" x="1278" y="460" opacity="0.45">0</text>
+<text class="mono" x="1278" y="482" opacity="0.72">0</text>
+<text class="mono" x="1278" y="504" opacity="0.92">0</text>
+<text class="mono" x="1278" y="548" opacity="0.43">0</text>
+<text class="mono" x="1278" y="592" opacity="0.50">0</text>
+<text class="mono" x="1278" y="614" opacity="0.71">0</text>
+</g>
+</g>
+<path d="M0 440 L0 392 C160 372 250 404 400 384 S640 344 790 372 S1040 406 1280 356 L1280 440Z" fill="#0C0C12"/>
+<path d="M0 392 C160 372 250 404 400 384 S640 344 790 372 S1040 406 1280 356" fill="none" stroke="url(#soft)" stroke-width="1.5" opacity=".7"/>
+<g mask="url(#cm)">
+<line x1="700" x2="1280" y1="110" y2="110" stroke="#fff" stroke-opacity=".06"/>
+<line x1="700" x2="1280" y1="170" y2="170" stroke="#fff" stroke-opacity=".06"/>
+<line x1="700" x2="1280" y1="230" y2="230" stroke="#fff" stroke-opacity=".06"/>
+<line x1="700" x2="1280" y1="290" y2="290" stroke="#fff" stroke-opacity=".06"/>
+<g class="c" style="animation-delay:1.00s"><line x1="737" x2="737" y1="268" y2="302" stroke="#FF5C7A" stroke-width="1.5"/><rect x="730" y="285" width="14" height="6" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:1.07s"><line x1="763" x2="763" y1="250" y2="308" stroke="#3DDC97" stroke-width="1.5"/><rect x="756" y="256" width="14" height="33" rx="2" fill="#3DDC97"/></g>
+<g class="c" style="animation-delay:1.14s"><line x1="789" x2="789" y1="244" y2="263" stroke="#3DDC97" stroke-width="1.5"/><rect x="782" y="256" width="14" height="6" rx="2" fill="#3DDC97"/></g>
+<g class="c" style="animation-delay:1.21s"><line x1="815" x2="815" y1="240" y2="282" stroke="#FF5C7A" stroke-width="1.5"/><rect x="808" y="256" width="14" height="10" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:1.28s"><line x1="841" x2="841" y1="255" y2="290" stroke="#FF5C7A" stroke-width="1.5"/><rect x="834" y="266" width="14" height="16" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:1.35s"><line x1="867" x2="867" y1="273" y2="306" stroke="#FF5C7A" stroke-width="1.5"/><rect x="860" y="282" width="14" height="13" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:1.42s"><line x1="893" x2="893" y1="276" y2="327" stroke="#FF5C7A" stroke-width="1.5"/><rect x="886" y="296" width="14" height="14" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:1.49s"><line x1="919" x2="919" y1="297" y2="327" stroke="#FF5C7A" stroke-width="1.5"/><rect x="912" y="310" width="14" height="6" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:1.56s"><line x1="945" x2="945" y1="261" y2="325" stroke="#3DDC97" stroke-width="1.5"/><rect x="938" y="278" width="14" height="32" rx="2" fill="#3DDC97"/></g>
+<g class="c" style="animation-delay:1.63s"><line x1="971" x2="971" y1="263" y2="309" stroke="#FF5C7A" stroke-width="1.5"/><rect x="964" y="278" width="14" height="13" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:1.70s"><line x1="997" x2="997" y1="260" y2="307" stroke="#3DDC97" stroke-width="1.5"/><rect x="990" y="267" width="14" height="24" rx="2" fill="#3DDC97"/></g>
+<g class="c" style="animation-delay:1.77s"><line x1="1023" x2="1023" y1="259" y2="290" stroke="#FF5C7A" stroke-width="1.5"/><rect x="1016" y="267" width="14" height="6" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:1.84s"><line x1="1049" x2="1049" y1="237" y2="278" stroke="#3DDC97" stroke-width="1.5"/><rect x="1042" y="253" width="14" height="17" rx="2" fill="#3DDC97"/></g>
+<g class="c" style="animation-delay:1.91s"><line x1="1075" x2="1075" y1="234" y2="299" stroke="#FF5C7A" stroke-width="1.5"/><rect x="1068" y="253" width="14" height="27" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:1.98s"><line x1="1101" x2="1101" y1="241" y2="298" stroke="#3DDC97" stroke-width="1.5"/><rect x="1094" y="259" width="14" height="22" rx="2" fill="#3DDC97"/></g>
+<g class="c" style="animation-delay:2.05s"><line x1="1127" x2="1127" y1="235" y2="276" stroke="#3DDC97" stroke-width="1.5"/><rect x="1120" y="247" width="14" height="12" rx="2" fill="#3DDC97"/></g>
+<g class="c" style="animation-delay:2.12s"><line x1="1153" x2="1153" y1="205" y2="257" stroke="#3DDC97" stroke-width="1.5"/><rect x="1146" y="223" width="14" height="24" rx="2" fill="#3DDC97"/></g>
+<g class="c" style="animation-delay:2.19s"><line x1="1179" x2="1179" y1="174" y2="242" stroke="#3DDC97" stroke-width="1.5"/><rect x="1172" y="187" width="14" height="35" rx="2" fill="#3DDC97"/></g>
+<g class="c" style="animation-delay:2.26s"><line x1="1205" x2="1205" y1="168" y2="223" stroke="#FF5C7A" stroke-width="1.5"/><rect x="1198" y="187" width="14" height="19" rx="2" fill="#FF5C7A"/></g>
+<g class="c" style="animation-delay:2.33s"><line x1="1231" x2="1231" y1="188" y2="225" stroke="#FF5C7A" stroke-width="1.5"/><rect class="last" x="1224" y="206" width="14" height="10" rx="2" fill="#FF5C7A"/></g>
+<path class="ma" d="M737 301 L763 287 L789 270 L815 275 L841 288 L867 303 L893 317 L919 324 L945 308 L971 299 L997 293 L1023 283 L1049 276 L1075 281 L1101 284 L1127 267 L1153 249 L1179 219 L1205 211 L1231 225" fill="none" stroke="url(#soft)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g class="coin" style="animation-delay:0s"><circle cx="1010" cy="92" r="22" fill="#13131B" stroke="url(#soft)" stroke-opacity=".6"/><text x="1010" y="100" text-anchor="middle" font-size="22" font-weight="600" fill="#B794E6">₿</text></g>
+<g class="coin" style="animation-delay:-1.7s"><circle cx="1190" cy="150" r="17" fill="#13131B" stroke="url(#soft)" stroke-opacity=".6"/><text x="1190" y="156" text-anchor="middle" font-size="17" font-weight="600" fill="#B794E6">Ξ</text></g>
+<g class="coin" style="animation-delay:-3.1s"><circle cx="880" cy="120" r="14" fill="#13131B" stroke="url(#soft)" stroke-opacity=".6"/><text x="880" y="125" text-anchor="middle" font-size="14" font-weight="600" fill="#B794E6">₮</text></g>
+<g class="w" style="animation-delay:.1s"><rect x="80" y="84" width="56" height="56" rx="14" fill="url(#brand)"/><rect x="80" y="84" width="56" height="56" rx="14" fill="none" stroke="#fff" stroke-opacity=".16"/><path d="M97 102h22l-20 20h22" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><text x="152" y="109" font-size="11" font-weight="600" letter-spacing="1.6" fill="#fff" fill-opacity=".6">DESIGN UI / UX</text><g><circle class="dot" cx="156" cy="127" r="3.5" fill="#3DDC97"/><text x="166" y="131" font-size="11" font-weight="600" letter-spacing="1.6" fill="#fff" fill-opacity=".36">LANDING · TOKENS · MOTION</text></g></g>
+<text class="w" style="animation-delay:0.25s" x="76" y="246" font-size="92" font-weight="600" letter-spacing="-4.1" fill="#fff" fill-opacity="1">Zurumi</text>
+<text class="w" style="animation-delay:0.4s" x="384" y="246" font-size="92" font-weight="600" letter-spacing="-4.1" fill="url(#soft)" fill-opacity="1">landing.</text>
+<text class="w" style="animation-delay:.7s" x="80" y="296" font-size="19" fill="#fff" fill-opacity=".6">Achetez, envoyez et échangez vos cryptos avec Wave,</text>
+<text class="w" style="animation-delay:.8s" x="80" y="322" font-size="19" fill="#fff" fill-opacity=".6">Orange Money et vos moyens de paiement habituels.</text>
+<g class="w" style="animation-delay:1.00s"><rect x="80" y="346" width="70" height="26" rx="13" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".16"/><text x="115.0" y="363" text-anchor="middle" font-size="10.5" font-weight="600" letter-spacing="1.47" fill="#fff" fill-opacity=".8">BLADE</text></g>
+<g class="w" style="animation-delay:1.09s"><rect x="158" y="346" width="66" height="26" rx="13" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".16"/><text x="191.0" y="363" text-anchor="middle" font-size="10.5" font-weight="600" letter-spacing="1.47" fill="#fff" fill-opacity=".8">VUE 3</text></g>
+<g class="w" style="animation-delay:1.18s"><rect x="232" y="346" width="58" height="26" rx="13" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".16"/><text x="261.0" y="363" text-anchor="middle" font-size="10.5" font-weight="600" letter-spacing="1.47" fill="#fff" fill-opacity=".8">VITE</text></g>
+<g class="w" style="animation-delay:1.27s"><rect x="298" y="346" width="132" height="26" rx="13" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".16"/><text x="364.0" y="363" text-anchor="middle" font-size="10.5" font-weight="600" letter-spacing="1.47" fill="#fff" fill-opacity=".8">DESIGN TOKENS</text></g>
+<g class="w" style="animation-delay:1.36s"><rect x="438" y="346" width="92" height="26" rx="13" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".16"/><text x="484.0" y="363" text-anchor="middle" font-size="10.5" font-weight="600" letter-spacing="1.47" fill="#fff" fill-opacity=".8">A1 → A21</text></g>
+<rect class="sheen" x="0" y="0" width="260" height="440" fill="url(#sheen)" opacity=".05" transform="skewX(-18)"/>
+</g>
+<rect x=".5" y=".5" width="1279" height="439" rx="18" fill="none" stroke="#fff" stroke-opacity=".08"/>
+</svg>

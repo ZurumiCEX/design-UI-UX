@@ -1,0 +1,41 @@
+{
+  "$description": "Zurumi — design tokens (format W3C DTCG, importable dans Figma via le plugin Tokens Studio ou converti en Variables). Source de vérité partagée avec tokens.css / tailwind.config.",
+  "color": {
+    "brand": {
+      "primary":       { "$type": "color", "$value": "#5D3587" },
+      "secondary":     { "$type": "color", "$value": "#596FB7" },
+      "primary-300":   { "$type": "color", "$value": "#B794E6", "$description": "Teinte dérivée : texte d'accent et icônes sur fond sombre" },
+      "secondary-300": { "$type": "color", "$value": "#9DB0F2", "$description": "Teinte dérivée : focus, fin de dégradé clair" }
+    },
+    "bg":      { "base": { "$type": "color", "$value": "#050507" }, "surface": { "$type": "color", "$value": "#0C0C12" }, "surface-2": { "$type": "color", "$value": "#13131B" } },
+    "text":    { "default": { "$type": "color", "$value": "#FFFFFF" }, "muted": { "$type": "color", "$value": "#FFFFFF99" }, "dim": { "$type": "color", "$value": "#FFFFFF5C" } },
+    "line":    { "default": { "$type": "color", "$value": "#FFFFFF14" }, "strong": { "$type": "color", "$value": "#FFFFFF29" } },
+    "state":   { "up": { "$type": "color", "$value": "#3DDC97" }, "down": { "$type": "color", "$value": "#FF5C7A" } },
+    "sky":     { "top": { "$type": "color", "$value": "#141A33" }, "mid": { "$type": "color", "$value": "#33427A" }, "bottom": { "$type": "color", "$value": "#8FA1DC" } }
+  },
+  "gradient": {
+    "brand":      { "$type": "gradient", "$value": [ { "color": "#5D3587", "position": 0 }, { "color": "#596FB7", "position": 1 } ], "$description": "100deg — boutons primaires, halos" },
+    "brand-soft": { "$type": "gradient", "$value": [ { "color": "#B794E6", "position": 0 }, { "color": "#9DB0F2", "position": 1 } ], "$description": "100deg — texte d'accent, lignes de progression" }
+  },
+  "font": {
+    "family": { "sans": { "$type": "fontFamily", "$value": "Inter" } },
+    "weight": { "regular": { "$type": "fontWeight", "$value": 400 }, "medium": { "$type": "fontWeight", "$value": 500 }, "semibold": { "$type": "fontWeight", "$value": 600 }, "bold": { "$type": "fontWeight", "$value": 700 } },
+    "size": {
+      "display": { "$type": "dimension", "$value": "92px", "$description": "clamp(46px, 6.6vw, 92px)" },
+      "h2":      { "$type": "dimension", "$value": "60px", "$description": "clamp(34px, 4.4vw, 60px)" },
+      "h3":      { "$type": "dimension", "$value": "23px" },
+      "body":    { "$type": "dimension", "$value": "15px" },
+      "small":   { "$type": "dimension", "$value": "12px" },
+      "label":   { "$type": "dimension", "$value": "10.5px", "$description": "Majuscules, interlettrage 0.14em, graisse 600" }
+    },
+    "tracking":   { "heading": { "$type": "dimension", "$value": "-0.045em" }, "label": { "$type": "dimension", "$value": "0.14em" } },
+    "lineHeight": { "heading": { "$type": "number", "$value": 0.98 }, "body": { "$type": "number", "$value": 1.55 } }
+  },
+  "radius":  { "sm": { "$type": "dimension", "$value": "6px" }, "md": { "$type": "dimension", "$value": "10px" }, "lg": { "$type": "dimension", "$value": "18px" }, "pill": { "$type": "dimension", "$value": "999px" } },
+  "space":   { "gutter": { "$type": "dimension", "$value": "40px" }, "gutter-mobile": { "$type": "dimension", "$value": "22px" }, "container": { "$type": "dimension", "$value": "1240px" }, "nav-height": { "$type": "dimension", "$value": "56px" }, "section-y": { "$type": "dimension", "$value": "130px" } },
+  "motion": {
+    "ease":     { "out": { "$type": "cubicBezier", "$value": [0.2, 0.8, 0.2, 1] } },
+    "duration": { "reveal": { "$type": "duration", "$value": "900ms" }, "hover": { "$type": "duration", "$value": "250ms" }, "hero-mock": { "$type": "duration", "$value": "1600ms" } },
+    "stagger":  { "word": { "$type": "duration", "$value": "75ms" }, "item": { "$type": "duration", "$value": "90ms" } }
+  }
+}
