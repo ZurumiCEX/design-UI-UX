@@ -26,7 +26,7 @@
   <a href="#-sections-de-la-page">Sections</a> ·
   <a href="#-animations">Animations</a> ·
   <a href="#-objectifs-de-qualité">Qualité</a> ·
-  <a href="#-démarrer">Démarrer</a>
+  <a href="#-lancer-le-squelette">Lancer</a>
 </p>
 
 <img src="assets/divider.svg" alt="" width="100%">
@@ -36,7 +36,7 @@
 Ce dépôt réunit les **livrables de design** de la page d'accueil Zurumi : la maquette à calques, les design tokens et le cahier des charges d'intégration (Blade + Vue 3). Il sert de source de vérité partagée entre le design et le développement.
 
 > [!NOTE]
-> Les badges « cible » et « objectif » décrivent ce que l'intégration doit atteindre, pas des mesures déjà relevées. Le dépôt ne contient pas encore de code applicatif.
+> Les badges « cible » et « objectif » décrivent ce que l'intégration doit atteindre, pas des mesures déjà relevées. Le squelette Vue 3 + Vite est autonome ; l'intégration Blade reste à faire dans le dépôt du site.
 
 ## ✦ Contenu du dépôt
 
@@ -46,6 +46,8 @@ Ce dépôt réunit les **livrables de design** de la page d'accueil Zurumi : la 
 | [`docs/design/zurumi-tokens.json`](docs/design/zurumi-tokens.json) | Design tokens au format W3C DTCG (Tokens Studio / Variables Figma) |
 | [`docs/design/MEGA_PROMPT_ZURUMI_LANDING.md`](docs/design/MEGA_PROMPT_ZURUMI_LANDING.md) | Cahier des charges d'intégration : architecture, animations, critères d'acceptation |
 | [`assets/banner.svg`](assets/banner.svg) | Bandeau animé de ce README (SVG + CSS, sans script) |
+| [`resources/`](resources/) · [`index.html`](index.html) | Squelette Vue 3 + Vite de la landing : tokens, composables, composants, contenu |
+| [`docs/design/README.md`](docs/design/README.md) | Guide du squelette : tokens, composants, ajout d'une section, report dans Laravel |
 
 **À ajouter** — `docs/design/zurumi-landing-demo.html`, la démo de référence citée par le cahier des charges comme source de vérité visuelle et d'animation. Elle n'est pas encore dans le dépôt.
 
@@ -113,11 +115,23 @@ Règles : seuls `transform`, `opacity` et `filter` sont animés, un seul listene
 | Responsive | 390, 768, 1024, 1440 et 1920 px, sans défilement horizontal |
 | Résilience | Page lisible sans JavaScript, mouvement réduit respecté |
 
-## ✦ Démarrer
+## ✦ Lancer le squelette
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+La page est pilotée par [`resources/js/landing/content/fr.js`](resources/js/landing/content/fr.js) : textes, listes, liens et ordre des sections. Le détail est dans le [guide du squelette](docs/design/README.md).
+
+## ✦ Démarrer côté design
 
 1. **Voir la maquette** — ouvrir `docs/design/zurumi-landing-1440.svg` dans un navigateur, ou l'importer dans Figma pour retrouver les calques (`Nav`, `Hero`, `Coins`, `App`, `Sky`, `Produits`, `MobileMoney`, `Securite`, `Etapes`, `Globe`, `Footer`).
 2. **Importer les tokens** — charger `docs/design/zurumi-tokens.json` dans Figma avec le plugin Tokens Studio, ou le convertir en Variables.
-3. **Lancer l'intégration** — déposer les fichiers de `docs/design/` dans le dépôt du site Zurumi, ajouter la démo HTML, puis suivre le cahier des charges étape par étape (le plan est à valider avant toute implémentation).
+3. **Lancer l'intégration** — reporter le squelette dans le dépôt du site Zurumi (voir « Report dans Laravel » du guide), ajouter la démo HTML, puis suivre le cahier des charges étape par étape.
 
 > [!IMPORTANT]
 > Les cours, montants, taux et statistiques de la maquette sont **fictifs**. Les mentions de sécurité et de conformité sont provisoires et restent à valider.
