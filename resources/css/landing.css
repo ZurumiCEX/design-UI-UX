@@ -138,3 +138,68 @@ img, svg, canvas { display: block; max-width: 100%; }
   letter-spacing: var(--font-tracking-heading); line-height: var(--font-line-height-heading);
 }
 .fallback p { margin-top: 24px; max-width: 42ch; color: var(--color-text-muted); }
+
+/* ---------- Pages applicatives : formulaires, panneaux, onglets, puces ---------- */
+.page { padding-top: calc(var(--space-nav-height) + 56px); padding-bottom: calc(var(--space-section-y) * 0.7); }
+.num { font-variant-numeric: tabular-nums; }
+.is-up { color: var(--color-state-up); }
+.is-down { color: var(--color-state-down); }
+
+.z-panel { background: var(--color-bg-surface); border: 1px solid var(--color-line-default); border-radius: var(--radius-lg); }
+.z-label { display: block; margin-bottom: 8px; font-size: var(--font-size-small); color: var(--color-text-muted); }
+.z-input {
+  width: 100%; height: 48px; padding: 0 14px; border-radius: var(--radius-md);
+  background: var(--fill-1); border: 1px solid var(--color-line-strong); font-size: 15px;
+  transition: border-color var(--motion-duration-hover), background-color var(--motion-duration-hover), box-shadow var(--motion-duration-hover);
+}
+.z-input::placeholder { color: var(--color-text-dim); }
+.z-input:hover { border-color: var(--color-text-dim); }
+.z-input:focus { outline: none; border-color: var(--color-brand-secondary-300); background: var(--fill-2); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-secondary-300) 22%, transparent); }
+.z-input[aria-invalid='true'] { border-color: var(--color-state-down); }
+.z-error { margin-top: 8px; font-size: var(--font-size-small); color: var(--color-state-down); }
+.z-hint { margin-top: 8px; font-size: var(--font-size-small); color: var(--color-text-dim); }
+.z-notice {
+  padding: 12px 14px; border-radius: var(--radius-md); font-size: 13px; color: var(--color-text-muted);
+  background: color-mix(in srgb, var(--color-brand-secondary) 14%, transparent); border: 1px solid color-mix(in srgb, var(--color-brand-secondary-300) 30%, transparent);
+}
+
+/* Onglets soulignés */
+.z-tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--color-line-default); }
+.z-tab {
+  position: relative; padding: 12px 0; font-size: 14px; font-weight: var(--font-weight-medium); color: var(--color-text-muted); white-space: nowrap;
+  transition: color var(--motion-duration-hover);
+}
+.z-tab:hover { color: var(--color-text-default); }
+.z-tab[aria-selected='true'] { color: var(--color-text-default); }
+.z-tab::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; border-radius: 2px; background: var(--gradient-brand-soft);
+  transform: scaleX(0); transition: transform var(--duration-panel) var(--motion-ease-out);
+}
+.z-tab[aria-selected='true']::after { transform: none; }
+
+/* Puces de filtre */
+.z-chip {
+  height: 32px; padding: 0 14px; border-radius: var(--radius-pill); font-size: 13px; font-weight: var(--font-weight-medium); white-space: nowrap;
+  color: var(--color-text-muted); background: var(--color-bg-surface-2); border: 1px solid var(--color-line-default);
+  transition: color var(--motion-duration-hover), background-color var(--motion-duration-hover), border-color var(--motion-duration-hover);
+}
+.z-chip:hover { color: var(--color-text-default); border-color: var(--color-line-strong); }
+.z-chip[aria-pressed='true'] { color: var(--ink); background: var(--color-text-default); border-color: transparent; }
+
+/* Segments (Acheter / Vendre…) */
+.z-seg { display: grid; grid-auto-columns: 1fr; grid-auto-flow: column; padding: 4px; gap: 4px; border-radius: var(--radius-md); background: var(--color-bg-surface-2); }
+.z-seg button { height: 36px; border-radius: var(--radius-sm); font-size: 14px; font-weight: var(--font-weight-semibold); color: var(--color-text-muted); transition: color var(--motion-duration-hover), background-color var(--motion-duration-hover); }
+.z-seg button:hover { color: var(--color-text-default); }
+.z-seg button[aria-selected='true'], .z-seg button[aria-pressed='true'] { color: var(--color-text-default); background: var(--fill-2); }
+.z-seg .is-buy[aria-selected='true'] { background: color-mix(in srgb, var(--color-state-up) 22%, transparent); color: var(--color-state-up); }
+.z-seg .is-sell[aria-selected='true'] { background: color-mix(in srgb, var(--color-state-down) 20%, transparent); color: var(--color-state-down); }
+
+/* Éclair de variation de cours */
+.flash-up { animation: flash-up 900ms var(--motion-ease-out); }
+.flash-down { animation: flash-down 900ms var(--motion-ease-out); }
+@keyframes flash-up { from { background: color-mix(in srgb, var(--color-state-up) 28%, transparent); } to { background: transparent; } }
+@keyframes flash-down { from { background: color-mix(in srgb, var(--color-state-down) 28%, transparent); } to { background: transparent; } }
+
+@media (max-width: 900px) {
+  .page { padding-top: calc(var(--space-nav-height) + 32px); }
+}

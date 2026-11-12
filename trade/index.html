@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- @include head -->
+    <title>Trade — Zurumi</title>
+    <meta name="description" content="Graphique, carnet d’ordres et passage d’ordres au comptant sur les paires crypto." />
+    <meta property="og:title" content="Trade — Zurumi" />
+    <meta property="og:description" content="Graphique, carnet d’ordres et passage d’ordres au comptant sur les paires crypto." />
+  </head>
+  <body>
+    <!--
+      Ce fichier joue le rôle d'une vue Blade (resources/views/landing/trade.blade.php).
+      Le contenu de #landing est le rendu « serveur » : navigation, <h1> et introduction en HTML pur
+      (SEO, pas d'écran vide, page lisible sans JavaScript). Vue le remplace au montage.
+    -->
+    <div id="landing">
+      <div class="fallback">
+        <!-- @include fallback-nav -->
+        <main id="top">
+          <h1>Trade</h1>
+          <p>Graphique, carnet d’ordres et passage d’ordres au comptant sur les paires crypto.</p>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/resources/js/landing/entries/trade.js"></script>
+  </body>
+</html>

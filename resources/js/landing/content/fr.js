@@ -1,60 +1,22 @@
-// Contenu de la landing — référence française.
-// Tout le texte, les listes, les étapes et les liens vivent ici : les composants n'en contiennent aucun.
-// Ajouter, retirer ou réordonner une section = modifier le tableau `sections`.
+// Contenu — référence française.
+// Tout le texte vit ici : les composants n'en contiennent aucun. en.js reprend exactement les mêmes clés.
+// Les données sans texte (cours, paires, moyens de paiement, liens) sont dans data.js.
+import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, pairs, paymentMethods } from './data.js';
 
-// Liens par défaut. Dans Laravel, injectez les routes nommées via window.__LANDING__.links (voir main.js).
-// Les « # » sont des routes à brancher : n'inventez pas d'URL.
-export const defaultLinks = {
-  home: '#top',
-  signup: '#',
-  login: '#',
-  quickBuy: '#',
-  send: '#',
-  receive: '#',
-  swap: '#',
-  withdraw: '#',
-  wallet: '#',
-  search: '#',
-  appStore: '#',
-  googlePlay: '#',
-  // À REMPLACER — lien de téléchargement réel, encodé dans le QR code.
-  download: 'https://example.com/zurumi-app',
+const countryNames = {
+  BJ: 'Bénin',
+  BF: 'Burkina Faso',
+  CI: "Côte d'Ivoire",
+  GW: 'Guinée-Bissau',
+  ML: 'Mali',
+  NE: 'Niger',
+  SN: 'Sénégal',
+  TG: 'Togo',
 };
 
 /** Construit le contenu ; `linkOverrides` remplace les liens par défaut (routes réelles). */
 export default function createContent(linkOverrides = {}) {
   const links = { ...defaultLinks, ...linkOverrides };
-
-  // DÉMO — à remplacer : cours et variations fictifs, à brancher sur une API plus tard.
-  // `tone` est une donnée de présentation (couleur de pastille propre à chaque actif).
-  const coins = [
-    {
-      id: 'btc',
-      glyph: '₿',
-      name: 'Bitcoin',
-      ticker: 'BTC',
-      price: '58 412 300 XOF',
-      change: '+1,84 %',
-      up: true,
-      tone: '#F7931A',
-    },
-    {
-      id: 'eth',
-      glyph: 'Ξ',
-      name: 'Ethereum',
-      ticker: 'ETH',
-      price: '1 472 800 XOF',
-      change: '+0,92 %',
-      up: true,
-      tone: '#596FB7',
-    },
-    { id: 'usdt', glyph: '₮', name: 'Tether', ticker: 'USDT', price: '607 XOF', change: '+0,02 %', up: true, tone: '#26A17B' },
-    { id: 'sol', glyph: 'S', name: 'Solana', ticker: 'SOL', price: '98 450 XOF', change: '−1,61 %', up: false, tone: '#5D3587' },
-    { id: 'bnb', glyph: 'B', name: 'BNB', ticker: 'BNB', price: '371 200 XOF', change: '−0,47 %', up: false, tone: '#F3BA2F' },
-    { id: 'usdc', glyph: '$', name: 'USD Coin', ticker: 'USDC', price: '606 XOF', change: '+0,01 %', up: true, tone: '#2775CA' },
-    { id: 'trx', glyph: 'T', name: 'Tron', ticker: 'TRX', price: '172 XOF', change: '+2,10 %', up: true, tone: '#EB0029' },
-    { id: 'pol', glyph: 'P', name: 'Polygon', ticker: 'POL', price: '264 XOF', change: '−0,88 %', up: false, tone: '#8247E5' },
-  ];
 
   const stores = [
     { id: 'apple', label: 'App Store', href: links.appStore },
@@ -65,7 +27,14 @@ export default function createContent(linkOverrides = {}) {
     brand: 'Zurumi',
     links,
     coins,
+    pairs,
     stores,
+    languages,
+    paymentMethods,
+    buyLimits,
+    countries: countries.map((c) => ({ ...c, name: countryNames[c.id] })),
+    defaultCountry,
+    categories: { layer1: 'Layer 1', layer2: 'Layer 2', stable: 'Stablecoins', meme: 'Mèmes', defi: 'DeFi' },
     download: {
       label: "Télécharger l'app",
       or: 'ou via',
@@ -78,7 +47,9 @@ export default function createContent(linkOverrides = {}) {
     label: 'Navigation principale',
     home: 'Zurumi — accueil',
     items: [
-      { label: 'Achat rapide', href: links.quickBuy },
+      { label: 'Achat rapide', href: links.quickBuy, page: 'buy' },
+      { label: 'Marchés', href: links.markets, page: 'markets' },
+      { label: 'Trade', href: links.trade, page: 'trade' },
       {
         label: 'Transactions',
         children: [
@@ -91,15 +62,73 @@ export default function createContent(linkOverrides = {}) {
       { label: 'Portefeuille', href: links.wallet },
     ],
     search: 'Rechercher',
-    language: { current: 'FR', label: 'Choisir la langue' },
+    language: { label: 'Langue', choose: 'Choisir la langue' },
     login: 'Connexion',
     signup: "S'inscrire",
     menu: { open: 'Ouvrir le menu', close: 'Fermer le menu' },
   };
 
+  const footer = {
+    id: 'pied-de-page',
+    tagline: 'Achetez &amp; envoyez. <i>Où que vous soyez.</i>',
+    columns: [
+      {
+        title: 'Produits',
+        links: [
+          { label: 'Achat rapide', href: links.quickBuy },
+          { label: 'Marchés', href: links.markets },
+          { label: 'Trade', href: links.trade },
+          { label: 'Envoyer', href: links.send },
+          { label: 'Recevoir', href: links.receive },
+          { label: 'Echanger', href: links.swap },
+          { label: 'Retirer', href: links.withdraw },
+        ],
+      },
+      {
+        title: 'Entreprise',
+        links: [
+          { label: 'À propos', href: '#' },
+          { label: 'Carrières', href: '#' },
+          { label: 'Presse', href: '#' },
+          { label: 'Zurumi Verify', href: '#' },
+        ],
+      },
+      {
+        title: 'Support',
+        links: [
+          { label: "Centre d'aide", href: '#' },
+          { label: 'Nous contacter', href: '#' },
+          { label: 'Signaler un abus', href: '#' },
+          { label: 'État des services', href: '#' },
+        ],
+      },
+      {
+        title: 'Légal',
+        links: [
+          { label: "Conditions d'utilisation", href: links.terms },
+          { label: 'Confidentialité', href: links.privacy },
+          { label: 'Avertissement sur les risques', href: '#' },
+          { label: 'Conformité', href: '#' },
+        ],
+      },
+    ],
+    socials: [
+      { label: 'Instagram', href: '#' },
+      { label: 'YouTube', href: '#' },
+      { label: 'X (Twitter)', href: '#' },
+      { label: 'Facebook', href: '#' },
+    ],
+    copyright: '© 2026 Zurumi. Tous droits réservés.',
+    backToTop: { label: 'Haut de page', href: '#top' },
+    // À retirer à la mise en ligne.
+    disclaimer:
+      'Démo de design : cours, montants, taux et chiffres affichés sont fictifs. Le lien du QR code est provisoire. Les mentions de sécurité et de conformité sont à valider avant mise en ligne.',
+  };
+
+  // Page d'accueil : liste ordonnée de sections (ajouter, retirer, réordonner ici).
   const sections = [
     {
-      id: 'top',
+      id: 'accueil',
       type: 'hero',
       title: 'La crypto,<br>en <i>FCFA</i>',
       text: 'Achetez, envoyez et échangez vos cryptos avec Wave, Orange Money et vos moyens de paiement habituels.',
@@ -120,8 +149,9 @@ export default function createContent(linkOverrides = {}) {
       ],
       dashboard: {
         label: 'Aperçu du tableau de bord Zurumi',
-        menu: ['Achat rapide', 'Transactions', 'Retirer', 'Portefeuille'],
+        menu: ['Achat rapide', 'Marchés', 'Trade', 'Portefeuille'],
         quote: 'XOF',
+        count: 8,
         timeframes: ['15 min', '1 h', '4 h', '1 j', '1 sem'],
       },
     },
@@ -250,11 +280,7 @@ export default function createContent(linkOverrides = {}) {
         { glyph: 'F', x: 82, y: 62, size: 68, drift: -52, delay: -4 },
       ],
       perks: [
-        {
-          icon: 'pin',
-          title: 'Moyens de paiement locaux',
-          text: "Wave, Orange Money, Mixx by Yas et d'autres opérateurs de la zone.",
-        },
+        { icon: 'pin', title: 'Moyens de paiement locaux', text: "Wave, Orange Money, Mixx by Yas et d'autres opérateurs de la zone." },
         { icon: 'pulse', title: 'Suivi en temps réel', text: 'Chaque opération est suivie, du paiement à la réception.' },
         { icon: 'coin', title: 'Montants en FCFA', text: 'Prix, frais et soldes affichés dans votre devise.' },
       ],
@@ -304,62 +330,312 @@ export default function createContent(linkOverrides = {}) {
       ],
       rates: { interval: 2200, count: 4 }, // rotation des cartes de cours (A20)
     },
-    {
-      id: 'pied-de-page',
-      type: 'footer',
-      tagline: 'Achetez &amp; envoyez. <i>Où que vous soyez.</i>',
-      columns: [
-        {
-          title: 'Produits',
-          links: [
-            { label: 'Achat rapide', href: links.quickBuy },
-            { label: 'Envoyer', href: links.send },
-            { label: 'Recevoir', href: links.receive },
-            { label: 'Echanger', href: links.swap },
-            { label: 'Retirer', href: links.withdraw },
-          ],
-        },
-        {
-          title: 'Entreprise',
-          links: [
-            { label: 'À propos', href: '#' },
-            { label: 'Carrières', href: '#' },
-            { label: 'Presse', href: '#' },
-            { label: 'Zurumi Verify', href: '#' },
-          ],
-        },
-        {
-          title: 'Support',
-          links: [
-            { label: "Centre d'aide", href: '#' },
-            { label: 'Nous contacter', href: '#' },
-            { label: 'Signaler un abus', href: '#' },
-            { label: 'État des services', href: '#' },
-          ],
-        },
-        {
-          title: 'Légal',
-          links: [
-            { label: "Conditions d'utilisation", href: '#' },
-            { label: 'Confidentialité', href: '#' },
-            { label: 'Avertissement sur les risques', href: '#' },
-            { label: 'Conformité', href: '#' },
-          ],
-        },
-      ],
-      socials: [
-        { label: 'Instagram', href: '#' },
-        { label: 'YouTube', href: '#' },
-        { label: 'X (Twitter)', href: '#' },
-        { label: 'Facebook', href: '#' },
-      ],
-      copyright: '© 2026 Zurumi. Tous droits réservés.',
-      backToTop: { label: 'Haut de page', href: '#top' },
-      // À retirer à la mise en ligne.
-      disclaimer:
-        'Démo de design : cours, montants, taux et chiffres affichés sont fictifs. Le lien du QR code est provisoire. Les mentions de sécurité et de conformité sont à valider avant mise en ligne.',
-    },
   ];
 
-  return { locale: 'fr', common, nav, sections };
+  // Textes partagés par les pages de connexion et d'inscription.
+  const auth = {
+    or: 'Ou continuez avec',
+    providers: [
+      { id: 'google', label: 'Google' },
+      { id: 'apple', label: 'Apple' },
+    ],
+    identifier: {
+      label: "Mode d'identification",
+      tabs: { email: 'E-mail', phone: 'Numéro mobile' },
+      email: 'Adresse e-mail',
+      emailPlaceholder: 'nom@exemple.com',
+      phone: 'Numéro mobile',
+      phonePlaceholder: '77 123 45 67',
+      country: 'Indicatif pays',
+      countrySearch: 'Rechercher un pays',
+      errors: {
+        email: 'Saisissez une adresse e-mail valide.',
+        phone: 'Saisissez un numéro mobile valide (8 à 10 chiffres).',
+      },
+    },
+    password: { label: 'Mot de passe', show: 'Afficher le mot de passe', hide: 'Masquer le mot de passe' },
+    // À retirer quand les formulaires sont branchés au serveur.
+    demo: "Démo : l'authentification n'est pas encore branchée au serveur.",
+  };
+
+  const pages = {
+    home: {
+      meta: {
+        title: 'Zurumi — La crypto, en FCFA',
+        description: 'Achetez, envoyez et échangez vos cryptos avec Wave, Orange Money et vos moyens de paiement habituels.',
+      },
+    },
+
+    markets: {
+      meta: {
+        title: 'Marchés — Zurumi',
+        description: 'Cours des cryptos en FCFA : tendances, nouveautés et meilleures performances.',
+      },
+      title: 'Aperçu des <i>marchés</i>',
+      text: 'Suivez les cours en FCFA et passez à l’achat en un geste.',
+      highlights: [
+        { id: 'trending', title: 'Tendances' },
+        { id: 'newest', title: 'Nouveautés' },
+        { id: 'gainers', title: 'Meilleures performances' },
+      ],
+      showInTable: 'Afficher dans le tableau',
+      tabs: { label: 'Listes', favorites: 'Favoris', all: 'Tous' },
+      search: { label: 'Rechercher une crypto', placeholder: 'Rechercher' },
+      chips: { label: 'Filtrer par catégorie', all: 'Toutes', new: 'Nouveautés' },
+      table: {
+        title: 'Tous les marchés',
+        text: 'Cours, variations et volumes, mis à jour en continu.',
+        caption: 'Cours des cryptomonnaies en XOF',
+        cols: {
+          rank: '#',
+          name: 'Nom',
+          price: 'Prix',
+          change: 'Variation',
+          chart: 'Tendance 24 h',
+          cap: 'Capitalisation',
+          volume: 'Volume 24 h',
+          action: 'Action',
+        },
+        periods: [
+          { id: '1h', label: '1 h' },
+          { id: '4h', label: '4 h' },
+          { id: '24h', label: '24 h' },
+        ],
+        periodLabel: 'Période de la variation',
+        sort: 'Trier par {col}',
+        favorite: { add: 'Ajouter {name} aux favoris', remove: 'Retirer {name} des favoris' },
+        buy: 'Acheter',
+        trade: 'Trader',
+        empty: {
+          favorites: "Aucun favori pour l'instant. Touchez l'étoile d'une crypto pour l'ajouter ici.",
+          search: 'Aucune crypto ne correspond à « {query} ».',
+        },
+      },
+      // DÉMO — à retirer quand les cours viennent de l'API.
+      note: 'Démo : cours, capitalisations et volumes fictifs, simulés dans le navigateur.',
+    },
+
+    buy: {
+      meta: {
+        title: 'Achat rapide — Zurumi',
+        description: 'Achetez et vendez vos cryptos en FCFA avec Wave, Orange Money ou Mixx by Yas.',
+      },
+      title: 'Achetez et vendez<br>vos cryptos <i>en quelques secondes</i>',
+      text: 'Payez en FCFA avec Wave, Orange Money ou Mixx by Yas. Le montant reçu est affiché avant de payer.',
+      methodsLabel: 'Moyens de paiement acceptés',
+      perks: [
+        { icon: 'coin', text: 'Montants affichés en FCFA' },
+        { icon: 'bolt', text: 'Crédité en quelques instants' },
+        { icon: 'shield', text: 'Portefeuille sécurisé' }, // À VALIDER (conformité)
+      ],
+      widget: {
+        label: 'Achat rapide',
+        tabs: { buy: 'Acheter', sell: 'Vendre' },
+        spend: 'Je dépense',
+        receive: 'Je reçois',
+        payWith: 'Payer avec',
+        receiveOn: 'Recevoir sur',
+        crypto: 'Crypto',
+        cryptoSearch: 'Rechercher une crypto',
+        method: 'Moyen de paiement',
+        reference: 'Prix de référence',
+        limits: 'Entre {min} et {max}',
+        cta: { buy: 'Acheter {ticker}', sell: 'Vendre {ticker}' },
+        errors: {
+          invalid: 'Saisissez un montant valide.',
+          min: 'Montant minimum : {min}',
+          max: 'Montant maximum : {max}',
+        },
+        note: 'Le montant définitif est confirmé avant le paiement.',
+        demo: "Démo : le paiement n'est pas encore branché au serveur.",
+        empty: 'Aucun résultat',
+      },
+      steps: {
+        title: 'Comment <i>ça marche</i>',
+        items: [
+          { title: 'Choisissez un montant.', text: 'Le montant en crypto est calculé au taux affiché.' },
+          { title: 'Payez en Mobile Money.', text: 'Validez le paiement depuis Wave, Orange Money ou Mixx by Yas.' },
+          { title: 'Recevez vos cryptos.', text: 'Elles sont créditées sur votre portefeuille Zurumi en quelques instants.' },
+        ],
+      },
+      // À VALIDER (conformité) — réponses provisoires.
+      faq: {
+        title: 'Questions <i>fréquentes</i>',
+        items: [
+          {
+            q: 'Quels moyens de paiement puis-je utiliser ?',
+            a: 'Wave, Orange Money et Mixx by Yas. Les montants sont affichés et payés en FCFA.',
+          },
+          {
+            q: 'Combien de temps faut-il pour recevoir mes cryptos ?',
+            a: 'Une fois le paiement validé, vos cryptos sont créditées en quelques instants.',
+          },
+          {
+            q: 'Quel montant vais-je recevoir ?',
+            a: 'Le montant reçu est affiché avant de payer. Il est confirmé une dernière fois avant la validation.',
+          },
+          {
+            q: 'Faut-il un compte ?',
+            a: "Oui. Un compte vérifié est nécessaire pour acheter, vendre ou retirer. L'inscription prend quelques minutes.",
+          },
+        ],
+      },
+    },
+
+    trade: {
+      meta: {
+        title: 'Trade — Zurumi',
+        description: 'Graphique, carnet d’ordres et passage d’ordres au comptant sur les paires crypto.',
+      },
+      pair: { label: 'Choisir une paire', search: 'Rechercher une paire', empty: 'Aucune paire' },
+      stats: {
+        label: 'Statistiques 24 h',
+        change: 'Variation 24 h',
+        high: 'Haut 24 h',
+        low: 'Bas 24 h',
+        volume: 'Volume 24 h ({ticker})',
+      },
+      strip: 'Paires populaires',
+      chart: {
+        tabs: { chart: 'Graphique', info: 'Infos' },
+        timeframes: [
+          { id: '15m', label: '15 min' },
+          { id: '1h', label: '1 h' },
+          { id: '4h', label: '4 h' },
+          { id: '1d', label: '1 J' },
+          { id: '1w', label: '1 S' },
+        ],
+        timeframeLabel: 'Unité de temps',
+        label: 'Graphique en chandeliers {pair}, unité {tf}',
+        ohlc: { o: 'O', h: 'H', l: 'B', c: 'F', v: 'Vol' },
+        info: {
+          name: 'Nom',
+          symbol: 'Symbole',
+          category: 'Catégorie',
+          price: 'Prix (XOF)',
+          cap: 'Capitalisation (XOF)',
+          volume: 'Volume 24 h (XOF)',
+        },
+      },
+      book: {
+        tabs: { book: "Carnet d'ordres", trades: 'Transactions récentes' },
+        price: 'Prix ({ticker})',
+        amount: 'Montant ({ticker})',
+        total: 'Total ({ticker})',
+        time: 'Heure',
+        views: { label: 'Affichage', both: 'Achats et ventes', bids: 'Achats seulement', asks: 'Ventes seulement' },
+        grouping: 'Regroupement des prix',
+        pick: 'Utiliser le prix {price}',
+        ratio: { label: 'Répartition achats / ventes', buy: 'A', sell: 'V' },
+      },
+      form: {
+        label: "Passer un ordre",
+        sides: { buy: 'Acheter', sell: 'Vendre' },
+        types: { label: "Type d'ordre", limit: 'Limite', market: 'Marché' },
+        price: 'Prix',
+        marketPrice: 'Meilleur prix du marché',
+        amount: 'Montant',
+        total: 'Total',
+        percent: 'Part du solde disponible',
+        available: 'Disponible',
+        max: { buy: 'Achat max', sell: 'Vente max' },
+        increase: 'Augmenter le prix',
+        decrease: 'Diminuer le prix',
+        login: 'Se connecter',
+        signup: "S'inscrire",
+        hint: 'Connectez-vous pour passer un ordre.',
+        submit: { buy: 'Acheter {ticker}', sell: 'Vendre {ticker}' },
+      },
+      orders: {
+        label: 'Mes ordres',
+        tabs: [
+          { id: 'open', label: 'Ordres ouverts (0)' },
+          { id: 'history', label: 'Historique des ordres' },
+          { id: 'trades', label: 'Historique des trades' },
+          { id: 'assets', label: 'Actifs' },
+        ],
+        empty: '{login} ou {signup} pour voir vos ordres.',
+        login: 'Connectez-vous',
+        signup: 'inscrivez-vous',
+      },
+      accounts: { title: 'Comptes', trading: 'Compte de trading', deposit: 'Déposer', transfer: 'Transférer' },
+      // DÉMO — à retirer quand le carnet et les transactions viennent de l'API.
+      note: 'Démo : graphique, carnet et transactions simulés dans le navigateur.',
+    },
+
+    login: {
+      meta: {
+        title: 'Connexion — Zurumi',
+        description: 'Connectez-vous à votre compte Zurumi avec votre e-mail ou votre numéro mobile.',
+      },
+      visual: {
+        title: 'Vos cryptos,<br>en toute <i>confiance.</i>',
+        text: 'Achetez, envoyez et retirez en FCFA depuis un seul portefeuille.',
+      },
+      title: 'Se connecter',
+      next: 'Suivant',
+      submit: 'Se connecter',
+      edit: 'Modifier',
+      forgot: 'Mot de passe oublié ?',
+      noAccount: 'Pas encore de compte ?',
+      signup: "S'inscrire",
+      errors: { password: 'Saisissez votre mot de passe.' },
+    },
+
+    signup: {
+      meta: {
+        title: 'Inscription — Zurumi',
+        description: 'Créez votre compte Zurumi en quelques minutes avec votre e-mail ou votre numéro mobile.',
+      },
+      visual: {
+        title: 'Votre compte,<br>en <i>quelques minutes.</i>',
+        perks: [
+          'Achetez en FCFA avec Wave, Orange Money ou Mixx by Yas',
+          'Le montant reçu est affiché avant de payer',
+          'Envoyez, échangez et retirez depuis un seul portefeuille',
+        ],
+      },
+      title: 'Créer un compte',
+      step: 'Étape {n}/{total}',
+      progress: 'Progression de l’inscription',
+      continue: 'Continuer',
+      back: 'Retour',
+      terms: "J'ai lu et j'accepte les {terms} et la {privacy}.",
+      termsLink: "Conditions d'utilisation",
+      privacyLink: 'Politique de confidentialité',
+      verify: {
+        title: 'Vérifiez votre {method}',
+        methods: { email: 'adresse e-mail', phone: 'numéro' },
+        text: 'Saisissez le code à 6 chiffres envoyé à {target}.',
+        label: 'Code de vérification',
+        digit: 'Chiffre {n} sur 6',
+        resend: 'Renvoyer le code',
+        resendIn: 'Renvoyer le code dans {s} s',
+        resent: 'Un nouveau code a été envoyé.',
+        submit: 'Vérifier',
+      },
+      password: {
+        title: 'Choisissez un mot de passe',
+        confirm: 'Confirmer le mot de passe',
+        rulesLabel: 'Règles du mot de passe',
+        rules: { length: '8 caractères minimum', upper: 'Une majuscule', lower: 'Une minuscule', digit: 'Un chiffre' },
+        submit: 'Créer mon compte',
+      },
+      done: {
+        title: 'Votre compte est prêt',
+        text: 'Vous pouvez maintenant faire votre premier achat en FCFA.',
+        cta: 'Faire mon premier achat',
+      },
+      errors: {
+        terms: 'Acceptez les conditions pour continuer.',
+        code: 'Saisissez les 6 chiffres du code.',
+        password: 'Le mot de passe ne respecte pas toutes les règles.',
+        confirm: 'Les mots de passe ne correspondent pas.',
+      },
+      hasAccount: 'Déjà inscrit ?',
+      login: 'Se connecter',
+    },
+  };
+
+  return { locale: 'fr', common, nav, footer, sections, auth, pages };
 }

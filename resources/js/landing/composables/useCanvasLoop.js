@@ -12,8 +12,10 @@ const MAX_DPR = 2;
  * @param options.fps    images par seconde (14 à 40 selon le visuel)
  * @param options.setup  ({ width, height, token }) appelé à chaque redimensionnement
  * @param options.draw   ({ ctx, width, height, time, reduced, token })
+ * @param options.loop   false = pas de boucle : on redessine à la demande via `redraw()`
+ * @returns { redraw } pour forcer une image (données ou pointeur qui changent)
  */
-export function useCanvasLoop(canvasRef, { fps = 30, setup, draw }) {
+export function useCanvasLoop(canvasRef, { fps = 30, loop = true, setup, draw }) {
   const reduced = prefersReducedMotion();
   let ctx, io, ro, styles;
   let raf = 0;
@@ -38,7 +40,7 @@ export function useCanvasLoop(canvasRef, { fps = 30, setup, draw }) {
   }
 
   function play() {
-    if (!raf && !reduced) raf = requestAnimationFrame(tick);
+    if (!raf && !reduced && loop) raf = requestAnimationFrame(tick);
   }
 
   function pause() {
@@ -69,7 +71,7 @@ export function useCanvasLoop(canvasRef, { fps = 30, setup, draw }) {
     ro = new ResizeObserver(resize);
     ro.observe(canvas);
     resize();
-    if (reduced) return;
+    if (reduced || !loop) return;
     io = new IntersectionObserver(([entry]) => (entry.isIntersecting ? play() : pause()));
     io.observe(canvas);
   });
@@ -79,16 +81,17 @@ export function useCanvasLoop(canvasRef, { fps = 30, setup, draw }) {
     io?.disconnect();
     ro?.disconnect();
   });
+
+  let pending = 0;
+  function redraw() {
+    if (pending || !ctx) return;
+    pending = requestAnimationFrame(() => {
+      pending = 0;
+      frame();
+    });
+  }
+  return { redraw };
 }
 
-/** Générateur pseudo-aléatoire déterministe (mêmes visuels à chaque chargement). */
-export function seededRandom(seed) {
-  let a = seed >>> 0;
-  return () => {
-    a = (a + 0x6d2b79f5) >>> 0;
-    let t = a;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
+// Générateur déterministe partagé avec les données de marché.
+export { seededRandom } from '../market/random.js';

@@ -1,3 +1,4 @@
+import { languages } from './data.js';
 import createFr from './fr.js';
 
 // fr est la référence, chargée d'emblée ; les autres langues sont importées à la demande.
@@ -6,9 +7,10 @@ const loaders = {
   pt: () => import('./pt.js'),
 };
 
-export const locales = ['fr', ...Object.keys(loaders)];
+/** Langues proposées à l'utilisateur (sélecteur, ?lang=). */
+export const locales = languages.map((l) => l.code);
 
-/** Contenu français, synchrone (premier rendu). */
+/** Contenu français, synchrone. */
 export const createDefaultContent = createFr;
 
 /** Contenu d'une langue ; `links` remplace les liens par défaut (routes réelles). */

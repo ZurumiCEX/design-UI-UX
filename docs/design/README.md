@@ -1,6 +1,6 @@
-# Landing Zurumi — guide du squelette Vue 3 + Vite
+# Zurumi — guide du squelette Vue 3 + Vite
 
-Squelette autonome de la page d'accueil, construit d'après la maquette `zurumi-landing-1440.svg`, les tokens `zurumi-tokens.json` et le cahier des charges `MEGA_PROMPT_ZURUMI_LANDING.md`. L'arborescence `resources/` reprend celle du cahier des charges pour être reportée telle quelle dans le dépôt Laravel.
+Squelette autonome du site Zurumi : la page d'accueil (d'après `zurumi-landing-1440.svg` et `MEGA_PROMPT_ZURUMI_LANDING.md`) et quatre pages applicatives — marchés, achat rapide, trade, connexion / inscription. L'arborescence `resources/` est prévue pour être reportée telle quelle dans le dépôt Laravel.
 
 ## Commandes
 
@@ -18,20 +18,68 @@ npm run build
 
 `npm run tokens` régénère `resources/css/tokens.css` ; `dev` et `build` le lancent d'eux-mêmes.
 
+## Pages
+
+| URL (squelette) | Fichier HTML | Entrée JS | Composant |
+|---|---|---|---|
+| `/` | `index.html` | `main.js` | `pages/HomePage.vue` |
+| `/marches/` | `marches/index.html` | `entries/markets.js` | `pages/MarketsPage.vue` |
+| `/achat-rapide/` | `achat-rapide/index.html` | `entries/buy.js` | `pages/BuyPage.vue` |
+| `/trade/` | `trade/index.html` | `entries/trade.js` | `pages/TradePage.vue` |
+| `/connexion/` | `connexion/index.html` | `entries/login.js` | `pages/LoginPage.vue` |
+| `/inscription/` | `inscription/index.html` | `entries/signup.js` | `pages/SignupPage.vue` |
+
+Chaque fichier HTML tient le rôle d'une vue Blade : `<head>` SEO, contenu critique rendu « côté serveur » (navigation, `<h1>`, introduction), puis l'entrée JS de la page. Les blocs communs sont des partiels : `<!-- @include head -->` et `<!-- @include fallback-nav -->` insèrent `resources/views/partials/*.html` (l'équivalent d'un `@include` Blade).
+
+Chaque entrée appelle `boot(Page, { page })` (`boot.js`) : la langue est chargée, puis la page est montée sur `#landing`. Vite découpe le code par page : l'accueil ne charge pas le code du trade.
+
+### Ce que fait chaque page
+
+- **Marchés** — trois cartes (tendances, nouveautés, meilleures performances) dont le titre applique un tri ou un filtre au tableau ; onglets Favoris / Tous (favoris mémorisés dans le navigateur) ; recherche ; puces de catégories ; tableau triable (prix, variation 1 h / 4 h / 24 h, tendance 24 h, capitalisation, volume) avec liens Acheter / Trader ; cours qui bougent avec un éclair vert ou rouge.
+- **Achat rapide** — onglets Acheter / Vendre ; montant en XOF ⇄ crypto au cours affiché ; choix de la crypto et du moyen de paiement (Wave, Orange Money, Mixx by Yas) ; limites et erreurs ; « Comment ça marche » ; FAQ. `?crypto=btc&mode=sell` présélectionne la crypto et le sens.
+- **Trade** — sélecteur de paire avec recherche (`?pair=ETH-USDT`, mis à jour dans l'URL) ; dernier cours et statistiques 24 h ; bandeau défilant des paires ; graphique en chandeliers (5 unités de temps, moyennes mobiles 7 et 25, réticule et valeurs O/H/B/F au survol) ; onglet Infos ; carnet d'ordres (3 affichages, regroupement des prix, un clic renseigne le prix de l'ordre) et transactions récentes ; formulaire Achat / Vente, Limite / Marché ; mes ordres et comptes. Déconnecté, les boutons mènent à la connexion et à l'inscription.
+- **Connexion** — identifiant par e-mail ou numéro mobile (indicatifs UEMOA), puis mot de passe ; Google / Apple.
+- **Inscription** — 3 étapes : identifiant + conditions, code à 6 chiffres (collage et remplissage SMS acceptés, renvoi après 60 s), mot de passe avec règles en direct ; écran final. Le champ du hero de l'accueil pré-remplit l'identifiant (`?identifier=`).
+
+Les formulaires valident côté client. Tant que leur action serveur vaut `#`, ils affichent un message de démo au lieu d'envoyer.
+
 ## Arborescence
 
 ```
-index.html                      # tient le rôle de views/landing/index.blade.php (head SEO + contenu critique)
-scripts/build-tokens.mjs        # zurumi-tokens.json → tokens.css
-resources/css/tokens.css        # GÉNÉRÉ — ne pas modifier
-resources/css/landing.css       # base, typographie, utilitaires de mouvement, valeurs dérivées
+index.html, marches/, achat-rapide/, trade/, connexion/, inscription/   # une page = un HTML (≈ vue Blade)
+scripts/build-tokens.mjs           # zurumi-tokens.json → tokens.css
+resources/views/partials/          # head.html, fallback-nav.html
+resources/css/tokens.css           # GÉNÉRÉ — ne pas modifier
+resources/css/landing.css          # base, typographie, mouvement, champs, onglets, puces
 resources/js/landing/
-  main.js                       # monte l'app sur #landing, lit window.__LANDING__
-  LandingPage.vue               # registre type de section → composant
-  content/fr.js                 # TOUT le contenu ; en.js et pt.js reprennent les mêmes clés
-  composables/                  # useReveal, useSplitText, useScrollProgress, useCanvasLoop, useReducedMotion, useNearViewport
-  components/ui | nav | sections | visuals
+  boot.js                          # montage commun d'une page
+  main.js, entries/*.js            # une entrée par page
+  pages/                           # HomePage, MarketsPage, BuyPage, TradePage, LoginPage, SignupPage
+  content/data.js                  # données sans texte : liens, cryptos, paires, moyens de paiement, pays, limites
+  content/fr.js, en.js             # tout le texte (mêmes clés) ; pt.js à traduire
+  composables/                     # useI18n, useMarketFeed, useSession, useReveal, useSplitText, useScrollProgress, useCanvasLoop…
+  market/                          # demoFeed (cours), pairSimulator (graphique, carnet, transactions), links, random
+  components/layout | nav | ui | sections | visuals | markets | buy | trade | auth
 ```
+
+## Langues
+
+Le français est la référence (`content/fr.js`), l'anglais est complet (`content/en.js`, mêmes clés). Le sélecteur de la barre (et du menu mobile) change la langue sans recharger la page : textes, titres découpés, formats de nombres et de dates, `<title>`, `description` et `<html lang>`.
+
+Langue retenue, par ordre de priorité : `?lang=en`, choix mémorisé dans le navigateur, `window.__LANDING__.locale`, `<html lang>`, puis `fr`.
+
+Pour ajouter une langue : créez `content/xx.js` avec les mêmes clés que `fr.js`, ajoutez son chargeur dans `content/index.js` et son entrée dans `languages` (`content/data.js`). `pt.js` existe mais n'est pas proposé tant qu'il n'est pas traduit.
+
+Nombres et dates passent par `fmt` (`useI18n`) : `fmt.xof()`, `fmt.price()`, `fmt.pct()`, `fmt.compact()`, `fmt.date()`, et `fmt.parse()` pour lire une saisie (« 50 000,5 » ou « 50,000.5 »).
+
+## Données de marché
+
+Tous les cours sont **fictifs** et simulés dans le navigateur :
+
+- `market/demoFeed.js` — un seul flux pour la page (`useMarketFeed`), mis à jour toutes les 2,6 s, en pause quand l'onglet est masqué. Utilisé par les marchés, l'achat rapide et le bandeau du trade.
+- `market/pairSimulator.js` — une paire : chandeliers par unité de temps, carnet d'ordres et transactions, mis à jour chaque seconde.
+
+Pour brancher une API ou un WebSocket, gardez la forme des objets (`price`, `change['1h'|'4h'|'24h']`, `cap`, `volume`, `spark`… ; `last`, `candles`, `book`, `trades`… pour une paire) et remplacez `step()`. Les composants n'ont pas à changer.
 
 ## Tokens
 
@@ -45,76 +93,102 @@ resources/js/landing/
 | `motion.ease.out` | `--motion-ease-out` |
 | `motion.duration.reveal` | `--motion-duration-reveal` |
 
-Les composants n'écrivent ni couleur ni durée de transition en dur. Les mélanges (verre, halos, remplissages) et les délais de la séquence d'ouverture sont déclarés une seule fois en tête de `landing.css`, à partir des tokens. Les canvas lisent les tokens avec `token('--color-…')`.
-
-Un thème clair se fait en redéfinissant les variables `--color-*` sous un sélecteur (`[data-theme="light"]`), sans toucher aux composants.
+Les composants n'écrivent pas de couleur de thème en dur. Les mélanges (verre, halos, remplissages) et les délais de la séquence d'ouverture sont déclarés en tête de `landing.css` à partir des tokens. Les canvas lisent les tokens avec `token('--color-…')`. Exceptions, traitées comme des données : la couleur propre à chaque crypto et à chaque moyen de paiement (`tone` dans `data.js`).
 
 ## Contenu et liens
 
-`content/fr.js` exporte `createContent(linkOverrides)`. Le contenu contient `common` (marque, liens, cryptos, stores, téléchargement), `nav` et `sections`.
+`content/fr.js` exporte `createContent(linkOverrides)` qui renvoie `common` (marque, liens, cryptos, paires, moyens de paiement, pays, langues), `nav`, `footer`, `sections` (accueil), `auth` (textes partagés connexion / inscription) et `pages` (titre, description et textes de chaque page).
 
-Les liens valent `#` par défaut. L'hôte injecte les vraies routes avant le script :
+Les liens par défaut sont dans `content/data.js` : les pages du squelette pointent vers leurs URL, le reste vaut `#`. L'hôte injecte les vraies routes avant le script :
 
 ```html
 <script>
   window.__LANDING__ = {
     locale: 'fr',
-    links: { signup: '/inscription', login: '/connexion', quickBuy: '/achat-rapide' }
+    links: { signup: '/inscription', login: '/connexion', quickBuy: '/achat-rapide', loginAction: '/login' },
+    user: null
   };
 </script>
 ```
 
-Dans Blade, remplissez `links` avec `route('…')`. Clés disponibles : `home`, `signup`, `login`, `quickBuy`, `send`, `receive`, `swap`, `withdraw`, `wallet`, `search`, `appStore`, `googlePlay`, `download` (lien encodé dans le QR code).
+Clés : `home`, `quickBuy`, `markets`, `trade`, `login`, `signup`, `send`, `receive`, `swap`, `withdraw`, `wallet`, `deposit`, `search`, `forgotPassword`, `terms`, `privacy`, `appStore`, `googlePlay`, `download` (encodé dans le QR code), et les actions de formulaires `loginAction`, `signupAction`, `buyAction`.
 
-Les titres acceptent trois balises : `<br>`, `<i>` (mot atténué) et `<b>` (mot en dégradé).
+`user` (non nul quand l'utilisateur est connecté) remplace, sur le trade, les boutons Connexion / Inscription par le bouton d'ordre et active le curseur de solde.
 
-## Ajouter, retirer ou réordonner une section
+Les titres acceptent `<br>`, `<i>` (mot atténué) et `<b>` (mot en dégradé). Dans les phrases contenant un lien, `{cle}` marque l'emplacement du lien (voir `terms` de l'inscription).
 
-La page est le tableau `sections` de `content/fr.js`. Retirer ou déplacer un objet suffit.
+## Ajouter une section à l'accueil
+
+La page d'accueil est le tableau `sections` de `content/fr.js` (et `en.js`). Retirer ou déplacer un objet suffit.
 
 Pour un **nouveau type** de section :
 
 1. Créez `components/sections/MaSection.vue` avec les props `data` (l'objet de la section) et `common`.
-2. Enregistrez-le dans `registry` de `LandingPage.vue` : `maSection: MaSection`.
-3. Ajoutez `{ id: 'mon-ancre', type: 'maSection', … }` dans `sections`.
+2. Enregistrez-le dans `registry` de `pages/HomePage.vue` : `maSection: MaSection`.
+3. Ajoutez `{ id: 'mon-ancre', type: 'maSection', … }` dans `sections`, dans chaque langue.
 
 Dans le gabarit, `v-split` anime un titre mot à mot (A1) et `v-reveal` un bloc (A2). `v-reveal="700"` impose un délai en millisecondes ; sans valeur, les éléments frères se décalent de 90 ms.
+
+## Ajouter une page
+
+1. Créez `pages/MaPage.vue` dans `<SiteLayout page="ma-page">` (ou `AuthShell` pour une page sans barre).
+2. Créez `entries/ma-page.js` : `boot(MaPage, { page: 'maPage' })`.
+3. Créez `ma-page/index.html` sur le modèle des autres et ajoutez-le aux `pages` de `vite.config.js`.
+4. Ajoutez `pages.maPage` (avec `meta.title` et `meta.description`) dans chaque fichier de langue, et le lien dans `defaultLinks` et la navigation si besoin.
 
 ## Composables
 
 | Composable | Rôle |
 |---|---|
-| `useReveal` | Un seul `IntersectionObserver` (seuil 18 %) ; ajoute `.in`, puis cesse d'observer. Fournit les directives `v-reveal` et `v-split`. |
+| `useI18n` | Langue courante, contenu, `setLocale()`, formats `fmt`, gabarits `t()` et `parts()`. |
+| `useMarketFeed` | Flux de cours partagé (démo). |
+| `useSession` | Utilisateur fourni par l'hôte (`window.__LANDING__.user`). |
+| `useReveal` | Un seul `IntersectionObserver` (seuil 18 %) ; directives `v-reveal` et `v-split`. |
 | `useSplitText` | Découpe mot à mot, conserve `<i>`, `<b>`, `<br>`, pose `aria-label` avec la phrase entière. |
-| `useScrollProgress(ref)` | Un seul listener de scroll limité par rAF ; écrit `--in` (entrée, 0 → 1) et `--p` (traversée, 0 → 1) sur l'élément, `--sy` sur `<html>`. |
-| `useCanvasLoop(ref, { fps, setup, draw })` | Boucle plafonnée en images/seconde et en densité (2 max), en pause hors écran, image fixe en mouvement réduit. |
+| `useScrollProgress(ref)` | Un seul listener de scroll limité par rAF ; écrit `--in`, `--p` sur l'élément et `--sy` sur `<html>`. |
+| `useCanvasLoop(ref, { fps, loop, setup, draw })` | Boucle plafonnée en images/seconde et en densité (2 max), en pause hors écran, image fixe en mouvement réduit. `loop: false` + `redraw()` pour dessiner à la demande. |
 | `useReducedMotion` | Ref réactive sur `prefers-reduced-motion`. |
 | `useNearViewport(ref)` | Vrai à l'approche du viewport ; déclenche les imports dynamiques (globe, pluie). |
 
 ## Composants
+
+### `layout/` et `nav/`
+
+| Composant | Props |
+|---|---|
+| `SiteLayout` | `page` (entrée de menu active), `footer` (défaut `true`), `solidNav` |
+| `AuthShell` | — (slots `visual` et défaut) |
+| `SvgDefs` | — (dégradés SVG partagés) |
+| `LandingNav` | `data`, `common`, `page`, `solid` |
+| `NavDropdown` | `item` `{ label, children: [{ label, href, icon }] }` |
+| `LangSwitcher` | `align` (`right` · `left`) |
+| `DownloadPopover` | `download`, `stores` |
 
 ### `ui/`
 
 | Composant | Props | Exemple |
 |---|---|---|
 | `ZButton` | `href`, `variant` (`primary` · `ghost` · `light` · `pill`), `size` (`md` · `lg`), `type` | `<ZButton href="#" size="lg">S'inscrire</ZButton>` |
+| `ZSelect` | `v-model`, `options` `[{ value, label, short?, sub?, glyph?, tone? }]`, `label`, `searchable`, `searchLabel`, `empty`, `align`, `variant` (`chip` · `plain` · `field`) | `<ZSelect v-model="crypto" :options="opts" label="Crypto" searchable />` |
 | `ZTag` | — (slot) | `<ZTag>Nos services</ZTag>` |
-| `ZCoinChip` | `coin` `{ glyph, name, ticker, price, change, up, tone }` | `<ZCoinChip :coin="coin" />` |
-| `ZQrCode` | `value`, `label` (texte alternatif), `size` | `<ZQrCode :value="url" label="QR code…" />` |
-| `ZStoreButton` | `store` `{ id, label, href }`, `variant` (`dark` · `light`) | `<ZStoreButton :store="store" variant="light" />` |
+| `ZCoinIcon` | `glyph`, `tone`, `size` | `<ZCoinIcon glyph="₿" tone="#F7931A" />` |
+| `ZCoinChip` | `coin` (objet de `data.js`) | `<ZCoinChip :coin="coin" />` |
+| `ZQrCode` | `value`, `label`, `size` | `<ZQrCode :value="url" label="QR code…" />` |
+| `ZStoreButton` | `store` `{ id, label, href }`, `variant` | `<ZStoreButton :store="store" variant="light" />` |
 | `ZIconTile` | `icon`, `size`, `active` | `<ZIconTile icon="shield" :active="hovered" />` |
 | `ZIcon` | `name`, `size` | `<ZIcon name="download" :size="16" />` |
 | `ZLogo` | `brand`, `size`, `wordmark`, `image` | `<ZLogo brand="Zurumi" image="/images/logo.svg" />` |
 
-### `nav/`
+### Pages applicatives
 
-| Composant | Props |
+| Dossier | Composants |
 |---|---|
-| `LandingNav` | `data` (contenu `nav`), `common` |
-| `NavDropdown` | `item` `{ label, children: [{ label, href, icon }] }` |
-| `DownloadPopover` | `download` `{ label, or, qrAlt, url }`, `stores` |
+| `markets/` | `MarketHighlights` (`coins`, `data`, `links`, émet `show`) |
+| `buy/` | `BuyWidget` (`data`, `common`) |
+| `trade/` | `PairHeader`, `TickerStrip`, `TradeChart` (`candles`, `version`, `formatPrice`, `formatTime`, `label`), `OrderBook` (émet `pick`, `group`), `OrderForm` (expose `setPrice`), `OrdersPanel` |
+| `auth/` | `AuthVisual`, `IdentifierField` (`v-model:method/email/phone/country`), `PasswordField`, `OtpInput`, `AuthProviders`, `validate.js` |
 
-### `sections/`
+### `sections/` (accueil)
 
 Toutes reçoivent `data` (leur entrée dans `sections`) et `common`.
 
@@ -129,39 +203,43 @@ Toutes reçoivent `data` (leur entrée dans `sections`) et `common`.
 | `security` | `SecuritySection` | A16, A17 |
 | `steps` | `StepsSection` | A18, A19 |
 | `globe` | `GlobeSection` | A20 |
-| `footer` | `LandingFooter` | A21 |
 
-A8 à A10 sont dans `nav/`, A21 dans `ZButton`, `ZStoreButton` et le pied de page.
+Le pied de page (`LandingFooter`, A21) est rendu par `SiteLayout` sur toutes les pages sauf le trade et l'authentification ; son contenu est `footer` dans les fichiers de langue.
 
 ### `visuals/`
 
 | Composant | Props | Note |
 |---|---|---|
 | `MatrixBackground` | — | canvas, 14 images/s |
-| `CandleChart` | `candles`, `delay`, `duration`, `seed` | canvas, 30 images/s ; série de démo si `candles` est absent |
+| `CandleChart` | `candles`, `delay`, `duration`, `seed` | canvas, 30 images/s (hero) |
 | `RainCanvas` | — | canvas, 40 images/s, import dynamique |
 | `DotGlobe` | `hotspots`, `speed` | canvas, 30 images/s, import dynamique |
+| `StarField` | — | canvas, 24 images/s (authentification) |
+| `Sparkline` | `values`, `up`, `width`, `height` | SVG |
 | `DashboardMock` | `data`, `coins`, `brand`, `chartDelay` | |
-| `PhoneMock` | `screen`, `brand`, `variant` (`upright` · `lying`), `image` | |
+| `PhoneMock` | `screen`, `brand`, `variant`, `image` | |
 | `ShieldMark` | `image` | |
 | `RidgeScene` | `image` | |
 | `FloatingCoins` | `coins`, `image` | |
 
-La prop `image` remplace le visuel en code par une vraie image : `{ avif, webp, src, width, height, alt }`. Renseignez-la dans le champ `image` de la section, avec des fichiers déposés dans `public/images/landing/`.
+La prop `image` remplace le visuel en code par une vraie image : `{ avif, webp, src, width, height, alt }`, fichiers dans `public/images/landing/`.
 
 ## Report dans Laravel
 
-1. Copiez `resources/css`, `resources/js/landing` et `scripts/build-tokens.mjs`.
-2. Ajoutez `resources/js/landing/main.js` aux entrées de `laravel-vite-plugin` et installez `vue`, `@vitejs/plugin-vue`, `qrcode-generator`, `@fontsource-variable/inter`.
-3. Créez `resources/views/landing/index.blade.php` à partir de `index.html` : même `<head>`, même bloc `#landing`, `@vite('resources/js/landing/main.js')`, et `window.__LANDING__` rempli avec les routes nommées.
+1. Copiez `resources/css`, `resources/js/landing`, `scripts/build-tokens.mjs`.
+2. Ajoutez `main.js` et `entries/*.js` aux entrées de `laravel-vite-plugin`, et installez `vue`, `@vitejs/plugin-vue`, `qrcode-generator`, `@fontsource-variable/inter`.
+3. Pour chaque page, créez une vue Blade à partir de son fichier HTML : même `<head>`, partiels en `@include`, bloc `#landing`, `@vite('resources/js/landing/entries/….js')`, et `window.__LANDING__` rempli avec les routes nommées, la langue et l'utilisateur.
+4. Les formulaires envoient en `POST` vers `loginAction`, `signupAction` et `buyAction` : ajoutez le jeton CSRF (`<input type="hidden" name="_token">`) et adaptez les noms de champs à vos contrôleurs.
 
 ## À faire avant mise en ligne
 
-- **Démo HTML de référence** : absente du dépôt. Ce squelette suit la maquette statique et le tableau des animations ; comparez-le à la démo dès qu'elle est disponible, en particulier les courbes et les enchaînements.
-- **Routes** : tous les liens valent `#`.
-- **Lien de téléchargement** : `links.download` est un lien d'exemple ; le QR code l'encode.
+- **Démo HTML de référence** : absente du dépôt. L'accueil suit la maquette statique et le tableau des animations.
+- **Routes** : `send`, `receive`, `swap`, `withdraw`, `wallet`, `deposit`, `search`, `forgotPassword`, `terms`, `privacy`, les stores et les fournisseurs Google / Apple valent `#`.
+- **Back-end** : connexion, inscription (envoi et vérification du code), achat rapide et ordres ne sont pas branchés.
+- **Données** : cours, capitalisations, volumes, carnet, transactions et limites d'achat sont fictifs (`// DÉMO`).
+- **Lien de téléchargement** : `download` est un lien d'exemple ; le QR code l'encode.
 - **Logo** : le « Z » est un substitut (`ZLogo`, prop `image`).
-- **Contenus** : valeurs marquées `// DÉMO — à remplacer` et `// À VALIDER (conformité)` dans `content/fr.js`.
-- **Traductions** : `en.js` et `pt.js` reprennent le français.
+- **Contenus** : valeurs `// À VALIDER (conformité)` dans les fichiers de langue (sécurité, FAQ).
+- **Portugais** : `pt.js` reprend le français.
 - **SEO** : `og:url`, `og:image`, lien canonique, `url` et `logo` de l'organisation.
-- **Lighthouse** : non mesuré sur ce squelette.
+- **Lighthouse** : non mesuré.

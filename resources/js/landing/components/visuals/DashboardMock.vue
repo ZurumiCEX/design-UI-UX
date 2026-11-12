@@ -1,14 +1,20 @@
 <script setup>
+import { computed } from 'vue';
+import { useI18n } from '../../composables/useI18n.js';
+import ZCoinIcon from '../ui/ZCoinIcon.vue';
 import ZLogo from '../ui/ZLogo.vue';
 import CandleChart from './CandleChart.vue';
 
 // Fenêtre du tableau de bord (hero) : liste de paires + graphique en chandeliers.
-defineProps({
-  data: { type: Object, required: true }, // { label, menu, quote, timeframes }
+const props = defineProps({
+  data: { type: Object, required: true }, // { label, menu, quote, count, timeframes }
   coins: { type: Array, required: true },
   brand: { type: String, default: '' },
   chartDelay: { type: Number, default: 0 },
 });
+const { fmt } = useI18n();
+const list = computed(() => props.coins.slice(0, props.data.count ?? 8));
+const up = (c) => c.change['24h'] >= 0;
 </script>
 
 <template>
@@ -22,16 +28,16 @@ defineProps({
       <div class="dash__body">
         <div class="dash__pairs">
           <div class="dash__head">
-            <span class="dash__coin" :style="{ '--tone': coins[0].tone }">{{ coins[0].glyph }}</span>
+            <ZCoinIcon :glyph="list[0].glyph" :tone="list[0].tone" />
             <span>
-              <strong>{{ coins[0].ticker }} / {{ data.quote }}</strong>
-              <small :class="coins[0].up ? 'up' : 'down'">{{ coins[0].change }}</small>
+              <strong>{{ list[0].ticker }} / {{ data.quote }}</strong>
+              <small :class="up(list[0]) ? 'up' : 'down'">{{ fmt.pct(list[0].change['24h']) }}</small>
             </span>
           </div>
           <ul>
-            <li v-for="(coin, i) in coins" :key="coin.id" :class="{ 'is-on': i === 0 }">
+            <li v-for="(coin, i) in list" :key="coin.id" :class="{ 'is-on': i === 0 }">
               <span>{{ coin.ticker }} / {{ data.quote }}</span>
-              <span :class="coin.up ? 'up' : 'down'">{{ coin.change }}</span>
+              <span :class="up(coin) ? 'up' : 'down'">{{ fmt.pct(coin.change['24h']) }}</span>
             </li>
           </ul>
         </div>
@@ -60,7 +66,6 @@ defineProps({
 .dash__head { display: flex; align-items: center; gap: 10px; padding-bottom: 14px; margin-bottom: 8px; border-bottom: 1px solid var(--color-line-default); }
 .dash__head strong { display: block; font-size: 13px; font-weight: var(--font-weight-semibold); }
 .dash__head small { font-size: 11px; }
-.dash__coin { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--tone); font-size: 12px; font-weight: var(--font-weight-semibold); }
 .dash__pairs li { display: flex; justify-content: space-between; padding: 6px 6px; border-radius: var(--radius-sm); font-size: 11px; font-variant-numeric: tabular-nums; }
 .dash__pairs li.is-on { background: var(--fill-2); }
 .dash__chart { display: grid; grid-template-rows: auto 1fr; gap: 12px; min-height: 0; padding-bottom: 40px; }

@@ -17,12 +17,15 @@
   <img alt="Accessibilité WCAG AA" src="https://img.shields.io/badge/a11y-WCAG_AA-3DDC97?style=flat-square&labelColor=13131B">
   <img alt="Objectif Lighthouse performance 90 et plus" src="https://img.shields.io/badge/Lighthouse-objectif_%E2%89%A5_90-3DDC97?style=flat-square&logo=lighthouse&logoColor=white&labelColor=13131B">
   <img alt="Budget JavaScript inférieur à 90 Ko compressé" src="https://img.shields.io/badge/JS-%3C_90_Ko_gzip-F7DF1E?style=flat-square&logo=javascript&logoColor=black&labelColor=13131B">
+  <img alt="Langues : français et anglais" src="https://img.shields.io/badge/langues-FR_%C2%B7_EN-9DB0F2?style=flat-square&labelColor=13131B">
+  <img alt="6 pages" src="https://img.shields.io/badge/pages-6-B794E6?style=flat-square&labelColor=13131B">
   <img alt="prefers-reduced-motion respecté" src="https://img.shields.io/badge/reduced--motion-respect%C3%A9-B794E6?style=flat-square&labelColor=13131B">
 </p>
 
 <p align="center">
   <a href="#-contenu-du-dépôt">Contenu</a> ·
   <a href="#-identité-visuelle">Identité</a> ·
+  <a href="#-pages">Pages</a> ·
   <a href="#-sections-de-la-page">Sections</a> ·
   <a href="#-animations">Animations</a> ·
   <a href="#-objectifs-de-qualité">Qualité</a> ·
@@ -46,8 +49,8 @@ Ce dépôt réunit les **livrables de design** de la page d'accueil Zurumi : la 
 | [`docs/design/zurumi-tokens.json`](docs/design/zurumi-tokens.json) | Design tokens au format W3C DTCG (Tokens Studio / Variables Figma) |
 | [`docs/design/MEGA_PROMPT_ZURUMI_LANDING.md`](docs/design/MEGA_PROMPT_ZURUMI_LANDING.md) | Cahier des charges d'intégration : architecture, animations, critères d'acceptation |
 | [`assets/banner.svg`](assets/banner.svg) | Bandeau animé de ce README (SVG + CSS, sans script) |
-| [`resources/`](resources/) · [`index.html`](index.html) | Squelette Vue 3 + Vite de la landing : tokens, composables, composants, contenu |
-| [`docs/design/README.md`](docs/design/README.md) | Guide du squelette : tokens, composants, ajout d'une section, report dans Laravel |
+| [`resources/`](resources/) · [`index.html`](index.html) | Squelette Vue 3 + Vite du site : six pages, tokens, composables, composants, contenu FR / EN |
+| [`docs/design/README.md`](docs/design/README.md) | Guide du squelette : pages, langues, données de marché, composants, report dans Laravel |
 
 **À ajouter** — `docs/design/zurumi-landing-demo.html`, la démo de référence citée par le cahier des charges comme source de vérité visuelle et d'animation. Elle n'est pas encore dans le dépôt.
 
@@ -78,7 +81,20 @@ Ce dépôt réunit les **livrables de design** de la page d'accueil Zurumi : la 
 
 Le violet `#5D3587` est trop sombre pour du texte sur fond noir : il est réservé aux fonds, dégradés et halos. Le texte et les icônes d'accent utilisent `#B794E6` et `#9DB0F2`.
 
-## ✦ Sections de la page
+## ✦ Pages
+
+| Page | URL | Contenu |
+|---|---|---|
+| **Accueil** | `/` | Les dix sections de la maquette, avec leurs animations |
+| **Marchés** | `/marches/` | Tendances, nouveautés, meilleures performances ; tableau triable avec favoris, recherche, catégories et courbes 24 h |
+| **Achat rapide** | `/achat-rapide/` | Achat et vente en FCFA par Wave, Orange Money ou Mixx by Yas ; comment ça marche ; FAQ |
+| **Trade** | `/trade/` | Paires, graphique en chandeliers, carnet d'ordres, transactions récentes, formulaire d'ordre |
+| **Connexion** | `/connexion/` | E-mail ou numéro mobile, puis mot de passe |
+| **Inscription** | `/inscription/` | Trois étapes : identifiant, code de vérification, mot de passe |
+
+Le menu suit l'ordre : Achat rapide · Marchés · Trade · Transactions · Retirer · Portefeuille. Le sélecteur de langue bascule tout le site entre le français et l'anglais, sans recharger la page.
+
+## ✦ Sections de la page d'accueil
 
 | # | Section | Résumé |
 |---|---|---|
@@ -125,7 +141,7 @@ npm install
 npm run dev
 ```
 
-La page est pilotée par [`resources/js/landing/content/fr.js`](resources/js/landing/content/fr.js) : textes, listes, liens et ordre des sections. Le détail est dans le [guide du squelette](docs/design/README.md).
+Les textes vivent dans [`content/fr.js`](resources/js/landing/content/fr.js) et [`content/en.js`](resources/js/landing/content/en.js) ; les données sans texte (cryptos, paires, liens) dans [`content/data.js`](resources/js/landing/content/data.js). Le détail est dans le [guide du squelette](docs/design/README.md).
 
 ## ✦ Démarrer côté design
 
@@ -134,10 +150,10 @@ La page est pilotée par [`resources/js/landing/content/fr.js`](resources/js/lan
 3. **Lancer l'intégration** — reporter le squelette dans le dépôt du site Zurumi (voir « Report dans Laravel » du guide), ajouter la démo HTML, puis suivre le cahier des charges étape par étape.
 
 > [!IMPORTANT]
-> Les cours, montants, taux et statistiques de la maquette sont **fictifs**. Les mentions de sécurité et de conformité sont provisoires et restent à valider.
+> Les cours, montants, taux et statistiques sont **fictifs** ; sur les pages Marchés et Trade, ils sont simulés dans le navigateur. Connexion, inscription et achat ne sont pas branchés à un serveur. Les mentions de sécurité et de conformité sont provisoires et restent à valider.
 
 <img src="assets/divider.svg" alt="" width="100%">
 
 <p align="center">
-  <sub>Zurumi · Design UI/UX — maquette, tokens et spécification de la landing</sub>
+  <sub>Zurumi · Design UI/UX — maquette, tokens, spécification et squelette du site</sub>
 </p>
