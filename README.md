@@ -108,13 +108,13 @@ Le violet `#5D3587` est trop sombre pour du texte sur fond noir : il est réserv
 | **Presse** | `/presse/` | Communiqués, contact presse, chiffres clés, kit média (logos SVG, couleurs) |
 | **Nous contacter** | `/contact/` | Canaux, formulaire avec numéro de suivi (démo), horaires, conseils de sécurité |
 
-Le menu suit l'ordre : Achat rapide · Marchés · Trade · Transactions (Envoyer, Recevoir, Echanger) · Retirer (P2P) · Portefeuille. Le sélecteur de langue bascule tout le site entre le français et l'anglais, sans recharger la page.
+Le menu suit l'ordre : Achat rapide · Marché · Trade · Transactions (Envoyer, Recevoir, Echanger) · Retirer (P2P). Le Portefeuille est un bouton de couleur secondaire à droite de la barre. Le sélecteur de langue bascule tout le site entre le français et l'anglais, sans recharger la page.
 
 ## ✦ Sections de la page d'accueil
 
 | # | Section | Résumé |
 |---|---|---|
-| 1 | **Hero** | Titre, formulaire d'inscription, statistiques, fenêtre de tableau de bord en perspective |
+| 1 | **Hero** | Titre, formulaire d'inscription, statistiques, globe en points animé avec cartes de cours |
 | 2 | **Cryptos** | Deux rangées de cartes en défilement opposé |
 | 3 | **Application** | Disque dégradé, téléphone, quatre avantages |
 | 4 | **Bannière ciel** | Plein écran, pluie fine, crête lumineuse, QR code |
@@ -122,7 +122,7 @@ Le menu suit l'ordre : Achat rapide · Marchés · Trade · Transactions (Envoye
 | 6 | **Mobile Money** | Téléphone couché en 3D, pièces flottantes |
 | 7 | **Sécurité** | Bouclier 3D, grille de garanties |
 | 8 | **Étapes** | Orbe lumineux, trois étapes en cycle automatique |
-| 9 | **Globe** | Globe en points, cartes de cours |
+| 9 | **Portefeuille partout** | Fonctionnalités, boutons des stores, fenêtre de tableau de bord en perspective |
 | 10 | **Pied de page** | Liens, réseaux sociaux, retour en haut |
 
 ## ✦ Animations

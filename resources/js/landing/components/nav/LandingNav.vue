@@ -50,11 +50,16 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
       </nav>
 
       <div class="nav__right">
-        <a class="nav__link nav__tool nav__search label nav__in" :href="common.links.search" :style="{ '--n': data.items.length + 1 }">
-          <ZIcon name="search" :size="14" /> {{ data.search }}
-        </a>
-        <LangSwitcher class="nav__tool nav__lang nav__in" :style="{ '--n': data.items.length + 2 }" />
-        <DownloadPopover class="nav__in" :download="common.download" :stores="common.stores" :style="{ '--n': data.items.length + 3 }" />
+        <LangSwitcher class="nav__tool nav__lang nav__in" :style="{ '--n': data.items.length + 1 }" />
+        <DownloadPopover class="nav__in" :download="common.download" :stores="common.stores" :style="{ '--n': data.items.length + 2 }" />
+        <ZButton
+          class="nav__in nav__wallet"
+          :class="{ 'is-current': page === 'wallet' }"
+          variant="secondary"
+          :href="common.links.wallet"
+          :aria-current="page === 'wallet' ? 'page' : undefined"
+          :style="{ '--n': data.items.length + 3 }"
+        ><ZIcon name="wallet" :size="14" /> {{ data.wallet }}</ZButton>
         <NotificationsPopover v-if="notifications" class="nav__in" :data="notifications" :style="{ '--n': data.items.length + 4 }" />
         <AccountMenu v-if="signedIn" class="nav__in" :data="data.account" :links="common.links" :page="page" :style="{ '--n': data.items.length + 5 }" />
         <template v-else>
@@ -90,6 +95,9 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
             </ul>
           </li>
         </template>
+        <li v-if="!signedIn">
+          <a :href="common.links.wallet" :aria-current="page === 'wallet' ? 'page' : undefined" @click="open = false"><ZIcon name="wallet" :size="16" /> {{ data.wallet }}</a>
+        </li>
       </ul>
       <div class="nav__langs" role="group" :aria-label="data.language.label">
         <button
@@ -142,6 +150,11 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
 .nav__right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 .nav__tool { margin-right: 18px; }
 .nav__burger { display: none; width: 36px; height: 36px; place-items: center; }
+.nav__wallet { gap: 8px; }
+.nav__wallet :deep(svg) { flex: none; }
+.nav__wallet.is-current { box-shadow: 0 0 0 1px var(--color-brand-secondary-300); }
+/* Petits écrans : le portefeuille reste accessible depuis le panneau. */
+@media (max-width: 600px) { .nav__wallet { display: none; } }
 
 /* A3 — les éléments du menu apparaissent un à un, de gauche à droite. */
 :global(.js .nav__in) { opacity: 0; transform: translateY(-6px); }
@@ -159,7 +172,6 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
   .nav__bar { padding: 0 var(--space-gutter); gap: 26px; }
   .nav__menu ul { gap: 18px; }
   .nav__tool { margin-right: 8px; }
-  .nav__search { display: none; }
 }
 /* Le menu compte six entrées : il passe en panneau dès 1180 px pour ne jamais déborder. */
 @media (max-width: 1180px) {

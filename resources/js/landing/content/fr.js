@@ -51,7 +51,7 @@ export default function createContent(linkOverrides = {}) {
     home: 'Zurumi — accueil',
     items: [
       { label: 'Achat rapide', href: links.quickBuy, page: 'buy' },
-      { label: 'Marchés', href: links.markets, page: 'markets' },
+      { label: 'Marché', href: links.markets, page: 'markets' },
       { label: 'Trade', href: links.trade, page: 'trade' },
       {
         label: 'Transactions',
@@ -62,9 +62,8 @@ export default function createContent(linkOverrides = {}) {
         ],
       },
       { label: 'Retirer', href: links.withdraw, page: 'p2p', badge: 'P2P' },
-      { label: 'Portefeuille', href: links.wallet, page: 'wallet' },
     ],
-    search: 'Rechercher',
+    wallet: 'Portefeuille', // bouton à droite de la barre (couleur secondaire)
     language: { label: 'Langue', choose: 'Choisir la langue' },
     login: 'Connexion',
     signup: "S'inscrire",
@@ -153,13 +152,7 @@ export default function createContent(linkOverrides = {}) {
         { label: 'Disponibilité', value: 24, suffix: '/7' },
         { label: 'Devise native', text: 'XOF' },
       ],
-      dashboard: {
-        label: 'Aperçu du tableau de bord Zurumi',
-        menu: ['Achat rapide', 'Marchés', 'Trade', 'Portefeuille'],
-        quote: 'XOF',
-        count: 8,
-        timeframes: ['15 min', '1 h', '4 h', '1 j', '1 sem'],
-      },
+      rates: { interval: 2200, count: 4 }, // rotation des cartes de cours (A20)
     },
     {
       id: 'cryptos',
@@ -334,7 +327,13 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'bell', label: 'Notifications instantanées' },
         { icon: 'fingerprint', label: 'Connexion biométrique sécurisée' },
       ],
-      rates: { interval: 2200, count: 4 }, // rotation des cartes de cours (A20)
+      dashboard: {
+        label: 'Aperçu du tableau de bord Zurumi',
+        menu: ['Achat rapide', 'Marché', 'Trade', 'Portefeuille'],
+        quote: 'XOF',
+        count: 8,
+        timeframes: ['15 min', '1 h', '4 h', '1 j', '1 sem'],
+      },
     },
   ];
 

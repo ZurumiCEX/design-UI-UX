@@ -48,7 +48,7 @@ export default function createContent(linkOverrides = {}) {
     home: 'Zurumi — home',
     items: [
       { label: 'Quick buy', href: links.quickBuy, page: 'buy' },
-      { label: 'Markets', href: links.markets, page: 'markets' },
+      { label: 'Market', href: links.markets, page: 'markets' },
       { label: 'Trade', href: links.trade, page: 'trade' },
       {
         label: 'Transactions',
@@ -59,9 +59,8 @@ export default function createContent(linkOverrides = {}) {
         ],
       },
       { label: 'Withdraw', href: links.withdraw, page: 'p2p', badge: 'P2P' },
-      { label: 'Wallet', href: links.wallet, page: 'wallet' },
     ],
-    search: 'Search',
+    wallet: 'Wallet', // bouton à droite de la barre (couleur secondaire)
     language: { label: 'Language', choose: 'Choose language' },
     login: 'Log in',
     signup: 'Sign up',
@@ -147,13 +146,7 @@ export default function createContent(linkOverrides = {}) {
         { label: 'Availability', value: 24, suffix: '/7' },
         { label: 'Native currency', text: 'XOF' },
       ],
-      dashboard: {
-        label: 'Preview of the Zurumi dashboard',
-        menu: ['Quick buy', 'Markets', 'Trade', 'Wallet'],
-        quote: 'XOF',
-        count: 8,
-        timeframes: ['15 min', '1 h', '4 h', '1 d', '1 w'],
-      },
+      rates: { interval: 2200, count: 4 },
     },
     {
       id: 'cryptos',
@@ -324,7 +317,13 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'bell', label: 'Instant notifications' },
         { icon: 'fingerprint', label: 'Secure biometric login' },
       ],
-      rates: { interval: 2200, count: 4 },
+      dashboard: {
+        label: 'Preview of the Zurumi dashboard',
+        menu: ['Quick buy', 'Market', 'Trade', 'Wallet'],
+        quote: 'XOF',
+        count: 8,
+        timeframes: ['15 min', '1 h', '4 h', '1 d', '1 w'],
+      },
     },
   ];
 

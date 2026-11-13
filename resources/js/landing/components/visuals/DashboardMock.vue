@@ -68,7 +68,7 @@ const up = (c) => c.change['24h'] >= 0;
 .dash__head small { font-size: 11px; }
 .dash__pairs li { display: flex; justify-content: space-between; padding: 6px 6px; border-radius: var(--radius-sm); font-size: 11px; font-variant-numeric: tabular-nums; }
 .dash__pairs li.is-on { background: var(--fill-2); }
-.dash__chart { display: grid; grid-template-rows: auto 1fr; gap: 12px; min-height: 0; padding-bottom: 40px; }
+.dash__chart { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 12px; min-height: 0; padding-bottom: 40px; }
 .dash__frames { display: flex; gap: 16px; font-size: 10.5px; color: var(--color-text-dim); }
 .dash__frames .is-on { color: var(--color-text-default); }
 .up { color: var(--color-state-up); }

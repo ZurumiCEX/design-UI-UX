@@ -108,9 +108,11 @@ useCanvasLoop(canvas, {
 </script>
 
 <template>
-  <canvas ref="canvas" class="candles" aria-hidden="true" />
+  <!-- Le canvas est posé en absolu : sa taille ne peut pas repousser la grille qui le contient. -->
+  <div class="candles-box"><canvas ref="canvas" class="candles" aria-hidden="true" /></div>
 </template>
 
 <style scoped>
-.candles { width: 100%; height: 100%; }
+.candles-box { position: relative; min-height: 0; height: 100%; }
+.candles { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
 </style>

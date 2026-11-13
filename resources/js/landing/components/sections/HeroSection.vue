@@ -4,7 +4,7 @@ import { prefersReducedMotion } from '../../composables/useReducedMotion.js';
 import { whenReady } from '../../composables/useReveal.js';
 import ZButton from '../ui/ZButton.vue';
 import ZIcon from '../ui/ZIcon.vue';
-import DashboardMock from '../visuals/DashboardMock.vue';
+import GlobeRates from '../visuals/GlobeRates.vue';
 import MatrixBackground from '../visuals/MatrixBackground.vue';
 
 const props = defineProps({
@@ -79,9 +79,9 @@ function onSubmit(e) {
     </div>
 
     <!-- A4 — parallaxe sur l'enveloppe, entrée sur l'élément intérieur. -->
-    <div class="hero__mock">
-      <div class="hero__mock-in">
-        <DashboardMock :data="data.dashboard" :coins="common.coins" :brand="common.brand" :chart-delay="2.6" />
+    <div class="hero__globe">
+      <div class="hero__globe-in">
+        <GlobeRates :coins="common.coins" :rates="data.rates" />
       </div>
     </div>
   </section>
@@ -119,24 +119,22 @@ function onSubmit(e) {
 .hero__stats dt { color: var(--color-text-dim); }
 .hero__stats dd { margin: 8px 0 0; font-size: 22px; font-weight: var(--font-weight-medium); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
 
-.hero__mock { position: absolute; left: 55%; top: 173px; perspective: 1600px; transform: translateY(calc(var(--sy, 0) * -60px)); }
-.hero__mock-in { transform-origin: 0 50%; transform: rotateY(-5deg) rotateX(2deg); }
-:global(.js .hero__mock-in) { opacity: 0; transform: translateX(46%) rotateY(-14deg) rotateX(4deg); }
-:global(.js.ready .hero__mock-in) {
-  opacity: 1; transform: rotateY(-5deg) rotateX(2deg);
-  transition: transform var(--motion-duration-hero-mock) var(--motion-ease-out) var(--seq-mock), opacity var(--duration-block) var(--motion-ease-out) var(--seq-mock);
+.hero__globe { position: absolute; left: 50%; top: 96px; width: min(760px, 56vw); aspect-ratio: 1; transform: translateY(calc(var(--sy, 0) * -60px)); pointer-events: none; }
+.hero__globe-in { width: 100%; height: 100%; }
+:global(.js .hero__globe-in) { opacity: 0; transform: scale(0.92); }
+:global(.js.ready .hero__globe-in) {
+  opacity: 1; transform: none;
+  transition: transform var(--motion-duration-hero-mock) var(--motion-ease-out) var(--seq-mock), opacity var(--motion-duration-hero-mock) var(--motion-ease-out) var(--seq-mock);
 }
 
 @media (max-width: 900px) {
   .hero { flex-direction: column; min-height: 0; }
   .hero__layout { padding-top: 112px; padding-bottom: 0; }
   .hero__stats { display: grid; grid-template-columns: 1fr 1fr; margin-top: 0; }
-  .hero__mock { position: relative; left: auto; top: auto; margin: 48px 0 0 var(--space-gutter-mobile); height: 330px; transform: none; }
-  .hero__mock-in { transform: scale(0.66); transform-origin: 0 0; }
-  :global(.js.ready .hero__mock-in) { transform: scale(0.66); }
+  .hero__globe { position: relative; left: auto; top: auto; align-self: flex-end; width: min(520px, 118vw); margin: 24px -18vw 0 0; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  :global(.js .hero__mock-in) { opacity: 1; transform: rotateY(-5deg) rotateX(2deg); }
-  .hero__mock { transform: none; }
+  :global(.js .hero__globe-in) { opacity: 1; transform: none; }
+  .hero__globe { transform: none; }
 }
 </style>

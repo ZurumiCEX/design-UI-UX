@@ -76,6 +76,8 @@ Chaque entrée appelle `boot(Page, { page })` (`boot.js`) : la langue est charg�
 - **État des services** — bandeau global, maintenance planifiée, composants groupés avec 90 jours de disponibilité (30 sur mobile) et pourcentage, légende, historique des incidents avec chronologie, abonnement aux alertes.
 - **Centre d’aide** — pensé pour les débutants : recherche instantanée (insensible aux accents, mots surlignés, Entrée ouvre le premier résultat), parcours « Premiers pas », thèmes, articles en étapes avec astuce/avertissement, bouton d’action, articles liés, « Cet article vous a-t-il aidé ? » et lexique. Navigation par ancre (`#/article/<id>`, `#/categorie/<id>`) : le bouton Précédent fonctionne et le focus passe au titre.
 - **À propos / Carrières / Presse / Contact** — pages « Entreprise » du pied de page. Textes dans `content/fr-company.js` et `en-company.js` (mêmes clés).
+- **Barre de navigation** — « Marché » au singulier, recherche retirée, Portefeuille sous forme de bouton `variant="secondary"` (nouvelle variante de `ZButton`) à droite ; masqué sous 600 px, où il reste dans le panneau mobile.
+- **Hero** — le globe en points et les cartes de cours (`visuals/GlobeRates.vue`) remplacent la fenêtre de tableau de bord, qui passe dans la section « Portefeuille partout ».
 - **Pied de page** — lien Marchés retiré (il reste dans le menu), icônes sociales HQ (`ui/ZSocialIcon.vue`, tracés Simple Icons CC0 : Facebook, X, Instagram, LinkedIn, Telegram, TikTok, YouTube, couleur de marque au survol), bouton « haut de page » `ui/BackToTop.vue` dont l’anneau se remplit avec la progression du défilement.
 
 Les formulaires valident côté client. Tant que leur action serveur vaut `#`, ils affichent un message de démo au lieu d'envoyer.
@@ -271,7 +273,8 @@ Le pied de page (`LandingFooter`, A21) est rendu par `SiteLayout` sur toutes les
 | `DotGlobe` | `hotspots`, `speed` | canvas, 30 images/s, import dynamique |
 | `StarField` | — | canvas, 24 images/s (authentification) |
 | `Sparkline` | `values`, `up`, `width`, `height` | SVG |
-| `DashboardMock` | `data`, `coins`, `brand`, `chartDelay` | |
+| `DashboardMock` | `data`, `coins`, `brand`, `chartDelay` | dans la section « Portefeuille partout » |
+| `GlobeRates` | `coins`, `rates` | globe + cartes de cours qui tournent ; dans le hero |
 | `PhoneMock` | `screen`, `brand`, `variant`, `image` | |
 | `ShieldMark` | `image` | |
 | `RidgeScene` | `image` | |
