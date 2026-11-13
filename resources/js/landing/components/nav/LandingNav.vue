@@ -8,12 +8,16 @@ import ZLogo from '../ui/ZLogo.vue';
 import DownloadPopover from './DownloadPopover.vue';
 import LangSwitcher from './LangSwitcher.vue';
 import NavDropdown from './NavDropdown.vue';
+import AccountMenu from './AccountMenu.vue';
+import NotificationsPopover from './NotificationsPopover.vue';
 
 defineProps({
   data: { type: Object, required: true },
   common: { type: Object, required: true },
   page: { type: String, default: '' }, // page courante : son entrée de menu porte aria-current
   solid: { type: Boolean, default: false }, // barre opaque en permanence
+  signedIn: { type: Boolean, default: false }, // utilisateur connecté : cloche + menu du compte
+  notifications: { type: Object, default: null },
 });
 
 const { i18n, setLocale } = useI18n();
@@ -51,8 +55,12 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
         </a>
         <LangSwitcher class="nav__tool nav__lang nav__in" :style="{ '--n': data.items.length + 2 }" />
         <DownloadPopover class="nav__in" :download="common.download" :stores="common.stores" :style="{ '--n': data.items.length + 3 }" />
-        <ZButton class="nav__in nav__login" variant="ghost" :href="common.links.login" :style="{ '--n': data.items.length + 4 }">{{ data.login }}</ZButton>
-        <ZButton class="nav__in" :href="common.links.signup" :style="{ '--n': data.items.length + 5 }">{{ data.signup }}</ZButton>
+        <NotificationsPopover v-if="notifications" class="nav__in" :data="notifications" :style="{ '--n': data.items.length + 4 }" />
+        <AccountMenu v-if="signedIn" class="nav__in" :data="data.account" :links="common.links" :page="page" :style="{ '--n': data.items.length + 5 }" />
+        <template v-else>
+          <ZButton class="nav__in nav__login" variant="ghost" :href="common.links.login" :style="{ '--n': data.items.length + 4 }">{{ data.login }}</ZButton>
+          <ZButton class="nav__in" :href="common.links.signup" :style="{ '--n': data.items.length + 5 }">{{ data.signup }}</ZButton>
+        </template>
         <button
           type="button"
           class="nav__burger"
@@ -96,7 +104,13 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
           <span class="label">{{ lang.code }}</span> {{ lang.label }}
         </button>
       </div>
-      <ZButton variant="ghost" size="lg" :href="common.links.login">{{ data.login }}</ZButton>
+      <ul v-if="signedIn" class="nav__acc">
+        <li v-for="item in data.account.items" :key="item.key">
+          <a :href="common.links[item.key]" :aria-current="item.page === page ? 'page' : undefined" @click="open = false"><ZIcon :name="item.icon" :size="16" /> {{ item.label }}</a>
+        </li>
+      </ul>
+      <ZButton v-if="signedIn" variant="ghost" size="lg" :href="common.links.logout">{{ data.account.logout }}</ZButton>
+      <ZButton v-else variant="ghost" size="lg" :href="common.links.login">{{ data.login }}</ZButton>
     </nav>
   </header>
 </template>
@@ -163,6 +177,8 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
   .nav__panel ul ul { padding-left: 4px; border-left: 1px solid var(--color-line-default); margin-left: 4px; }
   .nav__panel ul ul a { padding-left: 14px; color: var(--color-text-muted); }
   .nav__group { display: block; padding: 14px 0 8px; color: var(--color-text-dim); }
+  .nav__acc { display: grid; padding-top: 12px; border-top: 1px solid var(--color-line-default); }
+  .nav__acc a { font-size: 15px !important; color: var(--color-text-muted); }
   .nav__langs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .nav__lang-btn {
     display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px; border-radius: var(--radius-sm);

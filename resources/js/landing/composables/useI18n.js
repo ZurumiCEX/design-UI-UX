@@ -99,6 +99,14 @@ export const fmt = {
     ),
   compact: (v) => cached(Intl.NumberFormat, { notation: 'compact', maximumFractionDigits: 2 }).format(v),
   date: (ts, opts) => cached(Intl.DateTimeFormat, opts).format(ts),
+  /** « il y a 5 min », « hier »… à partir d'un nombre de minutes écoulées. */
+  ago: (minutes) => {
+    const rtf = cached(Intl.RelativeTimeFormat, { numeric: 'auto' });
+    if (minutes < 1) return rtf.format(0, 'minute');
+    if (minutes < 60) return rtf.format(-Math.round(minutes), 'minute');
+    if (minutes < 1440) return rtf.format(-Math.round(minutes / 60), 'hour');
+    return rtf.format(-Math.round(minutes / 1440), 'day');
+  },
   /** Analyse une saisie localisée (« 50 000,5 », « 50,000.5 ») ; NaN si invalide. */
   parse: (input) => {
     const raw = String(input ?? '').replace(/[\s  ]/g, '');

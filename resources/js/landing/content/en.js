@@ -1,4 +1,5 @@
 // Content — English. Same keys as fr.js (the reference). Keep both files in sync.
+import accountContent from './en-account.js';
 import morePages from './en-more.js';
 import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, pairs, paymentMethods } from './data.js';
 
@@ -57,7 +58,7 @@ export default function createContent(linkOverrides = {}) {
         ],
       },
       { label: 'Withdraw', href: links.withdraw, page: 'p2p', badge: 'P2P' },
-      { label: 'Wallet', href: links.wallet },
+      { label: 'Wallet', href: links.wallet, page: 'wallet' },
     ],
     search: 'Search',
     language: { label: 'Language', choose: 'Choose language' },
@@ -97,7 +98,7 @@ export default function createContent(linkOverrides = {}) {
           { label: 'Help center', href: '#' },
           { label: 'Contact us', href: '#' },
           { label: 'Report abuse', href: links.report },
-          { label: 'Service status', href: '#' },
+          { label: 'Service status', href: links.status },
         ],
       },
       {
@@ -624,5 +625,7 @@ export default function createContent(linkOverrides = {}) {
   };
 
   const more = morePages(links);
-  return { locale: 'en', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages }, legal: more.legal };
+  const acc = accountContent(links);
+  nav.account = acc.navAccount;
+  return { locale: 'en', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages, ...acc.pages }, legal: more.legal, notifications: acc.notifications, account: acc.account };
 }

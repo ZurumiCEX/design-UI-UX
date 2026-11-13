@@ -23,6 +23,13 @@ const pages = {
   privacy: here('./legal/confidentialite/index.html'),
   risks: here('./legal/risques/index.html'),
   compliance: here('./legal/conformite/index.html'),
+  wallet: here('./portefeuille/index.html'),
+  account: here('./compte/index.html'),
+  profile: here('./compte/profil/index.html'),
+  security: here('./compte/securite/index.html'),
+  kyc: here('./compte/verification/index.html'),
+  forgot: here('./mot-de-passe-oublie/index.html'),
+  status: here('./etat-des-services/index.html'),
 };
 
 // <!-- @include nom --> insère resources/views/partials/nom.html (l'équivalent d'un @include Blade).

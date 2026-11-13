@@ -1,6 +1,7 @@
 // Contenu — référence française.
 // Tout le texte vit ici : les composants n'en contiennent aucun. en.js reprend exactement les mêmes clés.
 // Les données sans texte (cours, paires, moyens de paiement, liens) sont dans data.js.
+import accountContent from './fr-account.js';
 import morePages from './fr-more.js';
 import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, pairs, paymentMethods } from './data.js';
 
@@ -60,7 +61,7 @@ export default function createContent(linkOverrides = {}) {
         ],
       },
       { label: 'Retirer', href: links.withdraw, page: 'p2p', badge: 'P2P' },
-      { label: 'Portefeuille', href: links.wallet },
+      { label: 'Portefeuille', href: links.wallet, page: 'wallet' },
     ],
     search: 'Rechercher',
     language: { label: 'Langue', choose: 'Choisir la langue' },
@@ -100,7 +101,7 @@ export default function createContent(linkOverrides = {}) {
           { label: "Centre d'aide", href: '#' },
           { label: 'Nous contacter', href: '#' },
           { label: 'Signaler un abus', href: links.report },
-          { label: 'État des services', href: '#' },
+          { label: 'État des services', href: links.status },
         ],
       },
       {
@@ -639,5 +640,7 @@ export default function createContent(linkOverrides = {}) {
   };
 
   const more = morePages(links);
-  return { locale: 'fr', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages }, legal: more.legal };
+  const acc = accountContent(links);
+  nav.account = acc.navAccount;
+  return { locale: 'fr', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages, ...acc.pages }, legal: more.legal, notifications: acc.notifications, account: acc.account };
 }

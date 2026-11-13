@@ -20,11 +20,17 @@ export const defaultLinks = {
   privacy: '/legal/confidentialite/',
   risks: '/legal/risques/',
   compliance: '/legal/conformite/',
-  wallet: '#',
+  wallet: '/portefeuille/',
   deposit: '#',
   search: '#',
-  forgotPassword: '#',
+  forgotPassword: '/mot-de-passe-oublie/',
   security: '#',
+  account: '/compte/',
+  profile: '/compte/profil/',
+  accountSecurity: '/compte/securite/',
+  kyc: '/compte/verification/',
+  status: '/etat-des-services/',
+  logout: '#',
   support: '#',
   appStore: '#',
   googlePlay: '#',
@@ -39,6 +45,10 @@ export const defaultLinks = {
   p2pAction: '#',
   // Signalement : point d'entrée POST multipart (voir integration/signalement/). '#' = démo.
   reportAction: '#',
+  profileAction: '#',
+  kycAction: '#',
+  forgotAction: '#',
+  statusSubscribeAction: '#',
 };
 
 // Taux de référence USDT → XOF. DÉMO — à remplacer par le taux de l'API.
@@ -168,3 +178,84 @@ export const p2pOffers = [
 
 // Contact sécurité (signalements urgents).
 export const securityEmail = 'securite@zurumi.com';
+
+// ---------------------------------------------------------------------------
+// Espace client — DÉMO. Utilisé tant que l'hôte ne fournit pas window.__LANDING__.user.
+// ---------------------------------------------------------------------------
+export const USD_XOF = 607; // DÉMO — taux de référence USD → XOF
+
+export const demoUser = {
+  uid: 'ZRM-48213590',
+  firstName: 'Awa',
+  lastName: 'Diop',
+  username: 'awa.d',
+  email: 'awa.diop@example.com',
+  phone: '+221 77 123 45 67',
+  birthDate: '1994-03-12',
+  country: 'SN',
+  city: 'Dakar',
+  address: '',
+  language: 'fr',
+  currency: 'XOF',
+  avatar: null,
+  createdAt: '2025-06-02',
+  kyc: { level: 1, document: 'CNI ••••2041', pending: false },
+  security: { passkey: false, totp: false, email: true, phone: true, password: true, antiPhishing: false },
+  notifications: { transactions: true, security: true, announcements: true, marketing: false },
+};
+
+// Sessions et connexions de démonstration (lieux et appareils fictifs).
+export const demoDevices = [
+  { id: 'd1', device: 'desktop', name: 'Chrome · Windows', place: 'Dakar, SN', lastActive: 0, current: true },
+  { id: 'd2', device: 'mobile', name: 'App Zurumi · Android', place: 'Dakar, SN', lastActive: 180 },
+  { id: 'd3', device: 'mobile', name: 'Safari · iPhone', place: 'Thiès, SN', lastActive: 4320 },
+];
+export const demoLogins = [
+  { at: 5, ip: '41.82.••.••', place: 'Dakar, SN', device: 'Chrome · Windows', ok: true },
+  { at: 190, ip: '41.82.••.••', place: 'Dakar, SN', device: 'App Zurumi · Android', ok: true },
+  { at: 1500, ip: '102.164.••.••', place: 'Abidjan, CI', device: 'Firefox · Linux', ok: false },
+  { at: 4330, ip: '41.214.••.••', place: 'Thiès, SN', device: 'Safari · iPhone', ok: true },
+  { at: 8700, ip: '41.82.••.••', place: 'Dakar, SN', device: 'Chrome · Windows', ok: true },
+];
+
+// DÉMO — à valider : limites par niveau de vérification (XOF par jour).
+export const kycLevels = [
+  { level: 0, buy: 0, withdraw: 0 },
+  { level: 1, buy: 2000000, withdraw: 1000000 },
+  { level: 2, buy: 10000000, withdraw: 5000000 },
+];
+
+// ---------------------------------------------------------------------------
+// État des services — DÉMO. `status` : operational | degraded | partial | major | maintenance.
+// `incidents` : jours (avant aujourd'hui) où le composant a été touché, et niveau.
+// ---------------------------------------------------------------------------
+export const statusComponents = [
+  { group: 'platform', items: [
+    { id: 'web', status: 'operational' },
+    { id: 'app', status: 'operational' },
+    { id: 'api', status: 'operational', incidents: [[2, 'partial']] },
+  ] },
+  { group: 'payments', items: [
+    { id: 'wave', status: 'operational', incidents: [[23, 'degraded']] },
+    { id: 'orange', status: 'degraded', incidents: [[0, 'degraded'], [41, 'partial']] },
+    { id: 'mixx', status: 'operational' },
+  ] },
+  { group: 'networks', items: [
+    { id: 'bitcoin', status: 'operational' },
+    { id: 'ethereum', status: 'operational', incidents: [[57, 'degraded']] },
+    { id: 'tron', status: 'operational' },
+    { id: 'polygon', status: 'operational', incidents: [[12, 'maintenance']] },
+    { id: 'bnb', status: 'operational' },
+    { id: 'solana', status: 'operational', incidents: [[2, 'major'], [76, 'degraded']] },
+  ] },
+  { group: 'products', items: [
+    { id: 'quickbuy', status: 'operational' },
+    { id: 'convert', status: 'operational' },
+    { id: 'trade', status: 'operational', incidents: [[2, 'partial']] },
+    { id: 'p2p', status: 'operational' },
+  ] },
+  { group: 'trust', items: [
+    { id: 'verify', status: 'operational' },
+    { id: 'report', status: 'operational' },
+  ] },
+];

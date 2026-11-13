@@ -35,6 +35,13 @@ npm run build
 | `/verify/` | `verify/index.html` | `entries/verify.js` | `pages/VerifyPage.vue` |
 | `/signaler-une-arnaque/` | `signaler-une-arnaque/index.html` | `entries/report.js` | `pages/ReportPage.vue` |
 | `/legal/conditions/` · `confidentialite/` · `risques/` · `conformite/` | `legal/*/index.html` | `entries/terms.js` … | `pages/LegalPage.vue` (prop `doc`) |
+| `/portefeuille/` | `portefeuille/index.html` | `entries/wallet.js` | `pages/WalletPage.vue` |
+| `/compte/` | `compte/index.html` | `entries/account.js` | `pages/AccountPage.vue` |
+| `/compte/profil/` | `compte/profil/index.html` | `entries/profile.js` | `pages/ProfilePage.vue` |
+| `/compte/securite/` | `compte/securite/index.html` | `entries/security.js` | `pages/SecurityPage.vue` |
+| `/compte/verification/` | `compte/verification/index.html` | `entries/kyc.js` | `pages/KycPage.vue` |
+| `/mot-de-passe-oublie/` | `mot-de-passe-oublie/index.html` | `entries/forgot.js` | `pages/ForgotPasswordPage.vue` |
+| `/etat-des-services/` | `etat-des-services/index.html` | `entries/status.js` | `pages/StatusPage.vue` |
 
 Chaque fichier HTML tient le rôle d'une vue Blade : `<head>` SEO, contenu critique rendu « côté serveur » (navigation, `<h1>`, introduction), puis l'entrée JS de la page. Les blocs communs sont des partiels : `<!-- @include head -->` et `<!-- @include fallback-nav -->` insèrent `resources/views/partials/*.html` (l'équivalent d'un `@include` Blade).
 
@@ -56,6 +63,12 @@ Chaque entrée appelle `boot(Page, { page })` (`boot.js`) : la langue est charg�
 - **Zurumi Verify** — reprise de la livraison : 12 types d'éléments groupés, chargement en 3 phases avec sceau animé, 6 résultats (vérifié, non vérifié, suspect, bloqué, impossible, erreur) en « certificat », cartes « à vérifier avant de faire confiance », règles anti-phishing, appel au signalement. Valeurs de test : voir `integration/verify/README-livraison.md`.
 - **Signalement** — reprise de la livraison : nature, faits, preuves (glisser-déposer, 5 fichiers, 10 Mo), contact, champ piège, durée minimale de 6 s, addition, délai de 2 min entre deux envois ; confirmation avec numéro de dossier. `?type=p2p` présélectionne la nature.
 - **Documents légaux** — modèles génériques (conditions, confidentialité, risques, conformité) avec sommaire qui suit la lecture ; éléments à compléter entre crochets.
+
+- **Portefeuille** — solde total à masquer (œil, mémorisé) et à afficher en XOF ou en USD ; P&L du jour ; analyse du P&L sur 7, 30 ou 90 jours en trois vues (évolution de la valeur, P&L quotidien en barres de part et d'autre de zéro, calendrier mensuel) avec réticule et infobulle au survol et au clavier ; actifs (solde, valeur, prix, part, actions) avec « masquer les petits soldes » ; transactions filtrables par statut (réussie, en cours, annulée, échouée), par type et par recherche, détail dépliable.
+- **Espace client** (menu latéral, onglets défilants sur mobile) — **tableau de bord** (UID copiable, niveau KYC, score de sécurité, premiers pas en 3 étapes, actifs, marché, notifications) ; **profil** (photo recadrée à 256 px, informations, coordonnées, préférences de langue et de devise, notifications par canal, fermeture du compte avec confirmation ; barre « modifications non enregistrées ») ; **sécurité** (score, méthodes de vérification, activation de Google Authenticator avec QR code, changement de mot de passe, code anti-phishing, appareils connectés, historique de connexion, gel du compte) ; **vérification d'identité** (niveaux et limites, parcours en 4 étapes vers le niveau 2 : adresse, justificatif, selfie, envoi).
+- **Barre de navigation** — cloche de notifications (pastille du nombre de non-lues, onglets Toutes / Non lues, tout marquer comme lu) sur toutes les pages ; menu du compte (avatar) sur les pages de l'espace client et du portefeuille.
+- **Mot de passe oublié** — identifiant, code à 6 chiffres, nouveau mot de passe, confirmation. Le message de l'étape 1 ne révèle pas si un compte existe. Lien depuis la connexion.
+- **État des services** — bandeau global, maintenance planifiée, composants groupés avec 90 jours de disponibilité (30 sur mobile) et pourcentage, légende, historique des incidents avec chronologie, abonnement aux alertes.
 
 Les formulaires valident côté client. Tant que leur action serveur vaut `#`, ils affichent un message de démo au lieu d'envoyer.
 
@@ -105,6 +118,10 @@ Dans `content/data.js` (toutes marquées DÉMO) : `networks` (réseaux par crypt
 
 `market/addresses.js` valide les adresses par famille de réseau (EVM, Tron, Bitcoin, Solana, XRP, TON, Dogecoin, Cardano). Les **adresses de dépôt de démo sont volontairement invalides** (elles contiennent « DEMO0 ») : aucun portefeuille ne les accepterait si la démo était publiée par erreur. À remplacer par l'adresse fournie par l'API.
 
+## Graphiques
+
+Les graphiques du portefeuille suivent le guide de visualisation : une seule série par graphique (pas de légende), traits de 2 px, barres arrondies côté donnée et ancrées sur zéro, 2 px d'écart, grille discrète, réticule et infobulle au survol **et au clavier** (flèches). Gains et pertes utilisent `state.up` / `state.down` **toujours accompagnés du signe + / −** (la couleur n'est jamais seule porteuse du sens). Le calendrier écrit la valeur de chaque jour ; la liste des transactions et le tableau des actifs donnent les mêmes informations sans graphique.
+
 ## Tokens
 
 `docs/design/zurumi-tokens.json` est la source de vérité. Chaque feuille devient une variable CSS nommée d'après son chemin :
@@ -139,7 +156,7 @@ Clés : `home`, `quickBuy`, `markets`, `trade`, `login`, `signup`, `send`, `rece
 
 Les textes des nouvelles pages et des documents légaux sont dans `content/fr-more.js` et `content/en-more.js`, fusionnés dans `fr.js` / `en.js`.
 
-`user` (non nul quand l'utilisateur est connecté) remplace, sur le trade, les boutons Connexion / Inscription par le bouton d'ordre et active le curseur de solde.
+`user` (non nul quand l'utilisateur est connecté) remplace, sur le trade, les boutons Connexion / Inscription par le bouton d'ordre et active le curseur de solde. Il alimente aussi le profil (`useProfile`) : sans hôte, un **utilisateur de démo** (`demoUser` dans `data.js`) est utilisé et ses modifications sont gardées dans le navigateur. Les pages de l'espace client et du portefeuille affichent la barre « connecté » (`<SiteLayout signed-in>`) ; c'est à l'hôte de les protéger par authentification.
 
 Les titres acceptent `<br>`, `<i>` (mot atténué) et `<b>` (mot en dégradé). Dans les phrases contenant un lien, `{cle}` marque l'emplacement du lien (voir `terms` de l'inscription).
 
@@ -269,6 +286,8 @@ La prop `image` remplace le visuel en code par une vraie image : `{ avif, webp, 
 - **Adresses de dépôt** : fictives et volontairement invalides — à fournir par l'API.
 - **Documents légaux** : modèles génériques à faire relire par un juriste ; compléter les crochets.
 - **P2P** : le blocage des cryptos pendant l'ordre et les règles de litige sont à valider (`// À VALIDER`).
+- **Espace client** : utilisateur, soldes, historique, transactions, notifications, appareils et connexions sont fictifs ; la clé 2FA de démo est factice. Limites KYC, score de sécurité, délai de 24 h après changement de mot de passe et délai d'examen KYC sont à valider.
+- **État des services** : statuts, incidents et maintenance fictifs — à alimenter par l'outil de supervision.
 - **Données** : cours, capitalisations, volumes, carnet, transactions et limites d'achat sont fictifs (`// DÉMO`).
 - **Lien de téléchargement** : `download` est un lien d'exemple ; le QR code l'encode.
 - **Logo** : le « Z » est un substitut (`ZLogo`, prop `image`).
