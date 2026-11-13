@@ -2,6 +2,7 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { prefersReducedMotion } from '../../composables/useReducedMotion.js';
 import { whenReady } from '../../composables/useReveal.js';
+import { useScrollFrame } from '../../composables/useScrollProgress.js';
 import GlobeRates from '../visuals/GlobeRates.vue';
 import MatrixBackground from '../visuals/MatrixBackground.vue';
 
@@ -36,10 +37,20 @@ onBeforeUnmount(() => {
   clearTimeout(timer);
   cancelAnimationFrame(raf);
 });
+// A4 — parallaxe du globe : --sy (0 → 1 sur la première hauteur d'écran), écrit sur le hero seul
+// et seulement tant qu'il est à l'écran.
+const root = ref(null);
+let lastSy = -1;
+useScrollFrame((y) => {
+  const sy = Math.min(1, Math.max(0, y / window.innerHeight));
+  if (sy === lastSy || (sy === 1 && lastSy === 1) || !root.value) return;
+  lastSy = sy;
+  root.value.style.setProperty('--sy', sy.toFixed(4));
+});
 </script>
 
 <template>
-  <section :id="data.id" class="hero">
+  <section :id="data.id" ref="root" class="hero">
     <MatrixBackground />
     <div class="hero__halo" aria-hidden="true" />
 

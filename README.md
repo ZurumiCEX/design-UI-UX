@@ -117,7 +117,7 @@ Le menu suit l'ordre : Achat rapide · Marché · Trade · Transactions (Envoyer
 | 1 | **Hero** | Titre, texte, statistiques, globe en points animé avec cartes de cours |
 | 2 | **Cryptos** | Deux rangées de cartes en défilement opposé |
 | 3 | **Application** | Vidéo du parcours d'achat (fond transparent), quatre avantages |
-| 4 | **Bannière ciel** | Plein écran, pluie fine, crête lumineuse, QR code |
+| 4 | **Bannière ciel** | Plein écran, méduse qui nage librement, QR code et stores |
 | 5 | **Services** | Grille 2 × 2 : Achat rapide, Envoyer & Recevoir, Echanger, Retirer |
 | 6 | **Mobile Money** | Téléphone couché en 3D, pièces flottantes |
 | 7 | **Sécurité** | Bouclier 3D, grille de garanties |
@@ -131,7 +131,7 @@ Vingt et une animations (A1 à A21) sont spécifiées avec leur déclencheur, le
 
 - **Entrée dans le viewport** — titres révélés mot par mot, blocs en fondu décalé
 - **Liées au scroll** — disque et téléphone, bannière ciel, bouclier, pièces flottantes
-- **Continues** — colonnes de chiffres, défilements de cartes, pluie, globe, orbe
+- **Continues** — colonnes de chiffres, défilements de cartes, globe, méduse
 - **Survol et focus** — menus en verre dépoli, cellules de services et de sécurité, boutons
 
 Règles : seuls `transform`, `opacity` et `filter` sont animés, un seul listener de scroll, un seul `IntersectionObserver`, canvas en pause hors écran, `prefers-reduced-motion` respecté.

@@ -164,7 +164,7 @@ export default function createContent(linkOverrides = {}) {
       id: 'telecharger',
       type: 'sky',
       title: 'Buy &amp; send.<br>Wherever you <i>are.</i>',
-      image: null,
+      jellyfish: media.jellyfish,
     },
     {
       id: 'services',

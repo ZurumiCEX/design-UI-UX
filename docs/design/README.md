@@ -82,6 +82,8 @@ Chaque entrée appelle `boot(Page, { page })` (`boot.js`) : la langue est charg�
 - **Services** — étiquette « Nos services » retirée ; chaque cellule affiche un visuel 3D (`item.image`, fichiers WebP 840 px dans `public/images/landing/services/`, déclarés dans `media.services` de `content/data.js`) à la place de la mini-interface, avec le même comportement (atténué, rétabli au survol). Les images sur fond noir utilisent `mix-blend-mode: lighten` pour se fondre dans la page. La mini-interface `item.ui` reste en solution de repli.
 - **Sécurité** — étiquette « Sécurité & conformité » retirée ; le bouclier est remplacé par un cadenas 3D (`public/images/landing/securite-cadenas.webp`, `media.security`), fondu dans la page (`mix-blend-mode: lighten`) avec un léger flottement lié au scroll. Les quatre garanties portent des icônes 3D centrées (120 px, `public/images/landing/securite/`, `media.securityIcons`) à la place des petites icônes ; `ZIconTile` reste en solution de repli.
 - **Étapes** — rangées de pièces défilantes et orbe au logo retirées.
+- **Bannière « Achetez & envoyez »** — pluie et crêtes remplacées par une méduse qui nage librement (`visuals/JellyfishSwim.vue`, vidéo `public/videos/meduse/`, `media.jellyfish`), textes, QR code et stores conservés. Trajectoire aléatoire sous le titre (zone `top`/`bottom`), profondeur, inclinaison dans le sens de la nage, poussée sur les contractions de l'ombrelle (interpolée). Seuls `transform` et `opacity` changent à chaque image ; dimensions mesurées au redimensionnement ; lecture et boucle arrêtées hors écran ou onglet masqué ; image fixe en mouvement réduit ; Safari : MP4 sur noir + `mix-blend-mode: screen`. Vidéo ramenée de 13 Mo à 4,3 Mo (30 i/s ; le déplacement reste à 60 i/s).
+- **Fluidité du défilement** — le gestionnaire de scroll lit toutes les positions puis écrit toutes les variables (plus de recalcul forcé de la mise en page par section) ; `--sy` n'est plus écrit sur `<html>` mais sur le hero seul ; « Haut de page » mesure la hauteur de page au redimensionnement au lieu de chaque image ; `scroll-padding-top` évite que les ancres passent sous la barre fixe.
 - **Mobile Money** — étiquette « Du Mobile Money à la crypto » et bouton « Faire mon premier achat » retirés ; les pièces flottantes et le téléphone couché sont remplacés par le schéma animé « liquidité profonde », une vidéo par langue (`public/videos/zurumi-liquidite-fr.*` / `-en.*`, `media.liquidity`), recadrée sur le schéma (1680 × 754, 30 i/s) ; elle est rechargée au changement de langue (`:key`).
 - **Portefeuille partout** — étiquette et boutons App Store / Google Play retirés ; visuel coffre-fort + carte + indicateurs (`public/images/landing/portefeuille-coffre.webp`, 1600 px, fond transparent, `media.wallet`) posé à droite jusqu'au bord de l'écran, sous le texte en dessous de 1100 px. La vidéo des pièces a été retirée. `AppVideo` accepte `width` / `height` et `toggle="corner"`.
 - **Pied de page** — lien Marchés retiré (il reste dans le menu), icônes sociales HQ (`ui/ZSocialIcon.vue`, tracés Simple Icons CC0 : Facebook, X, Instagram, LinkedIn, Telegram, TikTok, YouTube, couleur de marque au survol), bouton « haut de page » `ui/BackToTop.vue` dont l’anneau se remplit avec la progression du défilement.
@@ -207,7 +209,7 @@ Dans le gabarit, `v-split` anime un titre mot à mot (A1) et `v-reveal` un bloc 
 | `useScrollProgress(ref)` | Un seul listener de scroll limité par rAF ; écrit `--in`, `--p` sur l'élément et `--sy` sur `<html>`. |
 | `useCanvasLoop(ref, { fps, loop, setup, draw })` | Boucle plafonnée en images/seconde et en densité (2 max), en pause hors écran, image fixe en mouvement réduit. `loop: false` + `redraw()` pour dessiner à la demande. |
 | `useReducedMotion` | Ref réactive sur `prefers-reduced-motion`. |
-| `useNearViewport(ref)` | Vrai à l'approche du viewport ; déclenche les imports dynamiques (globe, pluie). |
+| `useNearViewport(ref)` | Vrai à l'approche du viewport ; déclenche les imports dynamiques (globe). |
 
 ## Composants
 
@@ -275,7 +277,6 @@ Le pied de page (`LandingFooter`, A21) est rendu par `SiteLayout` sur toutes les
 |---|---|---|
 | `MatrixBackground` | — | canvas, 14 images/s |
 | `CandleChart` | `candles`, `delay`, `duration`, `seed` | canvas, 30 images/s (hero) |
-| `RainCanvas` | — | canvas, 40 images/s, import dynamique |
 | `DotGlobe` | `hotspots`, `speed` | canvas, 30 images/s, import dynamique |
 | `StarField` | — | canvas, 24 images/s (authentification) |
 | `Sparkline` | `values`, `up`, `width`, `height` | SVG |
@@ -284,7 +285,7 @@ Le pied de page (`LandingFooter`, A21) est rendu par `SiteLayout` sur toutes les
 | `PhoneMock` | `screen`, `brand`, `variant`, `image` | section Mobile Money |
 | `AppVideo` | `video` (`webm`, `mp4`, `poster`, `label`, `play`, `pause`, `width`, `height`), `toggle` | sections Application et Portefeuille partout |
 | `ShieldMark` | `image` | |
-| `RidgeScene` | `image` | |
+| `JellyfishSwim` | `media` (`webm`, `mp4`, `poster`), `top`, `bottom` | méduse autonome, poussée synchronisée sur `meduse-pulse.json` |
 | `FloatingCoins` | `coins`, `image` | |
 
 La prop `image` remplace le visuel en code par une vraie image : `{ avif, webp, src, width, height, alt }`, fichiers dans `public/images/landing/`.

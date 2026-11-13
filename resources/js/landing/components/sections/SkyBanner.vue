@@ -1,33 +1,27 @@
 <script setup>
-import { defineAsyncComponent, ref } from 'vue';
-import { useNearViewport } from '../../composables/useNearViewport.js';
+import { ref } from 'vue';
 import { useScrollProgress } from '../../composables/useScrollProgress.js';
 import ZQrCode from '../ui/ZQrCode.vue';
 import ZStoreButton from '../ui/ZStoreButton.vue';
-import RidgeScene from '../visuals/RidgeScene.vue';
-
-// La pluie est chargée à la demande, à l'approche du viewport.
-const RainCanvas = defineAsyncComponent(() => import('../visuals/RainCanvas.vue'));
+import JellyfishSwim from '../visuals/JellyfishSwim.vue';
 
 defineProps({
   data: { type: Object, required: true },
   common: { type: Object, required: true },
 });
 
-// A13 — dégradé bleu et parallaxe des crêtes liés au scroll via --in.
+// A13 — dégradé bleu lié au scroll via --in ; la méduse nage sous le titre.
 const root = ref(null);
 useScrollProgress(root);
-const near = useNearViewport(root);
 </script>
 
 <template>
   <section :id="data.id" ref="root" class="sky">
     <div class="sky__grad" aria-hidden="true" />
-    <RainCanvas v-if="near" />
+    <JellyfishSwim :media="data.jellyfish" />
     <div class="container sky__head">
       <h2 v-split class="title title--display" v-html="data.title" />
     </div>
-    <RidgeScene :image="data.image" />
     <div v-reveal class="sky__download">
       <ZQrCode :value="common.download.url" :label="common.download.qrAlt" :size="96" />
       <p class="label">{{ common.download.label }}</p>

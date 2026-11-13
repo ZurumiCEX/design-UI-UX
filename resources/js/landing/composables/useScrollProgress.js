@@ -5,7 +5,6 @@ import { prefersReducedMotion } from './useReducedMotion.js';
 // Il écrit des variables CSS ; le CSS fait le reste.
 //   --in : 0 → 1 pendant l'entrée de l'élément (décélération cubique)
 //   --p  : 0 → 1 pendant toute la traversée du viewport
-//   --sy : 0 → 1 sur la première hauteur d'écran (sur <html>)
 const elements = new Set();
 const callbacks = new Set();
 let bound = false;
@@ -18,10 +17,15 @@ function update() {
   ticking = false;
   const vh = window.innerHeight;
   const y = window.scrollY;
-  document.documentElement.style.setProperty('--sy', clamp(y / vh).toFixed(4));
+  // 1) lectures groupées : une seule mise en page calculée par image
+  const rects = [];
   for (const el of elements) {
     const rect = el.getBoundingClientRect();
     if (rect.bottom < -vh || rect.top > vh * 2) continue; // loin de l'écran : rien à écrire
+    rects.push([el, rect]);
+  }
+  // 2) écritures groupées (jamais sur <html> : cela recalculerait le style de toute la page)
+  for (const [el, rect] of rects) {
     el.style.setProperty('--in', easeOutCubic(clamp((vh - rect.top) / (vh * 0.85))).toFixed(4));
     el.style.setProperty('--p', clamp((vh - rect.top) / (vh + rect.height)).toFixed(4));
   }

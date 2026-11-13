@@ -278,6 +278,8 @@ export const statusComponents = [
 // Médias statiques (servis depuis public/). La vidéo WebM garde la transparence (Chrome, Firefox, Edge) ;
 // le MP4 est rendu sur le fond de page (--color-bg-base) pour Safari, qui ignore la transparence WebM.
 export const media = {
+  // Section « Achetez & envoyez » : méduse qui nage (WebM transparent ; MP4 sur noir pour Safari).
+  jellyfish: { webm: '/videos/meduse/meduse.webm', mp4: '/videos/meduse/meduse-noir.mp4', poster: '/videos/meduse/meduse-poster.webp' },
   // Icônes 3D des quatre garanties de la section Sécurité (256 × 256, fond transparent).
   securityIcons: {
     kyc: '/images/landing/securite/verification-identite.webp',

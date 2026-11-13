@@ -169,7 +169,7 @@ export default function createContent(linkOverrides = {}) {
       id: 'telecharger',
       type: 'sky',
       title: 'Achetez &amp; envoyez.<br>Où que vous <i>soyez.</i>',
-      image: null,
+      jellyfish: media.jellyfish,
     },
     {
       id: 'services',

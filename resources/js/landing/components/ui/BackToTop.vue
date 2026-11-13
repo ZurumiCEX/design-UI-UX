@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { prefersReducedMotion } from '../../composables/useReducedMotion.js';
 import { useScrollFrame } from '../../composables/useScrollProgress.js';
 import ZIcon from './ZIcon.vue';
@@ -9,9 +9,24 @@ import ZIcon from './ZIcon.vue';
 defineProps({ label: { type: String, required: true } });
 const C = 2 * Math.PI * 22;
 const progress = ref(0);
+// La hauteur de page est mesurée au redimensionnement, jamais pendant le scroll :
+// la lire à chaque image forcerait le navigateur à recalculer toute la mise en page.
+let max = 0;
+let ro;
+const measure = () => (max = document.documentElement.scrollHeight - window.innerHeight);
+onMounted(() => {
+  measure();
+  ro = new ResizeObserver(measure);
+  ro.observe(document.documentElement);
+  window.addEventListener('resize', measure, { passive: true });
+});
+onBeforeUnmount(() => {
+  ro?.disconnect();
+  window.removeEventListener('resize', measure);
+});
 useScrollFrame((y) => {
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  progress.value = max > 0 ? Math.min(1, y / max) : 0;
+  const next = max > 0 ? Math.min(1, y / max) : 0;
+  if (Math.abs(next - progress.value) > 0.001) progress.value = next;
 });
 function top() {
   window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
