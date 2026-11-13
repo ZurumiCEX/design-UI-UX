@@ -268,7 +268,6 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'securite',
       type: 'security',
-      tag: 'Sécurité & conformité',
       title: 'Une sécurité<br><i>de haut niveau</i>', // À VALIDER (conformité)
       // À VALIDER (conformité) — formulations provisoires, aucune affirmation de licence ou d'agrément.
       items: [
@@ -277,7 +276,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'lock', title: 'Protection Zero Trust', text: 'Accès contrôlés et infrastructure surveillée' },
         { icon: 'scale', title: 'LBC / FT', text: 'Contrôles alignés sur les standards du GAFI' },
       ],
-      image: null,
+      image: media.security,
     },
     {
       id: 'etapes',
@@ -292,12 +291,10 @@ export default function createContent(linkOverrides = {}) {
         { title: 'Déposez des fonds.', text: 'Alimentez votre compte avec Wave, Orange Money ou en crypto.' },
         { title: 'Achetez et envoyez.', text: 'Achat rapide, envoi, échange et retrait depuis un seul portefeuille.' },
       ],
-      orbit: ['₿', 'Ξ', '₮', 'S', 'B', '$', 'T', 'P', 'F', '◆'],
     },
     {
       id: 'portefeuille',
       type: 'globe',
-      tag: 'Votre portefeuille partout',
       title: 'Vos cryptos, partout,<br><b>tout le temps</b>',
       text: 'Une application mobile complète avec tous les outils dont vous avez besoin.',
       features: [
@@ -306,13 +303,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'bell', label: 'Notifications instantanées' },
         { icon: 'fingerprint', label: 'Connexion biométrique sécurisée' },
       ],
-      dashboard: {
-        label: 'Aperçu du tableau de bord Zurumi',
-        menu: ['Achat rapide', 'Marché', 'Trade', 'Portefeuille'],
-        quote: 'XOF',
-        count: 8,
-        timeframes: ['15 min', '1 h', '4 h', '1 j', '1 sem'],
-      },
+      video: { label: 'Animation : pièces de cryptomonnaies en chrome noir qui tournent sur elles-mêmes.', play: 'Lire l’animation', pause: 'Mettre l’animation en pause', ...media.coins },
     },
   ];
 

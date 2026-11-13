@@ -20,7 +20,7 @@ const hovered = ref(-1);
   <section :id="data.id" ref="root" class="section security">
     <div class="container security__layout">
       <div>
-        <ZTag v-reveal>{{ data.tag }}</ZTag>
+        <ZTag v-if="data.tag" v-reveal>{{ data.tag }}</ZTag>
         <h2 v-split class="title security__title" v-html="data.title" />
         <div class="security__shield"><ShieldMark :image="data.image" /></div>
       </div>
@@ -47,13 +47,20 @@ const hovered = ref(-1);
 
 <style scoped>
 .security__layout { display: grid; grid-template-columns: minmax(0, 0.94fr) minmax(0, 1fr); gap: 40px; }
-.security__title { margin-top: 26px; }
+.security__title:not(:first-child) { margin-top: 26px; }
 .security__shield {
   width: 260px; margin: 56px 0 0 36px; perspective: 900px;
 }
-.security__shield :deep(svg), .security__shield :deep(img) {
+.security__shield :deep(svg) {
   transform: rotateX(calc(34deg - 26deg * var(--p, 0.5))) rotateZ(calc(-14deg + 10deg * var(--p, 0.5)));
 }
+/* Rendu 3D (cadenas) : léger flottement lié au scroll ; le noir de l'image se fond dans la page. */
+.security__shield:has(img) { width: 300px; margin-top: 40px; perspective: none; }
+.security__shield :deep(img) {
+  display: block; width: 100%; height: auto; mix-blend-mode: lighten;
+  transform: translateY(calc((0.5 - var(--p, 0.5)) * 40px)) rotate(calc(-5deg + 10deg * var(--p, 0.5)));
+}
+@media (prefers-reduced-motion: reduce) { .security__shield :deep(img) { transform: none; } }
 /* fond à fines hachures */
 .security__grid {
   display: grid; grid-template-columns: 1fr 1fr; align-self: start;

@@ -261,7 +261,6 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'securite',
       type: 'security',
-      tag: 'Security & compliance',
       title: 'Security<br><i>at the highest level</i>',
       items: [
         { icon: 'id', title: 'Identity verification', text: 'A KYC process to protect every account' },
@@ -269,7 +268,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'lock', title: 'Zero Trust protection', text: 'Controlled access and monitored infrastructure' },
         { icon: 'scale', title: 'AML / CFT', text: 'Controls aligned with FATF standards' },
       ],
-      image: null,
+      image: media.security,
     },
     {
       id: 'etapes',
@@ -284,12 +283,10 @@ export default function createContent(linkOverrides = {}) {
         { title: 'Add funds.', text: 'Top up your account with Wave, Orange Money or crypto.' },
         { title: 'Buy and send.', text: 'Quick buy, send, swap and withdraw from a single wallet.' },
       ],
-      orbit: ['₿', 'Ξ', '₮', 'S', 'B', '$', 'T', 'P', 'F', '◆'],
     },
     {
       id: 'portefeuille',
       type: 'globe',
-      tag: 'Your wallet, everywhere',
       title: 'Your crypto, everywhere,<br><b>all the time</b>',
       text: 'A complete mobile app with every tool you need.',
       features: [
@@ -298,13 +295,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'bell', label: 'Instant notifications' },
         { icon: 'fingerprint', label: 'Secure biometric login' },
       ],
-      dashboard: {
-        label: 'Preview of the Zurumi dashboard',
-        menu: ['Quick buy', 'Market', 'Trade', 'Wallet'],
-        quote: 'XOF',
-        count: 8,
-        timeframes: ['15 min', '1 h', '4 h', '1 d', '1 w'],
-      },
+      video: { label: 'Animation: black chrome crypto coins spinning.', play: 'Play the animation', pause: 'Pause the animation', ...media.coins },
     },
   ];
 

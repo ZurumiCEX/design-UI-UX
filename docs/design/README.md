@@ -80,6 +80,9 @@ Chaque entrée appelle `boot(Page, { page })` (`boot.js`) : la langue est charg�
 - **Hero** — le globe en points et les cartes de cours (`visuals/GlobeRates.vue`) remplacent la fenêtre de tableau de bord, qui passe dans la section « Portefeuille partout ». Le formulaire d'inscription et les boutons Apple / Google du hero sont retirés (l'inscription reste dans la barre).
 - **Application** — vidéo du parcours d'achat (`visuals/AppVideo.vue`, fichiers dans `public/videos/`) à la place du téléphone dessiné et du disque bleu. WebM VP9 avec transparence (Chrome, Firefox, Edge) ; MP4 H.264 rendu sur `--color-bg-base` pour Safari et iOS, qui ignorent la transparence du WebM ; image d'attente WebP. Chargée à l'approche, lue seulement à l'écran, en pause par défaut si l'utilisateur réduit les animations, bouton lecture / pause. Les étiquettes « Paiement Mobile Money » et « Acheter · Envoyer · Echanger » sont retirées (`tag` est désormais facultatif).
 - **Services** — étiquette « Nos services » retirée ; chaque cellule affiche un visuel 3D (`item.image`, fichiers WebP 840 px dans `public/images/landing/services/`, déclarés dans `media.services` de `content/data.js`) à la place de la mini-interface, avec le même comportement (atténué, rétabli au survol). Les images sur fond noir utilisent `mix-blend-mode: lighten` pour se fondre dans la page. La mini-interface `item.ui` reste en solution de repli.
+- **Sécurité** — étiquette « Sécurité & conformité » retirée ; le bouclier est remplacé par un cadenas 3D (`public/images/landing/securite-cadenas.webp`, `media.security`), fondu dans la page (`mix-blend-mode: lighten`) avec un léger flottement lié au scroll.
+- **Étapes** — rangées de pièces défilantes et orbe au logo retirées.
+- **Portefeuille partout** — étiquette retirée ; la fenêtre de tableau de bord est remplacée par une vidéo de pièces en rotation (`public/videos/zurumi-coins.*`, `media.coins`) : fond blanc d'origine détouré, pièces recolorées en chrome noir miroir avec reflets argent et accents violets, WebM transparent + MP4 sur `--color-bg-base` pour Safari. `AppVideo` accepte maintenant `width` / `height` et `toggle="corner"`.
 - **Pied de page** — lien Marchés retiré (il reste dans le menu), icônes sociales HQ (`ui/ZSocialIcon.vue`, tracés Simple Icons CC0 : Facebook, X, Instagram, LinkedIn, Telegram, TikTok, YouTube, couleur de marque au survol), bouton « haut de page » `ui/BackToTop.vue` dont l’anneau se remplit avec la progression du défilement.
 
 Les formulaires valident côté client. Tant que leur action serveur vaut `#`, ils affichent un message de démo au lieu d'envoyer.
@@ -278,7 +281,7 @@ Le pied de page (`LandingFooter`, A21) est rendu par `SiteLayout` sur toutes les
 | `DashboardMock` | `data`, `coins`, `brand`, `chartDelay` | dans la section « Portefeuille partout » |
 | `GlobeRates` | `coins`, `rates` | globe + cartes de cours qui tournent ; dans le hero |
 | `PhoneMock` | `screen`, `brand`, `variant`, `image` | section Mobile Money |
-| `AppVideo` | `video` (`webm`, `mp4`, `poster`, `label`, `play`, `pause`) | section Application |
+| `AppVideo` | `video` (`webm`, `mp4`, `poster`, `label`, `play`, `pause`, `width`, `height`), `toggle` | sections Application et Portefeuille partout |
 | `ShieldMark` | `image` | |
 | `RidgeScene` | `image` | |
 | `FloatingCoins` | `coins`, `image` | |

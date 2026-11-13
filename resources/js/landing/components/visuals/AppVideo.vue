@@ -7,7 +7,8 @@ import ZIcon from '../ui/ZIcon.vue';
 // lue seulement quand elle est visible, jamais en lecture automatique si l'utilisateur
 // préfère réduire les animations. Un bouton permet toujours de la mettre en pause.
 const props = defineProps({
-  video: { type: Object, required: true }, // { webm, mp4, poster, label, play, pause }
+  video: { type: Object, required: true }, // { webm, mp4, poster, label, play, pause, width?, height? }
+  toggle: { type: String, default: 'side' }, // 'side' : à droite du téléphone · 'corner' : coin bas droit
 });
 
 const el = ref(null);
@@ -47,7 +48,7 @@ onBeforeUnmount(() => io?.disconnect());
 </script>
 
 <template>
-  <figure ref="box" class="av">
+  <figure ref="box" class="av" :class="`av--${toggle}`" :style="{ aspectRatio: `${video.width ?? 1080} / ${video.height ?? 1920}` }">
     <video
       ref="el"
       class="av__video"
@@ -58,8 +59,8 @@ onBeforeUnmount(() => io?.disconnect());
       playsinline
       disablepictureinpicture
       preload="none"
-      width="1080"
-      height="1920"
+      :width="video.width ?? 1080"
+      :height="video.height ?? 1920"
       @canplay="sync"
       @play="playing = true"
       @pause="playing = false"
@@ -77,7 +78,7 @@ onBeforeUnmount(() => io?.disconnect());
 </template>
 
 <style scoped>
-.av { position: relative; margin: 0; width: 100%; aspect-ratio: 1080 / 1920; }
+.av { position: relative; margin: 0; width: 100%; }
 .av__video { display: block; width: 100%; height: 100%; object-fit: contain; }
 /* Le bouton se place dans la marge transparente, à droite du téléphone : il ne masque pas l’écran. */
 .av__toggle {
@@ -86,4 +87,5 @@ onBeforeUnmount(() => io?.disconnect());
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0.75; transition: opacity var(--motion-duration-hover), transform var(--motion-duration-hover);
 }
 .av__toggle:hover, .av__toggle:focus-visible { opacity: 1; transform: scale(1.06); }
+.av--corner .av__toggle { bottom: -44px; }
 </style>

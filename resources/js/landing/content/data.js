@@ -278,6 +278,10 @@ export const statusComponents = [
 // Médias statiques (servis depuis public/). La vidéo WebM garde la transparence (Chrome, Firefox, Edge) ;
 // le MP4 est rendu sur le fond de page (--color-bg-base) pour Safari, qui ignore la transparence WebM.
 export const media = {
+  // Section Sécurité : cadenas 3D sur fond noir (fondu dans la page par mix-blend-mode).
+  security: { src: '/images/landing/securite-cadenas.webp', width: 640, height: 804, alt: '', dark: true },
+  // Section « Portefeuille partout » : pièces en rotation, chrome noir miroir et accents violets, fond transparent.
+  coins: { webm: '/videos/zurumi-coins.webm', mp4: '/videos/zurumi-coins.mp4', poster: '/videos/zurumi-coins-poster.webp', width: 406, height: 206 },
   // Visuels de la section Services (public/images/landing/services/). `dark` : image sur fond noir,
   // fondue dans la page par mix-blend-mode (le noir de l'image disparaît).
   services: {

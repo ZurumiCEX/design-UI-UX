@@ -2,7 +2,6 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { prefersReducedMotion } from '../../composables/useReducedMotion.js';
 import ZButton from '../ui/ZButton.vue';
-import ZLogo from '../ui/ZLogo.vue';
 
 const props = defineProps({
   data: { type: Object, required: true },
@@ -38,25 +37,10 @@ onBeforeUnmount(() => {
   stop();
   io?.disconnect();
 });
-
-const ORBIT_COPIES = 6;
 </script>
 
 <template>
   <section :id="data.id" ref="root" class="section steps">
-    <!-- A18 — orbe au logo, rangées d'icônes en défilement opposé. -->
-    <div class="orb" aria-hidden="true">
-      <div v-for="row in 2" :key="row" class="orb__row" :class="{ 'is-reverse': row === 2 }">
-        <div class="orb__track">
-          <span v-for="n in data.orbit.length * ORBIT_COPIES" :key="n" class="orb__chip">{{ data.orbit[(n - 1) % data.orbit.length] }}</span>
-        </div>
-      </div>
-      <div class="orb__core">
-        <span class="orb__halo orb__halo--a" /><span class="orb__halo orb__halo--b" />
-        <ZLogo :size="34" :wordmark="false" />
-      </div>
-    </div>
-
     <div class="container steps__layout">
       <div>
         <h2 v-split class="title steps__title" v-html="data.title" />
@@ -78,28 +62,6 @@ const ORBIT_COPIES = 6;
 </template>
 
 <style scoped>
-.steps { padding-top: 40px; }
-.orb { position: relative; display: grid; gap: 26px; padding: 64px 0; margin-bottom: 60px; overflow: hidden; }
-.orb__row {
-  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
-}
-.orb__track { display: flex; width: max-content; animation: orb-marquee 60s linear infinite; }
-.is-reverse .orb__track { animation-direction: reverse; }
-.orb__chip {
-  display: grid; place-items: center; width: 34px; height: 34px; margin-right: 28px; border-radius: 50%; flex: none;
-  background: var(--color-bg-surface-2); border: 1px solid var(--color-line-default); color: var(--color-text-dim); font-size: 13px; font-weight: var(--font-weight-semibold);
-}
-@keyframes orb-marquee { to { transform: translateX(calc(-100% / 3)); } }
-.orb__core {
-  position: absolute; left: 50%; top: 50%; width: 86px; height: 86px; margin: -43px 0 0 -43px; display: grid; place-items: center; border-radius: 50%;
-  background: radial-gradient(circle at 50% 35%, var(--color-brand-primary), var(--color-bg-surface) 75%); border: 1px solid var(--color-line-strong);
-}
-.orb__halo { position: absolute; inset: -62px; border-radius: 50%; z-index: -1; animation: orb-pulse 3.2s ease-in-out infinite; }
-.orb__halo--a { background: radial-gradient(closest-side, var(--color-brand-primary), transparent); }
-.orb__halo--b { background: radial-gradient(closest-side, var(--color-brand-secondary), transparent); animation-delay: -1.6s; }
-@keyframes orb-pulse { 0%, 100% { opacity: 0.15; transform: scale(0.9); } 50% { opacity: 0.75; transform: scale(1.12); } }
-
 .steps__layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 60px; max-width: 980px; }
 .steps__title { font-size: clamp(32px, 3.4vw, 46px); }
 .steps__text { margin: 22px 0 26px; font-size: 13.5px; color: var(--color-text-muted); }
@@ -122,7 +84,5 @@ const ORBIT_COPIES = 6;
 }
 @media (max-width: 900px) {
   .steps__layout { grid-template-columns: 1fr; gap: 40px; }
-  .orb { margin-bottom: 56px; }
 }
-@media (prefers-reduced-motion: reduce) { .orb__track, .orb__halo { animation: none; } .orb__halo { opacity: 0.4; } }
 </style>
