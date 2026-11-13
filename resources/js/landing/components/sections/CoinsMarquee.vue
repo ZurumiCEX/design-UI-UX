@@ -17,7 +17,7 @@ const rows = computed(() => [props.common.coins, [...props.common.coins].reverse
 <template>
   <section :id="data.id" class="section section--center coins">
     <div class="container">
-      <ZTag v-reveal>{{ data.tag }}</ZTag>
+      <ZTag v-if="data.tag" v-reveal>{{ data.tag }}</ZTag>
       <h2 v-split class="title coins__title" v-html="data.title" />
     </div>
 
@@ -42,7 +42,7 @@ const rows = computed(() => [props.common.coins, [...props.common.coins].reverse
 </template>
 
 <style scoped>
-.coins__title { margin-top: 26px; }
+.coins__title:not(:first-child) { margin-top: 26px; }
 .coins__rows {
   display: grid; gap: 16px; margin: 56px 0 48px; overflow: hidden;
   mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);

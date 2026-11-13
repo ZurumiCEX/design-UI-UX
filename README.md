@@ -114,9 +114,9 @@ Le menu suit l'ordre : Achat rapide · Marché · Trade · Transactions (Envoyer
 
 | # | Section | Résumé |
 |---|---|---|
-| 1 | **Hero** | Titre, formulaire d'inscription, statistiques, globe en points animé avec cartes de cours |
+| 1 | **Hero** | Titre, texte, statistiques, globe en points animé avec cartes de cours |
 | 2 | **Cryptos** | Deux rangées de cartes en défilement opposé |
-| 3 | **Application** | Disque dégradé, téléphone, quatre avantages |
+| 3 | **Application** | Vidéo du parcours d'achat (fond transparent), quatre avantages |
 | 4 | **Bannière ciel** | Plein écran, pluie fine, crête lumineuse, QR code |
 | 5 | **Services** | Grille 2 × 2 : Achat rapide, Envoyer & Recevoir, Echanger, Retirer |
 | 6 | **Mobile Money** | Téléphone couché en 3D, pièces flottantes |

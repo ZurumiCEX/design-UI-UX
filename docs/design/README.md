@@ -77,7 +77,8 @@ Chaque entrée appelle `boot(Page, { page })` (`boot.js`) : la langue est charg�
 - **Centre d’aide** — pensé pour les débutants : recherche instantanée (insensible aux accents, mots surlignés, Entrée ouvre le premier résultat), parcours « Premiers pas », thèmes, articles en étapes avec astuce/avertissement, bouton d’action, articles liés, « Cet article vous a-t-il aidé ? » et lexique. Navigation par ancre (`#/article/<id>`, `#/categorie/<id>`) : le bouton Précédent fonctionne et le focus passe au titre.
 - **À propos / Carrières / Presse / Contact** — pages « Entreprise » du pied de page. Textes dans `content/fr-company.js` et `en-company.js` (mêmes clés).
 - **Barre de navigation** — « Marché » au singulier, recherche retirée, Portefeuille sous forme de bouton `variant="secondary"` (nouvelle variante de `ZButton`) à droite ; masqué sous 600 px, où il reste dans le panneau mobile.
-- **Hero** — le globe en points et les cartes de cours (`visuals/GlobeRates.vue`) remplacent la fenêtre de tableau de bord, qui passe dans la section « Portefeuille partout ».
+- **Hero** — le globe en points et les cartes de cours (`visuals/GlobeRates.vue`) remplacent la fenêtre de tableau de bord, qui passe dans la section « Portefeuille partout ». Le formulaire d'inscription et les boutons Apple / Google du hero sont retirés (l'inscription reste dans la barre).
+- **Application** — vidéo du parcours d'achat (`visuals/AppVideo.vue`, fichiers dans `public/videos/`) à la place du téléphone dessiné et du disque bleu. WebM VP9 avec transparence (Chrome, Firefox, Edge) ; MP4 H.264 rendu sur `--color-bg-base` pour Safari et iOS, qui ignorent la transparence du WebM ; image d'attente WebP. Chargée à l'approche, lue seulement à l'écran, en pause par défaut si l'utilisateur réduit les animations, bouton lecture / pause. Les étiquettes « Paiement Mobile Money » et « Acheter · Envoyer · Echanger » sont retirées (`tag` est désormais facultatif).
 - **Pied de page** — lien Marchés retiré (il reste dans le menu), icônes sociales HQ (`ui/ZSocialIcon.vue`, tracés Simple Icons CC0 : Facebook, X, Instagram, LinkedIn, Telegram, TikTok, YouTube, couleur de marque au survol), bouton « haut de page » `ui/BackToTop.vue` dont l’anneau se remplit avec la progression du défilement.
 
 Les formulaires valident côté client. Tant que leur action serveur vaut `#`, ils affichent un message de démo au lieu d'envoyer.
@@ -275,7 +276,8 @@ Le pied de page (`LandingFooter`, A21) est rendu par `SiteLayout` sur toutes les
 | `Sparkline` | `values`, `up`, `width`, `height` | SVG |
 | `DashboardMock` | `data`, `coins`, `brand`, `chartDelay` | dans la section « Portefeuille partout » |
 | `GlobeRates` | `coins`, `rates` | globe + cartes de cours qui tournent ; dans le hero |
-| `PhoneMock` | `screen`, `brand`, `variant`, `image` | |
+| `PhoneMock` | `screen`, `brand`, `variant`, `image` | section Mobile Money |
+| `AppVideo` | `video` (`webm`, `mp4`, `poster`, `label`, `play`, `pause`) | section Application |
 | `ShieldMark` | `image` | |
 | `RidgeScene` | `image` | |
 | `FloatingCoins` | `coins`, `image` | |

@@ -2,8 +2,6 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { prefersReducedMotion } from '../../composables/useReducedMotion.js';
 import { whenReady } from '../../composables/useReveal.js';
-import ZButton from '../ui/ZButton.vue';
-import ZIcon from '../ui/ZIcon.vue';
 import GlobeRates from '../visuals/GlobeRates.vue';
 import MatrixBackground from '../visuals/MatrixBackground.vue';
 
@@ -38,10 +36,6 @@ onBeforeUnmount(() => {
   clearTimeout(timer);
   cancelAnimationFrame(raf);
 });
-
-function onSubmit(e) {
-  if (props.data.form.action === '#') e.preventDefault(); // route d'inscription à brancher
-}
 </script>
 
 <template>
@@ -54,17 +48,6 @@ function onSubmit(e) {
         <h1 v-split class="title title--display" v-html="data.title" />
         <span class="hero__loader" aria-hidden="true" />
         <p v-reveal="700" class="lede hero__text">{{ data.text }}</p>
-        <form v-reveal="900" class="hero__form" :action="data.form.action" method="get" @submit="onSubmit">
-          <label class="sr-only" for="hero-id">{{ data.form.placeholder }}</label>
-          <input id="hero-id" name="identifier" type="text" autocomplete="username" :placeholder="data.form.placeholder" />
-          <ZButton type="submit">{{ data.form.submit }}</ZButton>
-        </form>
-        <div v-reveal="1100" class="hero__social">
-          <span class="label">{{ data.social.label }}</span>
-          <a v-for="p in data.social.providers" :key="p.id" :href="p.href" :aria-label="p.label" class="hero__provider">
-            <ZIcon :name="p.id" :size="16" />
-          </a>
-        </div>
       </div>
 
       <dl class="hero__stats">
@@ -99,22 +82,6 @@ function onSubmit(e) {
 :global(.js.ready .hero__loader) { animation: hero-loader var(--motion-duration-reveal) var(--motion-ease-out) 200ms both; }
 @keyframes hero-loader { 0% { opacity: 1; transform: scaleX(0); } 70% { opacity: 1; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(1); } }
 .hero__text { margin-top: 14px; max-width: 42ch; }
-.hero__form { display: flex; gap: 8px; margin-top: 28px; max-width: 330px; }
-.hero__form input {
-  flex: 1; min-width: 0; height: 36px; padding: 0 12px; font-size: 13px; border-radius: var(--radius-sm);
-  background: var(--fill-2); border: 1px solid var(--color-line-default); outline-offset: 0;
-  transition: border-color var(--motion-duration-hover);
-}
-.hero__form input::placeholder { color: var(--color-text-dim); }
-.hero__form input:focus { border-color: var(--color-brand-secondary-300); }
-.hero__social { display: flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--color-text-dim); }
-.hero__social .label { margin-right: 4px; }
-.hero__provider {
-  display: grid; place-items: center; width: 30px; height: 30px; border-radius: var(--radius-sm); color: var(--color-text-default);
-  background: var(--color-bg-surface-2); border: 1px solid var(--color-line-default);
-  transition: transform var(--motion-duration-hover) var(--motion-ease-out), background-color var(--motion-duration-hover);
-}
-.hero__provider:hover { transform: translateY(-1px); background: var(--fill-2); }
 .hero__stats { display: flex; flex-wrap: wrap; gap: 24px 56px; margin-top: auto; padding-top: 56px; }
 .hero__stats dt { color: var(--color-text-dim); }
 .hero__stats dd { margin: 8px 0 0; font-size: 22px; font-weight: var(--font-weight-medium); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }

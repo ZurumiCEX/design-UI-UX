@@ -4,7 +4,7 @@
 import accountContent from './fr-account.js';
 import companyContent from './fr-company.js';
 import morePages from './fr-more.js';
-import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, pairs, paymentMethods } from './data.js';
+import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, media, pairs, paymentMethods } from './data.js';
 
 const countryNames = {
   BJ: 'Bénin',
@@ -137,15 +137,6 @@ export default function createContent(linkOverrides = {}) {
       type: 'hero',
       title: 'La crypto,<br>en <i>FCFA</i>',
       text: 'Achetez, envoyez et échangez vos cryptos avec Wave, Orange Money et vos moyens de paiement habituels.',
-      form: { placeholder: 'E-mail / Numéro mobile', submit: "S'inscrire", action: links.signup },
-      social: {
-        label: 'ou via',
-        providers: [
-          { id: 'apple', label: 'Continuer avec Apple', href: links.signup },
-          { id: 'google', label: 'Continuer avec Google', href: links.signup },
-        ],
-      },
-      // DÉMO — à remplacer : statistiques fictives.
       stats: [
         { label: 'Moyens de paiement', value: 8 },
         { label: 'Achat en', prefix: '< ', value: 2, suffix: ' min' },
@@ -157,7 +148,6 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'cryptos',
       type: 'coins',
-      tag: 'Paiement Mobile Money',
       title: 'Vos cryptos<br><i>préférées,</i> en un geste',
       cta: { label: "S'inscrire", href: links.signup },
       speeds: [38, 46], // secondes par boucle, une valeur par rangée
@@ -165,7 +155,6 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'application',
       type: 'app',
-      tag: 'Acheter · Envoyer · Echanger',
       title: 'Tout-en-un,<br>une interface <i>puissante</i>',
       text: 'Une application mobile complète, avec tous les outils pour gérer vos cryptos partout, à tout moment.',
       perks: [
@@ -174,20 +163,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'card', title: 'Mobile Money intégré', text: 'Wave, Orange Money, Mixx by Yas et plus encore.' },
         { icon: 'shield', title: 'Portefeuille sécurisé', text: 'Vos actifs protégés, vos accès vérifiés.' }, // À VALIDER (conformité)
       ],
-      // DÉMO — à remplacer : montants et taux fictifs.
-      phone: {
-        label: "Aperçu de l'application Zurumi : écran Achat rapide",
-        tag: 'Achat rapide',
-        title: 'Acheter<br>en un instant',
-        fields: [
-          { label: 'Vous payez', value: '50 000', unit: 'XOF' },
-          { label: 'Vous recevez', value: '≈ 82,40', unit: 'USDT' },
-        ],
-        methods: ['Wave', 'Orange Money', 'Mixx'],
-        cta: 'Continuer',
-        ticker: { label: 'BTC', change: '+1,84 %' },
-      },
-      image: null, // capture réelle de l'application, voir public/images/landing/
+      video: { play: 'Lire l’animation', pause: 'Mettre l’animation en pause', label: 'Démonstration de l’application Zurumi : achat de 20 USDT payés avec Orange Money, de l’accueil jusqu’au paiement réussi.', ...media.buyFlow },
     },
     {
       id: 'telecharger',

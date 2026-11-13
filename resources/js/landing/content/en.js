@@ -2,7 +2,7 @@
 import accountContent from './en-account.js';
 import companyContent from './en-company.js';
 import morePages from './en-more.js';
-import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, pairs, paymentMethods } from './data.js';
+import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, media, pairs, paymentMethods } from './data.js';
 
 const countryNames = {
   BJ: 'Benin',
@@ -132,14 +132,6 @@ export default function createContent(linkOverrides = {}) {
       type: 'hero',
       title: 'Crypto,<br>in <i>CFA francs</i>',
       text: 'Buy, send and swap your crypto with Wave, Orange Money and the payment methods you already use.',
-      form: { placeholder: 'Email / Mobile number', submit: 'Sign up', action: links.signup },
-      social: {
-        label: 'or via',
-        providers: [
-          { id: 'apple', label: 'Continue with Apple', href: links.signup },
-          { id: 'google', label: 'Continue with Google', href: links.signup },
-        ],
-      },
       stats: [
         { label: 'Payment methods', value: 8 },
         { label: 'Buy in', prefix: '< ', value: 2, suffix: ' min' },
@@ -151,7 +143,6 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'cryptos',
       type: 'coins',
-      tag: 'Mobile Money payments',
       title: 'Your <i>favourite</i><br>crypto, in one tap',
       cta: { label: 'Sign up', href: links.signup },
       speeds: [38, 46],
@@ -159,7 +150,6 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'application',
       type: 'app',
-      tag: 'Buy · Send · Swap',
       title: 'All-in-one,<br>a <i>powerful</i> interface',
       text: 'A complete mobile app with every tool you need to manage your crypto anywhere, anytime.',
       perks: [
@@ -168,19 +158,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'card', title: 'Built-in Mobile Money', text: 'Wave, Orange Money, Mixx by Yas and more.' },
         { icon: 'shield', title: 'Secure wallet', text: 'Your assets protected, your access verified.' },
       ],
-      phone: {
-        label: 'Preview of the Zurumi app: Quick buy screen',
-        tag: 'Quick buy',
-        title: 'Buy<br>in an instant',
-        fields: [
-          { label: 'You pay', value: '50,000', unit: 'XOF' },
-          { label: 'You receive', value: '≈ 82.40', unit: 'USDT' },
-        ],
-        methods: ['Wave', 'Orange Money', 'Mixx'],
-        cta: 'Continue',
-        ticker: { label: 'BTC', change: '+1.84%' },
-      },
-      image: null,
+      video: { play: 'Play the animation', pause: 'Pause the animation', label: 'Zurumi app walkthrough: buying 20 USDT paid with Orange Money, from the home screen to a successful payment.', ...media.buyFlow },
     },
     {
       id: 'telecharger',

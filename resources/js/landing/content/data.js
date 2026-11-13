@@ -274,3 +274,9 @@ export const statusComponents = [
     { id: 'report', status: 'operational' },
   ] },
 ];
+
+// Médias statiques (servis depuis public/). La vidéo WebM garde la transparence (Chrome, Firefox, Edge) ;
+// le MP4 est rendu sur le fond de page (--color-bg-base) pour Safari, qui ignore la transparence WebM.
+export const media = {
+  buyFlow: { webm: '/videos/zurumi-buy-flow.webm', mp4: '/videos/zurumi-buy-flow.mp4', poster: '/videos/zurumi-buy-flow-poster.webp' },
+};
