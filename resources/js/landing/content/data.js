@@ -336,6 +336,9 @@ export const brandKit = {
 export const brandLogo = { full: '/images/brand/zurumi-logo.webp', compact: '/images/brand/zurumi-logo-compact.webp', ratio: 960 / 229 };
 
 export const media = {
+  // Pages Connexion / Inscription : cadenas et clé (image) ; anneau de pièces chromées (vidéo transparente).
+  authLogin: { src: '/images/landing/auth-cadenas-cle.webp', width: 800, height: 833 },
+  authSignup: { webm: '/videos/zurumi-coins-ring.webm', mp4: '/videos/zurumi-coins-ring.mp4', poster: '/videos/zurumi-coins-ring-poster.webp', width: 640, height: 576 },
   // Section « Achetez & envoyez » : méduse qui nage (WebM transparent ; MP4 sur noir pour Safari).
   jellyfish: { webm: '/videos/meduse/meduse.webm', mp4: '/videos/meduse/meduse-noir.mp4', poster: '/videos/meduse/meduse-poster.webp' },
   // Icônes 3D des quatre garanties de la section Sécurité (256 × 256, fond transparent).

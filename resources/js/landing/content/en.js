@@ -567,6 +567,7 @@ export default function createContent(linkOverrides = {}) {
         description: 'Log in to your Zurumi account with your email or mobile number.',
       },
       visual: {
+        image: media.authLogin,
         title: 'Your crypto,<br>with <i>confidence.</i>',
         text: 'Buy, send and withdraw in CFA francs from a single wallet.',
       },
@@ -587,6 +588,7 @@ export default function createContent(linkOverrides = {}) {
       },
       visual: {
         title: 'Your account,<br>in <i>a few minutes.</i>',
+        video: { label: 'Animation: a spinning ring of violet chrome crypto coins.', play: 'Play the animation', pause: 'Pause the animation', ...media.authSignup },
         perks: [
           'Buy in CFA francs with Wave, Orange Money or Mixx by Yas',
           'The amount you receive is shown before you pay',
@@ -599,7 +601,7 @@ export default function createContent(linkOverrides = {}) {
       continue: 'Continue',
       back: 'Back',
       terms: 'I have read and accept the {terms} and the {privacy}.',
-      termsLink: 'Terms of use',
+      termsLink: 'Terms & conditions',
       privacyLink: 'Privacy policy',
       verify: {
         title: 'Verify your {method}',

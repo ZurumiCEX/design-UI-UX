@@ -1,11 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import { prefersReducedMotion } from '../../composables/useReducedMotion.js';
-import FloatingCoins from '../visuals/FloatingCoins.vue';
+import AppVideo from '../visuals/AppVideo.vue';
 import ShieldMark from '../visuals/ShieldMark.vue';
 import ZIcon from '../ui/ZIcon.vue';
 
-// Visuel des pages d'authentification. Le bouclier suit légèrement le pointeur.
+// Visuel des pages d'authentification. Connexion : image (cadenas et clé) qui suit légèrement le pointeur.
+// Inscription : vidéo de pièces (fond transparent) au-dessus des avantages.
 defineProps({
   data: { type: Object, required: true }, // pages.login.visual | pages.signup.visual
   variant: { type: String, default: 'shield' }, // shield | perks
@@ -27,11 +28,6 @@ function onLeave() {
   root.value.style.setProperty('--ty', 0);
 }
 
-const coins = [
-  { glyph: '₮', x: 8, y: 6, size: 54, drift: 0, delay: 0 },
-  { glyph: '₿', x: 78, y: -4, size: 62, drift: 0, delay: -1.6 },
-  { glyph: 'F', x: 86, y: 76, size: 50, drift: 0, delay: -3 },
-];
 </script>
 
 <template>
@@ -42,12 +38,15 @@ const coins = [
     </div>
 
     <div v-if="variant === 'shield'" class="av__stage" aria-hidden="true">
-      <div class="av__shield"><ShieldMark /></div>
+      <div class="av__shield" :class="{ 'is-image': data.image }">
+        <img v-if="data.image" :src="data.image.src" :width="data.image.width" :height="data.image.height" alt="" decoding="async" />
+        <ShieldMark v-else />
+      </div>
     </div>
 
     <div v-else class="av__stage">
+      <div v-if="data.video" class="av__video"><AppVideo :video="data.video" toggle="corner" /></div>
       <div class="av__card" v-reveal="300">
-        <FloatingCoins :coins="coins" />
         <ul>
           <li v-for="p in data.perks" :key="p"><ZIcon name="check" :size="16" /> {{ p }}</li>
         </ul>
@@ -67,6 +66,10 @@ const coins = [
   transition: transform 600ms var(--motion-ease-out);
   animation: av-float 6s ease-in-out infinite alternate;
 }
+.av__shield.is-image { width: min(400px, 72%); }
+.av__shield img { display: block; width: 100%; height: auto; filter: drop-shadow(0 40px 60px var(--ink)) drop-shadow(0 0 70px color-mix(in srgb, var(--glow-brand) 60%, transparent)); }
+.av__video { width: min(400px, 82%); margin: 0 auto 8px; }
+.av--perks .av__stage { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
 .av__shield :deep(.shield) { filter: drop-shadow(0 40px 60px var(--ink)) drop-shadow(0 0 60px var(--glow-brand)); }
 @keyframes av-float { from { translate: 0 -10px; } to { translate: 0 10px; } }
 
@@ -77,7 +80,6 @@ const coins = [
   border: 1px solid var(--color-line-strong); box-shadow: 0 40px 90px -30px var(--ink), 0 0 80px -30px var(--glow-brand);
   transform: rotateX(calc(var(--ty, 0) * -8deg)) rotateY(calc(var(--tx, 0) * 10deg)); transition: transform 600ms var(--motion-ease-out);
 }
-.av__card :deep(.coins) { inset: -40px; }
 .av__card ul { position: relative; display: grid; gap: 18px; }
 .av__card li { display: flex; gap: 12px; font-size: 15px; line-height: 1.4; }
 .av__card li :deep(svg) { flex: none; margin-top: 2px; color: var(--color-state-up); }

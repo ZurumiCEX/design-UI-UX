@@ -579,6 +579,7 @@ export default function createContent(linkOverrides = {}) {
         description: 'Connectez-vous à votre compte Zurumi avec votre e-mail ou votre numéro mobile.',
       },
       visual: {
+        image: media.authLogin,
         title: 'Vos cryptos,<br>en toute <i>confiance.</i>',
         text: 'Achetez, envoyez et retirez en FCFA depuis un seul portefeuille.',
       },
@@ -599,6 +600,7 @@ export default function createContent(linkOverrides = {}) {
       },
       visual: {
         title: 'Votre compte,<br>en <i>quelques minutes.</i>',
+        video: { label: 'Animation : anneau de cryptomonnaies en chrome violet qui tourne.', play: 'Lire l’animation', pause: 'Mettre l’animation en pause', ...media.authSignup },
         perks: [
           'Achetez en FCFA avec Wave, Orange Money ou Mixx by Yas',
           'Le montant reçu est affiché avant de payer',
@@ -611,7 +613,7 @@ export default function createContent(linkOverrides = {}) {
       continue: 'Continuer',
       back: 'Retour',
       terms: "J'ai lu et j'accepte les {terms} et la {privacy}.",
-      termsLink: "Conditions d'utilisation",
+      termsLink: 'Conditions générales',
       privacyLink: 'Politique de confidentialité',
       verify: {
         title: 'Vérifiez votre {method}',
