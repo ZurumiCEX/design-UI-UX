@@ -240,23 +240,14 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'mobile-money',
       type: 'mobileMoney',
-      tag: 'From Mobile Money to crypto',
-      title: 'Pay with <b>Mobile Money</b>, <i>receive your crypto</i>',
+      title: 'Pay with <b>Mobile Money,</b> <i>receive your crypto</i>',
       text: 'No bank card, no international transfer. The payment methods you use every day are enough.',
-      floating: [
-        { glyph: 'F', x: 22, y: 52, size: 72, drift: -70, delay: 0 },
-        { glyph: '₮', x: 37, y: 12, size: 64, drift: 46, delay: -1.2 },
-        { glyph: '₿', x: 57, y: 4, size: 74, drift: -34, delay: -2.4 },
-        { glyph: 'Ξ', x: 75, y: 20, size: 62, drift: 62, delay: -3.1 },
-        { glyph: 'F', x: 82, y: 62, size: 68, drift: -52, delay: -4 },
-      ],
       perks: [
         { icon: 'pin', title: 'Local payment methods', text: 'Wave, Orange Money, Mixx by Yas and other operators in the region.' },
         { icon: 'pulse', title: 'Real-time tracking', text: 'Every operation is tracked, from payment to delivery.' },
         { icon: 'coin', title: 'Amounts in CFA francs', text: 'Prices, fees and balances shown in your currency.' },
       ],
-      cta: { label: 'Make my first purchase', href: links.quickBuy },
-      image: null,
+      video: { label: 'Animation: stablecoins, fiat currencies and crypto assets flow into a deep liquidity pool, then out again at settlement.', play: 'Play the animation', pause: 'Pause the animation', ...media.liquidity.en },
     },
     {
       id: 'securite',

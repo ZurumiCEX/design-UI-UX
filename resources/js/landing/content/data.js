@@ -278,6 +278,11 @@ export const statusComponents = [
 // Médias statiques (servis depuis public/). La vidéo WebM garde la transparence (Chrome, Firefox, Edge) ;
 // le MP4 est rendu sur le fond de page (--color-bg-base) pour Safari, qui ignore la transparence WebM.
 export const media = {
+  // Section Mobile Money : schéma « liquidité profonde », une vidéo par langue (fond transparent).
+  liquidity: {
+    fr: { webm: '/videos/zurumi-liquidite-fr.webm', mp4: '/videos/zurumi-liquidite-fr.mp4', poster: '/videos/zurumi-liquidite-fr-poster.webp', width: 1680, height: 754 },
+    en: { webm: '/videos/zurumi-liquidite-en.webm', mp4: '/videos/zurumi-liquidite-en.mp4', poster: '/videos/zurumi-liquidite-en-poster.webp', width: 1680, height: 754 },
+  },
   // Section Sécurité : cadenas 3D sur fond noir (fondu dans la page par mix-blend-mode).
   security: { src: '/images/landing/securite-cadenas.webp', width: 640, height: 804, alt: '', dark: true },
   // Section « Portefeuille partout » : pièces en rotation, chrome noir miroir et accents violets, fond transparent.

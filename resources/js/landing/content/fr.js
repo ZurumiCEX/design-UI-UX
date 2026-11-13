@@ -246,24 +246,14 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'mobile-money',
       type: 'mobileMoney',
-      tag: 'Du Mobile Money à la crypto',
-      title: 'Payez en <b>Mobile Money</b>, <i>recevez vos cryptos</i>',
+      title: 'Payez en <b>Mobile Money,</b> <i>recevez vos cryptos</i>',
       text: 'Pas de carte bancaire, pas de virement international. Vos moyens de paiement du quotidien suffisent.',
-      // Pièces flottantes : position (% de la scène), amplitude au scroll (px) et décalage du flottement (s).
-      floating: [
-        { glyph: 'F', x: 22, y: 52, size: 72, drift: -70, delay: 0 },
-        { glyph: '₮', x: 37, y: 12, size: 64, drift: 46, delay: -1.2 },
-        { glyph: '₿', x: 57, y: 4, size: 74, drift: -34, delay: -2.4 },
-        { glyph: 'Ξ', x: 75, y: 20, size: 62, drift: 62, delay: -3.1 },
-        { glyph: 'F', x: 82, y: 62, size: 68, drift: -52, delay: -4 },
-      ],
       perks: [
         { icon: 'pin', title: 'Moyens de paiement locaux', text: "Wave, Orange Money, Mixx by Yas et d'autres opérateurs de la zone." },
         { icon: 'pulse', title: 'Suivi en temps réel', text: 'Chaque opération est suivie, du paiement à la réception.' },
         { icon: 'coin', title: 'Montants en FCFA', text: 'Prix, frais et soldes affichés dans votre devise.' },
       ],
-      cta: { label: 'Faire mon premier achat', href: links.quickBuy },
-      image: null,
+      video: { label: 'Animation : stablecoins, devises et cryptoactifs convergent vers un réservoir de liquidité profonde, puis sont redistribués au règlement.', play: 'Lire l’animation', pause: 'Mettre l’animation en pause', ...media.liquidity.fr },
     },
     {
       id: 'securite',
