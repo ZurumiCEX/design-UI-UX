@@ -42,7 +42,13 @@ onBeforeUnmount(() => { stop(); io?.disconnect(); });
 <style scoped>
 .gr { position: relative; width: 100%; height: 100%; }
 .gr__globe { position: absolute; inset: 0; }
-.gr__rates { position: absolute; left: 2%; top: 42%; display: grid; gap: 10px; width: 232px; }
+.gr__rates { position: absolute; left: -3%; top: 44%; display: grid; gap: 10px; width: 232px; }
+@media (max-width: 1360px) { .gr__rates { left: -10%; } }
+/* Mobile : deux cartes centrées sous la pointe de l'Afrique, sans couvrir le continent. */
+@media (max-width: 900px) {
+  .gr__rates { left: 50%; top: 84%; width: min(300px, 80vw); transform: translateX(-50%); }
+  .gr__rates li:nth-child(n + 3) { display: none; }
+}
 .gr__rates li { transition: opacity var(--duration-rule) var(--motion-ease-out); }
 .gr-rates-move { transition: transform var(--duration-rule) var(--motion-ease-out), opacity var(--duration-rule) var(--motion-ease-out); }
 </style>
