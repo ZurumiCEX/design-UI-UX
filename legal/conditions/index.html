@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- @include head -->
+    <title>Conditions d’utilisation — Zurumi</title>
+    <meta name="description" content="Conditions d’utilisation des services Zurumi." />
+    <meta property="og:title" content="Conditions d’utilisation — Zurumi" />
+    <meta property="og:description" content="Conditions d’utilisation des services Zurumi." />
+  </head>
+  <body>
+    <!--
+      Ce fichier joue le rôle d'une vue Blade (resources/views/landing/terms.blade.php).
+      Le contenu de #landing est le rendu « serveur » : navigation, <h1> et introduction en HTML pur
+      (SEO, pas d'écran vide, page lisible sans JavaScript). Vue le remplace au montage.
+    -->
+    <div id="landing">
+      <div class="fallback">
+        <!-- @include fallback-nav -->
+        <main id="top">
+          <h1>Conditions d’utilisation</h1>
+          <p>Conditions d’utilisation des services Zurumi.</p>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/resources/js/landing/entries/terms.js"></script>
+  </body>
+</html>

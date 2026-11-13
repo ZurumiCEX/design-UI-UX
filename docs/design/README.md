@@ -28,6 +28,13 @@ npm run build
 | `/trade/` | `trade/index.html` | `entries/trade.js` | `pages/TradePage.vue` |
 | `/connexion/` | `connexion/index.html` | `entries/login.js` | `pages/LoginPage.vue` |
 | `/inscription/` | `inscription/index.html` | `entries/signup.js` | `pages/SignupPage.vue` |
+| `/convertir/` | `convertir/index.html` | `entries/convert.js` | `pages/ConvertPage.vue` |
+| `/recevoir/` | `recevoir/index.html` | `entries/receive.js` | `pages/ReceivePage.vue` |
+| `/envoyer/` | `envoyer/index.html` | `entries/send.js` | `pages/SendPage.vue` |
+| `/p2p/` | `p2p/index.html` | `entries/p2p.js` | `pages/P2PPage.vue` |
+| `/verify/` | `verify/index.html` | `entries/verify.js` | `pages/VerifyPage.vue` |
+| `/signaler-une-arnaque/` | `signaler-une-arnaque/index.html` | `entries/report.js` | `pages/ReportPage.vue` |
+| `/legal/conditions/` · `confidentialite/` · `risques/` · `conformite/` | `legal/*/index.html` | `entries/terms.js` … | `pages/LegalPage.vue` (prop `doc`) |
 
 Chaque fichier HTML tient le rôle d'une vue Blade : `<head>` SEO, contenu critique rendu « côté serveur » (navigation, `<h1>`, introduction), puis l'entrée JS de la page. Les blocs communs sont des partiels : `<!-- @include head -->` et `<!-- @include fallback-nav -->` insèrent `resources/views/partials/*.html` (l'équivalent d'un `@include` Blade).
 
@@ -40,6 +47,15 @@ Chaque entrée appelle `boot(Page, { page })` (`boot.js`) : la langue est charg�
 - **Trade** — sélecteur de paire avec recherche (`?pair=ETH-USDT`, mis à jour dans l'URL) ; dernier cours et statistiques 24 h ; bandeau défilant des paires ; graphique en chandeliers (5 unités de temps, moyennes mobiles 7 et 25, réticule et valeurs O/H/B/F au survol) ; onglet Infos ; carnet d'ordres (3 affichages, regroupement des prix, un clic renseigne le prix de l'ordre) et transactions récentes ; formulaire Achat / Vente, Limite / Marché ; mes ordres et comptes. Déconnecté, les boutons mènent à la connexion et à l'inscription.
 - **Connexion** — identifiant par e-mail ou numéro mobile (indicatifs UEMOA), puis mot de passe ; Google / Apple.
 - **Inscription** — 3 étapes : identifiant + conditions, code à 6 chiffres (collage et remplissage SMS acceptés, renvoi après 60 s), mot de passe avec règles en direct ; écran final. Le champ du hero de l'accueil pré-remplit l'identifiant (`?identifier=`).
+
+- **Convertir** (menu Transactions → Echanger) — Payez / Obtenez avec sélecteurs de crypto, inversion, « Max », prix, frais (0,1 %, démo), tolérance de glissement (0,5 %, 1 %, personnalisée), minimum garanti, montant reçu ; bouton « Saisir le montant » / « Solde insuffisant » / « Convertir ».
+- **Recevoir** — 3 étapes : crypto (liste + raccourcis), réseau, détails du dépôt (avertissement réseau, adresse à copier, QR code, mémo quand le réseau l'exige, minimum, confirmations, délai).
+- **Envoyer** — 3 étapes : crypto ; destinataire (adresse validée selon le réseau, réseau déduit de l'adresse quand il est unique, carnet d'adresses, **transfert interne** vers un utilisateur Zurumi sans frais) ; montant (minimum, « Tout », solde, limite 24 h, objet, montant reçu, frais).
+- **Tutoriel** — à côté de chacun de ces trois widgets, un tutoriel en 4 étapes suit la saisie (l'étape en cours s'allume), avec des conseils et un lien vers Zurumi Verify.
+- **P2P** (menu Retirer) — **uniquement la vente d'USDT ou d'USDC contre des XOF**. Liste d'acheteurs (prix, ordres, taux de réussite, délai de paiement, quantité achetée, limites, moyens de paiement), filtres montant / moyen de paiement, tri. « Vendre » ouvre un panneau latéral : montant, XOF reçus, moyen de paiement, numéro Mobile Money, titulaire, confirmation, puis récapitulatif de l'ordre (démo). Tutoriel et règles de sécurité à côté.
+- **Zurumi Verify** — reprise de la livraison : 12 types d'éléments groupés, chargement en 3 phases avec sceau animé, 6 résultats (vérifié, non vérifié, suspect, bloqué, impossible, erreur) en « certificat », cartes « à vérifier avant de faire confiance », règles anti-phishing, appel au signalement. Valeurs de test : voir `integration/verify/README-livraison.md`.
+- **Signalement** — reprise de la livraison : nature, faits, preuves (glisser-déposer, 5 fichiers, 10 Mo), contact, champ piège, durée minimale de 6 s, addition, délai de 2 min entre deux envois ; confirmation avec numéro de dossier. `?type=p2p` présélectionne la nature.
+- **Documents légaux** — modèles génériques (conditions, confidentialité, risques, conformité) avec sommaire qui suit la lecture ; éléments à compléter entre crochets.
 
 Les formulaires valident côté client. Tant que leur action serveur vaut `#`, ils affichent un message de démo au lieu d'envoyer.
 
@@ -81,6 +97,14 @@ Tous les cours sont **fictifs** et simulés dans le navigateur :
 
 Pour brancher une API ou un WebSocket, gardez la forme des objets (`price`, `change['1h'|'4h'|'24h']`, `cap`, `volume`, `spark`… ; `last`, `candles`, `book`, `trades`… pour une paire) et remplacez `step()`. Les composants n'ont pas à changer.
 
+## Données des widgets
+
+Dans `content/data.js` (toutes marquées DÉMO) : `networks` (réseaux par crypto, frais, minimum, confirmations, délai, mémo), `demoBalances` (soldes affichés sans utilisateur connecté), `swapFee`, `slippageOptions`, `sendLimitXof`, `p2pOffers` (acheteurs fictifs), `securityEmail`.
+
+`useWallet()` renvoie les soldes de `window.__LANDING__.user.balances`, sinon les soldes de démo (les widgets l'indiquent).
+
+`market/addresses.js` valide les adresses par famille de réseau (EVM, Tron, Bitcoin, Solana, XRP, TON, Dogecoin, Cardano). Les **adresses de dépôt de démo sont volontairement invalides** (elles contiennent « DEMO0 ») : aucun portefeuille ne les accepterait si la démo était publiée par erreur. À remplacer par l'adresse fournie par l'API.
+
 ## Tokens
 
 `docs/design/zurumi-tokens.json` est la source de vérité. Chaque feuille devient une variable CSS nommée d'après son chemin :
@@ -111,7 +135,9 @@ Les liens par défaut sont dans `content/data.js` : les pages du squelette point
 </script>
 ```
 
-Clés : `home`, `quickBuy`, `markets`, `trade`, `login`, `signup`, `send`, `receive`, `swap`, `withdraw`, `wallet`, `deposit`, `search`, `forgotPassword`, `terms`, `privacy`, `appStore`, `googlePlay`, `download` (encodé dans le QR code), et les actions de formulaires `loginAction`, `signupAction`, `buyAction`.
+Clés : `home`, `quickBuy`, `markets`, `trade`, `login`, `signup`, `send`, `receive`, `swap`, `withdraw` (page P2P), `verify`, `report`, `terms`, `privacy`, `risks`, `compliance`, `wallet`, `deposit`, `search`, `forgotPassword`, `security`, `support`, `appStore`, `googlePlay`, `download` (encodé dans le QR code), et les actions de formulaires `loginAction`, `signupAction`, `buyAction`, `convertAction`, `sendAction`, `p2pAction`, `reportAction`. Le signalement lit aussi `window.__LANDING__.csrf`.
+
+Les textes des nouvelles pages et des documents légaux sont dans `content/fr-more.js` et `content/en-more.js`, fusionnés dans `fr.js` / `en.js`.
 
 `user` (non nul quand l'utilisateur est connecté) remplace, sur le trade, les boutons Connexion / Inscription par le bouton d'ordre et active le curseur de solde.
 
@@ -169,7 +195,7 @@ Dans le gabarit, `v-split` anime un titre mot à mot (A1) et `v-reveal` un bloc 
 | Composant | Props | Exemple |
 |---|---|---|
 | `ZButton` | `href`, `variant` (`primary` · `ghost` · `light` · `pill`), `size` (`md` · `lg`), `type` | `<ZButton href="#" size="lg">S'inscrire</ZButton>` |
-| `ZSelect` | `v-model`, `options` `[{ value, label, short?, sub?, glyph?, tone? }]`, `label`, `searchable`, `searchLabel`, `empty`, `align`, `variant` (`chip` · `plain` · `field`) | `<ZSelect v-model="crypto" :options="opts" label="Crypto" searchable />` |
+| `ZSelect` | `v-model`, `options` `[{ value, label, short?, sub?, glyph?, tone?, icon?, description?, group? }]`, `label`, `placeholder`, `searchable`, `searchLabel`, `empty`, `align`, `variant` (`chip` · `plain` · `field`) | `<ZSelect v-model="crypto" :options="opts" label="Crypto" searchable />` |
 | `ZTag` | — (slot) | `<ZTag>Nos services</ZTag>` |
 | `ZCoinIcon` | `glyph`, `tone`, `size` | `<ZCoinIcon glyph="₿" tone="#F7931A" />` |
 | `ZCoinChip` | `coin` (objet de `data.js`) | `<ZCoinChip :coin="coin" />` |
@@ -187,6 +213,10 @@ Dans le gabarit, `v-split` anime un titre mot à mot (A1) et `v-reveal` un bloc 
 | `buy/` | `BuyWidget` (`data`, `common`) |
 | `trade/` | `PairHeader`, `TickerStrip`, `TradeChart` (`candles`, `version`, `formatPrice`, `formatTime`, `label`), `OrderBook` (émet `pick`, `group`), `OrderForm` (expose `setPrice`), `OrdersPanel` |
 | `auth/` | `AuthVisual`, `IdentifierField` (`v-model:method/email/phone/country`), `PasswordField`, `OtpInput`, `AuthProviders`, `validate.js` |
+| `tools/` | `ToolPage` (titre + widget + tutoriel), `TutorialSteps` (`data`, `active`), `StepBlock` (`n`, `title`, `done`, `last`), `ConvertWidget`, `ReceiveWidget`, `SendWidget` (émettent `step`) |
+| `p2p/` | `SellSheet` (`offer`, `coin`, `data`, `common`, émet `close`) — panneau modal, focus piégé, Échap |
+| `verify/` | `VerifyCard` (`data`, `links`), `VerifySeal` (`tone`, `icon`, `size`) ; logique dans `resources/js/landing/verify/` |
+| `report/` | `ReportForm` (`data`, `endpoint`, `csrfToken`, `supportMail`) |
 
 ### `sections/` (accueil)
 
@@ -235,7 +265,10 @@ La prop `image` remplace le visuel en code par une vraie image : `{ avif, webp, 
 
 - **Démo HTML de référence** : absente du dépôt. L'accueil suit la maquette statique et le tableau des animations.
 - **Routes** : `send`, `receive`, `swap`, `withdraw`, `wallet`, `deposit`, `search`, `forgotPassword`, `terms`, `privacy`, les stores et les fournisseurs Google / Apple valent `#`.
-- **Back-end** : connexion, inscription (envoi et vérification du code), achat rapide et ordres ne sont pas branchés.
+- **Back-end** : connexion, inscription (envoi et vérification du code), achat rapide, conversion, envoi, P2P, ordres et signalement ne sont pas branchés ; Verify tourne sur son registre fictif (`VITE_VERIFY_USE_MOCK`). Les stubs Laravel livrés sont dans `integration/`.
+- **Adresses de dépôt** : fictives et volontairement invalides — à fournir par l'API.
+- **Documents légaux** : modèles génériques à faire relire par un juriste ; compléter les crochets.
+- **P2P** : le blocage des cryptos pendant l'ordre et les règles de litige sont à valider (`// À VALIDER`).
 - **Données** : cours, capitalisations, volumes, carnet, transactions et limites d'achat sont fictifs (`// DÉMO`).
 - **Lien de téléchargement** : `download` est un lien d'exemple ; le QR code l'encode.
 - **Logo** : le « Z » est un substitut (`ZLogo`, prop `image`).

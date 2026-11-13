@@ -33,14 +33,14 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
       <nav class="nav__menu" :aria-label="data.label">
         <ul>
           <li v-for="(item, i) in data.items" :key="item.label" class="nav__in" :style="{ '--n': i + 1 }">
-            <NavDropdown v-if="item.children" :item="item" />
+            <NavDropdown v-if="item.children" :item="item" :page="page" />
             <a
               v-else
               class="nav__link label"
               :class="{ 'is-current': item.page && item.page === page }"
               :href="item.href"
               :aria-current="item.page && item.page === page ? 'page' : undefined"
-            >{{ item.label }}</a>
+            >{{ item.label }}<span v-if="item.badge" class="nav__badge">{{ item.badge }}</span></a>
           </li>
         </ul>
       </nav>
@@ -71,13 +71,13 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
       <ul>
         <template v-for="item in data.items" :key="item.label">
           <li v-if="!item.children">
-            <a :href="item.href" :aria-current="item.page && item.page === page ? 'page' : undefined" @click="open = false">{{ item.label }}</a>
+            <a :href="item.href" :aria-current="item.page && item.page === page ? 'page' : undefined" @click="open = false">{{ item.label }}<span v-if="item.badge" class="nav__badge">{{ item.badge }}</span></a>
           </li>
           <li v-else>
             <span class="nav__group label">{{ item.label }}</span>
             <ul>
               <li v-for="child in item.children" :key="child.label">
-                <a :href="child.href" @click="open = false"><ZIcon :name="child.icon" :size="16" /> {{ child.label }}</a>
+                <a :href="child.href" :aria-current="child.page && child.page === page ? 'page' : undefined" @click="open = false"><ZIcon :name="child.icon" :size="16" /> {{ child.label }}</a>
               </li>
             </ul>
           </li>
@@ -124,6 +124,7 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
 .nav__link.is-current::after {
   content: ''; position: absolute; left: 0; right: 0; bottom: 12px; height: 1px; background: var(--gradient-brand-soft);
 }
+.nav__badge { margin-left: 2px; padding: 1px 5px; border-radius: 4px; font-size: 9px; letter-spacing: 0.06em; color: var(--color-brand-primary-300); background: color-mix(in srgb, var(--color-brand-primary) 30%, transparent); }
 .nav__right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 .nav__tool { margin-right: 18px; }
 .nav__burger { display: none; width: 36px; height: 36px; place-items: center; }

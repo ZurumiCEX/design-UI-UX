@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- @include head -->
+    <title>Signaler une arnaque — Zurumi</title>
+    <meta name="description" content="Signalez une arnaque, une usurpation d’identité ou un abus lié à Zurumi. L’équipe conformité répond sous 48 heures ouvrées." />
+    <meta property="og:title" content="Signaler une arnaque — Zurumi" />
+    <meta property="og:description" content="Signalez une arnaque, une usurpation d’identité ou un abus lié à Zurumi. L’équipe conformité répond sous 48 heures ouvrées." />
+  </head>
+  <body>
+    <!--
+      Ce fichier joue le rôle d'une vue Blade (resources/views/landing/report.blade.php).
+      Le contenu de #landing est le rendu « serveur » : navigation, <h1> et introduction en HTML pur
+      (SEO, pas d'écran vide, page lisible sans JavaScript). Vue le remplace au montage.
+    -->
+    <div id="landing">
+      <div class="fallback">
+        <!-- @include fallback-nav -->
+        <main id="top">
+          <h1>Signaler une arnaque ou un abus</h1>
+          <p>Le formulaire nécessite JavaScript. Écrivez directement à <a href="mailto:securite@zurumi.com">securite@zurumi.com</a> en décrivant les faits et en joignant vos captures d’écran.</p>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/resources/js/landing/entries/report.js"></script>
+  </body>
+</html>

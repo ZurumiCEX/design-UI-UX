@@ -13,6 +13,16 @@ const pages = {
   trade: here('./trade/index.html'),
   login: here('./connexion/index.html'),
   signup: here('./inscription/index.html'),
+  convert: here('./convertir/index.html'),
+  receive: here('./recevoir/index.html'),
+  send: here('./envoyer/index.html'),
+  p2p: here('./p2p/index.html'),
+  verify: here('./verify/index.html'),
+  report: here('./signaler-une-arnaque/index.html'),
+  terms: here('./legal/conditions/index.html'),
+  privacy: here('./legal/confidentialite/index.html'),
+  risks: here('./legal/risques/index.html'),
+  compliance: here('./legal/conformite/index.html'),
 };
 
 // <!-- @include nom --> insère resources/views/partials/nom.html (l'équivalent d'un @include Blade).

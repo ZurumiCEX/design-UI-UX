@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- @include head -->
+    <title>Zurumi Verify — Vérification officielle</title>
+    <meta name="description" content="Vérifiez si un site, un e-mail, une adresse de wallet ou un compte social est officiellement associé à Zurumi." />
+    <meta property="og:title" content="Zurumi Verify — Vérification officielle" />
+    <meta property="og:description" content="Vérifiez si un site, un e-mail, une adresse de wallet ou un compte social est officiellement associé à Zurumi." />
+  </head>
+  <body>
+    <!--
+      Ce fichier joue le rôle d'une vue Blade (resources/views/landing/verify.blade.php).
+      Le contenu de #landing est le rendu « serveur » : navigation, <h1> et introduction en HTML pur
+      (SEO, pas d'écran vide, page lisible sans JavaScript). Vue le remplace au montage.
+    -->
+    <div id="landing">
+      <div class="fallback">
+        <!-- @include fallback-nav -->
+        <main id="top">
+          <h1>Vérifiez avant de faire confiance.</h1>
+          <p>Vérifiez si un site web, un e-mail, une adresse de wallet ou un compte social est officiellement associé à Zurumi.</p>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/resources/js/landing/entries/verify.js"></script>
+  </body>
+</html>

@@ -8,11 +8,11 @@ import { vReveal, vSplit, whenReady } from './composables/useReveal.js';
  * Configuration optionnelle injectée par l'hôte (Blade, Nuxt, Next…) AVANT le script :
  *   window.__LANDING__ = { locale: 'fr', links: { signup: '/inscription', … }, user: null }
  */
-export async function boot(Page, { page }) {
+export async function boot(Page, { page, props = {} }) {
   const config = window.__LANDING__ ?? {};
   await initI18n({ page, config }); // la langue est prête avant le premier rendu : pas de bascule visible
 
-  createApp({ render: () => h(Page) })
+  createApp({ render: () => h(Page, props) })
     .directive('reveal', vReveal)
     .directive('split', vSplit)
     .mount('#landing');

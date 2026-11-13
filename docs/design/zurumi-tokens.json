@@ -10,7 +10,7 @@
     "bg":      { "base": { "$type": "color", "$value": "#050507" }, "surface": { "$type": "color", "$value": "#0C0C12" }, "surface-2": { "$type": "color", "$value": "#13131B" } },
     "text":    { "default": { "$type": "color", "$value": "#FFFFFF" }, "muted": { "$type": "color", "$value": "#FFFFFF99" }, "dim": { "$type": "color", "$value": "#FFFFFF5C" } },
     "line":    { "default": { "$type": "color", "$value": "#FFFFFF14" }, "strong": { "$type": "color", "$value": "#FFFFFF29" } },
-    "state":   { "up": { "$type": "color", "$value": "#3DDC97" }, "down": { "$type": "color", "$value": "#FF5C7A" } },
+    "state":   { "up": { "$type": "color", "$value": "#3DDC97" }, "down": { "$type": "color", "$value": "#FF5C7A" }, "warn": { "$type": "color", "$value": "#E08A3C", "$description": "Avertissement (Zurumi Verify : état Suspect)" } },
     "sky":     { "top": { "$type": "color", "$value": "#141A33" }, "mid": { "$type": "color", "$value": "#33427A" }, "bottom": { "$type": "color", "$value": "#8FA1DC" } }
   },
   "gradient": {

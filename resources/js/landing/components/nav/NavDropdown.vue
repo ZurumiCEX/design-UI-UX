@@ -1,10 +1,14 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import ZIcon from '../ui/ZIcon.vue';
 import ZIconTile from '../ui/ZIconTile.vue';
 
 // Menu déroulant accessible (A9) : survol, focus, clic, fermeture par Échap.
-defineProps({ item: { type: Object, required: true } });
+const props = defineProps({
+  item: { type: Object, required: true },
+  page: { type: String, default: '' }, // page courante : marque l'entrée active
+});
+const current = computed(() => props.item.children.some((c) => c.page && c.page === props.page));
 
 const open = ref(false);
 const hovered = ref(-1);
@@ -33,6 +37,7 @@ function onFocusOut(e) {
       ref="trigger"
       type="button"
       class="dd__trigger label"
+      :class="{ 'is-current': current }"
       aria-haspopup="true"
       :aria-expanded="open"
       :aria-controls="id"
@@ -46,6 +51,7 @@ function onFocusOut(e) {
         <a
           class="dd__link"
           :href="child.href"
+          :aria-current="child.page && child.page === page ? 'page' : undefined"
           @mouseenter="hovered = i"
           @mouseleave="hovered = -1"
           @focus="hovered = i"
@@ -62,7 +68,10 @@ function onFocusOut(e) {
 <style scoped>
 .dd { position: relative; }
 .dd__trigger { display: inline-flex; align-items: center; gap: 6px; height: var(--space-nav-height); color: var(--color-text-muted); transition: color var(--motion-duration-hover); }
-.dd__trigger:hover, .dd.is-open .dd__trigger { color: var(--color-text-default); }
+.dd__trigger:hover, .dd.is-open .dd__trigger, .dd__trigger.is-current { color: var(--color-text-default); }
+.dd__trigger.is-current { position: relative; }
+.dd__trigger.is-current::after { content: ''; position: absolute; left: 0; right: 18px; bottom: 12px; height: 1px; background: var(--gradient-brand-soft); }
+.dd__link[aria-current] { color: var(--color-brand-primary-300); }
 .dd__chevron { transition: transform var(--duration-panel) var(--motion-ease-out); }
 .dd.is-open .dd__chevron { transform: rotate(180deg); }
 .dd__panel {

@@ -1,6 +1,7 @@
 // Contenu — référence française.
 // Tout le texte vit ici : les composants n'en contiennent aucun. en.js reprend exactement les mêmes clés.
 // Les données sans texte (cours, paires, moyens de paiement, liens) sont dans data.js.
+import morePages from './fr-more.js';
 import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, pairs, paymentMethods } from './data.js';
 
 const countryNames = {
@@ -53,12 +54,12 @@ export default function createContent(linkOverrides = {}) {
       {
         label: 'Transactions',
         children: [
-          { label: 'Envoyer', href: links.send, icon: 'send' },
-          { label: 'Recevoir', href: links.receive, icon: 'receive' },
-          { label: 'Echanger', href: links.swap, icon: 'swap' },
+          { label: 'Envoyer', href: links.send, icon: 'send', page: 'send' },
+          { label: 'Recevoir', href: links.receive, icon: 'receive', page: 'receive' },
+          { label: 'Echanger', href: links.swap, icon: 'swap', page: 'convert' },
         ],
       },
-      { label: 'Retirer', href: links.withdraw },
+      { label: 'Retirer', href: links.withdraw, page: 'p2p', badge: 'P2P' },
       { label: 'Portefeuille', href: links.wallet },
     ],
     search: 'Rechercher',
@@ -81,7 +82,7 @@ export default function createContent(linkOverrides = {}) {
           { label: 'Envoyer', href: links.send },
           { label: 'Recevoir', href: links.receive },
           { label: 'Echanger', href: links.swap },
-          { label: 'Retirer', href: links.withdraw },
+          { label: 'Retirer (P2P)', href: links.withdraw },
         ],
       },
       {
@@ -90,7 +91,7 @@ export default function createContent(linkOverrides = {}) {
           { label: 'À propos', href: '#' },
           { label: 'Carrières', href: '#' },
           { label: 'Presse', href: '#' },
-          { label: 'Zurumi Verify', href: '#' },
+          { label: 'Zurumi Verify', href: links.verify },
         ],
       },
       {
@@ -98,7 +99,7 @@ export default function createContent(linkOverrides = {}) {
         links: [
           { label: "Centre d'aide", href: '#' },
           { label: 'Nous contacter', href: '#' },
-          { label: 'Signaler un abus', href: '#' },
+          { label: 'Signaler un abus', href: links.report },
           { label: 'État des services', href: '#' },
         ],
       },
@@ -107,8 +108,8 @@ export default function createContent(linkOverrides = {}) {
         links: [
           { label: "Conditions d'utilisation", href: links.terms },
           { label: 'Confidentialité', href: links.privacy },
-          { label: 'Avertissement sur les risques', href: '#' },
-          { label: 'Conformité', href: '#' },
+          { label: 'Avertissement sur les risques', href: links.risks },
+          { label: 'Conformité', href: links.compliance },
         ],
       },
     ],
@@ -637,5 +638,6 @@ export default function createContent(linkOverrides = {}) {
     },
   };
 
-  return { locale: 'fr', common, nav, footer, sections, auth, pages };
+  const more = morePages(links);
+  return { locale: 'fr', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages }, legal: more.legal };
 }

@@ -10,16 +10,22 @@ export const defaultLinks = {
   trade: '/trade/',
   login: '/connexion/',
   signup: '/inscription/',
-  send: '#',
-  receive: '#',
-  swap: '#',
-  withdraw: '#',
+  send: '/envoyer/',
+  receive: '/recevoir/',
+  swap: '/convertir/',
+  withdraw: '/p2p/',
+  verify: '/verify/',
+  report: '/signaler-une-arnaque/',
+  terms: '/legal/conditions/',
+  privacy: '/legal/confidentialite/',
+  risks: '/legal/risques/',
+  compliance: '/legal/conformite/',
   wallet: '#',
   deposit: '#',
   search: '#',
   forgotPassword: '#',
-  terms: '#',
-  privacy: '#',
+  security: '#',
+  support: '#',
   appStore: '#',
   googlePlay: '#',
   // À REMPLACER — lien de téléchargement réel, encodé dans le QR code.
@@ -28,6 +34,11 @@ export const defaultLinks = {
   loginAction: '#',
   signupAction: '#',
   buyAction: '#',
+  convertAction: '#',
+  sendAction: '#',
+  p2pAction: '#',
+  // Signalement : point d'entrée POST multipart (voir integration/signalement/). '#' = démo.
+  reportAction: '#',
 };
 
 // Taux de référence USDT → XOF. DÉMO — à remplacer par le taux de l'API.
@@ -90,3 +101,70 @@ export const languages = [
   { code: 'fr', label: 'Français' },
   { code: 'en', label: 'English' },
 ];
+
+// ---------------------------------------------------------------------------
+// Réseaux de dépôt / retrait par crypto.
+// DÉMO — à remplacer : frais (dans l'unité de la crypto), minimums, confirmations et délais.
+// `family` sert à valider le format d'adresse (market/addresses.js) ; `memo` = mémo / tag obligatoire.
+// ---------------------------------------------------------------------------
+const NET = {
+  btc: { id: 'btc', name: 'Bitcoin', short: 'BTC', family: 'btc', confirmations: 2, eta: 30 },
+  erc20: { id: 'erc20', name: 'Ethereum (ERC20)', short: 'ERC20', family: 'evm', confirmations: 12, eta: 5 },
+  bep20: { id: 'bep20', name: 'BNB Smart Chain (BEP20)', short: 'BEP20', family: 'evm', confirmations: 15, eta: 1 },
+  trc20: { id: 'trc20', name: 'Tron (TRC20)', short: 'TRC20', family: 'tron', confirmations: 20, eta: 2 },
+  polygon: { id: 'polygon', name: 'Polygon', short: 'POL', family: 'evm', confirmations: 128, eta: 5 },
+  sol: { id: 'sol', name: 'Solana', short: 'SOL', family: 'sol', confirmations: 1, eta: 1 },
+  xrp: { id: 'xrp', name: 'XRP Ledger', short: 'XRP', family: 'xrp', confirmations: 1, eta: 1, memo: true },
+  ton: { id: 'ton', name: 'TON', short: 'TON', family: 'ton', confirmations: 1, eta: 1, memo: true },
+  doge: { id: 'doge', name: 'Dogecoin', short: 'DOGE', family: 'doge', confirmations: 6, eta: 10 },
+  ada: { id: 'ada', name: 'Cardano', short: 'ADA', family: 'ada', confirmations: 15, eta: 5 },
+  avax: { id: 'avaxc', name: 'Avalanche C-Chain', short: 'AVAX-C', family: 'evm', confirmations: 1, eta: 1 },
+};
+const net = (key, fee, min) => ({ ...NET[key], fee, min });
+
+export const networks = {
+  btc: [net('btc', 0.00012, 0.0005)],
+  eth: [net('erc20', 0.0012, 0.005), net('bep20', 0.0001, 0.005)],
+  usdt: [net('trc20', 1, 5), net('erc20', 4.5, 10), net('bep20', 0.3, 5), net('polygon', 0.2, 5)],
+  usdc: [net('erc20', 4.5, 10), net('polygon', 0.2, 5), net('bep20', 0.3, 5)],
+  sol: [net('sol', 0.002, 0.05)],
+  bnb: [net('bep20', 0.0005, 0.01)],
+  xrp: [net('xrp', 0.2, 10)],
+  trx: [net('trc20', 1, 10)],
+  doge: [net('doge', 4, 50)],
+  ton: [net('ton', 0.05, 1)],
+  ada: [net('ada', 0.8, 10)],
+  avax: [net('avax', 0.01, 0.1)],
+  link: [net('erc20', 0.35, 1), net('bep20', 0.02, 1)],
+  pol: [net('polygon', 0.1, 1)],
+  dai: [net('erc20', 4.5, 10), net('polygon', 0.2, 5)],
+};
+
+// Cryptos proposées en raccourci (Recevoir / Envoyer).
+export const quickCoins = ['usdt', 'btc', 'eth', 'sol', 'trx'];
+
+// DÉMO — soldes affichés tant que l'hôte ne fournit pas window.__LANDING__.user.balances.
+export const demoBalances = { usdt: 250, usdc: 120, btc: 0.05, eth: 1.2, sol: 14, bnb: 2, trx: 3000, xrp: 400, doge: 1500, ton: 35, ada: 900, avax: 6, link: 40, pol: 800, dai: 75 };
+
+// DÉMO — à valider : frais de conversion (0,1 %) et limite d'envoi sur 24 h (en XOF).
+export const swapFee = 0.001;
+export const slippageOptions = [0.5, 1];
+export const sendLimitXof = 10000000;
+
+// ---------------------------------------------------------------------------
+// P2P — DÉMO : acheteurs fictifs qui achètent vos USDT / USDC contre des XOF.
+// `price` en XOF par unité, `available` en crypto, `limits` en XOF, `release` en minutes.
+// ---------------------------------------------------------------------------
+export const p2pCoins = ['usdt', 'usdc'];
+export const p2pOffers = [
+  { id: 'o1', merchant: 'Kora Change', verified: true, orders: 2841, completion: 99.2, release: 3, price: { usdt: 612, usdc: 610 }, available: { usdt: 18400, usdc: 5200 }, limits: { min: 5000, max: 2000000 }, methods: ['wave', 'orange'] },
+  { id: 'o2', merchant: 'Baobab OTC', verified: true, orders: 1530, completion: 98.7, release: 5, price: { usdt: 611, usdc: 611 }, available: { usdt: 42000, usdc: 12000 }, limits: { min: 50000, max: 5000000 }, methods: ['wave', 'orange', 'mixx'] },
+  { id: 'o3', merchant: 'Sahel Pay', verified: true, orders: 976, completion: 99.6, release: 2, price: { usdt: 610, usdc: 608 }, available: { usdt: 6100, usdc: 2400 }, limits: { min: 2000, max: 500000 }, methods: ['wave'] },
+  { id: 'o4', merchant: 'Lagune Express', verified: false, orders: 214, completion: 97.1, release: 8, price: { usdt: 613, usdc: 0 }, available: { usdt: 1800, usdc: 0 }, limits: { min: 10000, max: 300000 }, methods: ['orange', 'mixx'] },
+  { id: 'o5', merchant: 'Djoliba Cash', verified: true, orders: 3320, completion: 99.4, release: 4, price: { usdt: 609, usdc: 609 }, available: { usdt: 95000, usdc: 30000 }, limits: { min: 100000, max: 10000000 }, methods: ['wave', 'orange'] },
+  { id: 'o6', merchant: 'Niayes P2P', verified: false, orders: 88, completion: 95.5, release: 10, price: { usdt: 614, usdc: 612 }, available: { usdt: 900, usdc: 600 }, limits: { min: 5000, max: 150000 }, methods: ['wave', 'mixx'] },
+  { id: 'o7', merchant: 'Fleuve Market', verified: true, orders: 1207, completion: 98.9, release: 6, price: { usdt: 608, usdc: 607 }, available: { usdt: 27000, usdc: 9000 }, limits: { min: 20000, max: 3000000 }, methods: ['orange'] },
+];
+
+// Contact sécurité (signalements urgents).
+export const securityEmail = 'securite@zurumi.com';

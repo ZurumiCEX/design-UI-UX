@@ -1,4 +1,5 @@
 // Content — English. Same keys as fr.js (the reference). Keep both files in sync.
+import morePages from './en-more.js';
 import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, pairs, paymentMethods } from './data.js';
 
 const countryNames = {
@@ -50,12 +51,12 @@ export default function createContent(linkOverrides = {}) {
       {
         label: 'Transactions',
         children: [
-          { label: 'Send', href: links.send, icon: 'send' },
-          { label: 'Receive', href: links.receive, icon: 'receive' },
-          { label: 'Swap', href: links.swap, icon: 'swap' },
+          { label: 'Send', href: links.send, icon: 'send', page: 'send' },
+          { label: 'Receive', href: links.receive, icon: 'receive', page: 'receive' },
+          { label: 'Swap', href: links.swap, icon: 'swap', page: 'convert' },
         ],
       },
-      { label: 'Withdraw', href: links.withdraw },
+      { label: 'Withdraw', href: links.withdraw, page: 'p2p', badge: 'P2P' },
       { label: 'Wallet', href: links.wallet },
     ],
     search: 'Search',
@@ -78,7 +79,7 @@ export default function createContent(linkOverrides = {}) {
           { label: 'Send', href: links.send },
           { label: 'Receive', href: links.receive },
           { label: 'Swap', href: links.swap },
-          { label: 'Withdraw', href: links.withdraw },
+          { label: 'Withdraw (P2P)', href: links.withdraw },
         ],
       },
       {
@@ -87,7 +88,7 @@ export default function createContent(linkOverrides = {}) {
           { label: 'About', href: '#' },
           { label: 'Careers', href: '#' },
           { label: 'Press', href: '#' },
-          { label: 'Zurumi Verify', href: '#' },
+          { label: 'Zurumi Verify', href: links.verify },
         ],
       },
       {
@@ -95,7 +96,7 @@ export default function createContent(linkOverrides = {}) {
         links: [
           { label: 'Help center', href: '#' },
           { label: 'Contact us', href: '#' },
-          { label: 'Report abuse', href: '#' },
+          { label: 'Report abuse', href: links.report },
           { label: 'Service status', href: '#' },
         ],
       },
@@ -104,8 +105,8 @@ export default function createContent(linkOverrides = {}) {
         links: [
           { label: 'Terms of use', href: links.terms },
           { label: 'Privacy', href: links.privacy },
-          { label: 'Risk warning', href: '#' },
-          { label: 'Compliance', href: '#' },
+          { label: 'Risk warning', href: links.risks },
+          { label: 'Compliance', href: links.compliance },
         ],
       },
     ],
@@ -622,5 +623,6 @@ export default function createContent(linkOverrides = {}) {
     },
   };
 
-  return { locale: 'en', common, nav, footer, sections, auth, pages };
+  const more = morePages(links);
+  return { locale: 'en', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages }, legal: more.legal };
 }

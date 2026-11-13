@@ -18,7 +18,7 @@
   <img alt="Objectif Lighthouse performance 90 et plus" src="https://img.shields.io/badge/Lighthouse-objectif_%E2%89%A5_90-3DDC97?style=flat-square&logo=lighthouse&logoColor=white&labelColor=13131B">
   <img alt="Budget JavaScript inférieur à 90 Ko compressé" src="https://img.shields.io/badge/JS-%3C_90_Ko_gzip-F7DF1E?style=flat-square&logo=javascript&logoColor=black&labelColor=13131B">
   <img alt="Langues : français et anglais" src="https://img.shields.io/badge/langues-FR_%C2%B7_EN-9DB0F2?style=flat-square&labelColor=13131B">
-  <img alt="6 pages" src="https://img.shields.io/badge/pages-6-B794E6?style=flat-square&labelColor=13131B">
+  <img alt="16 pages" src="https://img.shields.io/badge/pages-16-B794E6?style=flat-square&labelColor=13131B">
   <img alt="prefers-reduced-motion respecté" src="https://img.shields.io/badge/reduced--motion-respect%C3%A9-B794E6?style=flat-square&labelColor=13131B">
 </p>
 
@@ -91,8 +91,15 @@ Le violet `#5D3587` est trop sombre pour du texte sur fond noir : il est réserv
 | **Trade** | `/trade/` | Paires, graphique en chandeliers, carnet d'ordres, transactions récentes, formulaire d'ordre |
 | **Connexion** | `/connexion/` | E-mail ou numéro mobile, puis mot de passe |
 | **Inscription** | `/inscription/` | Trois étapes : identifiant, code de vérification, mot de passe |
+| **Convertir** | `/convertir/` | Crypto → crypto au taux affiché, frais, tolérance de glissement ; tutoriel à côté |
+| **Recevoir** | `/recevoir/` | Crypto, réseau, adresse de dépôt (copie, QR code, mémo) ; tutoriel à côté |
+| **Envoyer** | `/envoyer/` | Adresse validée par réseau ou transfert interne, montant et frais ; tutoriel à côté |
+| **P2P** | `/p2p/` | Vente d'USDT ou d'USDC contre des XOF à des acheteurs, sur Wave, Orange Money ou Mixx by Yas |
+| **Zurumi Verify** | `/verify/` | Vérifier un site, un e-mail, un wallet ou un compte social officiel |
+| **Signalement** | `/signaler-une-arnaque/` | Signaler une arnaque ou un abus, preuves jointes |
+| **Légal** | `/legal/…` | Conditions, confidentialité, risques, conformité (modèles à valider) |
 
-Le menu suit l'ordre : Achat rapide · Marchés · Trade · Transactions · Retirer · Portefeuille. Le sélecteur de langue bascule tout le site entre le français et l'anglais, sans recharger la page.
+Le menu suit l'ordre : Achat rapide · Marchés · Trade · Transactions (Envoyer, Recevoir, Echanger) · Retirer (P2P) · Portefeuille. Le sélecteur de langue bascule tout le site entre le français et l'anglais, sans recharger la page.
 
 ## ✦ Sections de la page d'accueil
 
