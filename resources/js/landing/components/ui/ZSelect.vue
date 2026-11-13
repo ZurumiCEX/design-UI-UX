@@ -7,7 +7,8 @@ import ZIcon from './ZIcon.vue';
 // Clavier : ↓/↑ pour parcourir, Entrée pour choisir, Échap pour fermer.
 const props = defineProps({
   modelValue: { type: [String, Number], default: null },
-  // [{ value, label, short?, sub?, subClass?, glyph?, tone?, icon?, description?, group?, keywords? }]
+  // [{ value, label, short?, sub?, subClass?, glyph?, tone?, icon?, logos?, description?, group?, keywords? }]
+  // logos : images de marque (moyens de paiement), affichées sur des pastilles blanches.
   // Les options d'un même `group` doivent se suivre.
   options: { type: Array, required: true },
   label: { type: String, required: true }, // nom accessible
@@ -91,7 +92,8 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', onOutside));
       @click="open ? hide() : show()"
       @keydown.down.prevent="show()"
     >
-      <ZCoinIcon v-if="selected?.glyph" :glyph="selected.glyph" :tone="selected.tone" :size="20" />
+      <span v-if="selected?.logos" class="zs__logos" aria-hidden="true"><img v-for="l in selected.logos" :key="l" :src="l" alt="" width="28" height="28" /></span>
+      <ZCoinIcon v-else-if="selected?.glyph" :glyph="selected.glyph" :tone="selected.tone" :size="20" />
       <ZIcon v-else-if="selected?.icon" :name="selected.icon" :size="16" class="zs__btn-icon" />
       <span class="zs__value" :class="{ 'is-placeholder': !selected }">{{ selected ? selected.short ?? selected.label : placeholder }}</span>
       <ZIcon name="chevron" :size="14" class="zs__chev" />
@@ -132,7 +134,8 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', onOutside));
           @click="choose(o)"
           @pointermove="active = i"
         >
-          <ZCoinIcon v-if="o.glyph" :glyph="o.glyph" :tone="o.tone" :size="22" />
+          <span v-if="o.logos" class="zs__logos" aria-hidden="true"><img v-for="l in o.logos" :key="l" :src="l" alt="" width="28" height="28" loading="lazy" /></span>
+          <ZCoinIcon v-else-if="o.glyph" :glyph="o.glyph" :tone="o.tone" :size="22" />
           <span v-else-if="o.icon" class="zs__icon"><ZIcon :name="o.icon" :size="16" /></span>
           <span class="zs__text">
             <span class="zs__label">{{ o.label }}</span>
@@ -183,6 +186,8 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', onOutside));
 .zs__desc { font-size: 11.5px; color: var(--color-text-muted); }
 .zs__icon { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--fill-2); color: var(--color-brand-primary-300); }
 .zs__btn-icon { color: var(--color-brand-primary-300); }
+.zs__logos { display: inline-flex; flex: none; gap: 3px; }
+.zs__logos img { width: 30px; height: 30px; padding: 1px; border-radius: 8px; background: var(--color-text-default); object-fit: contain; }
 .zs__group { padding: 10px 8px 4px; font-size: 10.5px; font-weight: var(--font-weight-semibold); letter-spacing: var(--font-tracking-label); text-transform: uppercase; color: var(--color-text-dim); }
 .zs__sub { margin-left: auto; font-size: 12px; color: var(--color-text-muted); }
 .zs__check { color: var(--color-brand-primary-300); flex: none; }

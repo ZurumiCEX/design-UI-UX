@@ -119,7 +119,26 @@ export const countries = [
 export const defaultCountry = 'SN';
 
 // DÉMO — à remplacer : limites de l'achat rapide, en XOF.
-export const buyLimits = { min: 1000, max: 2000000 };
+// Achat rapide : devises de paiement (limites dans la devise), moyens de paiement (logos dans
+// public/images/payments/, frais de traitement), frais réseau et taux USD → XOF. DÉMO, à brancher.
+export const buy = {
+  usdXof: 605,
+  networkFeeUsd: 0.99,
+  currencies: [
+    { id: 'XOF', glyph: 'F', tone: '#0A8F5B', min: 5000, max: 3000000, decimals: 0 },
+    { id: 'USD', glyph: '$', tone: '#F0B90B', min: 10, max: 5000, decimals: 2 },
+  ],
+  methods: [
+    { id: 'card', logos: ['/images/payments/visa.webp', '/images/payments/mastercard.webp'], fee: 0.015 },
+    { id: 'wave', name: 'Wave', logos: ['/images/payments/wave.webp'], fee: 0.01 },
+    { id: 'orange', name: 'Orange Money', logos: ['/images/payments/orange-money.webp'], fee: 0.01 },
+    { id: 'mixx', name: 'Mixx by Yas', logos: ['/images/payments/mixx.webp'], fee: 0.01 },
+    { id: 'mtn', name: 'MTN Mobile Money', logos: ['/images/payments/mtn.webp'], fee: 0.01 },
+    { id: 'moov', name: 'Moov Money', logos: ['/images/payments/moov.webp'], fee: 0.01 },
+    { id: 'wizall', name: 'Wizall Money', logos: ['/images/payments/wizall.webp'], fee: 0.01 },
+    { id: 'emoney', name: 'E-Money', logos: ['/images/payments/e-money.webp'], fee: 0.01 },
+  ],
+};
 
 // Langues proposées dans le sélecteur.
 export const languages = [

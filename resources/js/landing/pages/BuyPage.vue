@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 import { useI18n } from '../composables/useI18n.js';
 import SiteLayout from '../components/layout/SiteLayout.vue';
 import BuyWidget from '../components/buy/BuyWidget.vue';
-import ZCoinIcon from '../components/ui/ZCoinIcon.vue';
 import ZIcon from '../components/ui/ZIcon.vue';
 import ZIconTile from '../components/ui/ZIconTile.vue';
 
@@ -29,8 +28,9 @@ const openFaq = ref(0);
           <div v-reveal class="buy-hero__methods">
             <p class="label">{{ data.methodsLabel }}</p>
             <ul>
-              <li v-for="m in common.paymentMethods" :key="m.id">
-                <ZCoinIcon :glyph="m.glyph" :tone="m.tone" :size="20" /> {{ m.name }}
+              <li v-for="m in common.buy.methods" :key="m.id">
+                <span class="pay-logos" aria-hidden="true"><img v-for="l in m.logos" :key="l" :src="l" alt="" width="22" height="22" /></span>
+                {{ m.name ?? data.widget.card }}
               </li>
             </ul>
           </div>
@@ -90,7 +90,9 @@ const openFaq = ref(0);
 .buy-hero__methods { margin-top: 44px; }
 .buy-hero__methods .label { color: var(--color-text-dim); }
 .buy-hero__methods ul { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.buy-hero__methods li { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 8px; border-radius: var(--radius-pill); background: var(--color-bg-surface-2); border: 1px solid var(--color-line-default); font-size: 13px; font-weight: var(--font-weight-medium); }
+.buy-hero__methods li { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 6px; border-radius: var(--radius-pill); background: var(--color-bg-surface-2); border: 1px solid var(--color-line-default); font-size: 13px; font-weight: var(--font-weight-medium); }
+.pay-logos { display: inline-flex; gap: 2px; }
+.pay-logos img { width: 26px; height: 26px; padding: 1px; border-radius: 7px; background: var(--color-text-default); object-fit: contain; }
 
 .buy-steps { border-top: 1px solid var(--color-line-default); }
 .buy-steps__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 56px; }

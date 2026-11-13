@@ -4,7 +4,7 @@
 import accountContent from './fr-account.js';
 import companyContent from './fr-company.js';
 import morePages from './fr-more.js';
-import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, media, pairs, paymentMethods } from './data.js';
+import { buy, coins, countries, defaultCountry, defaultLinks, languages, media, pairs, paymentMethods } from './data.js';
 
 const countryNames = {
   BJ: 'Bénin',
@@ -34,7 +34,7 @@ export default function createContent(linkOverrides = {}) {
     stores,
     languages,
     paymentMethods,
-    buyLimits,
+    buy,
     countries: countries.map((c) => ({ ...c, name: countryNames[c.id] })),
     defaultCountry,
     categories: { layer1: 'Layer 1', layer2: 'Layer 2', stable: 'Stablecoins', meme: 'Mèmes', defi: 'DeFi' },
@@ -383,10 +383,10 @@ export default function createContent(linkOverrides = {}) {
     buy: {
       meta: {
         title: 'Achat rapide — Zurumi',
-        description: 'Achetez et vendez vos cryptos en FCFA avec Wave, Orange Money ou Mixx by Yas.',
+        description: 'Achetez vos cryptos en FCFA par Mobile Money (Wave, Orange Money, Mixx by Yas, MTN, Moov…) ou par carte bancaire.',
       },
-      title: 'Achetez et vendez<br>vos cryptos <i>en quelques secondes</i>',
-      text: 'Payez en FCFA avec Wave, Orange Money ou Mixx by Yas. Le montant reçu est affiché avant de payer.',
+      title: 'Achetez vos cryptos<br><i>en quelques secondes</i>',
+      text: 'Payez en FCFA par Mobile Money ou par carte bancaire. Le montant reçu et les frais sont affichés avant de payer.',
       methodsLabel: 'Moyens de paiement acceptés',
       perks: [
         { icon: 'coin', text: 'Montants affichés en FCFA' },
@@ -395,31 +395,63 @@ export default function createContent(linkOverrides = {}) {
       ],
       widget: {
         label: 'Achat rapide',
-        tabs: { buy: 'Acheter', sell: 'Vendre' },
-        spend: 'Je dépense',
-        receive: 'Je reçois',
+        spend: 'Je veux dépenser',
+        receive: 'Je recevrai',
         payWith: 'Payer avec',
-        receiveOn: 'Recevoir sur',
+        currency: 'Devise',
         crypto: 'Crypto',
         cryptoSearch: 'Rechercher une crypto',
-        method: 'Moyen de paiement',
-        reference: 'Prix de référence',
-        limits: 'Entre {min} et {max}',
-        cta: { buy: 'Acheter {ticker}', sell: 'Vendre {ticker}' },
-        errors: {
-          invalid: 'Saisissez un montant valide.',
-          min: 'Montant minimum : {min}',
-          max: 'Montant maximum : {max}',
-        },
-        note: 'Le montant définitif est confirmé avant le paiement.',
-        demo: "Démo : le paiement n'est pas encore branché au serveur.",
         empty: 'Aucun résultat',
+        card: 'Carte bancaire (Visa / Mastercard)',
+        range: '{min} – {max}',
+        fees: { amount: 'Montant', processing: 'Frais de traitement ({pct})', network: 'Frais réseau', total: 'Total des frais' },
+        reference: 'Prix de référence : 1 {crypto} ≈ {rate}',
+        cta: 'Acheter {crypto}',
+        errors: { invalid: 'Saisissez un montant valide.', min: 'Montant minimum : {min}', max: 'Montant maximum : {max}' },
+        summary: {
+          title: 'Récapitulatif de la commande',
+          back: 'Modifier la commande',
+          spend: 'Vous dépensez',
+          receive: 'Vous recevez',
+          method: 'Méthode de paiement',
+          rate: 'Taux de change',
+          total: 'Total à payer',
+          confirm: "Confirmer l'achat",
+          processing: 'Traitement…',
+          done: 'Achat confirmé',
+          retry: 'Réessayer',
+          refresh: 'Actualiser le taux',
+        },
+        outcomes: {
+          success: 'Achat confirmé — vos fonds sont en route.',
+          failed: { title: 'Paiement refusé', text: 'Le paiement a été refusé. Vérifiez vos informations et réessayez.' },
+          timeout: { title: 'Délai de connexion dépassé', text: "Le réseau n'a pas répondu à temps. Vérifiez votre connexion et réessayez." },
+          expired: { title: 'Taux expiré', text: "Le prix affiché n'est plus valide. Actualisez pour obtenir un nouveau taux." },
+        },
+        receipt: {
+          title: 'Transaction réussie',
+          received: 'Vous avez reçu {amount}',
+          ref: 'Référence',
+          date: 'Date',
+          spent: 'Dépensé',
+          got: 'Reçu',
+          payment: 'Paiement',
+          rate: 'Taux de change',
+          fees: 'Frais',
+          total: 'Total payé',
+          download: 'Télécharger le reçu (PDF)',
+          again: 'Nouvelle transaction',
+          docTitle: 'Reçu de transaction',
+          footer: 'Ce reçu a été généré par Zurumi. Conservez-le pour vos archives.',
+          popup: 'Autorisez les fenêtres pop-up pour télécharger le reçu en PDF.',
+        },
+        demo: 'Démo : aucun paiement réel n’est effectué ; le résultat (succès ou erreur) est simulé.',
       },
       steps: {
         title: 'Comment <i>ça marche</i>',
         items: [
           { title: 'Choisissez un montant.', text: 'Le montant en crypto est calculé au taux affiché.' },
-          { title: 'Payez en Mobile Money.', text: 'Validez le paiement depuis Wave, Orange Money ou Mixx by Yas.' },
+          { title: 'Payez en Mobile Money ou par carte.', text: 'Validez le paiement depuis Wave, Orange Money, Mixx by Yas, MTN, Moov, Wizall, E-Money ou votre carte Visa / Mastercard.' },
           { title: 'Recevez vos cryptos.', text: 'Elles sont créditées sur votre portefeuille Zurumi en quelques instants.' },
         ],
       },
@@ -429,7 +461,7 @@ export default function createContent(linkOverrides = {}) {
         items: [
           {
             q: 'Quels moyens de paiement puis-je utiliser ?',
-            a: 'Wave, Orange Money et Mixx by Yas. Les montants sont affichés et payés en FCFA.',
+            a: 'Wave, Orange Money, Mixx by Yas, MTN Mobile Money, Moov Money, Wizall Money, E-Money et les cartes Visa / Mastercard. Vous pouvez payer en FCFA ou en dollars.',
           },
           {
             q: 'Combien de temps faut-il pour recevoir mes cryptos ?',
@@ -441,7 +473,7 @@ export default function createContent(linkOverrides = {}) {
           },
           {
             q: 'Faut-il un compte ?',
-            a: "Oui. Un compte vérifié est nécessaire pour acheter, vendre ou retirer. L'inscription prend quelques minutes.",
+            a: "Oui. Un compte vérifié est nécessaire pour acheter. L'inscription prend quelques minutes.",
           },
         ],
       },
