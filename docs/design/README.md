@@ -42,6 +42,11 @@ npm run build
 | `/compte/verification/` | `compte/verification/index.html` | `entries/kyc.js` | `pages/KycPage.vue` |
 | `/mot-de-passe-oublie/` | `mot-de-passe-oublie/index.html` | `entries/forgot.js` | `pages/ForgotPasswordPage.vue` |
 | `/etat-des-services/` | `etat-des-services/index.html` | `entries/status.js` | `pages/StatusPage.vue` |
+| `/a-propos/` | `a-propos/index.html` | `entries/about.js` | `pages/AboutPage.vue` |
+| `/carrieres/` | `carrieres/index.html` | `entries/careers.js` | `pages/CareersPage.vue` |
+| `/presse/` | `presse/index.html` | `entries/press.js` | `pages/PressPage.vue` |
+| `/contact/` | `contact/index.html` | `entries/contact.js` | `pages/ContactPage.vue` |
+| `/aide/` | `aide/index.html` | `entries/help.js` | `pages/HelpPage.vue` |
 
 Chaque fichier HTML tient le rôle d'une vue Blade : `<head>` SEO, contenu critique rendu « côté serveur » (navigation, `<h1>`, introduction), puis l'entrée JS de la page. Les blocs communs sont des partiels : `<!-- @include head -->` et `<!-- @include fallback-nav -->` insèrent `resources/views/partials/*.html` (l'équivalent d'un `@include` Blade).
 
@@ -69,6 +74,9 @@ Chaque entrée appelle `boot(Page, { page })` (`boot.js`) : la langue est charg�
 - **Barre de navigation** — cloche de notifications (pastille du nombre de non-lues, onglets Toutes / Non lues, tout marquer comme lu) sur toutes les pages ; menu du compte (avatar) sur les pages de l'espace client et du portefeuille.
 - **Mot de passe oublié** — identifiant, code à 6 chiffres, nouveau mot de passe, confirmation. Le message de l'étape 1 ne révèle pas si un compte existe. Lien depuis la connexion.
 - **État des services** — bandeau global, maintenance planifiée, composants groupés avec 90 jours de disponibilité (30 sur mobile) et pourcentage, légende, historique des incidents avec chronologie, abonnement aux alertes.
+- **Centre d’aide** — pensé pour les débutants : recherche instantanée (insensible aux accents, mots surlignés, Entrée ouvre le premier résultat), parcours « Premiers pas », thèmes, articles en étapes avec astuce/avertissement, bouton d’action, articles liés, « Cet article vous a-t-il aidé ? » et lexique. Navigation par ancre (`#/article/<id>`, `#/categorie/<id>`) : le bouton Précédent fonctionne et le focus passe au titre.
+- **À propos / Carrières / Presse / Contact** — pages « Entreprise » du pied de page. Textes dans `content/fr-company.js` et `en-company.js` (mêmes clés).
+- **Pied de page** — lien Marchés retiré (il reste dans le menu), icônes sociales HQ (`ui/ZSocialIcon.vue`, tracés Simple Icons CC0 : Facebook, X, Instagram, LinkedIn, Telegram, TikTok, YouTube, couleur de marque au survol), bouton « haut de page » `ui/BackToTop.vue` dont l’anneau se remplit avec la progression du défilement.
 
 Les formulaires valident côté client. Tant que leur action serveur vaut `#`, ils affichent un message de démo au lieu d'envoyer.
 
@@ -288,6 +296,7 @@ La prop `image` remplace le visuel en code par une vraie image : `{ avif, webp, 
 - **P2P** : le blocage des cryptos pendant l'ordre et les règles de litige sont à valider (`// À VALIDER`).
 - **Espace client** : utilisateur, soldes, historique, transactions, notifications, appareils et connexions sont fictifs ; la clé 2FA de démo est factice. Limites KYC, score de sécurité, délai de 24 h après changement de mot de passe et délai d'examen KYC sont à valider.
 - **État des services** : statuts, incidents et maintenance fictifs — à alimenter par l'outil de supervision.
+- **À propos, Carrières, Presse, Contact, Centre d’aide** : chiffres, dates, noms (« Prénom Nom »), offres, communiqués, téléphone et adresse `[à compléter]` sont des exemples ; liens sociaux à `#` dans `content/data.js`.
 - **Données** : cours, capitalisations, volumes, carnet, transactions et limites d'achat sont fictifs (`// DÉMO`).
 - **Lien de téléchargement** : `download` est un lien d'exemple ; le QR code l'encode.
 - **Logo** : le « Z » est un substitut (`ZLogo`, prop `image`).

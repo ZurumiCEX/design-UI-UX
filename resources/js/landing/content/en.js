@@ -1,5 +1,6 @@
 // Content — English. Same keys as fr.js (the reference). Keep both files in sync.
 import accountContent from './en-account.js';
+import companyContent from './en-company.js';
 import morePages from './en-more.js';
 import { buyLimits, coins, countries, defaultCountry, defaultLinks, languages, pairs, paymentMethods } from './data.js';
 
@@ -75,7 +76,6 @@ export default function createContent(linkOverrides = {}) {
         title: 'Products',
         links: [
           { label: 'Quick buy', href: links.quickBuy },
-          { label: 'Markets', href: links.markets },
           { label: 'Trade', href: links.trade },
           { label: 'Send', href: links.send },
           { label: 'Receive', href: links.receive },
@@ -86,17 +86,17 @@ export default function createContent(linkOverrides = {}) {
       {
         title: 'Company',
         links: [
-          { label: 'About', href: '#' },
-          { label: 'Careers', href: '#' },
-          { label: 'Press', href: '#' },
+          { label: 'About', href: links.about },
+          { label: 'Careers', href: links.careers },
+          { label: 'Press', href: links.press },
           { label: 'Zurumi Verify', href: links.verify },
         ],
       },
       {
         title: 'Support',
         links: [
-          { label: 'Help center', href: '#' },
-          { label: 'Contact us', href: '#' },
+          { label: 'Help center', href: links.help },
+          { label: 'Contact us', href: links.contact },
           { label: 'Report abuse', href: links.report },
           { label: 'Service status', href: links.status },
         ],
@@ -111,11 +111,15 @@ export default function createContent(linkOverrides = {}) {
         ],
       },
     ],
+    socialsLabel: 'Zurumi on social media',
     socials: [
-      { label: 'Instagram', href: '#' },
-      { label: 'YouTube', href: '#' },
-      { label: 'X (Twitter)', href: '#' },
-      { label: 'Facebook', href: '#' },
+      { id: 'facebook', label: 'Facebook', href: links.facebook },
+      { id: 'x', label: 'X (Twitter)', href: links.x },
+      { id: 'instagram', label: 'Instagram', href: links.instagram },
+      { id: 'linkedin', label: 'LinkedIn', href: links.linkedin },
+      { id: 'telegram', label: 'Telegram', href: links.telegram },
+      { id: 'tiktok', label: 'TikTok', href: links.tiktok },
+      { id: 'youtube', label: 'YouTube', href: links.youtube },
     ],
     copyright: '© 2026 Zurumi. All rights reserved.',
     backToTop: { label: 'Back to top', href: '#top' },
@@ -627,5 +631,5 @@ export default function createContent(linkOverrides = {}) {
   const more = morePages(links);
   const acc = accountContent(links);
   nav.account = acc.navAccount;
-  return { locale: 'en', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages, ...acc.pages }, legal: more.legal, notifications: acc.notifications, account: acc.account };
+  return { locale: 'en', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages, ...acc.pages, ...companyContent() }, legal: more.legal, notifications: acc.notifications, account: acc.account };
 }

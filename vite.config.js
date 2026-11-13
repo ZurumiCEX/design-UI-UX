@@ -30,6 +30,11 @@ const pages = {
   kyc: here('./compte/verification/index.html'),
   forgot: here('./mot-de-passe-oublie/index.html'),
   status: here('./etat-des-services/index.html'),
+  about: here('./a-propos/index.html'),
+  careers: here('./carrieres/index.html'),
+  press: here('./presse/index.html'),
+  contact: here('./contact/index.html'),
+  help: here('./aide/index.html'),
 };
 
 // <!-- @include nom --> insère resources/views/partials/nom.html (l'équivalent d'un @include Blade).

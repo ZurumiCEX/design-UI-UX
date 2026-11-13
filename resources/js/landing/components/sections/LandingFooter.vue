@@ -1,5 +1,6 @@
 <script setup>
-import ZIcon from '../ui/ZIcon.vue';
+import BackToTop from '../ui/BackToTop.vue';
+import ZSocialIcon, { SOCIAL_ICONS } from '../ui/ZSocialIcon.vue';
 import ZLogo from '../ui/ZLogo.vue';
 
 defineProps({
@@ -25,13 +26,16 @@ defineProps({
         </nav>
       </div>
 
-      <ul class="footer__socials">
-        <li v-for="s in data.socials" :key="s.label"><a class="label" :href="s.href">{{ s.label }}</a></li>
-      </ul>
-
-      <div class="footer__bottom label">
-        <span>{{ data.copyright }}</span>
-        <a :href="data.backToTop.href">{{ data.backToTop.label }} <ZIcon name="arrow-up" :size="12" /></a>
+      <div class="footer__bottom">
+        <ul class="footer__socials" :aria-label="data.socialsLabel">
+          <li v-for="s in data.socials" :key="s.id">
+            <a :href="s.href" :aria-label="s.label" :title="s.label" :style="{ '--brand': SOCIAL_ICONS[s.id].color }" :class="{ 'is-dark': ['x', 'tiktok'].includes(s.id) }" rel="noopener">
+              <ZSocialIcon :name="s.id" :size="18" />
+            </a>
+          </li>
+        </ul>
+        <span class="footer__copy label">{{ data.copyright }}</span>
+        <BackToTop :label="data.backToTop.label" />
       </div>
       <p v-if="data.disclaimer" class="footer__note">{{ data.disclaimer }}</p>
     </div>
@@ -47,16 +51,21 @@ defineProps({
 .footer nav li + li { margin-top: 6px; }
 .footer nav a { display: inline-block; font-size: 13px; color: var(--color-text-muted); transition: transform var(--motion-duration-hover) var(--motion-ease-out), color var(--motion-duration-hover); }
 .footer nav a:hover { color: var(--color-text-default); transform: translateX(3px); }
-.footer__socials { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 56px 0 28px; }
-.footer__socials a { display: grid; place-items: center; height: 40px; border-radius: var(--radius-sm); background: var(--color-bg-surface-2); transition: transform var(--motion-duration-hover) var(--motion-ease-out), background-color var(--motion-duration-hover); }
-.footer__socials a:hover { transform: translateY(-2px); background: var(--fill-2); }
-.footer__bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--color-text-muted); }
-.footer__bottom a { display: inline-flex; align-items: center; gap: 6px; transition: color var(--motion-duration-hover); }
-.footer__bottom a:hover { color: var(--color-text-default); }
+.footer__bottom { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--color-line-default); }
+.footer__socials { display: flex; flex-wrap: wrap; gap: 10px; }
+.footer__socials a {
+  display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; color: var(--color-text-muted);
+  background: var(--color-bg-surface-2); border: 1px solid var(--color-line-default);
+  transition: transform var(--motion-duration-hover) var(--motion-ease-out), background-color var(--motion-duration-hover), color var(--motion-duration-hover), border-color var(--motion-duration-hover);
+}
+/* Au survol : la couleur de la marque. X et TikTok (noirs) gardent un contour clair. */
+.footer__socials a:hover, .footer__socials a:focus-visible { transform: translateY(-2px); color: var(--color-text-default); background: var(--brand); border-color: transparent; }
+.footer__socials a.is-dark:hover, .footer__socials a.is-dark:focus-visible { border-color: var(--color-line-strong); }
+.footer__copy { margin-left: auto; color: var(--color-text-muted); }
 .footer__note { margin-top: 24px; max-width: 78ch; font-size: 11px; color: var(--color-text-muted); }
 @media (max-width: 900px) {
   .footer__top { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
-  .footer__socials { grid-template-columns: 1fr 1fr; }
+  .footer__copy { order: 3; width: 100%; margin-left: 0; }
 }
 </style>

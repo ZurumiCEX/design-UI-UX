@@ -18,7 +18,7 @@
   <img alt="Objectif Lighthouse performance 90 et plus" src="https://img.shields.io/badge/Lighthouse-objectif_%E2%89%A5_90-3DDC97?style=flat-square&logo=lighthouse&logoColor=white&labelColor=13131B">
   <img alt="Budget JavaScript inférieur à 90 Ko compressé" src="https://img.shields.io/badge/JS-%3C_90_Ko_gzip-F7DF1E?style=flat-square&logo=javascript&logoColor=black&labelColor=13131B">
   <img alt="Langues : français et anglais" src="https://img.shields.io/badge/langues-FR_%C2%B7_EN-9DB0F2?style=flat-square&labelColor=13131B">
-  <img alt="23 pages" src="https://img.shields.io/badge/pages-23-B794E6?style=flat-square&labelColor=13131B">
+  <img alt="28 pages" src="https://img.shields.io/badge/pages-28-B794E6?style=flat-square&labelColor=13131B">
   <img alt="prefers-reduced-motion respecté" src="https://img.shields.io/badge/reduced--motion-respect%C3%A9-B794E6?style=flat-square&labelColor=13131B">
 </p>
 
@@ -102,6 +102,11 @@ Le violet `#5D3587` est trop sombre pour du texte sur fond noir : il est réserv
 | **Espace client** | `/compte/…` | Tableau de bord, profil modifiable, sécurité (2FA, mot de passe, appareils), vérification d'identité |
 | **Mot de passe oublié** | `/mot-de-passe-oublie/` | Code de vérification puis nouveau mot de passe |
 | **État des services** | `/etat-des-services/` | Disponibilité de chaque service sur 90 jours, incidents, maintenances |
+| **Centre d’aide** | `/aide/` | Recherche instantanée, parcours « Premiers pas », 6 thèmes, 15 guides pas à pas, lexique, avis sur chaque article |
+| **À propos** | `/a-propos/` | Mission, histoire, valeurs, équipe (contenu de démo) |
+| **Carrières** | `/carrieres/` | Avantages, offres filtrables, processus, candidature avec CV (démo) |
+| **Presse** | `/presse/` | Communiqués, contact presse, chiffres clés, kit média (logos SVG, couleurs) |
+| **Nous contacter** | `/contact/` | Canaux, formulaire avec numéro de suivi (démo), horaires, conseils de sécurité |
 
 Le menu suit l'ordre : Achat rapide · Marchés · Trade · Transactions (Envoyer, Recevoir, Echanger) · Retirer (P2P) · Portefeuille. Le sélecteur de langue bascule tout le site entre le français et l'anglais, sans recharger la page.
 
