@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- @include head -->
+    <title>Foire aux questions (FAQ) — Zurumi</title>
+    <meta name="description" content="Réponses aux questions fréquentes sur le compte, le KYC, les dépôts, les retraits, la sécurité et les frais." />
+    <meta property="og:title" content="Foire aux questions (FAQ) — Zurumi" />
+    <meta property="og:description" content="Réponses aux questions fréquentes sur le compte, le KYC, les dépôts, les retraits, la sécurité et les frais." />
+  </head>
+  <body>
+    <!--
+      Ce fichier joue le rôle d'une vue Blade (resources/views/landing/legal-faq.blade.php).
+      Le contenu de #landing est le rendu « serveur » : navigation, <h1> et introduction en HTML pur
+      (SEO, pas d'écran vide, page lisible sans JavaScript). Vue le remplace au montage.
+    -->
+    <div id="landing">
+      <div class="fallback">
+        <!-- @include fallback-nav -->
+        <main id="top">
+          <h1>Foire aux questions (FAQ)</h1>
+          <p>Réponses aux questions fréquentes sur le compte, le KYC, les dépôts, les retraits, la sécurité et les frais.</p>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/resources/js/landing/entries/faq.js"></script>
+  </body>
+</html>

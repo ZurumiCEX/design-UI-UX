@@ -1,4 +1,5 @@
 // Contenu français des pages Convertir, Recevoir, Envoyer, P2P, Zurumi vérification, Signalement et des documents légaux.
+import legalDocs from './legal-docs.js';
 // Fusionné dans fr.js. en-more.js reprend exactement les mêmes clés.
 //
 // À VALIDER (conformité) : frais, délais, fonctionnement du séquestre P2P, engagements de réponse,
@@ -534,69 +535,10 @@ export default function morePages(links) {
     eyebrow: 'Informations légales',
     toc: 'Sommaire',
     others: 'Autres documents',
-    updated: 'Dernière mise à jour : {date}',
-    draft: 'Modèle générique, à faire relire par un juriste avant publication. Les éléments entre crochets sont à compléter.',
-    contact: 'Pour toute question sur ce document : [adresse e-mail juridique] — [Raison sociale], [adresse du siège].',
-    linkKeys: { terms: 'terms', privacy: 'privacy', risks: 'risks', compliance: 'compliance' },
-    docs: {
-      terms: {
-        title: 'Conditions d’utilisation',
-        updated: '[date]',
-        intro: 'Les présentes conditions régissent l’accès et l’utilisation des services Zurumi (site, applications et services associés). En créant un compte ou en utilisant les services, vous acceptez ces conditions.',
-        sections: [
-          { id: 'objet', title: 'Objet et éditeur', paras: ['Les services sont édités par [Raison sociale], [forme juridique] au capital de [montant], immatriculée sous le numéro [numéro], dont le siège est situé [adresse].', 'Ces conditions décrivent les droits et obligations des utilisateurs et de Zurumi dans le cadre de l’utilisation des services.'] },
-          { id: 'acces', title: 'Accès aux services et compte', paras: ['L’accès aux services est réservé aux personnes majeures et capables, résidant dans un pays où les services sont proposés.', 'L’utilisateur s’engage à fournir des informations exactes et à les maintenir à jour. Certaines opérations nécessitent une vérification d’identité préalable.'], list: ['Un seul compte par personne.', 'Les identifiants sont personnels et confidentiels.', 'Toute utilisation du compte est réputée faite par son titulaire.'] },
-          { id: 'services', title: 'Description des services', paras: ['Zurumi permet notamment l’achat et la vente de crypto-actifs contre des francs CFA, la conversion entre crypto-actifs, l’envoi et la réception de crypto-actifs et la vente de crypto-actifs entre utilisateurs (P2P).', 'Les services disponibles peuvent varier selon le pays de résidence et le niveau de vérification du compte.'] },
-          { id: 'frais', title: 'Frais et limites', paras: ['Les frais applicables sont affichés avant la validation de chaque opération. Des limites de montant peuvent s’appliquer par opération et par période.', 'La grille tarifaire en vigueur est disponible à l’adresse [lien vers la grille tarifaire].'] },
-          { id: 'obligations', title: 'Obligations de l’utilisateur', paras: ['L’utilisateur s’interdit toute utilisation des services à des fins illicites, frauduleuses ou contraires aux présentes conditions.'], list: ['Ne pas utiliser les services pour le compte d’un tiers sans autorisation.', 'Ne pas tenter de contourner les mesures de sécurité.', 'Vérifier les adresses et réseaux avant tout envoi : les opérations sur la blockchain sont irréversibles.'] },
-          { id: 'suspension', title: 'Suspension et clôture', paras: ['Zurumi peut suspendre ou clôturer un compte en cas de manquement aux présentes conditions, de suspicion de fraude ou à la demande d’une autorité compétente.', 'L’utilisateur peut clôturer son compte à tout moment, sous réserve du règlement des opérations en cours.'] },
-          { id: 'responsabilite', title: 'Responsabilité', paras: ['Zurumi met en œuvre les moyens raisonnables pour assurer la disponibilité et la sécurité des services, sans garantir une disponibilité ininterrompue.', 'Zurumi n’est pas responsable des pertes résultant d’une erreur de l’utilisateur (adresse, réseau, mémo), de la volatilité des crypto-actifs ou d’un événement indépendant de sa volonté.'] },
-          { id: 'droit', title: 'Droit applicable et litiges', paras: ['Les présentes conditions sont régies par le droit [pays]. Tout litige fera l’objet d’une tentative de règlement amiable avant toute action devant les juridictions compétentes de [ville].'] },
-        ],
-      },
-      privacy: {
-        title: 'Politique de confidentialité',
-        updated: '[date]',
-        intro: 'Cette politique explique quelles données personnelles Zurumi collecte, pourquoi, combien de temps elles sont conservées et quels sont vos droits.',
-        sections: [
-          { id: 'responsable', title: 'Responsable du traitement', paras: ['Le responsable du traitement est [Raison sociale], [adresse du siège]. Contact : [adresse e-mail du délégué à la protection des données].'] },
-          { id: 'donnees', title: 'Données collectées', paras: ['Nous collectons les données nécessaires à la fourniture des services et au respect de nos obligations légales.'], list: ['Identité et coordonnées : nom, e-mail, numéro mobile.', 'Vérification d’identité : pièce d’identité, justificatif, selfie.', 'Données d’opérations : montants, adresses, moyens de paiement, historique.', 'Données techniques : adresse IP, appareil, journaux de connexion.'] },
-          { id: 'finalites', title: 'Finalités et bases légales', paras: ['Les données sont traitées pour exécuter le contrat (fourniture des services), respecter nos obligations légales (vérification d’identité, lutte contre le blanchiment), assurer la sécurité et prévenir la fraude (intérêt légitime) et, avec votre accord, vous envoyer des communications.'] },
-          { id: 'destinataires', title: 'Destinataires', paras: ['Les données sont accessibles aux équipes habilitées de Zurumi et à ses prestataires (hébergement, vérification d’identité, opérateurs de paiement), dans la limite de leurs missions. Elles peuvent être communiquées aux autorités compétentes lorsque la loi l’exige.'] },
-          { id: 'conservation', title: 'Durées de conservation', paras: ['Les données sont conservées pendant la durée de la relation, puis pendant les durées légales applicables, notamment [durée] ans pour les données liées à la lutte contre le blanchiment.'] },
-          { id: 'droits', title: 'Vos droits', paras: ['Vous disposez d’un droit d’accès, de rectification, d’effacement, d’opposition, de limitation et de portabilité, dans les conditions prévues par la loi. Pour les exercer : [adresse e-mail]. Vous pouvez également saisir [autorité de protection des données compétente].'] },
-          { id: 'securite', title: 'Sécurité', paras: ['Zurumi applique des mesures techniques et organisationnelles adaptées : chiffrement, contrôle des accès, journalisation et surveillance de l’infrastructure.'] },
-          { id: 'cookies', title: 'Cookies et stockage local', paras: ['Le site utilise des cookies et un stockage local strictement nécessaires (langue, favoris, session). Les éventuels cookies de mesure d’audience sont soumis à votre consentement.'] },
-        ],
-      },
-      risks: {
-        title: 'Avertissement sur les risques',
-        updated: '[date]',
-        intro: 'Les crypto-actifs comportent des risques importants. Lisez cet avertissement avant toute opération et n’investissez que des sommes que vous pouvez vous permettre de perdre.',
-        sections: [
-          { id: 'volatilite', title: 'Volatilité', paras: ['Le prix des crypto-actifs peut varier fortement et rapidement, à la hausse comme à la baisse. Vous pouvez perdre tout ou partie de la valeur de vos actifs.'] },
-          { id: 'irreversibilite', title: 'Opérations irréversibles', paras: ['Un envoi sur une blockchain ne peut pas être annulé. Une erreur d’adresse, de réseau ou de mémo peut entraîner la perte définitive des fonds.'] },
-          { id: 'stablecoins', title: 'Stablecoins', paras: ['Les stablecoins (USDT, USDC…) visent à refléter la valeur d’une monnaie de référence, sans garantie. Leur valeur dépend de leur émetteur et de ses réserves.'] },
-          { id: 'p2p', title: 'Échanges entre utilisateurs (P2P)', paras: ['Lors d’une vente P2P, vérifiez toujours la réception du paiement sur votre compte avant de libérer vos crypto-actifs. Une capture d’écran ne constitue pas une preuve de paiement.'] },
-          { id: 'fraude', title: 'Fraude et usurpation', paras: ['Des tiers peuvent se faire passer pour Zurumi. Vérifiez toute source avec Zurumi vérification et ne communiquez jamais vos identifiants, clés ou codes.'] },
-          { id: 'reglementation', title: 'Évolution réglementaire', paras: ['La réglementation des crypto-actifs évolue. Des changements peuvent affecter la disponibilité des services ou le traitement fiscal de vos opérations, qui relève de votre responsabilité.'] },
-          { id: 'conseil', title: 'Absence de conseil', paras: ['Zurumi ne fournit aucun conseil en investissement. Les informations affichées (cours, tendances) sont données à titre indicatif.'] },
-        ],
-      },
-      compliance: {
-        title: 'Conformité',
-        updated: '[date]',
-        intro: 'Zurumi applique un dispositif de conformité destiné à protéger ses utilisateurs et à prévenir l’utilisation de ses services à des fins illicites.',
-        sections: [
-          { id: 'cadre', title: 'Cadre réglementaire', paras: ['[Préciser le statut réglementaire de Zurumi, l’autorité de supervision et les numéros d’enregistrement ou d’agrément, une fois confirmés.]'] },
-          { id: 'kyc', title: 'Connaissance du client (KYC)', paras: ['Une vérification d’identité est demandée avant certaines opérations. Les niveaux de vérification déterminent les limites applicables au compte.'] },
-          { id: 'lbcft', title: 'Lutte contre le blanchiment et le financement du terrorisme', paras: ['Zurumi surveille les opérations afin de détecter les activités inhabituelles, applique des contrôles de listes de sanctions et déclare les opérations suspectes aux autorités compétentes, conformément aux recommandations du GAFI.'] },
-          { id: 'sanctions', title: 'Pays et personnes sanctionnés', paras: ['Les services ne sont pas proposés aux personnes figurant sur des listes de sanctions, ni dans les pays faisant l’objet de restrictions.'] },
-          { id: 'autorites', title: 'Coopération avec les autorités', paras: ['Zurumi répond aux réquisitions des autorités judiciaires et administratives compétentes dans le cadre prévu par la loi.'] },
-          { id: 'signalement', title: 'Signaler un abus', paras: ['Toute activité suspecte peut être signalée depuis la page « Signaler une arnaque ». L’équipe conformité examine chaque signalement.'] },
-        ],
-      },
-    },
+    updated: 'Date d’entrée en vigueur : {date}',
+    langNote: '',
+    linkKeys: { terms: 'terms', privacy: 'privacy', cookies: 'cookies', whistleblowing: 'whistleblowing', faq: 'faq' },
+    docs: legalDocs, // documents officiels (content/legal-docs.js, généré depuis resources/legal/*.md)
   };
 
   return { pages, legal };

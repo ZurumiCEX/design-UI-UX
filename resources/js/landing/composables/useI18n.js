@@ -36,7 +36,7 @@ export function detectLocale(config = {}) {
 
 function applyMeta() {
   const doc = state.content.legal?.docs?.[state.page];
-  const meta = state.content.pages?.[state.page]?.meta ?? (doc && { title: `${doc.title} — Zurumi`, description: doc.intro });
+  const meta = state.content.pages?.[state.page]?.meta ?? (doc && { title: `${doc.title} — Zurumi`, description: [].concat(doc.intro).join(' ') });
   if (!meta) return;
   document.title = meta.title;
   const set = (selector, value) => document.querySelector(selector)?.setAttribute('content', value);

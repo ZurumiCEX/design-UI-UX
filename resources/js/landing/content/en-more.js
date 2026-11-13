@@ -1,4 +1,5 @@
 // English content for Convert, Receive, Send, P2P, Zurumi Verify, Report and the legal documents.
+import legalDocs from './legal-docs.js';
 // Same keys as fr-more.js (the reference).
 
 export default function morePages(links) {
@@ -524,69 +525,10 @@ export default function morePages(links) {
     eyebrow: 'Legal information',
     toc: 'Contents',
     others: 'Other documents',
-    updated: 'Last updated: {date}',
-    draft: 'Generic template, to be reviewed by a lawyer before publication. Items in square brackets must be completed.',
-    contact: 'For any question about this document: [legal email address] — [Company name], [registered office address].',
-    linkKeys: { terms: 'terms', privacy: 'privacy', risks: 'risks', compliance: 'compliance' },
-    docs: {
-      terms: {
-        title: 'Terms of use',
-        updated: '[date]',
-        intro: 'These terms govern access to and use of the Zurumi services (website, apps and related services). By creating an account or using the services, you accept these terms.',
-        sections: [
-          { id: 'objet', title: 'Purpose and publisher', paras: ['The services are published by [Company name], a [legal form] with a share capital of [amount], registered under number [number], with its registered office at [address].', 'These terms set out the rights and obligations of users and Zurumi when using the services.'] },
-          { id: 'acces', title: 'Access to the services and account', paras: ['The services are reserved for adults with full legal capacity who live in a country where the services are offered.', 'Users must provide accurate information and keep it up to date. Some operations require prior identity verification.'], list: ['One account per person.', 'Login details are personal and confidential.', 'Any use of the account is deemed to be made by its holder.'] },
-          { id: 'services', title: 'Description of the services', paras: ['Zurumi notably allows buying and selling crypto-assets for CFA francs, converting between crypto-assets, sending and receiving crypto-assets and selling crypto-assets between users (P2P).', 'Available services may vary depending on the country of residence and the account’s verification level.'] },
-          { id: 'frais', title: 'Fees and limits', paras: ['Applicable fees are shown before each operation is confirmed. Amount limits may apply per operation and per period.', 'The current fee schedule is available at [link to fee schedule].'] },
-          { id: 'obligations', title: 'User obligations', paras: ['Users must not use the services for unlawful or fraudulent purposes, or in breach of these terms.'], list: ['Do not use the services on behalf of a third party without authorisation.', 'Do not attempt to bypass security measures.', 'Check addresses and networks before any transfer: blockchain operations are irreversible.'] },
-          { id: 'suspension', title: 'Suspension and closure', paras: ['Zurumi may suspend or close an account in the event of a breach of these terms, suspected fraud or at the request of a competent authority.', 'Users may close their account at any time, subject to settling any pending operations.'] },
-          { id: 'responsabilite', title: 'Liability', paras: ['Zurumi takes reasonable measures to ensure the availability and security of the services, without guaranteeing uninterrupted availability.', 'Zurumi is not liable for losses resulting from a user error (address, network, memo), the volatility of crypto-assets or events beyond its control.'] },
-          { id: 'droit', title: 'Governing law and disputes', paras: ['These terms are governed by the law of [country]. Any dispute will first be subject to an attempt at amicable settlement before any action before the competent courts of [city].'] },
-        ],
-      },
-      privacy: {
-        title: 'Privacy policy',
-        updated: '[date]',
-        intro: 'This policy explains which personal data Zurumi collects, why, how long it is kept and what your rights are.',
-        sections: [
-          { id: 'responsable', title: 'Data controller', paras: ['The data controller is [Company name], [registered office address]. Contact: [data protection officer email address].'] },
-          { id: 'donnees', title: 'Data collected', paras: ['We collect the data needed to provide the services and meet our legal obligations.'], list: ['Identity and contact details: name, email, mobile number.', 'Identity verification: ID document, proof of address, selfie.', 'Transaction data: amounts, addresses, payment methods, history.', 'Technical data: IP address, device, connection logs.'] },
-          { id: 'finalites', title: 'Purposes and legal bases', paras: ['Data is processed to perform the contract (providing the services), meet our legal obligations (identity verification, anti-money laundering), ensure security and prevent fraud (legitimate interest) and, with your consent, send you communications.'] },
-          { id: 'destinataires', title: 'Recipients', paras: ['Data is accessible to authorised Zurumi teams and its service providers (hosting, identity verification, payment operators), within the limits of their tasks. It may be disclosed to the competent authorities when required by law.'] },
-          { id: 'conservation', title: 'Retention periods', paras: ['Data is kept for the duration of the relationship, then for the applicable legal periods, notably [duration] years for data related to anti-money laundering.'] },
-          { id: 'droits', title: 'Your rights', paras: ['You have the right to access, rectify, erase, object to, restrict and port your data, under the conditions provided by law. To exercise them: [email address]. You may also contact [competent data protection authority].'] },
-          { id: 'securite', title: 'Security', paras: ['Zurumi applies appropriate technical and organisational measures: encryption, access control, logging and infrastructure monitoring.'] },
-          { id: 'cookies', title: 'Cookies and local storage', paras: ['The site uses strictly necessary cookies and local storage (language, favourites, session). Any audience measurement cookies are subject to your consent.'] },
-        ],
-      },
-      risks: {
-        title: 'Risk warning',
-        updated: '[date]',
-        intro: 'Crypto-assets carry significant risks. Read this warning before any operation and only invest amounts you can afford to lose.',
-        sections: [
-          { id: 'volatilite', title: 'Volatility', paras: ['The price of crypto-assets can change sharply and quickly, up or down. You may lose all or part of the value of your assets.'] },
-          { id: 'irreversibilite', title: 'Irreversible operations', paras: ['A transfer on a blockchain cannot be cancelled. A wrong address, network or memo can lead to the permanent loss of funds.'] },
-          { id: 'stablecoins', title: 'Stablecoins', paras: ['Stablecoins (USDT, USDC…) aim to track the value of a reference currency, without any guarantee. Their value depends on their issuer and its reserves.'] },
-          { id: 'p2p', title: 'Trades between users (P2P)', paras: ['When selling on P2P, always check that the payment has arrived in your account before releasing your crypto-assets. A screenshot is not proof of payment.'] },
-          { id: 'fraude', title: 'Fraud and impersonation', paras: ['Third parties may pretend to be Zurumi. Check any source with Zurumi Verify and never share your login details, keys or codes.'] },
-          { id: 'reglementation', title: 'Regulatory changes', paras: ['Crypto-asset regulation is evolving. Changes may affect the availability of the services or the tax treatment of your operations, which is your responsibility.'] },
-          { id: 'conseil', title: 'No advice', paras: ['Zurumi does not provide investment advice. The information shown (prices, trends) is for information only.'] },
-        ],
-      },
-      compliance: {
-        title: 'Compliance',
-        updated: '[date]',
-        intro: 'Zurumi applies a compliance framework designed to protect its users and prevent its services from being used for unlawful purposes.',
-        sections: [
-          { id: 'cadre', title: 'Regulatory framework', paras: ['[State Zurumi’s regulatory status, the supervisory authority and the registration or licence numbers, once confirmed.]'] },
-          { id: 'kyc', title: 'Know your customer (KYC)', paras: ['Identity verification is required before certain operations. Verification levels determine the limits that apply to the account.'] },
-          { id: 'lbcft', title: 'Anti-money laundering and counter-terrorist financing', paras: ['Zurumi monitors operations to detect unusual activity, screens against sanctions lists and reports suspicious operations to the competent authorities, in line with FATF recommendations.'] },
-          { id: 'sanctions', title: 'Sanctioned countries and persons', paras: ['The services are not offered to persons on sanctions lists, nor in countries subject to restrictions.'] },
-          { id: 'autorites', title: 'Cooperation with authorities', paras: ['Zurumi responds to requests from the competent judicial and administrative authorities within the framework provided by law.'] },
-          { id: 'signalement', title: 'Report abuse', paras: ['Any suspicious activity can be reported from the “Report a scam” page. The compliance team reviews every report.'] },
-        ],
-      },
-    },
+    updated: 'Effective date: {date}',
+    langNote: 'The official version of this document is in French.',
+    linkKeys: { terms: 'terms', privacy: 'privacy', cookies: 'cookies', whistleblowing: 'whistleblowing', faq: 'faq' },
+    docs: legalDocs, // official documents, in French (content/legal-docs.js)
   };
 
   return { pages, legal };

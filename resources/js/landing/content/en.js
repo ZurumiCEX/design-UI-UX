@@ -59,7 +59,17 @@ export default function createContent(linkOverrides = {}) {
           { label: 'Withdraw (P2P)', href: links.withdraw, icon: 'withdraw', page: 'p2p' },
         ],
       },
-      { label: 'Withdraw', href: links.withdraw, page: 'p2p', badge: 'P2P' },
+      {
+        label: 'Support',
+        children: [
+          { label: 'Help centre', href: links.help, icon: 'question', page: 'help' },
+          { label: 'Contact us', href: links.contact, icon: 'headset', page: 'contact' },
+          { label: 'FAQ', href: links.faq, icon: 'list', page: 'legal-faq' },
+          { label: 'Zurumi Verify', href: links.verify, icon: 'shield', page: 'verify' },
+          { label: 'Report a scam', href: links.report, icon: 'flag', page: 'report' },
+          { label: 'Service status', href: links.status, icon: 'pulse', page: 'status' },
+        ],
+      },
     ],
     wallet: 'Wallet', // bouton à droite de la barre (couleur secondaire)
     currency: 'Display currency',
@@ -105,10 +115,11 @@ export default function createContent(linkOverrides = {}) {
       {
         title: 'Legal',
         links: [
-          { label: 'Terms of use', href: links.terms },
-          { label: 'Privacy', href: links.privacy },
-          { label: 'Risk warning', href: links.risks },
-          { label: 'Compliance', href: links.compliance },
+          { label: 'Terms & conditions', href: links.terms },
+          { label: 'Privacy policy', href: links.privacy },
+          { label: 'Cookie policy', href: links.cookies },
+          { label: 'Whistleblowing & risk disclosure', href: links.whistleblowing },
+          { label: 'FAQ', href: links.faq },
         ],
       },
     ],

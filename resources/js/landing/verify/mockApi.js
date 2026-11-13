@@ -9,6 +9,8 @@ const REGISTRY = [
   { type: 'domain', value: 'zurumi.com', status: VERIFY_STATE.VERIFIED, label: 'rootDomain', risk_level: 'low' },
   { type: 'email', value: 'support@zurumi.com', status: VERIFY_STATE.VERIFIED, label: 'support', risk_level: 'low' },
   { type: 'email', value: 'compliance@zurumi.com', status: VERIFY_STATE.VERIFIED, label: 'compliance', risk_level: 'low' },
+  { type: 'email', value: 'security@zurumi.com', status: VERIFY_STATE.VERIFIED, label: 'compliance', risk_level: 'low' },
+  { type: 'email', value: 'signalement@zurumi.com', status: VERIFY_STATE.VERIFIED, label: 'compliance', risk_level: 'low' },
   { type: 'phone', value: '+221330000000', status: VERIFY_STATE.VERIFIED, label: 'phoneDakar', risk_level: 'low' },
   { type: 'telegram', value: '@zurumiofficial', status: VERIFY_STATE.VERIFIED, label: 'telegram', risk_level: 'low' },
   { type: 'x', value: '@zurumi', status: VERIFY_STATE.VERIFIED, label: 'x', risk_level: 'low' },

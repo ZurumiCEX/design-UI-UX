@@ -18,7 +18,7 @@
   <img alt="Objectif Lighthouse performance 90 et plus" src="https://img.shields.io/badge/Lighthouse-objectif_%E2%89%A5_90-3DDC97?style=flat-square&logo=lighthouse&logoColor=white&labelColor=13131B">
   <img alt="Budget JavaScript inférieur à 90 Ko compressé" src="https://img.shields.io/badge/JS-%3C_90_Ko_gzip-F7DF1E?style=flat-square&logo=javascript&logoColor=black&labelColor=13131B">
   <img alt="Langues : français et anglais" src="https://img.shields.io/badge/langues-FR_%C2%B7_EN-9DB0F2?style=flat-square&labelColor=13131B">
-  <img alt="28 pages" src="https://img.shields.io/badge/pages-28-B794E6?style=flat-square&labelColor=13131B">
+  <img alt="29 pages" src="https://img.shields.io/badge/pages-29-B794E6?style=flat-square&labelColor=13131B">
   <img alt="prefers-reduced-motion respecté" src="https://img.shields.io/badge/reduced--motion-respect%C3%A9-B794E6?style=flat-square&labelColor=13131B">
 </p>
 
@@ -97,7 +97,7 @@ Le violet `#5D3587` est trop sombre pour du texte sur fond noir : il est réserv
 | **P2P** | `/p2p/` | Vente d'USDT ou d'USDC contre des XOF à des acheteurs, sur Wave, Orange Money ou Mixx by Yas |
 | **Zurumi Verify** | `/verify/` | Vérifier un site, un e-mail, un wallet ou un compte social officiel |
 | **Signalement** | `/signaler-une-arnaque/` | Signaler une arnaque ou un abus, preuves jointes |
-| **Légal** | `/legal/…` | Conditions, confidentialité, risques, conformité (modèles à valider) |
+| **Légal** | `/legal/…` | Documents officiels : CGU / CGV, confidentialité, cookies, dénonciation & divulgation des risques, FAQ |
 | **Portefeuille** | `/portefeuille/` | Solde masquable en XOF ou USD, P&L en graphiques, actifs, transactions par statut |
 | **Espace client** | `/compte/…` | Tableau de bord, profil modifiable, sécurité (2FA, mot de passe, appareils), vérification d'identité |
 | **Mot de passe oublié** | `/mot-de-passe-oublie/` | Code de vérification puis nouveau mot de passe |
@@ -108,7 +108,7 @@ Le violet `#5D3587` est trop sombre pour du texte sur fond noir : il est réserv
 | **Presse** | `/presse/` | Communiqués, contact presse, chiffres clés, kit média (logos SVG, couleurs) |
 | **Nous contacter** | `/contact/` | Canaux, formulaire avec numéro de suivi (démo), horaires, conseils de sécurité |
 
-Le menu suit l'ordre : Achat rapide · Marché · Trade · Transactions (Envoyer, Recevoir, Echanger) · Retirer (P2P). Le Portefeuille est un bouton de couleur secondaire à droite de la barre. Le sélecteur de langue bascule tout le site entre le français et l'anglais, sans recharger la page.
+Le menu suit l'ordre : Achat rapide · Marché · Trade · Transactions (Envoyer, Recevoir, Echanger, Retirer (P2P)) · Support (Centre d'aide, Nous contacter, FAQ, Zurumi vérification, Signaler une arnaque, État des services). Le Portefeuille est un bouton de couleur secondaire à droite de la barre. Le sélecteur de langue bascule tout le site entre le français et l'anglais, sans recharger la page.
 
 ## ✦ Sections de la page d'accueil
 

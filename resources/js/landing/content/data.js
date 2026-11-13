@@ -18,8 +18,9 @@ export const defaultLinks = {
   report: '/signaler-une-arnaque/',
   terms: '/legal/conditions/',
   privacy: '/legal/confidentialite/',
-  risks: '/legal/risques/',
-  compliance: '/legal/conformite/',
+  cookies: '/legal/cookies/',
+  whistleblowing: '/legal/denonciation/',
+  faq: '/legal/faq/',
   wallet: '/portefeuille/',
   deposit: '#',
   search: '#',
@@ -217,6 +218,8 @@ export const emails = {
   support: { user: 'support', domain: 'zurumi.com' },
   security: { user: 'security', domain: 'zurumi.com' },
   press: { user: 'presse', domain: 'zurumi.com' },
+  compliance: { user: 'compliance', domain: 'zurumi.com' },
+  report: { user: 'signalement', domain: 'zurumi.com' },
 };
 export const securityEmail = emails.security;
 

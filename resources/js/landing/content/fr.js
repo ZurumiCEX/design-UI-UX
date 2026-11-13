@@ -62,7 +62,17 @@ export default function createContent(linkOverrides = {}) {
           { label: 'Retirer (P2P)', href: links.withdraw, icon: 'withdraw', page: 'p2p' },
         ],
       },
-      { label: 'Retirer', href: links.withdraw, page: 'p2p', badge: 'P2P' },
+      {
+        label: 'Support',
+        children: [
+          { label: 'Centre d’aide', href: links.help, icon: 'question', page: 'help' },
+          { label: 'Nous contacter', href: links.contact, icon: 'headset', page: 'contact' },
+          { label: 'FAQ', href: links.faq, icon: 'list', page: 'legal-faq' },
+          { label: 'Zurumi vérification', href: links.verify, icon: 'shield', page: 'verify' },
+          { label: 'Signaler une arnaque', href: links.report, icon: 'flag', page: 'report' },
+          { label: 'État des services', href: links.status, icon: 'pulse', page: 'status' },
+        ],
+      },
     ],
     wallet: 'Portefeuille', // bouton à droite de la barre (couleur secondaire)
     currency: 'Devise d’affichage',
@@ -108,10 +118,11 @@ export default function createContent(linkOverrides = {}) {
       {
         title: 'Légal',
         links: [
-          { label: "Conditions d'utilisation", href: links.terms },
-          { label: 'Confidentialité', href: links.privacy },
-          { label: 'Avertissement sur les risques', href: links.risks },
-          { label: 'Conformité', href: links.compliance },
+          { label: 'Conditions générales (CGU / CGV)', href: links.terms },
+          { label: 'Politique de confidentialité', href: links.privacy },
+          { label: 'Politique des cookies', href: links.cookies },
+          { label: 'Dénonciation & divulgation des risques', href: links.whistleblowing },
+          { label: 'FAQ', href: links.faq },
         ],
       },
     ],
