@@ -74,7 +74,7 @@ const views = ['both', 'bids', 'asks'];
         <span class="ob__last num" :class="up ? 'is-up' : 'is-down'">
           {{ price(sim.last) }} <ZIcon name="arrow-up" :size="14" :class="{ 'is-flip': !up }" />
         </span>
-        <span v-if="pair.quote === 'USDT'" class="ob__fiat num">≈ {{ fmt.xof(sim.last * USDT_XOF) }}</span>
+        <span v-if="pair.quote === 'USDT'" class="ob__fiat num">≈ {{ fmt.money(sim.last * USDT_XOF) }}</span>
       </div>
 
       <ol class="ob__side">

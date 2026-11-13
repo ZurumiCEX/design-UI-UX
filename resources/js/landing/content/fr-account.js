@@ -396,7 +396,7 @@ export default function accountContent(links) {
           wave: 'Wave', orange: 'Orange Money', mixx: 'Mixx by Yas',
           bitcoin: 'Bitcoin', ethereum: 'Ethereum (ERC20)', tron: 'Tron (TRC20)', polygon: 'Polygon', bnb: 'BNB Smart Chain', solana: 'Solana',
           quickbuy: 'Achat rapide', convert: 'Conversion', trade: 'Trade', p2p: 'P2P',
-          verify: 'Zurumi Verify', report: 'Signalements',
+          verify: 'Zurumi vérification', report: 'Signalements',
         },
       },
       history: {

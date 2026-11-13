@@ -36,7 +36,7 @@ const href = (c) => tradeHref(props.links, c) ?? buyHref(props.links, c);
           <a class="hl__row" :href="href(c)">
             <ZCoinIcon :glyph="c.glyph" :tone="c.tone" :size="20" />
             <span class="hl__ticker">{{ c.ticker }}</span>
-            <span class="hl__price num">{{ fmt.xof(c.price) }}</span>
+            <span class="hl__price num">{{ fmt.money(c.price) }}</span>
             <span class="hl__change num" :class="c.change['24h'] >= 0 ? 'is-up' : 'is-down'">{{ fmt.pct(c.change['24h']) }}</span>
           </a>
         </li>

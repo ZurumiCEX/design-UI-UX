@@ -29,12 +29,14 @@ const jobs = computed(() => {
 });
 
 // ---------- Candidature (DÉMO) ----------
+// Jusqu'à 5 fichiers : CV, lettre, portfolio… (PDF, Word, images ; 5 Mo chacun).
+const ACCEPT = 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/jpeg,image/png';
 const applying = ref(null); // offre, ou { spontaneous: true }
-const form = reactive({ name: '', email: '', link: '', cv: null, message: '' });
+const form = reactive({ name: '', email: '', link: '', cv: [], message: '' });
 const errors = reactive({});
 function apply(job) {
   applying.value = job;
-  Object.assign(form, { name: '', email: '', link: '', cv: null, message: '' });
+  Object.assign(form, { name: '', email: '', link: '', cv: [], message: '' });
   for (const k of Object.keys(errors)) delete errors[k];
 }
 function submit() {
@@ -42,7 +44,7 @@ function submit() {
   const e = data.value.apply.errors;
   if (form.name.trim().length < 2) errors.name = e.name;
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim())) errors.email = e.email;
-  if (!form.cv && !form.link.trim()) errors.cv = e.cv;
+  if (!form.cv.length && !form.link.trim()) errors.cv = e.cv;
   if (Object.keys(errors).length) return;
   applying.value = null;
   toast(data.value.apply.done, { tone: 'success' });
@@ -118,22 +120,10 @@ function submit() {
           </li>
         </ul>
         <p v-if="!jobs.length" class="cr-empty" role="status">{{ data.jobs.empty }}</p>
-      </div>
-    </section>
-
-    <section class="section cr-process" aria-labelledby="cr-process">
-      <div class="container">
-        <h2 id="cr-process" v-split class="title" v-html="data.process.title" />
-        <ol class="cr-process__list">
-          <li v-for="(s, i) in data.process.steps" :key="s.title" v-reveal>
-            <span class="num">{{ String(i + 1).padStart(2, '0') }}</span>
-            <h3>{{ s.title }}</h3>
-            <p>{{ s.text }}</p>
-          </li>
-        </ol>
         <p class="cr-demo">{{ data.demo }}</p>
       </div>
     </section>
+
 
     <ZDialog v-if="applying" :title="applying.spontaneous ? data.spontaneous : t(data.apply.title, { job: applying.title })" :close-label="data.apply.cancel" @close="applying = null">
       <form class="cr-form" novalidate @submit.prevent="submit">
@@ -149,7 +139,7 @@ function submit() {
         </div>
         <div>
           <span class="z-label">{{ data.apply.cv }}</span>
-          <ZFileDrop v-model="form.cv" accept="application/pdf" :label="data.apply.cvDrop" :hint="data.apply.cvHint" :errors="data.apply.fileErrors" :remove="data.apply.remove" :invalid="!!errors.cv" />
+          <ZFileDrop v-model="form.cv" :max="5" :max-size="5 * 1024 * 1024" :accept="ACCEPT" :label="data.apply.cvDrop" :hint="data.apply.cvHint" :errors="data.apply.fileErrors" :remove="data.apply.remove" :invalid="!!errors.cv" />
         </div>
         <div>
           <label class="z-label" for="cr-link">{{ data.apply.link }}</label>
@@ -199,17 +189,11 @@ function submit() {
 .job__cols h3 { font-size: 14px; font-weight: var(--font-weight-semibold); }
 .job__cols ul { display: grid; gap: 6px; margin-top: 10px; padding-left: 18px; list-style: disc; font-size: 14px; color: var(--color-text-muted); }
 .cr-empty { padding: 40px 0; text-align: center; color: var(--color-text-muted); }
-.cr-process__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 40px; }
-.cr-process__list li { padding-top: 18px; border-top: 1px solid var(--color-line-strong); }
-.cr-process__list .num { font-size: 13px; color: var(--color-brand-primary-300); }
-.cr-process__list h3 { margin-top: 10px; font-size: 16px; font-weight: var(--font-weight-semibold); }
-.cr-process__list p { margin-top: 6px; font-size: 14px; color: var(--color-text-muted); }
 .cr-demo { margin-top: 36px; font-size: 12px; color: var(--color-text-dim); }
 .cr-form { display: grid; gap: 14px; }
 .cr-form__area { height: 110px; padding: 12px 14px; resize: vertical; }
 @media (max-width: 900px) {
-  .cr-perks__grid, .cr-process__list { grid-template-columns: 1fr; }
-  .job__head { grid-template-columns: minmax(0, 1fr) auto; }
+  .cr-perks__grid,   .job__head { grid-template-columns: minmax(0, 1fr) auto; }
   .job__meta { grid-column: 1; grid-row: 2; }
   .job__icon { grid-column: 2; grid-row: 1 / 3; }
   .job__cols { grid-template-columns: 1fr; }

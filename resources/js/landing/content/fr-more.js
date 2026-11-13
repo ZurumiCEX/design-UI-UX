@@ -1,4 +1,4 @@
-// Contenu français des pages Convertir, Recevoir, Envoyer, P2P, Zurumi Verify, Signalement et des documents légaux.
+// Contenu français des pages Convertir, Recevoir, Envoyer, P2P, Zurumi vérification, Signalement et des documents légaux.
 // Fusionné dans fr.js. en-more.js reprend exactement les mêmes clés.
 //
 // À VALIDER (conformité) : frais, délais, fonctionnement du séquestre P2P, engagements de réponse,
@@ -104,7 +104,7 @@ export default function morePages(links) {
           'Un dépôt inférieur au montant minimum n’est pas crédité.',
           'Zurumi ne vous demandera jamais d’envoyer des fonds pour « vérifier » votre compte.',
         ],
-        link: { text: 'Un doute sur une adresse Zurumi ?', label: 'Vérifier avec Zurumi Verify', href: links.verify },
+        link: { text: 'Un doute sur une adresse Zurumi ?', label: 'Vérifier avec Zurumi vérification', href: links.verify },
       },
     },
 
@@ -173,7 +173,7 @@ export default function morePages(links) {
           'Les transferts internes entre utilisateurs Zurumi sont instantanés et sans frais de réseau.',
           'Personne chez Zurumi ne vous demandera d’envoyer des fonds vers une adresse « de vérification ».',
         ],
-        link: { text: 'On vous a donné une adresse « officielle » ?', label: 'Vérifier avec Zurumi Verify', href: links.verify },
+        link: { text: 'On vous a donné une adresse « officielle » ?', label: 'Vérifier avec Zurumi vérification', href: links.verify },
       },
     },
 
@@ -273,7 +273,7 @@ export default function morePages(links) {
 
     verify: {
       meta: {
-        title: 'Zurumi Verify — Vérification officielle',
+        title: 'Zurumi vérification — outil officiel',
         description: 'Vérifiez si un site, un e-mail, une adresse de wallet ou un compte social est officiellement associé à Zurumi.',
       },
       skip: 'Aller au formulaire de vérification',
@@ -297,7 +297,7 @@ export default function morePages(links) {
       types: {
         website: { label: 'Site web', description: 'Un site officiel Zurumi', placeholder: 'https://zurumi.com', hint: 'Collez l’URL complète, telle qu’elle apparaît dans votre navigateur.' },
         domain: { label: 'Domaine', description: 'Un domaine officiel Zurumi', placeholder: 'zurumi.com', hint: 'Saisissez le domaine sans https:// ni chemin.' },
-        email: { label: 'E-mail', description: 'Une adresse e-mail officielle', placeholder: 'support@zurumi.com', hint: 'L’adresse exacte de l’expéditeur, pas le nom affiché.' },
+        email: { label: 'E-mail', description: 'Une adresse e-mail officielle', placeholder: 'nom@domaine.com', hint: 'L’adresse exacte de l’expéditeur, pas le nom affiché.' },
         phone: { label: 'Téléphone', description: 'Un numéro officiel Zurumi', placeholder: '+221 33 000 00 00', hint: 'Incluez l’indicatif pays.' },
         wallet: { label: 'Adresse de wallet', description: 'Une adresse de dépôt officielle', placeholder: '0x… ou adresse de la blockchain concernée', hint: 'Comparez l’adresse caractère par caractère avant tout envoi.' },
         telegram: { label: 'Telegram', description: 'Un compte ou canal officiel', placeholder: '@ZurumiOfficial', hint: 'Le nom d’utilisateur, pas le nom affiché.' },
@@ -399,7 +399,7 @@ export default function morePages(links) {
         fake: 'Exemple d’imitation',
         items: [
           { icon: 'globe', title: 'Sites web', text: 'Les sites Zurumi utilisent toujours le domaine zurumi.com. Un tiret, un préfixe ou une extension différente signale une imitation.', example: 'zurumi.com', counter: 'zurumi-login.net' },
-          { icon: 'mail', title: 'E-mails', text: 'Un e-mail officiel provient toujours d’une adresse @zurumi.com. Vérifiez l’adresse réelle de l’expéditeur, pas le nom affiché.', example: 'support@zurumi.com', counter: 'support@zurumi-verify.com' },
+          { icon: 'mail', title: 'E-mails', text: 'Un e-mail officiel provient toujours d’une adresse @zurumi.com. Vérifiez l’adresse réelle de l’expéditeur, pas le nom affiché.', example: 'support[a]zurumi.com', counter: 'support[a]zurumi-verify.com' },
           { icon: 'telegram', title: 'Comptes sociaux', text: 'Zurumi ne contacte jamais un client en premier en message privé et ne propose jamais d’assistance via un compte non répertorié.', example: '@ZurumiOfficial', counter: '@zurumi_support' },
           { icon: 'wallet', title: 'Adresses de wallet', text: 'Comparez l’adresse caractère par caractère avant chaque envoi. Une adresse de dépôt Zurumi est vérifiable ici à tout moment.', example: '0x8f2a…b3c3', counter: '0x8f2a…b3c8' },
         ],
@@ -448,7 +448,7 @@ export default function morePages(links) {
         title: 'Ce que devient votre signalement',
         text: 'Il est enregistré, horodaté et transmis à l’équipe conformité. Les faux domaines font l’objet d’une demande de retrait, les comptes concernés sont suspendus le temps de l’enquête.',
       },
-      verify: { title: 'Zurumi Verify', text: 'Vérifiez un site, un e-mail ou un compte avant d’agir.' },
+      verify: { title: 'Zurumi vérification', text: 'Vérifiez un site, un e-mail ou un compte avant d’agir.' },
       form: {
         sections: { nature: 'Nature du signalement', facts: 'Ce qui s’est passé', evidence: 'Preuves', contact: 'Vous contacter' },
         natures: {
@@ -578,7 +578,7 @@ export default function morePages(links) {
           { id: 'irreversibilite', title: 'Opérations irréversibles', paras: ['Un envoi sur une blockchain ne peut pas être annulé. Une erreur d’adresse, de réseau ou de mémo peut entraîner la perte définitive des fonds.'] },
           { id: 'stablecoins', title: 'Stablecoins', paras: ['Les stablecoins (USDT, USDC…) visent à refléter la valeur d’une monnaie de référence, sans garantie. Leur valeur dépend de leur émetteur et de ses réserves.'] },
           { id: 'p2p', title: 'Échanges entre utilisateurs (P2P)', paras: ['Lors d’une vente P2P, vérifiez toujours la réception du paiement sur votre compte avant de libérer vos crypto-actifs. Une capture d’écran ne constitue pas une preuve de paiement.'] },
-          { id: 'fraude', title: 'Fraude et usurpation', paras: ['Des tiers peuvent se faire passer pour Zurumi. Vérifiez toute source avec Zurumi Verify et ne communiquez jamais vos identifiants, clés ou codes.'] },
+          { id: 'fraude', title: 'Fraude et usurpation', paras: ['Des tiers peuvent se faire passer pour Zurumi. Vérifiez toute source avec Zurumi vérification et ne communiquez jamais vos identifiants, clés ou codes.'] },
           { id: 'reglementation', title: 'Évolution réglementaire', paras: ['La réglementation des crypto-actifs évolue. Des changements peuvent affecter la disponibilité des services ou le traitement fiscal de vos opérations, qui relève de votre responsabilité.'] },
           { id: 'conseil', title: 'Absence de conseil', paras: ['Zurumi ne fournit aucun conseil en investissement. Les informations affichées (cours, tendances) sont données à titre indicatif.'] },
         ],

@@ -44,7 +44,8 @@ export const defaultLinks = {
   tiktok: '#',
   youtube: '#',
   logout: '#',
-  support: '#',
+  support: '#', // À DÉFINIR : lien du support (chat, formulaire…)
+  whatsapp: '#', // À DÉFINIR : lien WhatsApp du support (https://wa.me/…)
   appStore: '#',
   googlePlay: '#',
   // À REMPLACER — lien de téléchargement réel, encodé dans le QR code.
@@ -100,9 +101,9 @@ export const pairs = [
 
 // Moyens de paiement cités par Zurumi. Ne pas en ajouter sans validation.
 export const paymentMethods = [
-  { id: 'wave', name: 'Wave', tone: '#1DC8FF', glyph: 'W' },
-  { id: 'orange', name: 'Orange Money', tone: '#FF7900', glyph: 'O' },
-  { id: 'mixx', name: 'Mixx by Yas', tone: '#FFD200', glyph: 'M' },
+  { id: 'wave', name: 'Wave', tone: '#1DC8FF', glyph: 'W', logos: ['/images/payments/wave.webp'] },
+  { id: 'orange', name: 'Orange Money', tone: '#FF7900', glyph: 'O', logos: ['/images/payments/orange-money.webp'] },
+  { id: 'mixx', name: 'Mixx by Yas', tone: '#FFD200', glyph: 'M', logos: ['/images/payments/mixx.webp'] },
 ];
 
 // Pays de la zone UEMOA (XOF) et indicatifs. Les noms sont traduits dans fr.js / en.js.
@@ -122,7 +123,7 @@ export const defaultCountry = 'SN';
 // Achat rapide : devises de paiement (limites dans la devise), moyens de paiement (logos dans
 // public/images/payments/, frais de traitement), frais réseau et taux USD → XOF. DÉMO, à brancher.
 export const buy = {
-  usdXof: 605,
+  usdXof: 607, // = USD_XOF
   networkFeeUsd: 0.99,
   currencies: [
     { id: 'XOF', glyph: 'F', tone: '#0A8F5B', min: 5000, max: 3000000, decimals: 0 },
@@ -211,7 +212,13 @@ export const p2pOffers = [
 ];
 
 // Contact sécurité (signalements urgents).
-export const securityEmail = 'securite@zurumi.com';
+// Adresses e-mail, découpées pour ne jamais apparaître en clair (voir ui/ZMail.vue).
+export const emails = {
+  support: { user: 'support', domain: 'zurumi.com' },
+  security: { user: 'security', domain: 'zurumi.com' },
+  press: { user: 'presse', domain: 'zurumi.com' },
+};
+export const securityEmail = emails.security;
 
 // ---------------------------------------------------------------------------
 // Espace client — DÉMO. Utilisé tant que l'hôte ne fournit pas window.__LANDING__.user.
@@ -296,6 +303,32 @@ export const statusComponents = [
 
 // Médias statiques (servis depuis public/). La vidéo WebM garde la transparence (Chrome, Firefox, Edge) ;
 // le MP4 est rendu sur le fond de page (--color-bg-base) pour Safari, qui ignore la transparence WebM.
+// Équipe (page À propos). Rôles et expérience traduits dans pages.about.team.roles.
+// linkedin : À COMPLÉTER avec l'URL du profil (« # » en attendant).
+export const team = [
+  { id: 'advisor', name: '', photo: '' },
+  { id: 'kamar', name: 'BELLO Kamar Dean', photo: '/images/team/kamar-dean-bello.webp', linkedin: '#' },
+  { id: 'karim', name: 'MAGDY Karim', photo: '/images/team/karim-magdy.webp', linkedin: '#' },
+  { id: 'yacine', name: 'MERABET Yacine', photo: '/images/team/yacine-merabet.webp', linkedin: '#' },
+  { id: 'mbow', name: 'MBOW Bamba', photo: '/images/team/bamba-mbow.webp', linkedin: '#' },
+  { id: 'bamba', name: 'BELLO Bamba', photo: '/images/team/bamba-bello.webp', linkedin: '#' },
+  { id: 'fatoumata', name: 'NDIAYE Fatoumata Diarietou', photo: '/images/team/fatoumata-diarietou-ndiaye.webp', linkedin: '#' },
+  { id: 'isandra', name: 'TAVARES Isandra', photo: '/images/team/isandra-tavares.webp', linkedin: '#' },
+];
+
+// Charte graphique officielle (kit média de la page Annonces).
+export const brandKit = {
+  logos: { dark: '/images/brand/zurumi-logo-fond-sombre.png', light: '/images/brand/zurumi-logo-fond-clair.png' },
+  colors: [
+    { id: 'purple', hex: '#5D3587' },
+    { id: 'blue', hex: '#596FB7' },
+    { id: 'white', hex: '#FFFFFF' },
+    { id: 'ink', hex: '#0A0B10' },
+  ],
+  gradient: 'linear-gradient(135deg, #5D3587 0%, #596FB7 100%)',
+  weights: [700, 500, 400],
+};
+
 // Logo officiel (blanc sur transparent, pour fond sombre). `compact` : sans le slogan, pour la barre de navigation.
 export const brandLogo = { full: '/images/brand/zurumi-logo.webp', compact: '/images/brand/zurumi-logo-compact.webp', ratio: 960 / 229 };
 

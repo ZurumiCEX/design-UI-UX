@@ -5,16 +5,15 @@ import { toast } from '../composables/useToast.js';
 import SiteLayout from '../components/layout/SiteLayout.vue';
 import ZButton from '../components/ui/ZButton.vue';
 import ZIcon from '../components/ui/ZIcon.vue';
-import ZLogo from '../components/ui/ZLogo.vue';
+import ZMail from '../components/ui/ZMail.vue';
 import ZTag from '../components/ui/ZTag.vue';
+import { brandKit, emails } from '../content/data.js';
 
 const { i18n, fmt } = useI18n();
 const data = computed(() => i18n.content.pages.press);
 const open = ref(null);
 
-// Kit média : couleurs lues dans les tokens (jamais recopiées en dur).
-const swatches = ['--color-brand-primary', '--color-brand-secondary', '--color-brand-primary-300', '--color-brand-secondary-300', '--color-bg-base'];
-const hex = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim().toUpperCase();
+// Kit média : charte graphique officielle (content/data.js → brandKit).
 async function copy(value) {
   try {
     await navigator.clipboard.writeText(value);
@@ -23,16 +22,6 @@ async function copy(value) {
   }
   toast(`${value} — ${data.value.kit.copied}`, { tone: 'success' });
 }
-// Logo SUBSTITUT : à remplacer par les fichiers officiels.
-function downloadLogo(dark) {
-  const bg = dark ? hex('--color-bg-base') : '#FFFFFF';
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 24 24"><rect width="24" height="24" fill="${bg}"/><defs><linearGradient id="g" x1="0" y1=".4" x2="1" y2=".6"><stop offset="0" stop-color="${hex('--color-brand-primary')}"/><stop offset="1" stop-color="${hex('--color-brand-secondary')}"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="4.5" fill="url(#g)"/><path d="M9 9h6l-6 6h6" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
-  a.download = `zurumi-logo-${dark ? 'sombre' : 'clair'}.svg`;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-}
 const date = (iso) => fmt.date(new Date(iso), { dateStyle: 'long' });
 </script>
 
@@ -40,7 +29,7 @@ const date = (iso) => fmt.date(new Date(iso), { dateStyle: 'long' });
   <SiteLayout page="press">
     <section class="pr-hero">
       <div class="container">
-        <ZTag v-reveal>{{ data.tag }}</ZTag>
+        <ZTag v-if="data.tag" v-reveal>{{ data.tag }}</ZTag>
         <h1 v-split class="title title--display pr-hero__title" v-html="data.title" />
         <p v-reveal class="lede pr-hero__text">{{ data.text }}</p>
       </div>
@@ -68,7 +57,7 @@ const date = (iso) => fmt.date(new Date(iso), { dateStyle: 'long' });
         <section class="pr-card z-panel" aria-labelledby="pr-contact">
           <h2 id="pr-contact">{{ data.contact.title }}</h2>
           <p>{{ data.contact.text }}</p>
-          <a class="pr-mail" :href="`mailto:${data.contact.email}`"><ZIcon name="mail" :size="16" /> {{ data.contact.email }}</a>
+          <ZMail class="pr-mail" :mail="emails.press"><ZIcon name="mail" :size="16" /> </ZMail>
           <p class="pr-note">{{ data.contact.note }}</p>
         </section>
 
@@ -87,24 +76,50 @@ const date = (iso) => fmt.date(new Date(iso), { dateStyle: 'long' });
         <p v-reveal class="lede pr-kit__text">{{ data.kit.text }}</p>
         <div class="pr-kit__grid">
           <div class="pr-logo is-dark">
-            <ZLogo :brand="i18n.content.common.brand" :size="36" />
-            <ZButton variant="ghost" @click="downloadLogo(true)"><ZIcon name="download" :size="14" /> {{ data.kit.dark }}</ZButton>
+            <img :src="brandKit.logos.dark" alt="Zurumi" width="2000" height="477" loading="lazy" />
+            <ZButton variant="ghost" :href="brandKit.logos.dark" download="zurumi-logo-fond-sombre.png"><ZIcon name="download" :size="14" /> {{ data.kit.dark }}</ZButton>
           </div>
           <div class="pr-logo is-light">
-            <ZLogo :brand="i18n.content.common.brand" :size="36" />
-            <ZButton variant="light" @click="downloadLogo(false)"><ZIcon name="download" :size="14" /> {{ data.kit.light }}</ZButton>
+            <img :src="brandKit.logos.light" alt="Zurumi" width="2000" height="477" loading="lazy" />
+            <ZButton variant="light" :href="brandKit.logos.light" download="zurumi-logo-fond-clair.png"><ZIcon name="download" :size="14" /> {{ data.kit.light }}</ZButton>
           </div>
         </div>
-        <ul class="pr-swatches" :aria-label="data.kit.colors">
-          <li v-for="s in swatches" :key="s">
-            <button type="button" class="pr-swatch" @click="copy(hex(s))">
-              <span :style="{ background: `var(${s})` }" />
-              <strong class="num">{{ hex(s) }}</strong>
-              <small>{{ data.kit.names[s] }}</small>
+
+        <h3 class="pr-kit__h">{{ data.kit.colors }}</h3>
+        <ul class="pr-swatches">
+          <li v-for="c in brandKit.colors" :key="c.id">
+            <button type="button" class="pr-swatch" @click="copy(c.hex)">
+              <span :style="{ background: c.hex }" />
+              <strong class="num">{{ c.hex }}</strong>
+              <small>{{ data.kit.names[c.id] }}</small>
+            </button>
+          </li>
+          <li class="pr-swatches__wide">
+            <button type="button" class="pr-swatch" @click="copy(brandKit.gradient)">
+              <span :style="{ background: brandKit.gradient }" />
+              <strong>{{ data.kit.gradient.name }}</strong>
+              <small>{{ data.kit.gradient.text }}</small>
             </button>
           </li>
         </ul>
-        <p class="pr-kit__font">{{ data.kit.font }}</p>
+
+        <div class="pr-kit__cols">
+          <section class="pr-card z-panel">
+            <h3>{{ data.kit.type.title }}</h3>
+            <p class="pr-type__family">{{ data.kit.type.family }}</p>
+            <ul class="pr-type">
+              <li v-for="w in brandKit.weights" :key="w" :style="{ fontWeight: w }">Aa <small>{{ data.kit.type.weights[w] }}</small></li>
+            </ul>
+            <h3 class="pr-kit__tag-h">{{ data.kit.tagline.title }}</h3>
+            <p class="pr-tagline">{{ data.kit.tagline.text }}</p>
+          </section>
+          <section class="pr-card z-panel">
+            <h3>{{ data.kit.rules.title }}</h3>
+            <ul class="pr-rules">
+              <li v-for="r in data.kit.rules.items" :key="r"><ZIcon name="check" :size="14" /> {{ r }}</li>
+            </ul>
+          </section>
+        </div>
         <p class="pr-demo">{{ data.demo }}</p>
       </div>
     </section>
@@ -141,19 +156,32 @@ const date = (iso) => fmt.date(new Date(iso), { dateStyle: 'long' });
 .pr-logo { display: grid; justify-items: center; gap: 24px; padding: 48px 20px 28px; border-radius: var(--radius-lg); border: 1px solid var(--color-line-default); }
 .pr-logo.is-dark { background: var(--color-bg-surface); }
 .pr-logo.is-light { background: var(--color-text-default); }
-.pr-logo.is-light :deep(.z-logo) { color: var(--ink); }
-.pr-swatches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.pr-logo img { width: min(320px, 100%); height: auto; }
+.pr-kit__h { margin-top: 32px; font-size: 13px; font-weight: var(--font-weight-semibold); letter-spacing: var(--font-tracking-label); text-transform: uppercase; color: var(--color-text-dim); }
+.pr-swatches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.pr-swatches__wide { grid-column: 1 / -1; }
+.pr-kit__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.pr-kit__cols h3 { font-size: 15px; font-weight: var(--font-weight-semibold); }
+.pr-type__family { margin-top: 10px; font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
+.pr-type { display: grid; gap: 8px; margin-top: 10px; }
+.pr-type li { display: flex; align-items: baseline; gap: 12px; font-size: 22px; }
+.pr-type small { font-size: 13px; font-weight: 400; color: var(--color-text-muted); }
+.pr-kit__tag-h { margin-top: 22px; }
+.pr-tagline { margin-top: 8px; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: var(--gradient-brand-soft); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pr-rules { display: grid; gap: 10px; margin-top: 12px; }
+.pr-rules li { display: flex; gap: 10px; font-size: 13.5px; color: var(--color-text-muted); }
+.pr-rules :deep(svg) { flex: none; margin-top: 3px; color: var(--color-brand-primary-300); }
 .pr-swatch { display: grid; gap: 4px; width: 100%; padding: 10px; border-radius: var(--radius-md); background: var(--color-bg-surface); border: 1px solid var(--color-line-default); text-align: left; transition: border-color var(--motion-duration-hover); }
 .pr-swatch:hover { border-color: var(--color-line-strong); }
 .pr-swatch span { height: 56px; margin-bottom: 6px; border-radius: var(--radius-sm); border: 1px solid var(--color-line-default); }
 .pr-swatch strong { font-size: 13px; }
 .pr-swatch small { font-size: 12px; color: var(--color-text-muted); }
-.pr-kit__font { margin-top: 18px; font-size: 13px; color: var(--color-text-muted); }
 .pr-demo { margin-top: 24px; font-size: 12px; color: var(--color-text-dim); }
 @media (max-width: 960px) {
   .pr-grid { grid-template-columns: 1fr; }
   .pr-side { position: static; }
   .pr-swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pr-kit__cols { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) { .pr-kit__grid { grid-template-columns: 1fr; } }
 </style>

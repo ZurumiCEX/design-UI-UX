@@ -38,7 +38,7 @@ const price = (v) => fmt.num(v, props.sim.decimals);
 
     <div class="ph__last">
       <span class="ph__price num" :class="up ? 'is-up' : 'is-down'">{{ price(sim.last) }}</span>
-      <span v-if="pair.quote === 'USDT'" class="ph__fiat num">≈ {{ fmt.xof(sim.last * USDT_XOF) }}</span>
+      <span v-if="pair.quote === 'USDT'" class="ph__fiat num">≈ {{ fmt.money(sim.last * USDT_XOF) }}</span>
     </div>
 
     <dl class="ph__stats" :aria-label="data.stats.label">

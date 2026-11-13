@@ -56,11 +56,13 @@ export default function createContent(linkOverrides = {}) {
           { label: 'Send', href: links.send, icon: 'send', page: 'send' },
           { label: 'Receive', href: links.receive, icon: 'receive', page: 'receive' },
           { label: 'Swap', href: links.swap, icon: 'swap', page: 'convert' },
+          { label: 'Withdraw (P2P)', href: links.withdraw, icon: 'withdraw', page: 'p2p' },
         ],
       },
       { label: 'Withdraw', href: links.withdraw, page: 'p2p', badge: 'P2P' },
     ],
     wallet: 'Wallet', // bouton à droite de la barre (couleur secondaire)
+    currency: 'Display currency',
     language: { label: 'Language', choose: 'Choose language' },
     login: 'Log in',
     signup: 'Sign up',
@@ -87,7 +89,7 @@ export default function createContent(linkOverrides = {}) {
         links: [
           { label: 'About', href: links.about },
           { label: 'Careers', href: links.careers },
-          { label: 'Press', href: links.press },
+          { label: 'Announcements', href: links.press },
           { label: 'Zurumi Verify', href: links.verify },
         ],
       },

@@ -139,7 +139,7 @@ const pickPrice = (p) => form.value?.setPrice(p);
           <div><dt>{{ data.chart.info.name }}</dt><dd>{{ coin.name }}</dd></div>
           <div><dt>{{ data.chart.info.symbol }}</dt><dd>{{ coin.ticker }}</dd></div>
           <div><dt>{{ data.chart.info.category }}</dt><dd>{{ common.categories[coin.category] }}</dd></div>
-          <div><dt>{{ data.chart.info.price }}</dt><dd class="num">{{ fmt.xof(coin.price) }}</dd></div>
+          <div><dt>{{ data.chart.info.price }}</dt><dd class="num">{{ fmt.money(coin.price) }}</dd></div>
           <div><dt>{{ data.chart.info.cap }}</dt><dd class="num">{{ fmt.compact(coin.cap) }}</dd></div>
           <div><dt>{{ data.chart.info.volume }}</dt><dd class="num">{{ fmt.compact(coin.volume) }}</dd></div>
         </dl>

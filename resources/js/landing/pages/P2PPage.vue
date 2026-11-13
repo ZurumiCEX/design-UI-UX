@@ -7,7 +7,6 @@ import SiteLayout from '../components/layout/SiteLayout.vue';
 import SellSheet from '../components/p2p/SellSheet.vue';
 import TutorialSteps from '../components/tools/TutorialSteps.vue';
 import ZButton from '../components/ui/ZButton.vue';
-import ZCoinIcon from '../components/ui/ZCoinIcon.vue';
 import ZIcon from '../components/ui/ZIcon.vue';
 import ZSelect from '../components/ui/ZSelect.vue';
 
@@ -26,7 +25,7 @@ const selected = ref(null);
 
 const methodOptions = computed(() => [
   { value: 'all', label: data.value.filters.all },
-  ...common.value.paymentMethods.map((m) => ({ value: m.id, label: m.name, glyph: m.glyph, tone: m.tone })),
+  ...common.value.paymentMethods.map((m) => ({ value: m.id, label: m.name, logos: m.logos })),
 ]);
 const sortOptions = computed(() => Object.entries(data.value.filters.sorts).map(([value, label]) => ({ value, label })));
 
@@ -102,7 +101,7 @@ const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 
                 <p><span>{{ data.table.limitsShort }}</span> {{ fmt.num(o.limits.min) }} – {{ fmt.num(o.limits.max) }} XOF</p>
               </div>
               <ul class="offer__methods">
-                <li v-for="m in o.methods" :key="m"><ZCoinIcon :glyph="methodById(m).glyph" :tone="methodById(m).tone" :size="16" /> {{ methodById(m).name }}</li>
+                <li v-for="m in o.methods" :key="m"><img class="pm-logo" :src="methodById(m).logos[0]" alt="" width="20" height="20" /> {{ methodById(m).name }}</li>
               </ul>
               <ZButton class="offer__cta" @click="selected = o">{{ t(data.table.sell, { coin: coin.ticker }) }}<span class="sr-only"> — {{ o.merchant }}</span></ZButton>
             </li>
@@ -171,4 +170,5 @@ const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 
   .p2p__amount { flex: 1; }
   .p2p__amount input { width: 100%; }
 }
+.pm-logo { flex: none; width: 20px; height: 20px; padding: 1px; border-radius: 5px; background: var(--color-text-default); object-fit: contain; }
 </style>

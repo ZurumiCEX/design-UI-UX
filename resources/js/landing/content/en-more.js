@@ -293,7 +293,7 @@ export default function morePages(links) {
       types: {
         website: { label: 'Website', description: 'An official Zurumi website', placeholder: 'https://zurumi.com', hint: 'Paste the full URL, as it appears in your browser.' },
         domain: { label: 'Domain', description: 'An official Zurumi domain', placeholder: 'zurumi.com', hint: 'Enter the domain without https:// or a path.' },
-        email: { label: 'Email', description: 'An official email address', placeholder: 'support@zurumi.com', hint: 'The sender’s actual address, not the display name.' },
+        email: { label: 'Email', description: 'An official email address', placeholder: 'name@domain.com', hint: 'The sender’s actual address, not the display name.' },
         phone: { label: 'Phone', description: 'An official Zurumi number', placeholder: '+221 33 000 00 00', hint: 'Include the country code.' },
         wallet: { label: 'Wallet address', description: 'An official deposit address', placeholder: '0x… or the relevant blockchain address', hint: 'Compare the address character by character before sending anything.' },
         telegram: { label: 'Telegram', description: 'An official account or channel', placeholder: '@ZurumiOfficial', hint: 'The username, not the display name.' },
@@ -394,7 +394,7 @@ export default function morePages(links) {
         fake: 'Imitation example',
         items: [
           { icon: 'globe', title: 'Websites', text: 'Zurumi websites always use the zurumi.com domain. A hyphen, a prefix or a different extension means an imitation.', example: 'zurumi.com', counter: 'zurumi-login.net' },
-          { icon: 'mail', title: 'Emails', text: 'An official email always comes from an @zurumi.com address. Check the sender’s actual address, not the display name.', example: 'support@zurumi.com', counter: 'support@zurumi-verify.com' },
+          { icon: 'mail', title: 'Emails', text: 'An official email always comes from an @zurumi.com address. Check the sender’s actual address, not the display name.', example: 'support[a]zurumi.com', counter: 'support[a]zurumi-verify.com' },
           { icon: 'telegram', title: 'Social accounts', text: 'Zurumi never contacts customers first by private message and never offers support through an unlisted account.', example: '@ZurumiOfficial', counter: '@zurumi_support' },
           { icon: 'wallet', title: 'Wallet addresses', text: 'Compare the address character by character before every transfer. A Zurumi deposit address can be checked here at any time.', example: '0x8f2a…b3c3', counter: '0x8f2a…b3c8' },
         ],

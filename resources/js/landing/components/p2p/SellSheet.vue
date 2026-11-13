@@ -33,7 +33,7 @@ const xof = computed(() => (Number.isFinite(value.value) ? Math.floor(value.valu
 const balance = computed(() => Math.min(balanceOf(props.coin.id), props.offer.available[props.coin.id]));
 const method = computed(() => methods.value.find((m) => m.id === form.method));
 const countryOptions = computed(() => props.common.countries.map((c) => ({ value: c.id, label: c.name, short: c.dial, sub: c.dial })));
-const methodOptions = computed(() => methods.value.map((m) => ({ value: m.id, label: m.name, glyph: m.glyph, tone: m.tone })));
+const methodOptions = computed(() => methods.value.map((m) => ({ value: m.id, label: m.name, logos: m.logos })));
 
 function validate() {
   for (const k of Object.keys(errors)) delete errors[k];

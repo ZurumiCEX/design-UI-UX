@@ -1,5 +1,10 @@
 import { markRaw, reactive } from 'vue';
 import { createDefaultContent, loadContent, locales } from '../content/index.js';
+import { USD_XOF } from '../content/data.js';
+import { useProfile } from './useProfile.js';
+
+// Devise d'affichage choisie dans la barre (XOF ou USD), partagée avec le portefeuille.
+const { prefs } = useProfile();
 
 // État de langue partagé par toute la page : langue courante, contenu, page affichée.
 const TAGS = { fr: 'fr-FR', en: 'en-US', pt: 'pt-PT' };
@@ -93,6 +98,12 @@ export const fmt = {
   num: (v, min = 0, max = min) => minus(cached(Intl.NumberFormat, { minimumFractionDigits: min, maximumFractionDigits: max }).format(v)),
   price: (v, decimals = priceDecimals(v)) => fmt.num(v, decimals),
   xof: (v) => `${fmt.num(v, Math.abs(v) >= 100 ? 0 : 2)} XOF`,
+  // Montant exprimé en XOF, affiché dans la devise choisie (XOF ou USD).
+  moneyParts: (v) => (prefs.currency === 'USD' ? { n: fmt.price(v / USD_XOF), unit: 'USD' } : { n: fmt.num(v, Math.abs(v) >= 100 ? 0 : 2), unit: 'XOF' }),
+  money: (v) => {
+    const m = fmt.moneyParts(v);
+    return `${m.n} ${m.unit}`;
+  },
   pct: (v) =>
     minus(
       cached(Intl.NumberFormat, { style: 'percent', signDisplay: 'exceptZero', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v / 100),

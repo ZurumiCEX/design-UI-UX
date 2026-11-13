@@ -4,6 +4,7 @@ import { securityEmail } from '../content/data.js';
 import { useI18n } from '../composables/useI18n.js';
 import SiteLayout from '../components/layout/SiteLayout.vue';
 import ReportForm from '../components/report/ReportForm.vue';
+import ZMail from '../components/ui/ZMail.vue';
 import ZIcon from '../components/ui/ZIcon.vue';
 
 // Signaler une arnaque ou un abus. Jeton CSRF fourni par l'hôte : window.__LANDING__.csrf.
@@ -26,7 +27,7 @@ const csrf = window.__LANDING__?.csrf ?? '';
       </header>
 
       <div class="rp__grid">
-        <ReportForm :data="data.form" :endpoint="links.reportAction" :csrf-token="csrf" :support-mail="securityEmail" />
+        <ReportForm :data="data.form" :endpoint="links.reportAction" :csrf-token="csrf" :support-mail="`${securityEmail.user}[a]${securityEmail.domain}`" />
 
         <aside class="rp__aside">
           <section class="rp__note z-panel">
@@ -39,7 +40,7 @@ const csrf = window.__LANDING__?.csrf ?? '';
             <h2><ZIcon name="alert" :size="18" /> {{ data.urgent.title }}</h2>
             <p>
               <template v-for="(p, i) in parts(data.urgent.text)" :key="i">
-                <a v-if="p.slot === 'mail'" :href="`mailto:${securityEmail}`">{{ securityEmail }}</a>
+                <ZMail v-if="p.slot === 'mail'" :mail="securityEmail" />
                 <template v-else>{{ p.text }}</template>
               </template>
             </p>

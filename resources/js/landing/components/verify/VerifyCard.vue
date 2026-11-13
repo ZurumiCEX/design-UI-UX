@@ -76,7 +76,7 @@ function onAction(action) {
 }
 function tryExample() {
   v.selectType('email');
-  query.value = 'support@zurumi.com';
+  query.value = `support${String.fromCharCode(64)}zurumi.com`; // jamais en clair dans le code servi
 }
 onBeforeUnmount(v.dispose);
 </script>
@@ -161,7 +161,7 @@ onBeforeUnmount(v.dispose);
     </div>
 
     <p v-if="showForm" class="vc__example">
-      {{ data.form.example }} <button type="button" @click="tryExample">support@zurumi.com</button>
+      {{ data.form.example }} <button type="button" @click="tryExample">support[a]zurumi.com</button>
     </p>
   </div>
 </template>

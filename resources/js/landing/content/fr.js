@@ -59,11 +59,13 @@ export default function createContent(linkOverrides = {}) {
           { label: 'Envoyer', href: links.send, icon: 'send', page: 'send' },
           { label: 'Recevoir', href: links.receive, icon: 'receive', page: 'receive' },
           { label: 'Echanger', href: links.swap, icon: 'swap', page: 'convert' },
+          { label: 'Retirer (P2P)', href: links.withdraw, icon: 'withdraw', page: 'p2p' },
         ],
       },
       { label: 'Retirer', href: links.withdraw, page: 'p2p', badge: 'P2P' },
     ],
     wallet: 'Portefeuille', // bouton à droite de la barre (couleur secondaire)
+    currency: 'Devise d’affichage',
     language: { label: 'Langue', choose: 'Choisir la langue' },
     login: 'Connexion',
     signup: "S'inscrire",
@@ -90,8 +92,8 @@ export default function createContent(linkOverrides = {}) {
         links: [
           { label: 'À propos', href: links.about },
           { label: 'Carrières', href: links.careers },
-          { label: 'Presse', href: links.press },
-          { label: 'Zurumi Verify', href: links.verify },
+          { label: 'Annonces', href: links.press },
+          { label: 'Zurumi vérification', href: links.verify },
         ],
       },
       {

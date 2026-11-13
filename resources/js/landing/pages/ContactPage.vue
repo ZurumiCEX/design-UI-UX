@@ -6,6 +6,7 @@ import ZButton from '../components/ui/ZButton.vue';
 import ZIcon from '../components/ui/ZIcon.vue';
 import ZIconTile from '../components/ui/ZIconTile.vue';
 import ZSelect from '../components/ui/ZSelect.vue';
+import ZSocialIcon, { SOCIAL_ICONS } from '../components/ui/ZSocialIcon.vue';
 import ZTag from '../components/ui/ZTag.vue';
 
 const { i18n, t } = useI18n();
@@ -46,18 +47,19 @@ function reset() {
   <SiteLayout page="contact">
     <section class="ct-hero">
       <div class="container">
-        <ZTag v-reveal>{{ data.tag }}</ZTag>
+        <ZTag v-if="data.tag" v-reveal>{{ data.tag }}</ZTag>
         <h1 v-split class="title title--display ct-hero__title" v-html="data.title" />
         <p v-reveal class="lede ct-hero__text">{{ data.text }}</p>
       </div>
     </section>
 
     <div class="container ct-channels">
-      <a v-for="c in data.channels" :key="c.title" v-reveal class="ct-channel z-panel" :href="c.mail ? `mailto:${c.mail}` : c.tel ? `tel:${c.tel.replace(/\s/g, '')}` : links[c.link]">
-        <ZIconTile :icon="c.icon" :size="38" />
+      <a v-for="c in data.channels" :key="c.title" v-reveal class="ct-channel z-panel" :href="links[c.link]" :rel="c.brand ? 'noopener' : undefined">
+        <span v-if="c.brand" class="ct-brand" :style="{ '--brand': SOCIAL_ICONS[c.brand].color }"><ZSocialIcon :name="c.brand" :size="20" /></span>
+        <ZIconTile v-else :icon="c.icon" :size="38" />
         <h2>{{ c.title }}</h2>
         <p>{{ c.text }}</p>
-        <span class="ct-channel__go">{{ c.mail ?? c.tel ?? c.cta }} <ZIcon name="arrow-right" :size="13" /></span>
+        <span class="ct-channel__go">{{ c.cta }} <ZIcon name="arrow-right" :size="13" /></span>
       </a>
     </div>
 
@@ -143,6 +145,7 @@ function reset() {
 .ct-channels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .ct-channel { display: flex; flex-direction: column; gap: 6px; padding: 22px; transition: border-color var(--motion-duration-hover), transform var(--motion-duration-hover) var(--motion-ease-out); }
 .ct-channel:hover { border-color: var(--color-brand-primary-300); transform: translateY(-2px); }
+.ct-brand { display: grid; place-items: center; width: 38px; height: 38px; border-radius: var(--radius-md); color: var(--brand); background: color-mix(in srgb, var(--brand) 14%, transparent); border: 1px solid color-mix(in srgb, var(--brand) 35%, transparent); }
 .ct-channel h2 { margin-top: 12px; font-size: 16px; font-weight: var(--font-weight-semibold); }
 .ct-channel p { flex: 1; font-size: 13px; color: var(--color-text-muted); }
 .ct-channel__go { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; font-weight: var(--font-weight-medium); color: var(--color-brand-primary-300); overflow-wrap: anywhere; }

@@ -1,16 +1,17 @@
 <script setup>
 import { computed } from 'vue';
 import { useI18n } from '../composables/useI18n.js';
+import { team } from '../content/data.js';
 import SiteLayout from '../components/layout/SiteLayout.vue';
 import ZButton from '../components/ui/ZButton.vue';
 import ZIcon from '../components/ui/ZIcon.vue';
 import ZIconTile from '../components/ui/ZIconTile.vue';
+import ZSocialIcon from '../components/ui/ZSocialIcon.vue';
 import ZTag from '../components/ui/ZTag.vue';
 
-const { i18n } = useI18n();
+const { i18n, t } = useI18n();
 const data = computed(() => i18n.content.pages.about);
 const links = computed(() => i18n.content.common.links);
-const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
 </script>
 
 <template>
@@ -18,7 +19,7 @@ const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 
     <section class="ab-hero">
       <div class="ab-hero__halo" aria-hidden="true" />
       <div class="container">
-        <ZTag v-reveal>{{ data.tag }}</ZTag>
+        <ZTag v-if="data.tag" v-reveal>{{ data.tag }}</ZTag>
         <h1 v-split class="title title--display ab-hero__title" v-html="data.title" />
         <p v-reveal class="lede ab-hero__text">{{ data.text }}</p>
       </div>
@@ -71,10 +72,13 @@ const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 
         <h2 id="ab-team" v-split class="title" v-html="data.team.title" />
         <p v-reveal class="lede ab-team__text">{{ data.team.text }}</p>
         <ul class="ab-team__grid">
-          <li v-for="m in data.team.members" :key="m.role" v-reveal>
-            <span class="ab-team__avatar" aria-hidden="true">{{ initials(m.name) }}</span>
-            <strong>{{ m.name }}</strong>
-            <span>{{ m.role }}</span>
+          <li v-for="m in team" :key="m.id" v-reveal class="ab-member">
+            <img v-if="m.photo" class="ab-member__photo" :src="m.photo" :alt="m.name" width="256" height="256" loading="lazy" decoding="async" />
+            <span v-else class="ab-member__photo ab-member__photo--empty" aria-hidden="true"><ZIcon name="user" :size="44" /></span>
+            <strong>{{ m.name || data.team.advisor }}</strong>
+            <span class="ab-member__role">{{ data.team.roles[m.id].role }}</span>
+            <span v-if="data.team.roles[m.id].exp" class="ab-member__exp">{{ data.team.roles[m.id].exp }}</span>
+            <a v-if="m.linkedin" class="ab-member__in" :href="m.linkedin" rel="noopener" :aria-label="t(data.team.linkedin, { name: m.name })"><ZSocialIcon name="linkedin" :size="16" /></a>
           </li>
         </ul>
       </div>
@@ -125,21 +129,26 @@ const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 
 .ab-values__grid h3 { margin-top: 18px; font-size: 16px; font-weight: var(--font-weight-semibold); }
 .ab-values__grid p { margin-top: 8px; font-size: 14px; color: var(--color-text-muted); }
 .ab-team__text { margin-top: 16px; }
-.ab-team__grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
-.ab-team__grid li { display: grid; justify-items: center; gap: 4px; padding: 22px 12px; border-radius: var(--radius-lg); background: var(--color-bg-surface); border: 1px solid var(--color-line-default); text-align: center; }
-.ab-team__avatar { display: grid; place-items: center; width: 64px; height: 64px; margin-bottom: 10px; border-radius: 50%; background: var(--gradient-brand); font-size: 20px; font-weight: var(--font-weight-semibold); }
-.ab-team__grid strong { font-size: 14px; font-weight: var(--font-weight-semibold); }
-.ab-team__grid span:last-child { font-size: 12.5px; color: var(--color-text-muted); }
+.ab-team__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
+.ab-member { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 26px 16px 22px; border-radius: var(--radius-lg); background: var(--color-bg-surface); border: 1px solid var(--color-line-default); text-align: center; transition: border-color var(--motion-duration-hover); }
+.ab-member:hover { border-color: var(--color-line-strong); }
+.ab-member__photo { display: block; width: 112px; height: 112px; margin-bottom: 14px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px var(--color-bg-surface), 0 0 0 4px color-mix(in srgb, var(--color-brand-primary-300) 45%, transparent); }
+.ab-member__photo--empty { display: grid; place-items: center; background: var(--color-bg-surface-2); color: var(--color-text-dim); }
+.ab-member strong { font-size: 14.5px; font-weight: var(--font-weight-semibold); }
+.ab-member__role { font-size: 13px; color: var(--color-brand-primary-300); }
+.ab-member__exp { font-size: 12.5px; color: var(--color-text-muted); }
+.ab-member__in { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: var(--radius-sm); color: var(--color-text-muted); transition: color var(--motion-duration-hover), background-color var(--motion-duration-hover); }
+.ab-member__in:hover, .ab-member__in:focus-visible { color: #0A66C2; background: var(--color-text-default); }
 .ab-cta { padding-bottom: var(--space-section-y); }
 .ab-cta__box { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding: 40px; background: linear-gradient(120deg, color-mix(in srgb, var(--color-brand-primary) 26%, var(--color-bg-surface)), var(--color-bg-surface) 60%); }
 .ab-cta__box h2 { font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); letter-spacing: -0.02em; }
 .ab-cta__box p { margin-top: 8px; font-size: 14px; color: var(--color-text-muted); max-width: 48ch; }
 .ab-cta__btns { display: flex; flex-wrap: wrap; gap: 10px; }
 .ab-demo { margin-top: 20px; font-size: 12px; color: var(--color-text-dim); }
-@media (max-width: 1100px) { .ab-team__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ab-values__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1100px) { .ab-team__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ab-values__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 860px) {
   .ab-mission, .ab-story__grid { grid-template-columns: 1fr; gap: 36px; }
   .ab-cta__box { flex-direction: column; align-items: flex-start; padding: 26px; }
 }
-@media (max-width: 560px) { .ab-team__grid, .ab-values__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .ab-values__grid { grid-template-columns: 1fr 1fr; } .ab-team__grid { grid-template-columns: 1fr 1fr; gap: 10px; } .ab-member { padding: 20px 10px 18px; } .ab-member__photo { width: 88px; height: 88px; } }
 </style>

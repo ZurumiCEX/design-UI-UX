@@ -112,7 +112,7 @@ async function copyUid() {
             <tbody>
               <tr v-for="c in market" :key="c.id">
                 <th scope="row"><span class="db__coin"><ZCoinIcon :glyph="c.glyph" :tone="c.tone" :size="22" /> {{ c.ticker }}</span></th>
-                <td class="num">{{ fmt.xof(c.price) }}</td>
+                <td class="num">{{ fmt.money(c.price) }}</td>
                 <td class="num" :class="c.change['24h'] >= 0 ? 'is-up' : 'is-down'">{{ fmt.pct(c.change['24h']) }}</td>
                 <td class="c-spark"><Sparkline :values="c.spark" :up="c.change['24h'] >= 0" :width="80" :height="26" /></td>
                 <td><a :href="tradeHref(links, c) ?? links.quickBuy">{{ data.market.trade }}</a></td>

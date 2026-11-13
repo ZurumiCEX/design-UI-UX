@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, reactive, ref, watch } from 'vue';
 import { useI18n } from '../../composables/useI18n.js';
 import { useMarketFeed } from '../../composables/useMarketFeed.js';
+import { useProfile } from '../../composables/useProfile.js';
 import { toast } from '../../composables/useToast.js';
 import ZButton from '../ui/ZButton.vue';
 import ZIcon from '../ui/ZIcon.vue';
@@ -25,10 +26,14 @@ const saved = (() => {
 const urlCrypto = new URLSearchParams(window.location.search).get('crypto');
 const pick = (list, id, fallback) => (list.some((x) => x.id === id) ? id : fallback);
 const state = reactive({
-  spend: pick(cfg.currencies, saved.spend, 'XOF'),
+  spend: pick(cfg.currencies, useProfile().prefs.currency, 'XOF'), // devise choisie dans la barre
   crypto: pick(feed.coins, urlCrypto, pick(feed.coins, saved.crypto, 'usdt')),
   method: pick(cfg.methods, saved.method, 'wave'),
 });
+// La devise du widget et celle de la barre restent synchronisées.
+const { prefs } = useProfile();
+watch(() => prefs.currency, (c) => cfg.currencies.some((x) => x.id === c) && (state.spend = c));
+watch(() => state.spend, (c) => (prefs.currency = c));
 watch(state, (s) => {
   try { localStorage.setItem(STORE, JSON.stringify(s)); } catch { /* stockage indisponible */ }
 });

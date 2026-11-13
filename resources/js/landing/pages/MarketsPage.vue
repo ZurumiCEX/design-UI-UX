@@ -155,7 +155,7 @@ const flash = (c) => (c.seq ? (c.dir > 0 ? 'flash-up' : 'flash-down') : '');
                   {{ col.label }} <ZIcon name="sort" :size="12" :class="{ 'is-active': sort.key === col.key }" />
                 </button>
                 <span v-else>{{ col.label }}</span>
-                <span v-if="col.key === 'price'" class="unit-h"> (XOF)</span>
+                <span v-if="col.key === 'price'" class="unit-h"> ({{ fmt.moneyParts(1).unit }})</span>
                 <span v-if="col.key === 'change'" class="periods" role="group" :aria-label="data.table.periodLabel">
                   <button v-for="p in data.table.periods" :key="p.id" type="button" :aria-pressed="period === p.id" @click="period = p.id">
                     {{ p.label }}
@@ -186,7 +186,7 @@ const flash = (c) => (c.seq ? (c.dir > 0 ? 'flash-up' : 'flash-down') : '');
                 </a>
               </th>
               <td class="c-price num">
-                <span :key="c.seq" class="tick" :class="flash(c)">{{ fmt.num(c.price, c.price >= 100 ? 0 : 2) }}<span class="unit"> XOF</span></span>
+                <span :key="c.seq" class="tick" :class="flash(c)">{{ fmt.moneyParts(c.price).n }}<span class="unit"> {{ fmt.moneyParts(c.price).unit }}</span></span>
               </td>
               <td class="c-change num" :class="c.change[period] >= 0 ? 'is-up' : 'is-down'">{{ fmt.pct(c.change[period]) }}</td>
               <td class="c-chart"><Sparkline :values="c.spark" :up="c.change['24h'] >= 0" /></td>

@@ -6,6 +6,7 @@ import ZButton from '../ui/ZButton.vue';
 import ZIcon from '../ui/ZIcon.vue';
 import ZLogo from '../ui/ZLogo.vue';
 import DownloadPopover from './DownloadPopover.vue';
+import CurrencyToggle from './CurrencyToggle.vue';
 import LangSwitcher from './LangSwitcher.vue';
 import NavDropdown from './NavDropdown.vue';
 import AccountMenu from './AccountMenu.vue';
@@ -50,6 +51,7 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
       </nav>
 
       <div class="nav__right">
+        <CurrencyToggle class="nav__tool nav__cur nav__in" :label="data.currency" :style="{ '--n': data.items.length + 1 }" />
         <LangSwitcher class="nav__tool nav__lang nav__in" :style="{ '--n': data.items.length + 1 }" />
         <DownloadPopover class="nav__in" :download="common.download" :stores="common.stores" :style="{ '--n': data.items.length + 2 }" />
         <ZButton
@@ -99,6 +101,7 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
           <a :href="common.links.wallet" :aria-current="page === 'wallet' ? 'page' : undefined" @click="open = false"><ZIcon name="wallet" :size="16" /> {{ data.wallet }}</a>
         </li>
       </ul>
+      <CurrencyToggle class="nav__cur-m" :label="data.currency" />
       <div class="nav__langs" role="group" :aria-label="data.language.label">
         <button
           v-for="lang in common.languages"
@@ -149,6 +152,8 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
 .nav__badge { margin-left: 2px; padding: 1px 5px; border-radius: 4px; font-size: 9px; letter-spacing: 0.06em; color: var(--color-brand-primary-300); background: color-mix(in srgb, var(--color-brand-primary) 30%, transparent); }
 .nav__right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 .nav__tool { margin-right: 18px; }
+.nav__cur { margin-right: 6px; }
+.nav__panel .nav__cur-m { justify-self: start; }
 .nav__burger { display: none; width: 36px; height: 36px; place-items: center; }
 .nav__wallet { gap: 8px; }
 .nav__wallet :deep(svg) { flex: none; }

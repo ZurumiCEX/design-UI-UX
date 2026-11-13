@@ -13,7 +13,7 @@ const { fmt } = useI18n();
     <span class="z-coin__body">
       <span class="z-coin__name">{{ coin.name }} <small>{{ coin.ticker }}</small></span>
       <span class="z-coin__price">
-        {{ fmt.xof(coin.price) }} <span :class="coin.change['24h'] >= 0 ? 'is-up' : 'is-down'">{{ fmt.pct(coin.change['24h']) }}</span>
+        {{ fmt.money(coin.price) }} <span :class="coin.change['24h'] >= 0 ? 'is-up' : 'is-down'">{{ fmt.pct(coin.change['24h']) }}</span>
       </span>
     </span>
   </div>
