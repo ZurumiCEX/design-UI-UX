@@ -169,7 +169,6 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'services',
       type: 'products',
-      tag: 'Our services',
       title: 'Everything you need<br>for <i>your crypto</i>',
       more: 'Learn more',
       items: [
@@ -177,6 +176,7 @@ export default function createContent(linkOverrides = {}) {
           title: 'Quick buy.',
           text: 'Buy crypto in CFA francs with Mobile Money, in seconds.',
           href: links.quickBuy,
+          image: media.services.buy,
           ui: {
             title: 'Quick buy',
             meta: '1 USDT ≈ 607 XOF',
@@ -191,6 +191,7 @@ export default function createContent(linkOverrides = {}) {
           title: 'Send & Receive.',
           text: 'Transfer to any wallet, receive by address or QR code.',
           href: links.send,
+          image: media.services.transfer,
           ui: {
             title: 'Send · Receive',
             meta: 'Polygon network',
@@ -206,6 +207,7 @@ export default function createContent(linkOverrides = {}) {
           title: 'Swap.',
           text: 'Convert one crypto into another at the displayed rate, with no surprises.',
           href: links.swap,
+          image: media.services.swap,
           ui: {
             title: 'Swap',
             meta: 'Live rate',
@@ -221,6 +223,7 @@ export default function createContent(linkOverrides = {}) {
           title: 'Withdraw.',
           text: 'Get your funds back in CFA francs, straight to your Mobile Money account.',
           href: links.withdraw,
+          image: media.services.withdraw,
           ui: {
             title: 'Withdraw',
             meta: 'To Mobile Money',

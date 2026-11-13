@@ -2,8 +2,9 @@
 import ZIcon from '../ui/ZIcon.vue';
 import ZTag from '../ui/ZTag.vue';
 
-// Grille de services. Chaque cellule affiche une mini-interface décrite par `item.ui`
-// (title, meta, rows, cta) : ajouter un service = ajouter une entrée dans content/*.js.
+// Grille de services. Chaque cellule affiche un visuel (`item.image` : src, width, height, dark)
+// ou, à défaut, une mini-interface décrite par `item.ui` (title, meta, rows, cta).
+// Ajouter un service = ajouter une entrée dans content/*.js.
 defineProps({
   data: { type: Object, required: true },
   common: { type: Object, required: true },
@@ -13,13 +14,24 @@ defineProps({
 <template>
   <section :id="data.id" class="section products">
     <div class="container">
-      <ZTag v-reveal>{{ data.tag }}</ZTag>
+      <ZTag v-if="data.tag" v-reveal>{{ data.tag }}</ZTag>
       <h2 v-split class="title products__title" v-html="data.title" />
 
       <ul class="products__grid">
         <li v-for="item in data.items" :key="item.title" v-reveal class="cell">
           <div class="cell__stage" aria-hidden="true">
-            <div class="mini">
+            <img
+              v-if="item.image"
+              class="cell__img"
+              :class="{ 'is-dark': item.image.dark }"
+              :src="item.image.src"
+              :width="item.image.width"
+              :height="item.image.height"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <div v-else class="mini">
               <div class="mini__head">
                 <strong>{{ item.ui.title }}</strong><span>{{ item.ui.meta }}</span>
               </div>
@@ -52,13 +64,22 @@ defineProps({
 </template>
 
 <style scoped>
-.products__title { margin-top: 26px; }
+.products__title:not(:first-child) { margin-top: 26px; }
 .products__grid { display: grid; grid-template-columns: 1fr 1fr; margin-top: 64px; border-top: 1px solid var(--color-line-default); }
 .cell { position: relative; padding: 48px 44px 72px; border-bottom: 1px solid var(--color-line-default); }
 .cell:nth-child(odd) { padding-left: 0; border-right: 1px solid var(--color-line-default); }
 .cell__stage { display: grid; place-items: center; min-height: 290px; }
 .cell__text { max-width: 34ch; margin-top: 28px; font-size: 14.5px; color: var(--color-text-muted); }
 .cell__text strong { color: var(--color-text-default); font-weight: var(--font-weight-semibold); }
+
+/* Visuel : même emprise et même comportement que la mini-interface (atténué, rétabli au survol). */
+.cell__img {
+  display: block; width: min(400px, 100%); height: 290px; object-fit: contain;
+  opacity: 0.55; filter: saturate(0.45); transform: scale(0.97);
+  transition: opacity var(--duration-rule) var(--motion-ease-out), filter var(--duration-rule) var(--motion-ease-out), transform var(--duration-rule) var(--motion-ease-out);
+}
+/* Image sur fond noir : « lighten » efface le rectangle noir sur le fond de page. */
+.cell__img.is-dark { mix-blend-mode: lighten; }
 
 /* A14 — mini-interface atténuée, rétablie au survol / focus. */
 .mini {
@@ -95,14 +116,14 @@ defineProps({
 .cell__rule::before { width: 24px; background: var(--color-text-default); transition: opacity var(--duration-rule); }
 .cell__rule::after { width: 24px; background: var(--gradient-brand-soft); opacity: 0; transition: width var(--duration-rule) var(--motion-ease-out), opacity var(--motion-duration-hover); }
 
-.cell:hover .mini, .cell:focus-within .mini { opacity: 1; filter: none; transform: none; }
+.cell:hover .mini, .cell:focus-within .mini, .cell:hover .cell__img, .cell:focus-within .cell__img { opacity: 1; filter: none; transform: none; }
 .cell:hover .cell__more, .cell:focus-within .cell__more { opacity: 1; transform: none; }
 .cell:hover .cell__rule::after, .cell:focus-within .cell__rule::after { width: 100%; opacity: 1; }
 .cell:hover .cell__rule::before, .cell:focus-within .cell__rule::before { opacity: 0; }
 
 /* Mobile et écrans tactiles : états de survol affichés en permanence. */
 @media (max-width: 900px), (hover: none) {
-  .mini { opacity: 1; filter: none; transform: none; }
+  .mini, .cell__img { opacity: 1; filter: none; transform: none; }
   .cell__more { opacity: 1; transform: none; }
   .cell__rule::after { width: 100%; opacity: 1; }
   .cell__rule::before { opacity: 0; }
@@ -112,5 +133,6 @@ defineProps({
   .cell, .cell:nth-child(odd) { padding: 36px 0 68px; border-right: 0; }
   .cell__more, .cell__rule { left: 0; right: 0; }
   .cell__stage { min-height: 0; }
+  .cell__img { height: auto; max-height: 280px; }
 }
 </style>

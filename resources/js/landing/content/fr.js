@@ -174,7 +174,6 @@ export default function createContent(linkOverrides = {}) {
     {
       id: 'services',
       type: 'products',
-      tag: 'Nos services',
       title: "Tout ce qu'il faut<br>pour <i>vos cryptos</i>",
       more: 'En savoir plus',
       // DÉMO — à remplacer : montants, taux, frais et adresses fictifs.
@@ -183,6 +182,7 @@ export default function createContent(linkOverrides = {}) {
           title: 'Achat rapide.',
           text: 'Achetez vos cryptos en FCFA avec Mobile Money, en quelques secondes.',
           href: links.quickBuy,
+          image: media.services.buy,
           ui: {
             title: 'Achat rapide',
             meta: '1 USDT ≈ 607 XOF',
@@ -197,6 +197,7 @@ export default function createContent(linkOverrides = {}) {
           title: 'Envoyer & Recevoir.',
           text: "Transférez vers n'importe quel portefeuille, recevez par adresse ou QR code.",
           href: links.send,
+          image: media.services.transfer,
           ui: {
             title: 'Envoyer · Recevoir',
             meta: 'Réseau Polygon',
@@ -212,6 +213,7 @@ export default function createContent(linkOverrides = {}) {
           title: 'Echanger.',
           text: 'Convertissez une crypto en une autre, au taux affiché, sans surprise.',
           href: links.swap,
+          image: media.services.swap,
           ui: {
             title: 'Echanger',
             meta: 'Taux en direct',
@@ -227,6 +229,7 @@ export default function createContent(linkOverrides = {}) {
           title: 'Retirer.',
           text: 'Récupérez vos fonds en FCFA directement sur votre compte Mobile Money.',
           href: links.withdraw,
+          image: media.services.withdraw,
           ui: {
             title: 'Retirer',
             meta: 'Vers Mobile Money',

@@ -278,5 +278,13 @@ export const statusComponents = [
 // Médias statiques (servis depuis public/). La vidéo WebM garde la transparence (Chrome, Firefox, Edge) ;
 // le MP4 est rendu sur le fond de page (--color-bg-base) pour Safari, qui ignore la transparence WebM.
 export const media = {
+  // Visuels de la section Services (public/images/landing/services/). `dark` : image sur fond noir,
+  // fondue dans la page par mix-blend-mode (le noir de l'image disparaît).
+  services: {
+    buy: { src: '/images/landing/services/achat-rapide.webp', width: 840, height: 586, dark: true },
+    transfer: { src: '/images/landing/services/envoyer-recevoir.webp', width: 840, height: 860, dark: true },
+    swap: { src: '/images/landing/services/echanger.webp', width: 840, height: 711 },
+    withdraw: { src: '/images/landing/services/retirer.webp', width: 840, height: 542 },
+  },
   buyFlow: { webm: '/videos/zurumi-buy-flow.webm', mp4: '/videos/zurumi-buy-flow.mp4', poster: '/videos/zurumi-buy-flow-poster.webp' },
 };
