@@ -292,8 +292,8 @@ export const media = {
   },
   // Section Sécurité : cadenas 3D sur fond noir (fondu dans la page par mix-blend-mode).
   security: { src: '/images/landing/securite-cadenas.webp', width: 640, height: 804, alt: '', dark: true },
-  // Section « Portefeuille partout » : pièces en rotation, chrome noir miroir et accents violets, fond transparent.
-  coins: { webm: '/videos/zurumi-coins.webm', mp4: '/videos/zurumi-coins.mp4', poster: '/videos/zurumi-coins-poster.webp', width: 406, height: 206 },
+  // Section « Portefeuille partout » : coffre, carte et indicateurs (fond transparent).
+  wallet: { src: '/images/landing/portefeuille-coffre.webp', width: 1600, height: 631, alt: '' },
   // Visuels de la section Services (public/images/landing/services/). `dark` : image sur fond noir,
   // fondue dans la page par mix-blend-mode (le noir de l'image disparaît).
   services: {

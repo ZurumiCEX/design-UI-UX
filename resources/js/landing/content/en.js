@@ -286,7 +286,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'bell', label: 'Instant notifications' },
         { icon: 'fingerprint', label: 'Secure biometric login' },
       ],
-      video: { label: 'Animation: black chrome crypto coins spinning.', play: 'Play the animation', pause: 'Pause the animation', ...media.coins },
+      image: media.wallet,
     },
   ];
 

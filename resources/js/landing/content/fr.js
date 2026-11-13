@@ -293,7 +293,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'bell', label: 'Notifications instantanées' },
         { icon: 'fingerprint', label: 'Connexion biométrique sécurisée' },
       ],
-      video: { label: 'Animation : pièces de cryptomonnaies en chrome noir qui tournent sur elles-mêmes.', play: 'Lire l’animation', pause: 'Mettre l’animation en pause', ...media.coins },
+      image: media.wallet,
     },
   ];
 

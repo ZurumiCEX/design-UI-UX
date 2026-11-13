@@ -122,7 +122,7 @@ Le menu suit l'ordre : Achat rapide · Marché · Trade · Transactions (Envoyer
 | 6 | **Mobile Money** | Téléphone couché en 3D, pièces flottantes |
 | 7 | **Sécurité** | Bouclier 3D, grille de garanties |
 | 8 | **Étapes** | Orbe lumineux, trois étapes en cycle automatique |
-| 9 | **Portefeuille partout** | Fonctionnalités, boutons des stores, pièces en chrome noir miroir (vidéo à fond transparent) |
+| 9 | **Portefeuille partout** | Fonctionnalités, visuel coffre-fort et carte (fond transparent) |
 | 10 | **Pied de page** | Liens, réseaux sociaux, retour en haut |
 
 ## ✦ Animations
