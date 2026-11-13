@@ -34,7 +34,8 @@ const hovered = ref(-1);
           @mouseenter="hovered = i"
           @mouseleave="hovered = -1"
         >
-          <ZIconTile :icon="item.icon" :active="hovered === i" />
+          <img v-if="item.image" class="guard__icon" :src="item.image" width="256" height="256" alt="" loading="lazy" decoding="async" />
+          <ZIconTile v-else :icon="item.icon" :active="hovered === i" />
           <div>
             <h3>{{ item.title }}</h3>
             <p>{{ item.text }}</p>
@@ -72,6 +73,13 @@ const hovered = ref(-1);
   border-right: 1px solid var(--color-line-default); border-bottom: 1px solid var(--color-line-default);
 }
 .guard:nth-child(even) { border-right: 0; }
+/* Icône 3D centrée dans la carte ; elle se soulève légèrement au survol. */
+.guard__icon {
+  display: block; align-self: center; width: 120px; height: 120px; margin-top: 6px; object-fit: contain;
+  filter: drop-shadow(0 16px 24px color-mix(in srgb, var(--color-brand-primary) 30%, transparent));
+  transition: transform var(--duration-rule) var(--motion-ease-out);
+}
+.guard:hover .guard__icon { transform: translateY(-4px) scale(1.04); }
 .guard h3 { font-size: 14px; font-weight: var(--font-weight-semibold); }
 .guard p { font-size: var(--font-size-small); color: var(--color-text-muted); margin-top: 4px; }
 /* A17 — fond en léger dégradé + repère vertical gauche. */
@@ -86,10 +94,12 @@ const hovered = ref(-1);
 }
 .guard:hover::before { opacity: 1; }
 .guard:hover::after { transform: scaleY(3.2); background: var(--color-brand-primary-300); }
+@media (prefers-reduced-motion: reduce) { .guard:hover .guard__icon { transform: none; } }
 @media (max-width: 900px) {
   .security__layout { grid-template-columns: 1fr; }
   .security__shield { width: 200px; margin: 40px auto 8px; }
   .security__grid { grid-template-columns: 1fr; }
   .guard, .guard:nth-child(even) { min-height: 0; gap: 24px; border-right: 0; }
+  .guard__icon { width: 104px; height: 104px; }
 }
 </style>

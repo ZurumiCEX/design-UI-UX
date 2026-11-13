@@ -261,10 +261,10 @@ export default function createContent(linkOverrides = {}) {
       title: 'Une sécurité<br><i>de haut niveau</i>', // À VALIDER (conformité)
       // À VALIDER (conformité) — formulations provisoires, aucune affirmation de licence ou d'agrément.
       items: [
-        { icon: 'id', title: "Vérification d'identité", text: 'Parcours KYC pour protéger chaque compte' },
-        { icon: 'vault', title: 'Conservation spécialisée', text: 'Garde des actifs confiée à un prestataire dédié' },
-        { icon: 'lock', title: 'Protection Zero Trust', text: 'Accès contrôlés et infrastructure surveillée' },
-        { icon: 'scale', title: 'LBC / FT', text: 'Contrôles alignés sur les standards du GAFI' },
+        { icon: 'id', image: media.securityIcons.kyc, title: "Vérification d'identité", text: 'Parcours KYC pour protéger chaque compte' },
+        { icon: 'vault', image: media.securityIcons.custody, title: 'Conservation spécialisée', text: 'Garde des actifs confiée à un prestataire dédié' },
+        { icon: 'lock', image: media.securityIcons.zeroTrust, title: 'Protection Zero Trust', text: 'Accès contrôlés et infrastructure surveillée' },
+        { icon: 'scale', image: media.securityIcons.aml, title: 'LBC / FT', text: 'Contrôles alignés sur les standards du GAFI' },
       ],
       image: media.security,
     },
