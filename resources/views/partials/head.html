@@ -1,6 +1,7 @@
 <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#050507" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Zurumi" />
     <meta property="og:locale" content="fr_FR" />
@@ -9,4 +10,4 @@
       { "@context": "https://schema.org", "@type": "Organization", "name": "Zurumi" }
     </script>
     <!-- Active les états masqués des animations uniquement si JavaScript tourne. -->
-    <script>document.documentElement.classList.add('js');</script>
+    <script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('zurumi.seen'))document.documentElement.classList.add('nav-seen');sessionStorage.setItem('zurumi.seen','1')}catch(e){}</script>

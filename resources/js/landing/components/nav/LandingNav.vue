@@ -31,7 +31,7 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
     <div class="nav__blur" aria-hidden="true" />
     <div class="nav__bar">
       <a class="nav__in" :href="common.links.home" :aria-label="data.home" style="--n: 0">
-        <ZLogo :brand="common.brand" />
+        <ZLogo :brand="common.brand" variant="compact" :size="30" />
       </a>
 
       <nav class="nav__menu" :aria-label="data.label">

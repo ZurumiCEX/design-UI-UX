@@ -1,16 +1,22 @@
 <script setup>
-// Logo. Le « Z » est un SUBSTITUT : passez `image` (logo officiel) pour le remplacer.
-defineProps({
+import { computed } from 'vue';
+import { brandLogo } from '../../content/data.js';
+
+// Logo. `variant` : 'full' (logo officiel avec slogan), 'compact' (sans slogan, barre de navigation)
+// ou 'mark' (petit « Z » dessiné, pour les maquettes d'interface). `size` = hauteur en px.
+const props = defineProps({
   brand: { type: String, default: '' },
   size: { type: Number, default: 22 },
   wordmark: { type: Boolean, default: true },
   image: { type: String, default: '' },
+  variant: { type: String, default: 'mark' },
 });
+const src = computed(() => props.image || (props.variant === 'full' ? brandLogo.full : props.variant === 'compact' ? brandLogo.compact : ''));
 </script>
 
 <template>
   <span class="z-logo" :style="{ '--s': `${size}px` }">
-    <img v-if="image" :src="image" :alt="brand" :height="size" class="z-logo__img" />
+    <img v-if="src" :src="src" :alt="brand" :height="size" :width="Math.round(size * brandLogo.ratio)" class="z-logo__img" decoding="async" />
     <template v-else>
       <svg class="z-logo__mark" viewBox="0 0 24 24" aria-hidden="true">
         <rect width="24" height="24" rx="6" class="z-logo__tile" />

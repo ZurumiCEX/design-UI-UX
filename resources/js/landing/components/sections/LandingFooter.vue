@@ -15,7 +15,7 @@ defineProps({
     <div class="container">
       <div class="footer__top">
         <div v-reveal class="footer__brand">
-          <ZLogo :brand="common.brand" />
+          <ZLogo :brand="common.brand" variant="full" :size="54" />
           <p class="title" v-html="data.tagline" />
         </div>
         <nav v-for="col in data.columns" :key="col.title" v-reveal :aria-label="col.title">

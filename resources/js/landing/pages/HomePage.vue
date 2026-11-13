@@ -32,6 +32,7 @@ const sections = computed(() => i18n.content.sections.filter((s) => registry[s.t
 
 <template>
   <SiteLayout page="home">
-    <component :is="registry[s.type]" v-for="s in sections" :key="s.id" :data="s" :common="i18n.content.common" />
+    <!-- Chaque section (sauf le hero et la bannière à méduse) entre en fondu à chaque passage. -->
+    <component :is="registry[s.type]" v-for="s in sections" :key="s.id" v-section="!['hero', 'sky'].includes(s.type)" :data="s" :common="i18n.content.common" />
   </SiteLayout>
 </template>

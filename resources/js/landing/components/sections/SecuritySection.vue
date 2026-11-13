@@ -55,10 +55,10 @@ const hovered = ref(-1);
 .security__shield :deep(svg) {
   transform: rotateX(calc(34deg - 26deg * var(--p, 0.5))) rotateZ(calc(-14deg + 10deg * var(--p, 0.5)));
 }
-/* Rendu 3D (cadenas) : léger flottement lié au scroll ; le noir de l'image se fond dans la page. */
+/* Rendu 3D (cadenas, fond transparent) : léger flottement lié au scroll. */
 .security__shield:has(img) { width: 300px; margin-top: 40px; perspective: none; }
 .security__shield :deep(img) {
-  display: block; width: 100%; height: auto; mix-blend-mode: lighten;
+  display: block; width: 100%; height: auto;
   transform: translateY(calc((0.5 - var(--p, 0.5)) * 40px)) rotate(calc(-5deg + 10deg * var(--p, 0.5)));
 }
 @media (prefers-reduced-motion: reduce) { .security__shield :deep(img) { transform: none; } }

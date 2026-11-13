@@ -18,7 +18,7 @@ useScrollProgress(root);
 <template>
   <section :id="data.id" ref="root" class="sky">
     <div class="sky__grad" aria-hidden="true" />
-    <JellyfishSwim :media="data.jellyfish" />
+    <JellyfishSwim :media="data.jellyfish" :top="0.4" :bottom="0.84" />
     <div class="container sky__head">
       <h2 v-split class="title title--display" v-html="data.title" />
     </div>

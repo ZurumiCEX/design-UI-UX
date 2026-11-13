@@ -97,8 +97,8 @@ function onSubmit(e) {
           autocomplete="current-password"
           :error="pwError"
         />
-        <a class="forgot" :href="common.links.forgotPassword">{{ data.forgot }}</a>
       </template>
+      <a class="forgot" :href="common.links.forgotPassword">{{ data.forgot }}</a>
 
       <ZButton type="submit" size="lg" class="auth-cta">{{ step === 'identifier' ? data.next : data.submit }}</ZButton>
       <p v-if="notice" class="z-notice auth-notice" role="status">{{ notice }}</p>

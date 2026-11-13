@@ -277,6 +277,9 @@ export const statusComponents = [
 
 // Médias statiques (servis depuis public/). La vidéo WebM garde la transparence (Chrome, Firefox, Edge) ;
 // le MP4 est rendu sur le fond de page (--color-bg-base) pour Safari, qui ignore la transparence WebM.
+// Logo officiel (blanc sur transparent, pour fond sombre). `compact` : sans le slogan, pour la barre de navigation.
+export const brandLogo = { full: '/images/brand/zurumi-logo.webp', compact: '/images/brand/zurumi-logo-compact.webp', ratio: 960 / 229 };
+
 export const media = {
   // Section « Achetez & envoyez » : méduse qui nage (WebM transparent ; MP4 sur noir pour Safari).
   jellyfish: { webm: '/videos/meduse/meduse.webm', mp4: '/videos/meduse/meduse-noir.mp4', poster: '/videos/meduse/meduse-poster.webp' },
@@ -292,15 +295,14 @@ export const media = {
     fr: { webm: '/videos/zurumi-liquidite-fr.webm', mp4: '/videos/zurumi-liquidite-fr.mp4', poster: '/videos/zurumi-liquidite-fr-poster.webp', width: 1680, height: 754 },
     en: { webm: '/videos/zurumi-liquidite-en.webm', mp4: '/videos/zurumi-liquidite-en.mp4', poster: '/videos/zurumi-liquidite-en-poster.webp', width: 1680, height: 754 },
   },
-  // Section Sécurité : cadenas 3D sur fond noir (fondu dans la page par mix-blend-mode).
-  security: { src: '/images/landing/securite-cadenas.webp', width: 640, height: 804, alt: '', dark: true },
+  // Section Sécurité : cadenas 3D, fond transparent.
+  security: { src: '/images/landing/securite-cadenas.webp', width: 640, height: 804, alt: '' },
   // Section « Portefeuille partout » : coffre, carte et indicateurs (fond transparent).
   wallet: { src: '/images/landing/portefeuille-coffre.webp', width: 1600, height: 631, alt: '' },
-  // Visuels de la section Services (public/images/landing/services/). `dark` : image sur fond noir,
-  // fondue dans la page par mix-blend-mode (le noir de l'image disparaît).
+  // Visuels de la section Services (public/images/landing/services/), fond transparent.
   services: {
-    buy: { src: '/images/landing/services/achat-rapide.webp', width: 840, height: 586, dark: true },
-    transfer: { src: '/images/landing/services/envoyer-recevoir.webp', width: 840, height: 860, dark: true },
+    buy: { src: '/images/landing/services/achat-rapide.webp', width: 840, height: 586 },
+    transfer: { src: '/images/landing/services/envoyer-recevoir.webp', width: 840, height: 860 },
     swap: { src: '/images/landing/services/echanger.webp', width: 840, height: 711 },
     withdraw: { src: '/images/landing/services/retirer.webp', width: 840, height: 542 },
   },

@@ -20,7 +20,7 @@ const { i18n } = useI18n();
 
     <div class="auth__side">
       <header class="auth__top">
-        <a :href="i18n.content.common.links.home" :aria-label="i18n.content.nav.home"><ZLogo :brand="i18n.content.common.brand" /></a>
+        <a :href="i18n.content.common.links.home" :aria-label="i18n.content.nav.home"><ZLogo :brand="i18n.content.common.brand" variant="full" :size="46" /></a>
         <LangSwitcher />
       </header>
       <main class="auth__main">

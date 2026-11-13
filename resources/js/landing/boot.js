@@ -1,7 +1,7 @@
 import { createApp, h } from 'vue';
 import '../../css/landing.css';
 import { initI18n } from './composables/useI18n.js';
-import { vReveal, vSplit, whenReady } from './composables/useReveal.js';
+import { vReveal, vSplit, whenReady, vSection } from './composables/useReveal.js';
 
 /**
  * Monte une page sur #landing.
@@ -15,6 +15,7 @@ export async function boot(Page, { page, props = {} }) {
   createApp({ render: () => h(Page, props) })
     .directive('reveal', vReveal)
     .directive('split', vSplit)
+    .directive('section', vSection)
     .mount('#landing');
 
   // A3 — la séquence d'ouverture démarre quand les polices sont prêtes.

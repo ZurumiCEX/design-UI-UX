@@ -2,7 +2,7 @@
 import ZIcon from '../ui/ZIcon.vue';
 import ZTag from '../ui/ZTag.vue';
 
-// Grille de services. Chaque cellule affiche un visuel (`item.image` : src, width, height, dark)
+// Grille de services. Chaque cellule affiche un visuel (`item.image` : src, width, height)
 // ou, à défaut, une mini-interface décrite par `item.ui` (title, meta, rows, cta).
 // Ajouter un service = ajouter une entrée dans content/*.js.
 defineProps({
@@ -23,7 +23,6 @@ defineProps({
             <img
               v-if="item.image"
               class="cell__img"
-              :class="{ 'is-dark': item.image.dark }"
               :src="item.image.src"
               :width="item.image.width"
               :height="item.image.height"
@@ -78,8 +77,6 @@ defineProps({
   opacity: 0.55; filter: saturate(0.45); transform: scale(0.97);
   transition: opacity var(--duration-rule) var(--motion-ease-out), filter var(--duration-rule) var(--motion-ease-out), transform var(--duration-rule) var(--motion-ease-out);
 }
-/* Image sur fond noir : « lighten » efface le rectangle noir sur le fond de page. */
-.cell__img.is-dark { mix-blend-mode: lighten; }
 
 /* A14 — mini-interface atténuée, rétablie au survol / focus. */
 .mini {

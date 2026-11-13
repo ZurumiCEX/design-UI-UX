@@ -111,6 +111,32 @@ img, svg, canvas { display: block; max-width: 100%; }
 }
 .js [data-split].in .w { opacity: 1; transform: none; filter: none; }
 
+/* Réinitialisation : quand un élément sort complètement de l'écran, il revient à l'état masqué
+   sans transition, pour rejouer son animation au prochain passage. */
+.js [data-reveal]:not(.in), .js [data-split]:not(.in) .w { transition-duration: 0s; transition-delay: 0s; }
+/* Rejeu : fondu et montée seulement — le flou n'est joué qu'à la première apparition. */
+.js [data-replay][data-reveal], .js [data-replay][data-split] .w { filter: none; }
+
+/* Sections de l'accueil : fondu + montée à chaque entrée à l'écran (v-section). */
+.js [data-section] {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.9s var(--motion-ease-out), transform 1.05s var(--motion-ease-out);
+}
+.js [data-section]:not(.sec-in) { transition-duration: 0s; }
+.js [data-section].sec-in { opacity: 1; transform: none; }
+
+/* Transitions entre les pages (navigateurs compatibles : View Transitions entre documents).
+   La barre de navigation reste en place ; le contenu sort en fondu et entre en montant. */
+@view-transition { navigation: auto; }
+.nav { view-transition-name: zurumi-nav; }
+::view-transition-old(root) { animation: 200ms ease-in both zt-out; }
+::view-transition-new(root) { animation: 460ms var(--motion-ease-out) both zt-in; }
+@keyframes zt-out { to { opacity: 0; } }
+@keyframes zt-in { from { opacity: 0; transform: translateY(16px); } }
+/* Déjà vue dans cet onglet : la barre ne rejoue pas son entrée à chaque page. */
+html.js.nav-seen .nav__in { opacity: 1; transform: none; transition: none; }
+
 @media (max-width: 900px) {
   .container { padding-inline: var(--space-gutter-mobile); }
   .section { padding-block: calc(var(--space-section-y) * 0.62); }
@@ -124,7 +150,8 @@ img, svg, canvas { display: block; max-width: 100%; }
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
   }
-  .js [data-reveal], .js [data-split] .w { opacity: 1; transform: none; filter: none; }
+  .js [data-reveal], .js [data-split] .w, .js [data-section] { opacity: 1; transform: none; filter: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 
 /* Rendu sans JavaScript (contenu critique rendu côté serveur). */

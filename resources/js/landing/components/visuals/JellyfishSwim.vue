@@ -182,7 +182,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .jelly-stage { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .jelly {
-  position: absolute; left: 0; top: 0; width: clamp(200px, 22vw, 380px); aspect-ratio: 512 / 528;
+  position: absolute; left: 0; top: 0; width: clamp(260px, 30vw, 480px); aspect-ratio: 512 / 528;
   transform-origin: 50% 28%; will-change: transform, opacity; contain: layout paint;
   opacity: 0; /* invisible jusqu'à la première image calculée */
 }
