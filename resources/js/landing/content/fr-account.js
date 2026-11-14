@@ -2,6 +2,8 @@
 // notifications, mot de passe oublié et état des services. en-account.js reprend les mêmes clés.
 // DÉMO : notifications, incidents et maintenance sont fictifs. À VALIDER : limites KYC, délais.
 
+import { media } from './data.js';
+
 export default function accountContent(links) {
   const accountItems = [
     { key: 'account', page: 'account', icon: 'chart', label: 'Tableau de bord' },
@@ -345,7 +347,7 @@ export default function accountContent(links) {
 
     forgot: {
       meta: { title: 'Mot de passe oublié — Zurumi', description: 'Réinitialisez le mot de passe de votre compte Zurumi.' },
-      visual: { title: 'Un accès perdu,<br>vite <i>retrouvé.</i>', text: 'Un code de vérification suffit pour choisir un nouveau mot de passe.' },
+      visual: { image: media.authForgot, title: 'Un accès perdu,<br>vite <i>retrouvé.</i>', text: 'Un code de vérification suffit pour choisir un nouveau mot de passe.' },
       backToLogin: 'Retour à la connexion',
       titles: ['Mot de passe oublié', 'Saisissez le code', 'Nouveau mot de passe'],
       progress: 'Progression de la réinitialisation',

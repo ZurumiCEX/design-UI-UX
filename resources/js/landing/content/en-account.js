@@ -1,6 +1,8 @@
 // English content: wallet, account area (dashboard, profile, security, KYC), notifications,
 // forgotten password and service status. Same keys as fr-account.js.
 
+import { media } from './data.js';
+
 export default function accountContent(links) {
   const accountItems = [
     { key: 'account', page: 'account', icon: 'chart', label: 'Dashboard' },
@@ -343,7 +345,7 @@ export default function accountContent(links) {
 
     forgot: {
       meta: { title: 'Forgot password — Zurumi', description: 'Reset the password of your Zurumi account.' },
-      visual: { title: 'Lost access,<br>quickly <i>restored.</i>', text: 'A verification code is all you need to choose a new password.' },
+      visual: { image: media.authForgot, title: 'Lost access,<br>quickly <i>restored.</i>', text: 'A verification code is all you need to choose a new password.' },
       backToLogin: 'Back to login',
       titles: ['Forgot password', 'Enter the code', 'New password'],
       progress: 'Reset progress',
