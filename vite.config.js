@@ -11,6 +11,8 @@ const pages = {
   markets: here('./marches/index.html'),
   buy: here('./achat-rapide/index.html'),
   trade: here('./trade/index.html'),
+  staking: here('./epargne/index.html'),
+  dca: here('./investissement/index.html'),
   login: here('./connexion/index.html'),
   signup: here('./inscription/index.html'),
   convert: here('./convertir/index.html'),

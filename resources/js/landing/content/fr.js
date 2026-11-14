@@ -3,6 +3,7 @@
 // Les données sans texte (cours, paires, moyens de paiement, liens) sont dans data.js.
 import accountContent from './fr-account.js';
 import companyContent from './fr-company.js';
+import investContent from './fr-invest.js';
 import morePages from './fr-more.js';
 import { buy, coins, countries, defaultCountry, defaultLinks, languages, media, pairs, paymentMethods } from './data.js';
 
@@ -52,7 +53,14 @@ export default function createContent(linkOverrides = {}) {
     items: [
       { label: 'Achat rapide', href: links.quickBuy, page: 'buy' },
       { label: 'Marché', href: links.markets, page: 'markets' },
-      { label: 'Trade', href: links.trade, page: 'trade' },
+      {
+        label: 'Trading',
+        children: [
+          { label: 'Trading comptant', href: links.trade, icon: 'chart', page: 'trade' },
+          { label: 'Épargne', href: links.staking, icon: 'vault', page: 'staking' },
+          { label: 'Investissement', href: links.dca, icon: 'clock', page: 'dca' },
+        ],
+      },
       {
         label: 'Transactions',
         children: [
@@ -91,7 +99,9 @@ export default function createContent(linkOverrides = {}) {
         title: 'Produits',
         links: [
           { label: 'Achat rapide', href: links.quickBuy },
-          { label: 'Trade', href: links.trade },
+          { label: 'Trading comptant', href: links.trade },
+          { label: 'Épargne', href: links.staking },
+          { label: 'Investissement', href: links.dca },
           { label: 'Envoyer', href: links.send },
           { label: 'Recevoir', href: links.receive },
           { label: 'Echanger', href: links.swap },
@@ -306,7 +316,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'bell', label: 'Notifications instantanées' },
         { icon: 'fingerprint', label: 'Connexion biométrique sécurisée' },
       ],
-      image: media.wallet,
+      video: { label: 'Animation : bulles liquides violettes et bleues qui se forment et fusionnent.', ...media.liquid },
       // DÉMO — chiffres à confirmer avant mise en ligne.
       stats: [{ label: 'Actifs totaux', value: '$500K' }, { label: 'Portefeuilles actifs', value: '10K' }],
     },
@@ -649,5 +659,5 @@ export default function createContent(linkOverrides = {}) {
   const more = morePages(links);
   const acc = accountContent(links);
   nav.account = acc.navAccount;
-  return { locale: 'fr', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages, ...acc.pages, ...companyContent() }, legal: more.legal, notifications: acc.notifications, account: acc.account };
+  return { locale: 'fr', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages, ...acc.pages, ...companyContent(), ...investContent() }, legal: more.legal, notifications: acc.notifications, account: acc.account };
 }

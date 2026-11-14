@@ -2,16 +2,18 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { prefersReducedMotion } from '../../composables/useReducedMotion.js';
 import ZIcon from '../ui/ZIcon.vue';
+import { useTheme } from '../../composables/useTheme.js';
 
 // Vidéo du parcours d'achat (fond transparent). Chargée à l'approche du viewport,
 // lue seulement quand elle est visible, jamais en lecture automatique si l'utilisateur
 // préfère réduire les animations. Un bouton permet toujours de la mettre en pause.
 const props = defineProps({
-  video: { type: Object, required: true }, // { webm, mp4, poster, label, play, pause, width?, height? }
+  video: { type: Object, required: true }, // { webm, mp4, mp4Light?, poster, label, play, pause, width?, height? }
   toggle: { type: String, default: 'side' }, // 'side' : à droite du téléphone · 'corner' : coin bas droit
   controls: { type: Boolean, default: true }, // false : pas de bouton lecture / pause
 });
 
+const { theme } = useTheme();
 const el = ref(null);
 const box = ref(null);
 const loaded = ref(false);
@@ -68,7 +70,7 @@ onBeforeUnmount(() => io?.disconnect());
     >
       <template v-if="loaded">
         <source v-if="!webkitOnly" :src="video.webm" type='video/webm; codecs="vp9"' />
-        <source :src="video.mp4" type="video/mp4" />
+        <source :src="theme.theme === 'light' && video.mp4Light ? video.mp4Light : video.mp4" type="video/mp4" />
       </template>
     </video>
     <button v-if="controls" type="button" class="av__toggle" :aria-label="playing ? video.pause : video.play" :title="playing ? video.pause : video.play" @click="toggle">

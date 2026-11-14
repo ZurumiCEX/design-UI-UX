@@ -1,6 +1,7 @@
 // Content — English. Same keys as fr.js (the reference). Keep both files in sync.
 import accountContent from './en-account.js';
 import companyContent from './en-company.js';
+import investContent from './en-invest.js';
 import morePages from './en-more.js';
 import { buy, coins, countries, defaultCountry, defaultLinks, languages, media, pairs, paymentMethods } from './data.js';
 
@@ -49,7 +50,14 @@ export default function createContent(linkOverrides = {}) {
     items: [
       { label: 'Quick buy', href: links.quickBuy, page: 'buy' },
       { label: 'Market', href: links.markets, page: 'markets' },
-      { label: 'Trade', href: links.trade, page: 'trade' },
+      {
+        label: 'Trading',
+        children: [
+          { label: 'Spot trading', href: links.trade, icon: 'chart', page: 'trade' },
+          { label: 'Staking', href: links.staking, icon: 'vault', page: 'staking' },
+          { label: 'DCA', href: links.dca, icon: 'clock', page: 'dca' },
+        ],
+      },
       {
         label: 'Transactions',
         children: [
@@ -88,7 +96,9 @@ export default function createContent(linkOverrides = {}) {
         title: 'Products',
         links: [
           { label: 'Quick buy', href: links.quickBuy },
-          { label: 'Trade', href: links.trade },
+          { label: 'Spot trading', href: links.trade },
+          { label: 'Staking', href: links.staking },
+          { label: 'DCA', href: links.dca },
           { label: 'Send', href: links.send },
           { label: 'Receive', href: links.receive },
           { label: 'Swap', href: links.swap },
@@ -299,7 +309,7 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'bell', label: 'Instant notifications' },
         { icon: 'fingerprint', label: 'Secure biometric login' },
       ],
-      image: media.wallet,
+      video: { label: 'Animation: violet and blue liquid bubbles forming and merging.', ...media.liquid },
       // DÉMO — chiffres à confirmer avant mise en ligne.
       stats: [{ label: 'Total assets', value: '$500K' }, { label: 'Active wallets', value: '10K' }],
     },
@@ -637,5 +647,5 @@ export default function createContent(linkOverrides = {}) {
   const more = morePages(links);
   const acc = accountContent(links);
   nav.account = acc.navAccount;
-  return { locale: 'en', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages, ...acc.pages, ...companyContent() }, legal: more.legal, notifications: acc.notifications, account: acc.account };
+  return { locale: 'en', common, nav, footer, sections, auth, pages: { ...pages, ...more.pages, ...acc.pages, ...companyContent(), ...investContent() }, legal: more.legal, notifications: acc.notifications, account: acc.account };
 }

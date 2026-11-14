@@ -8,6 +8,8 @@ export const defaultLinks = {
   quickBuy: '/achat-rapide/',
   markets: '/marches/',
   trade: '/trade/',
+  staking: '/epargne/',
+  dca: '/investissement/',
   login: '/connexion/',
   signup: '/inscription/',
   send: '/envoyer/',
@@ -364,7 +366,8 @@ export const media = {
   // (l'original garde des reflets sombres qui ne se voient pas sur fond sombre).
   security: { src: '/images/landing/securite-cadenas.webp', light: '/images/landing/securite-cadenas-light.webp', width: 640, height: 804, alt: '' },
   // Section « Portefeuille partout » : coffre, carte et indicateurs (fond transparent).
-  wallet: { src: '/images/landing/portefeuille-coffre.webp', width: 1388, height: 726, alt: '' }, // coffre + carte, sans les encadrés (rendus en HTML)
+  // Section « Portefeuille partout » : animation de bulles liquides (fond transparent ; MP4 sombre / clair pour Safari).
+  liquid: { webm: '/videos/zurumi-liquid.webm', mp4: '/videos/zurumi-liquid.mp4', mp4Light: '/videos/zurumi-liquid-light.mp4', poster: '/videos/zurumi-liquid-poster.webp', width: 704, height: 424 },
   // Visuels de la section Services (public/images/landing/services/), fond transparent.
   services: {
     buy: { src: '/images/landing/services/achat-rapide.webp', light: '/images/landing/services/achat-rapide-light.webp', width: 840, height: 586 },
@@ -373,4 +376,54 @@ export const media = {
     withdraw: { src: '/images/landing/services/retirer.webp', width: 840, height: 542 },
   },
   buyFlow: { webm: '/videos/zurumi-buy-flow.webm', mp4: '/videos/zurumi-buy-flow.mp4', poster: '/videos/zurumi-buy-flow-poster.webp' },
+};
+
+// ---------- Épargne (staking) — valeurs PROVISOIRES issues du widget, à relire avec le fournisseur ----------
+// Le staking est opéré par un prestataire externe via l'API Zurumi (BFF) : le navigateur ne lui parle jamais.
+// Prix : cours du flux de marché (XOF). Délais en texte dans pages.staking.products.<id>.
+export const staking = {
+  commission: 0.15, // part des récompenses conservée par Zurumi
+  products: [
+    { id: 'eth', coin: 'eth', grossApy: 3.4, min: 0.01, dec: 6, unbondDays: 7, compound: true },
+    { id: 'sol', coin: 'sol', grossApy: 7.2, min: 0.1, dec: 4, unbondDays: 3, compound: true },
+    { id: 'pol', coin: 'pol', grossApy: 4.8, min: 10, dec: 2, unbondDays: 4, compound: false },
+    { id: 'bnb', coin: 'bnb', grossApy: 2.6, min: 0.1, dec: 5, unbondDays: 7, compound: false },
+  ],
+  demoBalances: { eth: 0.85, sol: 42, pol: 1500, bnb: 3.2 },
+  demoSpeed: { pendingMs: 4000, activatingMs: 9000 }, // délais accélérés pour la démo
+};
+
+// ---------- Investissement programmé (DCA) — valeurs PROVISOIRES issues du widget ----------
+export const dca = {
+  feeRate: 0.01,
+  minAmount: 2000, // XOF par achat
+  minLeg: 1000, // XOF minimum par actif dans un panier
+  maxAmount: 1000000,
+  kycMonthlyLimit: 2000000, // niveau KYC 2
+  maxAssets: 5,
+  presets: [5000, 10000, 25000, 50000, 100000],
+  assets: [
+    { id: 'usdt', vol: 0.0004, dec: 2 },
+    { id: 'btc', vol: 0.028, dec: 8 },
+    { id: 'eth', vol: 0.036, dec: 6 },
+    { id: 'sol', vol: 0.048, dec: 4 },
+    { id: 'bnb', vol: 0.032, dec: 5 },
+  ],
+  frequencies: [
+    { id: 'daily', days: 1, perMonth: 30 },
+    { id: 'weekly', days: 7, perMonth: 52 / 12 },
+    { id: 'biweekly', days: 14, perMonth: 26 / 12 },
+    { id: 'monthly', days: 30, perMonth: 1 },
+  ],
+  sources: [
+    { id: 'wallet', logos: ['/favicon.ico'], badge: 'ok' },
+    { id: 'wave', logos: ['/images/payments/wave.webp'], badge: 'warn' },
+    { id: 'orange', logos: ['/images/payments/orange-money.webp'], badge: 'warn' },
+  ],
+  baskets: [
+    { id: 'blue', alloc: [['btc', 60], ['eth', 40]] },
+    { id: 'bal', alloc: [['btc', 50], ['eth', 30], ['sol', 20]] },
+    { id: 'safe', alloc: [['usdt', 50], ['btc', 30], ['eth', 20]] },
+    { id: 'div', alloc: [['btc', 40], ['eth', 25], ['sol', 20], ['bnb', 15]] },
+  ],
 };
