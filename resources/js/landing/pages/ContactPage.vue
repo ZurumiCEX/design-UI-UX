@@ -160,12 +160,12 @@ function reset() {
 .ct-consent { position: relative; display: flex; gap: 12px; font-size: 13px; color: var(--color-text-muted); cursor: pointer; }
 .ct-consent input { position: absolute; opacity: 0; width: 18px; height: 18px; margin: 0; }
 .ct-box { display: grid; place-items: center; flex: none; width: 18px; height: 18px; margin-top: 1px; border-radius: 5px; border: 1px solid var(--color-text-dim); color: transparent; }
-.ct-consent input:checked + .ct-box { background: var(--gradient-brand); border-color: transparent; color: var(--color-text-default); }
+.ct-consent input:checked + .ct-box { background: var(--gradient-brand); border-color: transparent; color: var(--color-on-brand); }
 .ct-consent input:focus-visible + .ct-box { outline: 2px solid var(--color-brand-secondary-300); outline-offset: 2px; }
 .ct-consent input[aria-invalid='true'] + .ct-box { border-color: var(--color-state-down); }
 .ct-submit { width: 100%; height: 52px; }
 .ct-done { display: grid; justify-items: center; gap: 10px; padding: 24px 0; text-align: center; }
-.ct-done__icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--gradient-brand); box-shadow: 0 0 50px -10px var(--glow-brand); }
+.ct-done__icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--gradient-brand); box-shadow: 0 0 50px -10px var(--glow-brand);  color: var(--color-on-brand); }
 .ct-done p { font-size: 14px; color: var(--color-text-muted); max-width: 46ch; }
 .ct-ticket { display: grid; gap: 4px; padding: 14px 24px; border-radius: var(--radius-md); border: 1px dashed var(--color-line-strong); }
 .ct-ticket strong { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; color: var(--color-text-default); }

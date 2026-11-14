@@ -362,7 +362,7 @@ legend { margin-bottom: 18px; color: var(--color-text-muted); }
 .rf__consent { position: relative; display: flex; gap: 12px; margin-top: 18px; font-size: 13px; color: var(--color-text-muted); cursor: pointer; }
 .rf__consent input { position: absolute; opacity: 0; width: 18px; height: 18px; margin: 0; }
 .rf__box { display: grid; place-items: center; flex: none; width: 18px; height: 18px; margin-top: 1px; border-radius: 5px; border: 1px solid var(--color-text-dim); color: transparent; }
-.rf__consent input:checked + .rf__box { background: var(--gradient-brand); border-color: transparent; color: var(--color-text-default); }
+.rf__consent input:checked + .rf__box { background: var(--gradient-brand); border-color: transparent; color: var(--color-on-brand); }
 .rf__consent input:focus-visible + .rf__box { outline: 2px solid var(--color-brand-secondary-300); outline-offset: 2px; }
 .rf__consent input[aria-invalid='true'] + .rf__box { border-color: var(--color-state-down); }
 .rf__submit { width: 100%; height: 54px; }

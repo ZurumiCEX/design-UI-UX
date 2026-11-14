@@ -8,6 +8,7 @@ import ZLogo from '../ui/ZLogo.vue';
 import DownloadPopover from './DownloadPopover.vue';
 import CurrencyToggle from './CurrencyToggle.vue';
 import LangSwitcher from './LangSwitcher.vue';
+import ThemeToggle from './ThemeToggle.vue';
 import NavDropdown from './NavDropdown.vue';
 import AccountMenu from './AccountMenu.vue';
 import NotificationsPopover from './NotificationsPopover.vue';
@@ -53,6 +54,7 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
       <div class="nav__right">
         <CurrencyToggle class="nav__tool nav__cur nav__in" :label="data.currency" :style="{ '--n': data.items.length + 1 }" />
         <LangSwitcher class="nav__tool nav__lang nav__in" :style="{ '--n': data.items.length + 1 }" />
+        <ThemeToggle class="nav__in nav__theme" :style="{ '--n': data.items.length + 2 }" />
         <DownloadPopover class="nav__in" :download="common.download" :stores="common.stores" :style="{ '--n': data.items.length + 2 }" />
         <ZButton
           class="nav__in nav__wallet"
@@ -60,8 +62,9 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
           variant="secondary"
           :href="common.links.wallet"
           :aria-current="page === 'wallet' ? 'page' : undefined"
+          :title="data.wallet"
           :style="{ '--n': data.items.length + 3 }"
-        ><ZIcon name="wallet" :size="14" /> {{ data.wallet }}</ZButton>
+        ><ZIcon name="wallet" :size="14" /> <span class="nav__wallet-label">{{ data.wallet }}</span></ZButton>
         <NotificationsPopover v-if="notifications" class="nav__in" :data="notifications" :style="{ '--n': data.items.length + 4 }" />
         <AccountMenu v-if="signedIn" class="nav__in" :data="data.account" :links="common.links" :page="page" :style="{ '--n': data.items.length + 5 }" />
         <template v-else>
@@ -101,7 +104,10 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
           <a :href="common.links.wallet" :aria-current="page === 'wallet' ? 'page' : undefined" @click="open = false"><ZIcon name="wallet" :size="16" /> {{ data.wallet }}</a>
         </li>
       </ul>
-      <CurrencyToggle class="nav__cur-m" :label="data.currency" />
+      <div class="nav__prefs">
+        <CurrencyToggle :label="data.currency" />
+        <ThemeToggle />
+      </div>
       <div class="nav__langs" role="group" :aria-label="data.language.label">
         <button
           v-for="lang in common.languages"
@@ -153,13 +159,14 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
 .nav__right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 .nav__tool { margin-right: 18px; }
 .nav__cur { margin-right: 6px; }
-.nav__panel .nav__cur-m { justify-self: start; }
+.nav__prefs { display: flex; align-items: center; gap: 10px; }
+.nav__bar > .nav__in:first-child { flex: none; }
 .nav__burger { display: none; width: 36px; height: 36px; place-items: center; }
 .nav__wallet { gap: 8px; }
 .nav__wallet :deep(svg) { flex: none; }
 .nav__wallet.is-current { box-shadow: 0 0 0 1px var(--color-brand-secondary-300); }
 /* Petits écrans : le portefeuille reste accessible depuis le panneau. */
-@media (max-width: 600px) { .nav__wallet { display: none; } }
+@media (max-width: 600px) { .nav__wallet { display: none; } .nav .nav__right { gap: 6px; } .nav .nav__bar { gap: 8px; } }
 
 /* A3 — les éléments du menu apparaissent un à un, de gauche à droite. */
 :global(.js .nav__in) { opacity: 0; transform: translateY(-6px); }
@@ -178,10 +185,22 @@ useScrollFrame((y) => (scrolled.value = y > 20)); // A8
   .nav__menu ul { gap: 18px; }
   .nav__tool { margin-right: 8px; }
 }
+/* Entre 1180 et 1360 px : le bouton Portefeuille passe en icône seule (nom conservé pour les lecteurs d'écran). */
+@media (max-width: 1360px) and (min-width: 1181px) {
+  .nav__wallet { width: 40px; padding: 0; justify-content: center; }
+  .nav__wallet-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+/* Entre 1180 et 1280 px : barre resserrée pour loger devise, langue et thème. */
+@media (max-width: 1280px) {
+  .nav__bar { gap: 18px; }
+  .nav__menu ul { gap: 14px; }
+  .nav__right { gap: 8px; }
+  .nav__tool { margin-right: 2px; }
+}
 /* Le menu compte six entrées : il passe en panneau dès 1180 px pour ne jamais déborder. */
 @media (max-width: 1180px) {
   .nav__bar { padding: 0 var(--space-gutter-mobile); gap: 12px; }
-  .nav__menu, .nav__tool, .nav__login { display: none; }
+  .nav__menu, .nav__tool, .nav__login, .nav__theme { display: none; }
   .nav__burger { display: grid; }
   .nav__panel:not([hidden]) {
     position: relative; display: grid; align-content: start; gap: 22px; padding: 12px var(--space-gutter-mobile) 28px;

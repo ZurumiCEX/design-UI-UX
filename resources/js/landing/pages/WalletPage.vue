@@ -293,7 +293,7 @@ const txDate = (ts) => fmt.date(ts, { day: '2-digit', month: 'short', hour: '2-d
 .wl__toggle input { position: absolute; opacity: 0; }
 .wl__switch { position: relative; width: 34px; height: 20px; border-radius: var(--radius-pill); background: var(--color-line-strong); transition: background-color var(--motion-duration-hover); }
 .wl__switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--color-text-default); transition: transform var(--motion-duration-hover) var(--motion-ease-out); }
-.wl__toggle input:checked + .wl__switch { background: var(--color-brand-primary); }
+.wl__toggle input:checked + .wl__switch { background: var(--color-brand-primary);  color: var(--color-on-brand); }
 .wl__toggle input:checked + .wl__switch::after { transform: translateX(14px); }
 .wl__toggle input:focus-visible + .wl__switch { outline: 2px solid var(--color-brand-secondary-300); outline-offset: 2px; }
 .wl__table { width: 100%; border-collapse: collapse; font-size: 14px; }

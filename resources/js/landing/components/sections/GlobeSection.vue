@@ -31,7 +31,7 @@ defineProps({
         <img :src="data.image.src" :width="data.image.width" :height="data.image.height" :alt="data.image.alt" loading="lazy" decoding="async" />
         <span class="globe__shine" aria-hidden="true" />
       </div>
-      <div v-for="(s, i) in data.stats" :key="s.label" class="globe__stat" :class="`is-${i}`">
+      <div v-for="(s, i) in data.stats" :key="s.label" class="globe__stat theme-dark" :class="`is-${i}`">
         <span>{{ s.label }}</span>
         <strong class="num">{{ s.value }}</strong>
       </div>

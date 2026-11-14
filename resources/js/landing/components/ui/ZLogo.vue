@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { brandLogo } from '../../content/data.js';
+import { useTheme } from '../../composables/useTheme.js';
 
 // Logo. `variant` : 'full' (logo officiel avec slogan), 'compact' (sans slogan, barre de navigation)
 // ou 'mark' (petit « Z » dessiné, pour les maquettes d'interface). `size` = hauteur en px.
@@ -10,8 +11,17 @@ const props = defineProps({
   wordmark: { type: Boolean, default: true },
   image: { type: String, default: '' },
   variant: { type: String, default: 'mark' },
+  dark: { type: Boolean, default: false }, // posé sur une zone toujours sombre
 });
-const src = computed(() => props.image || (props.variant === 'full' ? brandLogo.full : props.variant === 'compact' ? brandLogo.compact : ''));
+const { theme } = useTheme();
+// Thème clair : version foncée du logo, sauf si `dark` force la version claire (zone sombre).
+const src = computed(() => {
+  if (props.image) return props.image;
+  const light = theme.theme === 'light' && !props.dark;
+  if (props.variant === 'full') return light ? brandLogo.fullLight : brandLogo.full;
+  if (props.variant === 'compact') return light ? brandLogo.compactLight : brandLogo.compact;
+  return '';
+});
 </script>
 
 <template>
@@ -32,5 +42,5 @@ const src = computed(() => props.image || (props.variant === 'full' ? brandLogo.
 .z-logo__mark { width: var(--s); height: var(--s); flex: none; }
 .z-logo__tile { fill: url(#z-grad-brand); }
 .z-logo__word { font-size: calc(var(--s) * 0.82); font-weight: var(--font-weight-semibold); letter-spacing: -0.03em; line-height: 1; }
-.z-logo__img { height: var(--s); width: auto; }
+.z-logo__img { flex: none; height: var(--s); width: auto; max-width: none; }
 </style>

@@ -155,7 +155,7 @@ const date = (iso) => fmt.date(new Date(iso), { dateStyle: 'long' });
 .pr-kit__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
 .pr-logo { display: grid; justify-items: center; gap: 24px; padding: 48px 20px 28px; border-radius: var(--radius-lg); border: 1px solid var(--color-line-default); }
 .pr-logo.is-dark { background: var(--color-bg-surface); }
-.pr-logo.is-light { background: var(--color-text-default); }
+.pr-logo.is-light { background: var(--color-paper); }
 .pr-logo img { width: min(320px, 100%); height: auto; }
 .pr-kit__h { margin-top: 32px; font-size: 13px; font-weight: var(--font-weight-semibold); letter-spacing: var(--font-tracking-label); text-transform: uppercase; color: var(--color-text-dim); }
 .pr-swatches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }

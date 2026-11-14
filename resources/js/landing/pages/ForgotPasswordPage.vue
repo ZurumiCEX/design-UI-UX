@@ -150,6 +150,6 @@ function onSubmit(e) {
 .fg__notice { margin-top: 16px; }
 .fg__done { display: grid; justify-items: center; gap: 4px; text-align: center; }
 .fg__done .fg__lead { margin: 10px 0 0; }
-.fg__icon { display: grid; place-items: center; width: 64px; height: 64px; margin-bottom: 20px; border-radius: 50%; background: var(--gradient-brand); box-shadow: 0 0 60px -10px var(--glow-brand); }
+.fg__icon { display: grid; place-items: center; width: 64px; height: 64px; margin-bottom: 20px; border-radius: 50%; background: var(--gradient-brand); box-shadow: 0 0 60px -10px var(--glow-brand);  color: var(--color-on-brand); }
 .fg__done .z-notice { margin-top: 14px; }
 </style>

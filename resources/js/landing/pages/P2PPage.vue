@@ -138,7 +138,7 @@ const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 
 .offer { padding: 18px 16px; border-bottom: 1px solid var(--color-line-default); transition: background-color var(--motion-duration-hover); }
 .offer:hover { background: var(--fill-1); }
 .offer__who { display: flex; gap: 12px; }
-.offer__avatar { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--gradient-brand); font-size: 12px; font-weight: var(--font-weight-bold); }
+.offer__avatar { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--gradient-brand); font-size: 12px; font-weight: var(--font-weight-bold);  color: var(--color-on-brand); }
 .offer__name { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: var(--font-weight-semibold); }
 .offer__verified { display: inline-grid; color: var(--color-brand-primary-300); }
 .offer__stats, .offer__release { margin-top: 3px; font-size: 12px; color: var(--color-text-muted); }
@@ -170,5 +170,5 @@ const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 
   .p2p__amount { flex: 1; }
   .p2p__amount input { width: 100%; }
 }
-.pm-logo { flex: none; width: 20px; height: 20px; padding: 1px; border-radius: 5px; background: var(--color-text-default); object-fit: contain; }
+.pm-logo { flex: none; width: 20px; height: 20px; padding: 1px; border-radius: 5px; background: var(--color-paper); object-fit: contain; }
 </style>

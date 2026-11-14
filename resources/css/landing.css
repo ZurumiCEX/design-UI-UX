@@ -1,6 +1,7 @@
 /* Base, typographie et utilitaires de mouvement de la landing.
    Toutes les couleurs et durées viennent de tokens.css. */
 @import './tokens.css';
+@import './themes.css';
 
 @font-face {
   font-family: 'Inter';
@@ -47,7 +48,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 input { font: inherit; color: inherit; }
 img, svg, canvas { display: block; max-width: 100%; }
 :focus-visible { outline: 2px solid var(--color-brand-secondary-300); outline-offset: 3px; border-radius: var(--radius-sm); }
-::selection { background: var(--color-brand-primary); color: var(--color-text-default); }
+::selection { background: var(--color-brand-primary); color: var(--color-on-brand); }
 
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 

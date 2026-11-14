@@ -29,6 +29,6 @@ const qr = computed(() => {
 </template>
 
 <style scoped>
-.z-qr { display: block; padding: 8px; background: var(--color-text-default); color: var(--ink); border-radius: var(--radius-md); }
+.z-qr { display: block; padding: 8px; background: var(--color-paper); color: var(--color-paper-ink); border-radius: var(--radius-md); }
 .z-qr svg { width: 100%; height: 100%; }
 </style>

@@ -276,7 +276,7 @@ function vote(id, useful) {
 .hp-start__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
 .hp-start__list a { display: grid; gap: 6px; height: 100%; padding: 16px; border-radius: var(--radius-md); background: var(--color-bg-surface-2); border: 1px solid var(--color-line-default); transition: border-color var(--motion-duration-hover), transform var(--motion-duration-hover) var(--motion-ease-out); }
 .hp-start__list a:hover { border-color: var(--color-brand-primary-300); transform: translateY(-2px); }
-.hp-start__list .num { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gradient-brand); font-size: 12px; font-weight: var(--font-weight-semibold); }
+.hp-start__list .num { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gradient-brand); font-size: 12px; font-weight: var(--font-weight-semibold);  color: var(--color-on-brand); }
 .hp-start__list strong { font-size: 14px; font-weight: var(--font-weight-semibold); }
 .hp-start__list small { font-size: 12px; color: var(--color-text-dim); }
 .hp-cats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
@@ -317,7 +317,7 @@ mark { background: color-mix(in srgb, var(--color-brand-primary-300) 30%, transp
 .hp-art-intro { margin-top: 16px; font-size: 17px; line-height: 1.6; color: var(--color-text-muted); }
 .hp-steps { display: grid; gap: 4px; margin-top: 28px; }
 .hp-steps li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--color-line-default); }
-.hp-steps .num { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--gradient-brand); font-size: 13px; font-weight: var(--font-weight-semibold); }
+.hp-steps .num { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--gradient-brand); font-size: 13px; font-weight: var(--font-weight-semibold);  color: var(--color-on-brand); }
 .hp-steps h2 { padding-top: 5px; font-size: 16px; font-weight: var(--font-weight-semibold); }
 .hp-steps p { margin-top: 4px; font-size: 14.5px; line-height: 1.6; color: var(--color-text-muted); }
 .hp-box { --tone: var(--color-brand-secondary-300); display: flex; gap: 12px; margin-top: 20px; padding: 16px 18px; border-radius: var(--radius-md); font-size: 14px; color: var(--color-text-muted); background: color-mix(in srgb, var(--tone) 10%, transparent); border: 1px solid color-mix(in srgb, var(--tone) 32%, transparent); }

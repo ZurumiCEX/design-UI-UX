@@ -187,7 +187,7 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', onOutside));
 .zs__icon { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--fill-2); color: var(--color-brand-primary-300); }
 .zs__btn-icon { color: var(--color-brand-primary-300); }
 .zs__logos { display: inline-flex; flex: none; gap: 3px; }
-.zs__logos img { width: 30px; height: 30px; padding: 1px; border-radius: 8px; background: var(--color-text-default); object-fit: contain; }
+.zs__logos img { width: 30px; height: 30px; padding: 1px; border-radius: 8px; background: var(--color-paper); object-fit: contain; }
 .zs__group { padding: 10px 8px 4px; font-size: 10.5px; font-weight: var(--font-weight-semibold); letter-spacing: var(--font-tracking-label); text-transform: uppercase; color: var(--color-text-dim); }
 .zs__sub { margin-left: auto; font-size: 12px; color: var(--color-text-muted); }
 .zs__check { color: var(--color-brand-primary-300); flex: none; }

@@ -138,7 +138,7 @@ const links = computed(() => i18n.content.common.links);
 .ab-member__role { font-size: 13px; color: var(--color-brand-primary-300); }
 .ab-member__exp { font-size: 12.5px; color: var(--color-text-muted); }
 .ab-member__in { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: var(--radius-sm); color: var(--color-text-muted); transition: color var(--motion-duration-hover), background-color var(--motion-duration-hover); }
-.ab-member__in:hover, .ab-member__in:focus-visible { color: #0A66C2; background: var(--color-text-default); }
+.ab-member__in:hover, .ab-member__in:focus-visible { color: #0A66C2; background: var(--color-paper); }
 .ab-cta { padding-bottom: var(--space-section-y); }
 .ab-cta__box { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding: 40px; background: linear-gradient(120deg, color-mix(in srgb, var(--color-brand-primary) 26%, var(--color-bg-surface)), var(--color-bg-surface) 60%); }
 .ab-cta__box h2 { font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); letter-spacing: -0.02em; }

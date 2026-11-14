@@ -75,6 +75,7 @@ onBeforeUnmount(() => {
 }
 .steps__num::before { content: ''; position: absolute; inset: -1px; z-index: -1; border-radius: inherit; background: var(--gradient-brand); opacity: 0; transition: opacity var(--duration-rule); }
 .is-active .steps__num::before { opacity: 1; }
+.is-active .steps__num { color: var(--color-on-brand); }
 .steps__body { font-size: 14.5px; color: var(--color-text-muted); max-width: 44ch; }
 .steps__body strong { color: var(--color-text-default); font-weight: var(--font-weight-semibold); }
 /* indicateur vertical : glisse d'un tiers à chaque étape */

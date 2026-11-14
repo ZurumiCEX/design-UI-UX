@@ -1,4 +1,5 @@
 <script setup>
+import { themedSrc } from '../../composables/useTheme.js';
 // Bouclier (A16). Le parent pilote la rotation 3D via --p.
 // `image` : { avif, webp, src, width, height, alt } pour un rendu 3D fourni.
 defineProps({ image: { type: Object, default: null } });
@@ -8,7 +9,7 @@ defineProps({ image: { type: Object, default: null } });
   <picture v-if="image">
     <source v-if="image.avif" :srcset="image.avif" type="image/avif" />
     <source v-if="image.webp" :srcset="image.webp" type="image/webp" />
-    <img :src="image.src" :alt="image.alt" :width="image.width" :height="image.height" loading="lazy" decoding="async" />
+    <img :src="themedSrc(image)" :alt="image.alt" :width="image.width" :height="image.height" loading="lazy" decoding="async" />
   </picture>
   <svg v-else class="shield" viewBox="0 0 280 320" aria-hidden="true">
     <path class="shield__body" d="M140 6 268 54v92c0 78-48 130-128 164C60 276 12 224 12 146V54L140 6Z" />

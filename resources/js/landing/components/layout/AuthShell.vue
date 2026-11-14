@@ -1,6 +1,7 @@
 <script setup>
 import { useI18n } from '../../composables/useI18n.js';
 import LangSwitcher from '../nav/LangSwitcher.vue';
+import ThemeToggle from '../nav/ThemeToggle.vue';
 import ZLogo from '../ui/ZLogo.vue';
 import StarField from '../visuals/StarField.vue';
 import SvgDefs from './SvgDefs.vue';
@@ -12,7 +13,7 @@ const { i18n } = useI18n();
 <template>
   <SvgDefs />
   <div class="auth">
-    <aside class="auth__visual">
+    <aside class="auth__visual theme-dark">
       <StarField />
       <div class="auth__glow" aria-hidden="true" />
       <slot name="visual" />
@@ -21,7 +22,7 @@ const { i18n } = useI18n();
     <div class="auth__side">
       <header class="auth__top">
         <a :href="i18n.content.common.links.home" :aria-label="i18n.content.nav.home"><ZLogo :brand="i18n.content.common.brand" variant="full" :size="46" /></a>
-        <LangSwitcher />
+        <div class="auth__prefs"><ThemeToggle /><LangSwitcher /></div>
       </header>
       <main class="auth__main">
         <div class="auth__form">
@@ -39,6 +40,7 @@ const { i18n } = useI18n();
   position: absolute; left: 50%; top: 56%; width: 120%; aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none;
   background: radial-gradient(closest-side, color-mix(in srgb, var(--color-brand-primary) 42%, transparent), color-mix(in srgb, var(--color-brand-secondary) 12%, transparent) 55%, transparent);
 }
+.auth__prefs { display: flex; align-items: center; gap: 14px; }
 .auth__side { display: flex; flex-direction: column; background: var(--color-bg-surface); }
 .auth__top { display: flex; justify-content: space-between; align-items: center; height: 72px; padding: 0 40px; }
 .auth__main { flex: 1; display: grid; place-items: center; padding: 24px 40px 64px; }

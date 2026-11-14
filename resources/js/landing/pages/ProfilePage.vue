@@ -231,7 +231,7 @@ function closeAccount() {
 .pf__toggle input { position: absolute; opacity: 0; }
 .pf__switch { position: relative; flex: none; width: 38px; height: 22px; border-radius: var(--radius-pill); background: var(--color-line-strong); transition: background-color var(--motion-duration-hover); }
 .pf__switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--color-text-default); transition: transform var(--motion-duration-hover) var(--motion-ease-out); }
-.pf__toggle input:checked + .pf__switch { background: var(--color-brand-primary); }
+.pf__toggle input:checked + .pf__switch { background: var(--color-brand-primary);  color: var(--color-on-brand); }
 .pf__toggle input:checked + .pf__switch::after { transform: translateX(16px); }
 .pf__toggle input:disabled + .pf__switch { opacity: 0.5; }
 .pf__toggle input:focus-visible + .pf__switch { outline: 2px solid var(--color-brand-secondary-300); outline-offset: 2px; }

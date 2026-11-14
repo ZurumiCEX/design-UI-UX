@@ -1,0 +1,60 @@
+/* Thèmes. Sombre = valeurs de tokens.css (par défaut). Clair = surcharges ci-dessous, activées par
+   <html data-theme="light"> (sélecteur de thème dans la barre, choix mémorisé dans localStorage). */
+
+/* Couleurs fixes, identiques dans les deux thèmes. */
+:root {
+  --color-on-brand: #FFFFFF; /* texte et icônes posés sur le violet / le dégradé */
+  --color-paper: #FFFFFF; /* fond blanc imposé : QR codes, logos de moyens de paiement, logo sur fond clair */
+  --color-paper-ink: #0A0B10; /* modules du QR code */
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-bg-base: #F7F8FB;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-surface-2: #EEF0F5;
+  --color-text-default: #14151C;
+  --color-text-muted: #14151CA8;
+  --color-text-dim: #14151C70;
+  --color-line-default: #14151C17;
+  --color-line-strong: #14151C29;
+  --color-brand-primary-300: #6E44A0;
+  --color-brand-secondary-300: #4A5DA6;
+  --color-state-up: #138A5A;
+  --color-state-down: #D23A58;
+  --color-state-warn: #B8661A;
+  --gradient-brand-soft: linear-gradient(100deg, #6E44A0 0%, #4A5DA6 100%);
+}
+
+/* Zones qui restent sombres dans le thème clair (bannière à méduse, panneau visuel connexion / inscription).
+   Les valeurs dérivées sont redéclarées pour être recalculées dans la zone. */
+:root[data-theme='light'] .theme-dark {
+  color-scheme: dark;
+  --color-bg-base: #050507;
+  --color-bg-surface: #0C0C12;
+  --color-bg-surface-2: #13131B;
+  --color-text-default: #FFFFFF;
+  --color-text-muted: #FFFFFF99;
+  --color-text-dim: #FFFFFF5C;
+  --color-line-default: #FFFFFF14;
+  --color-line-strong: #FFFFFF29;
+  --color-brand-primary-300: #B794E6;
+  --color-brand-secondary-300: #9DB0F2;
+  --color-state-up: #3DDC97;
+  --color-state-down: #FF5C7A;
+  --color-state-warn: #E08A3C;
+  --gradient-brand-soft: linear-gradient(100deg, #B794E6 0%, #9DB0F2 100%);
+  --fill-1: color-mix(in srgb, var(--color-text-default) 4%, transparent);
+  --fill-2: color-mix(in srgb, var(--color-text-default) 7%, transparent);
+  --glass: color-mix(in srgb, var(--color-bg-surface-2) 90%, transparent);
+  --glow-soft: color-mix(in srgb, var(--color-brand-primary-300) 45%, transparent);
+  --ink: var(--color-bg-base);
+  color: var(--color-text-default);
+}
+
+/* Bascule de thème : fondu court de toute la page (View Transitions), sauf mouvement réduit. */
+::view-transition-old(root), ::view-transition-new(root) { mix-blend-mode: normal; }
+html.theme-switching::view-transition-old(root) { animation: 280ms ease-out both zt-out; }
+html.theme-switching::view-transition-new(root) { animation: 280ms ease-out both zt-fade-in; }
+@keyframes zt-fade-in { from { opacity: 0; } }

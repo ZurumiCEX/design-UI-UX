@@ -199,7 +199,7 @@ function onSubmit(e) {
 .sd__check { position: relative; display: flex; gap: 10px; margin-top: 16px; font-size: 14px; cursor: pointer; }
 .sd__check input { position: absolute; opacity: 0; width: 18px; height: 18px; margin: 0; }
 .sd__box { display: grid; place-items: center; flex: none; width: 18px; height: 18px; margin-top: 1px; border-radius: 50%; border: 1px solid var(--color-text-dim); color: transparent; transition: background-color var(--motion-duration-hover); }
-.sd__check input:checked + .sd__box { background: var(--gradient-brand); border-color: transparent; color: var(--color-text-default); }
+.sd__check input:checked + .sd__box { background: var(--gradient-brand); border-color: transparent; color: var(--color-on-brand); }
 .sd__check input:focus-visible + .sd__box { outline: 2px solid var(--color-brand-secondary-300); outline-offset: 2px; }
 .sd__check small { display: block; font-size: 12px; color: var(--color-text-muted); }
 .sd__sub { display: block; margin: 18px 0 8px; font-size: var(--font-size-small); color: var(--color-text-muted); }

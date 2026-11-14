@@ -1,4 +1,5 @@
 <script setup>
+import { themedSrc } from '../../composables/useTheme.js';
 import ZIcon from '../ui/ZIcon.vue';
 import ZTag from '../ui/ZTag.vue';
 
@@ -23,7 +24,7 @@ defineProps({
             <img
               v-if="item.image"
               class="cell__img"
-              :src="item.image.src"
+              :src="themedSrc(item.image)"
               :width="item.image.width"
               :height="item.image.height"
               alt=""
@@ -98,7 +99,7 @@ defineProps({
 .mini__radio { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--color-text-dim); }
 .mini__radio.is-on { background: var(--color-state-up); border-color: var(--color-state-up); }
 .mini__divider { justify-self: center; display: grid; place-items: center; width: 22px; height: 22px; margin: -5px 0; z-index: 1; border-radius: 50%; background: var(--color-bg-surface-2); border: 1px solid var(--color-line-default); font-size: 11px; color: var(--color-text-muted); }
-.mini__cta { display: grid; place-items: center; height: 34px; margin-top: 2px; border-radius: var(--radius-md); background: var(--gradient-brand); font-size: 12px; font-weight: var(--font-weight-semibold); }
+.mini__cta { display: grid; place-items: center; height: 34px; margin-top: 2px; border-radius: var(--radius-md); background: var(--gradient-brand); font-size: 12px; font-weight: var(--font-weight-semibold);  color: var(--color-on-brand); }
 
 .cell__more {
   position: absolute; left: 44px; bottom: 26px; display: inline-flex; align-items: center; gap: 8px; color: var(--color-brand-primary-300);
@@ -113,6 +114,7 @@ defineProps({
 .cell__rule::before { width: 24px; background: var(--color-text-default); transition: opacity var(--duration-rule); }
 .cell__rule::after { width: 24px; background: var(--gradient-brand-soft); opacity: 0; transition: width var(--duration-rule) var(--motion-ease-out), opacity var(--motion-duration-hover); }
 
+:global([data-theme='light'] .cell__img) { opacity: 0.8; }
 .cell:hover .mini, .cell:focus-within .mini, .cell:hover .cell__img, .cell:focus-within .cell__img { opacity: 1; filter: none; transform: none; }
 .cell:hover .cell__more, .cell:focus-within .cell__more { opacity: 1; transform: none; }
 .cell:hover .cell__rule::after, .cell:focus-within .cell__rule::after { width: 100%; opacity: 1; }

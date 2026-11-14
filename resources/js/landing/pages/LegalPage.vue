@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 import { useI18n } from '../composables/useI18n.js';
 import SiteLayout from '../components/layout/SiteLayout.vue';
 import ZIcon from '../components/ui/ZIcon.vue';
@@ -18,6 +18,45 @@ const pieces = (text) => text.split(/(\{mail:\w+\})/).filter(Boolean).map((x) =>
   const m = x.match(/^\{mail:(\w+)\}$/);
   return m ? { mail: emails[m[1]] } : { text: x };
 });
+// ---------- FAQ : accordéon, recherche, tout ouvrir / fermer, lien direct vers une question ----------
+const isFaq = computed(() => d.value.sections.some((sec) => sec.blocks.some((b) => b.qa)));
+const qid = (si, bi) => `q-${si + 1}-${bi + 1}`;
+const open = reactive(new Set());
+const query = ref('');
+const norm = (x) => x.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const plain = (x) => x.replace(/\{mail:(\w+)\}/g, (_, k) => `${emails[k]?.user ?? k}`);
+const sections = computed(() => {
+  const q = norm(query.value.trim());
+  return d.value.sections
+    .map((sec, si) => ({
+      ...sec,
+      blocks: sec.blocks.map((b, bi) => ({ ...b, key: qid(si, bi) })).filter((b) => !q || !b.qa || norm(`${b.qa[0]} ${plain(b.qa[1])}`).includes(q)),
+    }))
+    .filter((sec) => !q || sec.blocks.some((b) => b.qa));
+});
+const matches = computed(() => sections.value.reduce((n, sec) => n + sec.blocks.filter((b) => b.qa).length, 0));
+const allKeys = computed(() => sections.value.flatMap((sec) => sec.blocks.filter((b) => b.qa).map((b) => b.key)));
+const allOpen = computed(() => allKeys.value.length > 0 && allKeys.value.every((k) => open.has(k)));
+function toggle(key) {
+  open.has(key) ? open.delete(key) : open.add(key);
+  if (open.has(key)) history.replaceState(null, '', `#${key}`);
+}
+function toggleAll() {
+  const close = allOpen.value;
+  for (const k of allKeys.value) close ? open.delete(k) : open.add(k);
+}
+// Ouverture fluide : la hauteur passe de 0 à la hauteur réelle du contenu.
+const onEnter = (el) => { el.style.height = '0'; requestAnimationFrame(() => { el.style.height = `${el.scrollHeight}px`; }); };
+const onAfterEnter = (el) => { el.style.height = ''; };
+const onLeave = (el) => { el.style.height = `${el.scrollHeight}px`; requestAnimationFrame(() => { el.style.height = '0'; }); };
+onMounted(async () => {
+  const m = location.hash.match(/^#(q-\d+-\d+)$/);
+  if (!m || !isFaq.value) return;
+  open.add(m[1]);
+  await nextTick();
+  document.getElementById(m[1])?.scrollIntoView({ block: 'center' });
+});
+
 const others = computed(() => Object.entries(legal.value.docs).filter(([id]) => id !== props.doc));
 
 // Sommaire : l'entrée de la section visible est mise en avant.
@@ -53,7 +92,7 @@ onBeforeUnmount(() => io?.disconnect());
         <nav class="legal__toc" :aria-label="legal.toc">
           <p class="label">{{ legal.toc }}</p>
           <ol>
-            <li v-for="(s, i) in d.sections" :key="s.id">
+            <li v-for="(s, i) in sections" :key="s.id">
               <a :href="`#${s.id}`" :aria-current="current === s.id ? 'true' : undefined"><span class="num">{{ String(i + 1).padStart(2, '0') }}</span> {{ s.title }}</a>
             </li>
           </ol>
@@ -65,7 +104,17 @@ onBeforeUnmount(() => io?.disconnect());
 
         <article class="legal__body">
           <p v-for="p in d.intro" :key="p" class="legal__intro">{{ p }}</p>
-          <section v-for="(s, i) in d.sections" :id="s.id" :key="s.id" class="legal__section">
+          <div v-if="isFaq" class="faq-tools">
+            <div class="faq-search" role="search">
+              <ZIcon name="search" :size="18" />
+              <label class="sr-only" for="faq-q">{{ legal.faq.search }}</label>
+              <input id="faq-q" v-model="query" type="search" autocomplete="off" :placeholder="legal.faq.search" />
+            </div>
+            <button type="button" class="faq-all" :aria-pressed="allOpen" @click="toggleAll">{{ allOpen ? legal.faq.closeAll : legal.faq.openAll }}</button>
+            <p class="faq-count" aria-live="polite">{{ query.trim() ? t(matches === 1 ? legal.faq.one : legal.faq.many, { n: matches }) : '' }}</p>
+          </div>
+          <p v-if="isFaq && !matches" class="faq-none">{{ legal.faq.none }}</p>
+          <section v-for="(s, i) in sections" :id="s.id" :key="s.id" class="legal__section">
             <h2><span class="num">{{ String(i + 1).padStart(2, '0') }}</span> {{ s.title }}</h2>
             <template v-for="(b, k) in s.blocks" :key="k">
               <h3 v-if="b.h">{{ b.h }}</h3>
@@ -73,9 +122,18 @@ onBeforeUnmount(() => io?.disconnect());
               <ul v-else-if="b.ul">
                 <li v-for="item in b.ul" :key="item"><template v-for="(x, n) in pieces(item)" :key="n"><ZMail v-if="x.mail" :mail="x.mail" /><template v-else>{{ x.text }}</template></template></li>
               </ul>
-              <div v-else-if="b.qa" class="legal__qa">
-                <h3>{{ b.qa[0] }}</h3>
-                <p><template v-for="(x, n) in pieces(b.qa[1])" :key="n"><ZMail v-if="x.mail" :mail="x.mail" /><template v-else>{{ x.text }}</template></template></p>
+              <div v-else-if="b.qa" :id="b.key" class="faq" :class="{ 'is-open': open.has(b.key) }">
+                <h3>
+                  <button type="button" :aria-expanded="open.has(b.key)" :aria-controls="`${b.key}-a`" @click="toggle(b.key)">
+                    <span>{{ b.qa[0] }}</span>
+                    <span class="faq__icon" aria-hidden="true" />
+                  </button>
+                </h3>
+                <Transition :css="false" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave">
+                  <div v-if="open.has(b.key)" :id="`${b.key}-a`" class="faq__a" role="region" :aria-label="b.qa[0]">
+                    <p><template v-for="(x, n) in pieces(b.qa[1])" :key="n"><ZMail v-if="x.mail" :mail="x.mail" /><template v-else>{{ x.text }}</template></template></p>
+                  </div>
+                </Transition>
               </div>
               <div v-else-if="b.table" class="legal__table" tabindex="0" role="region" :aria-label="s.title">
                 <table>
@@ -122,6 +180,27 @@ onBeforeUnmount(() => io?.disconnect());
 .legal__section p { margin-top: 14px; font-size: 15px; line-height: 1.7; color: var(--color-text-muted); }
 .legal__section ul { display: grid; gap: 8px; margin-top: 14px; padding-left: 20px; list-style: disc; font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 .legal__section h3 { margin-top: 24px; font-size: 16px; font-weight: var(--font-weight-semibold); color: var(--color-text-default); }
+.faq-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
+.faq-search { display: flex; flex: 1 1 280px; align-items: center; gap: 10px; height: 48px; padding: 0 16px; border-radius: var(--radius-pill); background: var(--color-bg-surface); border: 1px solid var(--color-line-strong); color: var(--color-text-muted); transition: border-color var(--motion-duration-hover); }
+.faq-search:focus-within { border-color: var(--color-brand-secondary-300); }
+.faq-search input { flex: 1; min-width: 0; height: 100%; background: none; border: 0; outline: none; font: inherit; font-size: 15px; color: var(--color-text-default); }
+.faq-all { height: 48px; padding: 0 18px; border-radius: var(--radius-pill); border: 1px solid var(--color-line-strong); font-size: 13.5px; font-weight: var(--font-weight-medium); transition: background-color var(--motion-duration-hover), border-color var(--motion-duration-hover); }
+.faq-all:hover { background: var(--fill-1); border-color: var(--color-brand-primary-300); }
+.faq-count { flex-basis: 100%; min-height: 1em; font-size: 13px; color: var(--color-text-dim); }
+.faq-none { margin-top: 24px; color: var(--color-text-muted); }
+.faq { margin-top: 10px; border-radius: var(--radius-md); background: var(--color-bg-surface); border: 1px solid var(--color-line-default); transition: border-color var(--motion-duration-hover), box-shadow var(--motion-duration-hover); scroll-margin-top: calc(var(--space-nav-height) + 24px); }
+.faq:hover { border-color: var(--color-line-strong); }
+.faq.is-open { border-color: color-mix(in srgb, var(--color-brand-primary-300) 45%, transparent); box-shadow: 0 12px 30px -20px var(--glow-brand); }
+.legal__section .faq h3 { margin: 0; }
+.faq button { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; padding: 16px 20px; text-align: left; font-size: 15px; font-weight: var(--font-weight-semibold); color: var(--color-text-default); }
+.faq button:focus-visible { outline: 2px solid var(--color-brand-secondary-300); outline-offset: -2px; border-radius: var(--radius-md); }
+.faq__icon { position: relative; flex: none; width: 14px; height: 14px; }
+.faq__icon::before, .faq__icon::after { content: ''; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 2px; background: var(--color-brand-primary-300); transition: transform var(--duration-panel) var(--motion-ease-out); }
+.faq__icon::after { transform: rotate(90deg); }
+.faq.is-open .faq__icon::after { transform: rotate(0deg); }
+.faq__a { overflow: hidden; transition: height var(--duration-panel) var(--motion-ease-out); }
+.faq__a p { margin: 0; padding: 0 20px 18px; }
+@media (prefers-reduced-motion: reduce) { .faq__a { transition: none; } }
 .legal__qa { margin-top: 20px; padding: 18px 20px; border-radius: var(--radius-md); background: var(--color-bg-surface); border: 1px solid var(--color-line-default); }
 .legal__qa h3 { margin-top: 0; font-size: 15px; }
 .legal__qa p { margin-top: 8px; }

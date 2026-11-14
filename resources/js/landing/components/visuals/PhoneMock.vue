@@ -66,7 +66,7 @@ defineProps({
 .phone__methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .phone__methods span { display: grid; place-items: center; min-height: 40px; padding: 4px; border-radius: var(--radius-md); background: var(--fill-1); border: 1px solid var(--color-line-default); font-size: 10px; text-align: center; line-height: 1.2; color: var(--color-text-muted); }
 .phone__methods .is-on { color: var(--color-text-default); border-color: var(--color-brand-primary-300); background: color-mix(in srgb, var(--color-brand-primary) 35%, transparent); }
-.phone__cta { display: grid; place-items: center; height: 40px; border-radius: var(--radius-md); background: var(--gradient-brand); font-size: 13px; font-weight: var(--font-weight-semibold); }
+.phone__cta { display: grid; place-items: center; height: 40px; border-radius: var(--radius-md); background: var(--gradient-brand); font-size: 13px; font-weight: var(--font-weight-semibold);  color: var(--color-on-brand); }
 .phone__ticker { display: flex; justify-content: space-between; margin-top: auto; font-size: 11px; color: var(--color-text-muted); }
 .up { color: var(--color-state-up); }
 
@@ -78,5 +78,5 @@ defineProps({
 .slab span { height: 4px; border-radius: var(--radius-pill); background: var(--fill-2); }
 .slab span:nth-child(2) { width: 60%; }
 .slab span:nth-child(3) { width: 82%; }
-.slab i { position: absolute; left: 22px; bottom: 12px; width: 124px; height: 14px; border-radius: var(--radius-pill); background: var(--gradient-brand); }
+.slab i { position: absolute; left: 22px; bottom: 12px; width: 124px; height: 14px; border-radius: var(--radius-pill); background: var(--gradient-brand);  color: var(--color-on-brand); }
 </style>

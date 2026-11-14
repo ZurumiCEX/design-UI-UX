@@ -333,7 +333,14 @@ export const brandKit = {
 };
 
 // Logo officiel (blanc sur transparent, pour fond sombre). `compact` : sans le slogan, pour la barre de navigation.
-export const brandLogo = { full: '/images/brand/zurumi-logo.webp', compact: '/images/brand/zurumi-logo-compact.webp', ratio: 960 / 229 };
+export const brandLogo = {
+  full: '/images/brand/zurumi-logo.webp',
+  compact: '/images/brand/zurumi-logo-compact.webp',
+  // Versions foncées pour le thème clair.
+  fullLight: '/images/brand/zurumi-logo-light.webp',
+  compactLight: '/images/brand/zurumi-logo-compact-light.webp',
+  ratio: 960 / 229,
+};
 
 export const media = {
   // Pages Connexion / Inscription : cadenas et clé (image) ; anneau de pièces chromées (vidéo transparente).
@@ -353,14 +360,15 @@ export const media = {
     fr: { webm: '/videos/zurumi-liquidite-fr.webm', mp4: '/videos/zurumi-liquidite-fr.mp4', poster: '/videos/zurumi-liquidite-fr-poster.webp', width: 1680, height: 754 },
     en: { webm: '/videos/zurumi-liquidite-en.webm', mp4: '/videos/zurumi-liquidite-en.mp4', poster: '/videos/zurumi-liquidite-en-poster.webp', width: 1680, height: 754 },
   },
-  // Section Sécurité : cadenas 3D, fond transparent.
-  security: { src: '/images/landing/securite-cadenas.webp', width: 640, height: 804, alt: '' },
+  // Section Sécurité : cadenas 3D, fond transparent. `light` : version détourée pour le thème clair
+  // (l'original garde des reflets sombres qui ne se voient pas sur fond sombre).
+  security: { src: '/images/landing/securite-cadenas.webp', light: '/images/landing/securite-cadenas-light.webp', width: 640, height: 804, alt: '' },
   // Section « Portefeuille partout » : coffre, carte et indicateurs (fond transparent).
   wallet: { src: '/images/landing/portefeuille-coffre.webp', width: 1388, height: 726, alt: '' }, // coffre + carte, sans les encadrés (rendus en HTML)
   // Visuels de la section Services (public/images/landing/services/), fond transparent.
   services: {
-    buy: { src: '/images/landing/services/achat-rapide.webp', width: 840, height: 586 },
-    transfer: { src: '/images/landing/services/envoyer-recevoir.webp', width: 840, height: 860 },
+    buy: { src: '/images/landing/services/achat-rapide.webp', light: '/images/landing/services/achat-rapide-light.webp', width: 840, height: 586 },
+    transfer: { src: '/images/landing/services/envoyer-recevoir.webp', light: '/images/landing/services/envoyer-recevoir-light.webp', width: 840, height: 860 },
     swap: { src: '/images/landing/services/echanger.webp', width: 840, height: 711 },
     withdraw: { src: '/images/landing/services/retirer.webp', width: 840, height: 542 },
   },

@@ -17,7 +17,7 @@ defineProps({
 <style scoped>
 .av {
   display: inline-grid; place-items: center; flex: none; width: var(--s); height: var(--s); overflow: hidden; border-radius: 50%;
-  background: var(--gradient-brand); font-size: calc(var(--s) * 0.38); font-weight: var(--font-weight-semibold); letter-spacing: 0.02em;
+  background: var(--gradient-brand); color: var(--color-on-brand); font-size: calc(var(--s) * 0.38); font-weight: var(--font-weight-semibold); letter-spacing: 0.02em;
   box-shadow: inset 0 0 0 1px var(--color-line-strong);
 }
 .av img { width: 100%; height: 100%; object-fit: cover; }

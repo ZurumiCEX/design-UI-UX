@@ -18,7 +18,7 @@ defineProps({
       <h2 v-split class="title mm__title" v-html="data.title" />
       <p v-reveal class="lede mm__text">{{ data.text }}</p>
 
-      <div v-reveal class="mm__stage">
+      <div v-reveal class="mm__stage theme-dark">
         <AppVideo :key="data.video.webm" :video="data.video" toggle="corner" />
       </div>
 
@@ -41,6 +41,8 @@ defineProps({
 .mm__text { margin-top: 22px; }
 /* La vidéo a une marge transparente intégrée : on la laisse déborder un peu pour garder le schéma lisible. */
 .mm__stage { width: min(1100px, 100%); margin: 24px auto 64px; }
+/* Thème clair : le schéma (conçu pour fond sombre) est posé sur un panneau sombre arrondi. */
+:global([data-theme='light'] .mm__stage) { padding: 12px 0; border-radius: var(--radius-lg); background: radial-gradient(120% 90% at 50% 40%, color-mix(in srgb, var(--color-brand-primary) 18%, var(--color-bg-base)), var(--color-bg-base) 70%); }
 .mm__perks { display: grid; grid-template-columns: repeat(3, minmax(0, 260px)); justify-content: center; gap: 28px 40px; text-align: left; }
 .mm__perks li { display: flex; gap: 14px; }
 .mm__perks h3 { font-size: 13.5px; font-weight: var(--font-weight-semibold); }

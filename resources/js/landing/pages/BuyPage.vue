@@ -92,12 +92,12 @@ const openFaq = ref(0);
 .buy-hero__methods ul { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .buy-hero__methods li { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 6px; border-radius: var(--radius-pill); background: var(--color-bg-surface-2); border: 1px solid var(--color-line-default); font-size: 13px; font-weight: var(--font-weight-medium); }
 .pay-logos { display: inline-flex; gap: 2px; }
-.pay-logos img { width: 26px; height: 26px; padding: 1px; border-radius: 7px; background: var(--color-text-default); object-fit: contain; }
+.pay-logos img { width: 26px; height: 26px; padding: 1px; border-radius: 7px; background: var(--color-paper); object-fit: contain; }
 
 .buy-steps { border-top: 1px solid var(--color-line-default); }
 .buy-steps__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 56px; }
 .buy-steps__list li { padding-top: 22px; border-top: 1px solid var(--color-line-strong); }
-.buy-steps__num { display: inline-block; padding: 1px 6px; border-radius: 4px; background: var(--gradient-brand); font-size: 10px; font-weight: var(--font-weight-semibold); }
+.buy-steps__num { display: inline-block; padding: 1px 6px; border-radius: 4px; background: var(--gradient-brand); font-size: 10px; font-weight: var(--font-weight-semibold);  color: var(--color-on-brand); }
 .buy-steps__list p { margin-top: 16px; font-size: 14.5px; color: var(--color-text-muted); max-width: 32ch; }
 .buy-steps__list strong { color: var(--color-text-default); font-weight: var(--font-weight-semibold); }
 

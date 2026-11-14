@@ -537,6 +537,7 @@ export default function morePages(links) {
     others: 'Autres documents',
     updated: 'Date d’entrée en vigueur : {date}',
     langNote: '',
+    faq: { search: 'Rechercher une question', openAll: 'Tout ouvrir', closeAll: 'Tout fermer', one: '1 question trouvée', many: '{n} questions trouvées', none: 'Aucune question ne correspond. Essayez un autre mot ou contactez le support.' },
     linkKeys: { terms: 'terms', privacy: 'privacy', cookies: 'cookies', whistleblowing: 'whistleblowing', faq: 'faq' },
     docs: legalDocs, // documents officiels (content/legal-docs.js, généré depuis resources/legal/*.md)
   };

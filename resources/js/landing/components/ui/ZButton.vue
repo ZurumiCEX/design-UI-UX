@@ -35,12 +35,12 @@ const tag = computed(() => (props.href ? 'a' : 'button'));
 }
 .z-btn--lg { height: 42px; padding: 0 20px; }
 .z-btn--primary, .z-btn--pill {
-  background: var(--gradient-brand); color: var(--color-text-default);
+  background: var(--gradient-brand); color: var(--color-on-brand);
   box-shadow: 0 6px 24px -10px var(--glow-brand), inset 0 1px 0 var(--color-line-strong);
 }
 .z-btn--primary:hover, .z-btn--pill:hover { transform: translateY(-1px); box-shadow: 0 10px 34px -8px var(--glow-brand), inset 0 1px 0 var(--color-line-strong); }
 .z-btn--pill { border-radius: var(--radius-pill); text-transform: none; letter-spacing: 0; font-size: 13px; }
-.z-btn--secondary { background: var(--color-brand-secondary); color: var(--color-text-default); box-shadow: inset 0 1px 0 var(--color-line-strong); }
+.z-btn--secondary { background: var(--color-brand-secondary); color: var(--color-on-brand); box-shadow: inset 0 1px 0 var(--color-line-strong); }
 .z-btn--secondary:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--color-brand-secondary) 85%, var(--color-brand-secondary-300)); box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--color-brand-secondary) 70%, transparent), inset 0 1px 0 var(--color-line-strong); }
 .z-btn--ghost { background: var(--color-bg-surface); border-color: var(--color-line-strong); color: var(--color-text-default); }
 .z-btn--ghost:hover { background: var(--color-bg-surface-2); transform: translateY(-1px); }

@@ -527,6 +527,7 @@ export default function morePages(links) {
     others: 'Other documents',
     updated: 'Effective date: {date}',
     langNote: 'The official version of this document is in French.',
+    faq: { search: 'Search a question', openAll: 'Open all', closeAll: 'Close all', one: '1 question found', many: '{n} questions found', none: 'No question matches. Try another word or contact support.' },
     linkKeys: { terms: 'terms', privacy: 'privacy', cookies: 'cookies', whistleblowing: 'whistleblowing', faq: 'faq' },
     docs: legalDocs, // official documents, in French (content/legal-docs.js)
   };

@@ -16,7 +16,7 @@ useScrollProgress(root);
 </script>
 
 <template>
-  <section :id="data.id" ref="root" class="sky">
+  <section :id="data.id" ref="root" class="sky theme-dark">
     <div class="sky__grad" aria-hidden="true" />
     <JellyfishSwim :media="data.jellyfish" :top="0.4" :bottom="0.84" />
     <div class="container sky__head">

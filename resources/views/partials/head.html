@@ -9,5 +9,5 @@
     <script type="application/ld+json">
       { "@context": "https://schema.org", "@type": "Organization", "name": "Zurumi" }
     </script>
-    <!-- Active les états masqués des animations uniquement si JavaScript tourne. -->
-    <script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('zurumi.seen'))document.documentElement.classList.add('nav-seen');sessionStorage.setItem('zurumi.seen','1')}catch(e){}</script>
+    <!-- Active les états masqués des animations si JavaScript tourne, et applique le thème choisi avant l'affichage. -->
+    <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('zurumi.theme')==='light'){document.documentElement.dataset.theme='light';document.querySelector('meta[name="theme-color"]').content='#F7F8FB'}}catch(e){}try{if(sessionStorage.getItem('zurumi.seen'))document.documentElement.classList.add('nav-seen');sessionStorage.setItem('zurumi.seen','1')}catch(e){}</script>

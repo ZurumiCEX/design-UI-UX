@@ -63,7 +63,15 @@ export function useCanvasLoop(canvasRef, { fps = 30, loop = true, setup, draw })
     frame();
   }
 
+  // Changement de thème : les couleurs sont relues dans les tokens et l'image redessinée.
+  const onTheme = () => requestAnimationFrame(() => {
+    if (!width) return;
+    setup?.({ width, height, token });
+    frame();
+  });
+
   onMounted(() => {
+    window.addEventListener('zurumi:theme', onTheme);
     const canvas = canvasRef.value;
     ctx = canvas.getContext('2d');
     styles = getComputedStyle(canvas);
@@ -77,6 +85,7 @@ export function useCanvasLoop(canvasRef, { fps = 30, loop = true, setup, draw })
   });
 
   onBeforeUnmount(() => {
+    window.removeEventListener('zurumi:theme', onTheme);
     pause();
     io?.disconnect();
     ro?.disconnect();

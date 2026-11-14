@@ -26,6 +26,6 @@ defineProps({
   content: ''; position: absolute; inset: -1px; z-index: -1; border-radius: inherit;
   background: var(--gradient-brand); opacity: 0; transition: opacity var(--motion-duration-hover);
 }
-.z-tile.is-active { color: var(--color-text-default); box-shadow: 0 6px 22px -6px var(--glow-brand); }
+.z-tile.is-active { color: var(--color-on-brand); box-shadow: 0 6px 22px -6px var(--glow-brand); }
 .z-tile.is-active::before { opacity: 1; }
 </style>

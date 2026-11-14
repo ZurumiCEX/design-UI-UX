@@ -56,7 +56,7 @@ defineProps({
   transition: color var(--motion-duration-hover), border-color var(--motion-duration-hover);
 }
 .tuto__num::before { content: ''; position: absolute; inset: -1px; z-index: -1; border-radius: inherit; background: var(--gradient-brand); opacity: 0; transition: opacity var(--duration-rule) var(--motion-ease-out); }
-.is-active .tuto__num, .is-done .tuto__num { color: var(--color-text-default); border-color: transparent; }
+.is-active .tuto__num, .is-done .tuto__num { color: var(--color-on-brand); border-color: transparent; }
 .is-active .tuto__num::before, .is-done .tuto__num::before { opacity: 1; }
 .is-active .tuto__num { box-shadow: 0 0 24px -4px var(--glow-brand); }
 .tuto__steps h3 { font-size: 14px; font-weight: var(--font-weight-semibold); padding-top: 4px; color: var(--color-text-muted); transition: color var(--motion-duration-hover); }

@@ -72,6 +72,7 @@ export default function createContent(linkOverrides = {}) {
       },
     ],
     wallet: 'Wallet', // bouton à droite de la barre (couleur secondaire)
+    theme: { light: 'Switch to light theme', dark: 'Switch to dark theme' },
     currency: 'Display currency',
     language: { label: 'Language', choose: 'Choose language' },
     login: 'Log in',
@@ -107,6 +108,7 @@ export default function createContent(linkOverrides = {}) {
         title: 'Support',
         links: [
           { label: 'Help center', href: links.help },
+          { label: 'FAQ', href: links.faq },
           { label: 'Contact us', href: links.contact },
           { label: 'Report abuse', href: links.report },
           { label: 'Service status', href: links.status },
@@ -119,7 +121,6 @@ export default function createContent(linkOverrides = {}) {
           { label: 'Privacy policy', href: links.privacy },
           { label: 'Cookie policy', href: links.cookies },
           { label: 'Whistleblowing & risk disclosure', href: links.whistleblowing },
-          { label: 'FAQ', href: links.faq },
         ],
       },
     ],

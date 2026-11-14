@@ -189,13 +189,13 @@ onBeforeUnmount(() => {
 .ss__check { position: relative; display: flex; gap: 10px; margin-top: 12px; font-size: 13px; color: var(--color-text-muted); cursor: pointer; }
 .ss__check input { position: absolute; opacity: 0; width: 18px; height: 18px; margin: 0; }
 .ss__box { display: grid; place-items: center; flex: none; width: 18px; height: 18px; margin-top: 1px; border-radius: 5px; border: 1px solid var(--color-text-dim); color: transparent; }
-.ss__check input:checked + .ss__box { background: var(--gradient-brand); border-color: transparent; color: var(--color-text-default); }
+.ss__check input:checked + .ss__box { background: var(--gradient-brand); border-color: transparent; color: var(--color-on-brand); }
 .ss__check input:focus-visible + .ss__box { outline: 2px solid var(--color-brand-secondary-300); outline-offset: 2px; }
 .ss__check input[aria-invalid='true'] + .ss__box { border-color: var(--color-state-down); }
 .ss__cta { width: 100%; height: 50px; margin-top: 14px; }
 .ss__demo { font-size: var(--font-size-small); color: var(--color-text-dim); text-align: center; }
 .ss__done { text-align: center; justify-items: center; }
-.ss__done-icon { display: grid; place-items: center; width: 56px; height: 56px; margin-top: 12px; border-radius: 50%; background: var(--gradient-brand); box-shadow: 0 0 50px -10px var(--glow-brand); }
+.ss__done-icon { display: grid; place-items: center; width: 56px; height: 56px; margin-top: 12px; border-radius: 50%; background: var(--gradient-brand); box-shadow: 0 0 50px -10px var(--glow-brand);  color: var(--color-on-brand); }
 .ss__done-title { margin-top: 8px; font-size: 22px; font-weight: var(--font-weight-semibold); }
 .ss__done-title:focus { outline: none; }
 .ss__done > p { font-size: 14px; color: var(--color-text-muted); }
@@ -203,6 +203,6 @@ onBeforeUnmount(() => {
 .ss__timeline li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-md); background: var(--color-bg-surface-2); font-size: 13px; color: var(--color-text-muted); }
 .ss__timeline li.is-active { color: var(--color-text-default); border: 1px solid var(--color-brand-primary-300); }
 .ss__timeline span { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--color-line-strong); font-size: 11px; }
-.ss__timeline li.is-active span { background: var(--gradient-brand); border-color: transparent; }
+.ss__timeline li.is-active span { background: var(--gradient-brand); border-color: transparent;  color: var(--color-on-brand); }
 @media (prefers-reduced-motion: reduce) { .ss__panel, .ss__scrim { animation: none; } }
 </style>
