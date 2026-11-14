@@ -9,6 +9,7 @@ import ZIcon from '../ui/ZIcon.vue';
 const props = defineProps({
   video: { type: Object, required: true }, // { webm, mp4, poster, label, play, pause, width?, height? }
   toggle: { type: String, default: 'side' }, // 'side' : à droite du téléphone · 'corner' : coin bas droit
+  controls: { type: Boolean, default: true }, // false : pas de bouton lecture / pause
 });
 
 const el = ref(null);
@@ -70,7 +71,7 @@ onBeforeUnmount(() => io?.disconnect());
         <source :src="video.mp4" type="video/mp4" />
       </template>
     </video>
-    <button type="button" class="av__toggle" :aria-label="playing ? video.pause : video.play" :title="playing ? video.pause : video.play" @click="toggle">
+    <button v-if="controls" type="button" class="av__toggle" :aria-label="playing ? video.pause : video.play" :title="playing ? video.pause : video.play" @click="toggle">
       <ZIcon v-if="playing" name="pause" :size="14" />
       <ZIcon v-else name="play" :size="14" />
     </button>

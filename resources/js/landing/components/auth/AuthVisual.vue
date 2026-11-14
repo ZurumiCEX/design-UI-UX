@@ -3,10 +3,9 @@ import { ref } from 'vue';
 import { prefersReducedMotion } from '../../composables/useReducedMotion.js';
 import AppVideo from '../visuals/AppVideo.vue';
 import ShieldMark from '../visuals/ShieldMark.vue';
-import ZIcon from '../ui/ZIcon.vue';
 
 // Visuel des pages d'authentification. Connexion : image (cadenas et clé) qui suit légèrement le pointeur.
-// Inscription : vidéo de pièces (fond transparent) au-dessus des avantages.
+// Inscription : vidéo de pièces (fond transparent), sans bouton lecture / pause.
 defineProps({
   data: { type: Object, required: true }, // pages.login.visual | pages.signup.visual
   variant: { type: String, default: 'shield' }, // shield | perks
@@ -45,12 +44,7 @@ function onLeave() {
     </div>
 
     <div v-else class="av__stage">
-      <div v-if="data.video" class="av__video"><AppVideo :video="data.video" toggle="corner" /></div>
-      <div class="av__card" v-reveal="300">
-        <ul>
-          <li v-for="p in data.perks" :key="p"><ZIcon name="check" :size="16" /> {{ p }}</li>
-        </ul>
-      </div>
+      <div v-if="data.video" class="av__video"><AppVideo :video="data.video" :controls="false" /></div>
     </div>
   </div>
 </template>
@@ -68,20 +62,10 @@ function onLeave() {
 }
 .av__shield.is-image { width: min(400px, 72%); }
 .av__shield img { display: block; width: 100%; height: auto; filter: drop-shadow(0 40px 60px var(--ink)) drop-shadow(0 0 70px color-mix(in srgb, var(--glow-brand) 60%, transparent)); }
-.av__video { width: min(400px, 82%); margin: 0 auto 8px; }
+.av__video { width: min(560px, 100%); margin: 0 auto; }
 .av--perks .av__stage { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
 .av__shield :deep(.shield) { filter: drop-shadow(0 40px 60px var(--ink)) drop-shadow(0 0 60px var(--glow-brand)); }
 @keyframes av-float { from { translate: 0 -10px; } to { translate: 0 10px; } }
 
-.av__card {
-  position: relative; width: min(420px, 100%); padding: 32px 28px; border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, var(--fill-2), var(--fill-1));
-  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--color-line-strong); box-shadow: 0 40px 90px -30px var(--ink), 0 0 80px -30px var(--glow-brand);
-  transform: rotateX(calc(var(--ty, 0) * -8deg)) rotateY(calc(var(--tx, 0) * 10deg)); transition: transform 600ms var(--motion-ease-out);
-}
-.av__card ul { position: relative; display: grid; gap: 18px; }
-.av__card li { display: flex; gap: 12px; font-size: 15px; line-height: 1.4; }
-.av__card li :deep(svg) { flex: none; margin-top: 2px; color: var(--color-state-up); }
 @media (prefers-reduced-motion: reduce) { .av__shield { animation: none; } }
 </style>

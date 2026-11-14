@@ -157,7 +157,6 @@ export default function createContent(linkOverrides = {}) {
       id: 'cryptos',
       type: 'coins',
       title: 'Your <i>favourite</i><br>crypto, in one tap',
-      cta: { label: 'Sign up', href: links.signup },
       speeds: [38, 46],
     },
     {
@@ -300,6 +299,8 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'fingerprint', label: 'Secure biometric login' },
       ],
       image: media.wallet,
+      // DÉMO — chiffres à confirmer avant mise en ligne.
+      stats: [{ label: 'Total assets', value: '$500K' }, { label: 'Active wallets', value: '10K' }],
     },
   ];
 
@@ -589,11 +590,6 @@ export default function createContent(linkOverrides = {}) {
       visual: {
         title: 'Your account,<br>in <i>a few minutes.</i>',
         video: { label: 'Animation: a spinning ring of violet chrome crypto coins.', play: 'Play the animation', pause: 'Pause the animation', ...media.authSignup },
-        perks: [
-          'Buy in CFA francs with Wave, Orange Money or Mixx by Yas',
-          'The amount you receive is shown before you pay',
-          'Send, swap and withdraw from a single wallet',
-        ],
       },
       title: 'Create an account',
       step: 'Step {n}/{total}',

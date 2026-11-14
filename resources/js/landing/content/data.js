@@ -356,7 +356,7 @@ export const media = {
   // Section Sécurité : cadenas 3D, fond transparent.
   security: { src: '/images/landing/securite-cadenas.webp', width: 640, height: 804, alt: '' },
   // Section « Portefeuille partout » : coffre, carte et indicateurs (fond transparent).
-  wallet: { src: '/images/landing/portefeuille-coffre.webp', width: 1600, height: 631, alt: '' },
+  wallet: { src: '/images/landing/portefeuille-coffre.webp', width: 1388, height: 726, alt: '' }, // coffre + carte, sans les encadrés (rendus en HTML)
   // Visuels de la section Services (public/images/landing/services/), fond transparent.
   services: {
     buy: { src: '/images/landing/services/achat-rapide.webp', width: 840, height: 586 },

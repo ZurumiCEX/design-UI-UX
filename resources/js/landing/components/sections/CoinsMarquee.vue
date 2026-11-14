@@ -1,6 +1,5 @@
 <script setup>
 import { computed } from 'vue';
-import ZButton from '../ui/ZButton.vue';
 import ZCoinChip from '../ui/ZCoinChip.vue';
 import ZTag from '../ui/ZTag.vue';
 
@@ -37,7 +36,6 @@ const rows = computed(() => [props.common.coins, [...props.common.coins].reverse
       </div>
     </div>
 
-    <ZButton v-reveal size="lg" :href="data.cta.href">{{ data.cta.label }}</ZButton>
   </section>
 </template>
 

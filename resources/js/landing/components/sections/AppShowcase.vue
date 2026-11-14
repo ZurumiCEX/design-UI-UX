@@ -37,7 +37,7 @@ const sides = computed(() => [props.data.perks.slice(0, half.value), props.data.
         </li>
       </ul>
       <div class="app__video">
-        <AppVideo :video="data.video" />
+        <AppVideo :video="data.video" :controls="false" />
       </div>
     </div>
   </section>
@@ -51,6 +51,11 @@ const sides = computed(() => [props.data.perks.slice(0, half.value), props.data.
   grid-template-areas: 'left video right'; align-items: center; gap: 40px; margin-top: 32px;
 }
 .app__video { grid-area: video; transform: translateY(calc((1 - var(--in, 1)) * 18%)); }
+/* Bas du téléphone fondu dans la page : l'animation paraît plus courte (≈ 18 % de hauteur en moins). */
+.app__video :deep(.av) {
+  -webkit-mask-image: linear-gradient(#000 62%, transparent 82%); mask-image: linear-gradient(#000 62%, transparent 82%);
+  margin-bottom: -32%;
+}
 .app__perks { display: grid; gap: 34px; text-align: left; }
 .app__perks.is-left { grid-area: left; justify-self: end; text-align: right; }
 .app__perks.is-right { grid-area: right; justify-self: start; }

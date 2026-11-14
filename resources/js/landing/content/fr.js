@@ -162,7 +162,6 @@ export default function createContent(linkOverrides = {}) {
       id: 'cryptos',
       type: 'coins',
       title: 'Vos cryptos<br><i>préférées,</i> en un geste',
-      cta: { label: "S'inscrire", href: links.signup },
       speeds: [38, 46], // secondes par boucle, une valeur par rangée
     },
     {
@@ -307,6 +306,8 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'fingerprint', label: 'Connexion biométrique sécurisée' },
       ],
       image: media.wallet,
+      // DÉMO — chiffres à confirmer avant mise en ligne.
+      stats: [{ label: 'Actifs totaux', value: '$500K' }, { label: 'Portefeuilles actifs', value: '10K' }],
     },
   ];
 
@@ -601,11 +602,6 @@ export default function createContent(linkOverrides = {}) {
       visual: {
         title: 'Votre compte,<br>en <i>quelques minutes.</i>',
         video: { label: 'Animation : anneau de cryptomonnaies en chrome violet qui tourne.', play: 'Lire l’animation', pause: 'Mettre l’animation en pause', ...media.authSignup },
-        perks: [
-          'Achetez en FCFA avec Wave, Orange Money ou Mixx by Yas',
-          'Le montant reçu est affiché avant de payer',
-          'Envoyez, échangez et retirez depuis un seul portefeuille',
-        ],
       },
       title: 'Créer un compte',
       step: 'Étape {n}/{total}',
