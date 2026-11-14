@@ -1,6 +1,6 @@
 // Génère resources/js/landing/components/visuals/world.json : contours simplifiés des continents
 // (Afrique en 1:50m, reste du monde en 1:110m), masque terre/mer de la grille de points du globe,
-// et gros plan Afrique de l'Ouest (frontières 1:50m de 9 pays + voisins, grille de points dense).
+// et gros plan Afrique de l'Ouest (frontières 1:50m de 10 pays + voisins, grille de points dense).
 // Données : Natural Earth (domaine public), via le paquet world-atlas.
 // Non lancé au build. Pour régénérer :
 //   npm i --no-save world-atlas@2.0.2 topojson-client@3.1.0 d3-geo@3.1.1 && node scripts/build-world.mjs
@@ -35,21 +35,21 @@ const bytes = Buffer.alloc(Math.ceil(bits.length / 8)); for (let i = 0; i < bits
 // ---------- Gros plan Afrique de l'Ouest : frontières des pays et grille de points dense ----------
 const countries50 = feature(load('countries-50m.json'), load('countries-50m.json').objects.countries);
 // pays du réseau (mis en avant) et voisins (contexte, plus discrets) — codes ISO 3166 numériques
-const FOCUS = { 686: 'sn', 478: 'mr', 384: 'ci', 324: 'gn', 466: 'ml', 854: 'bf', 270: 'gm', 768: 'tg', 204: 'bj' };
+const FOCUS = { 686: 'sn', 478: 'mr', 384: 'ci', 324: 'gn', 466: 'ml', 854: 'bf', 270: 'gm', 768: 'tg', 204: 'bj', 132: 'cv' };
 const NEIGHBOURS = [624, 430, 694, 288, 562, 566, 12, 504, 732, 148, 120];
-const regionRings = (f, tol) => {
+const regionRings = (f, tol, min = 0.05) => {
   const g = f.geometry; const ps = g.type === 'Polygon' ? [g.coordinates] : g.coordinates; const out = [];
-  for (const poly of ps) { const r = poly[0]; if (area(r) < 0.05) continue; const s2 = dpRing(r, tol); if (s2.length >= 4) out.push(s2); }
+  for (const poly of ps) { const r = poly[0]; if (area(r) < min) continue; const s2 = dpRing(r, tol); if (s2.length >= 4) out.push(s2); }
   return out;
 };
 const encRing = (r) => { const a = []; let px = 0, py = 0; for (const [x, y] of r) { const qx = Math.round(x * 20), qy = Math.round(y * 20); a.push(qx - px, qy - py); px = qx; py = qy; } return a; };
 const region = { q: 20, countries: [] };
 for (const f of countries50.features) {
   const id = +f.id;
-  if (FOCUS[id]) region.countries.push({ iso: FOCUS[id], focus: true, rings: regionRings(f, 0.04).map(encRing) });
+  if (FOCUS[id]) region.countries.push({ iso: FOCUS[id], focus: true, rings: regionRings(f, 0.03, 0.004).map(encRing) });
   else if (NEIGHBOURS.includes(id)) region.countries.push({ iso: String(id), focus: false, rings: regionRings(f, 0.06).map(encRing) });
 }
-const R = { lat0: -2, lat1: 30, lon0: -26, lon1: 16, step: 0.8 };
+const R = { lat0: -10, lat1: 34, lon0: -32, lon1: 20, step: 0.4 }; // couvre tout le cadre du gros plan, pas de 0,4° (points uniformes)
 let rbits = '';
 for (let la = R.lat0; la <= R.lat1 + 1e-9; la += R.step) for (let lo = R.lon0; lo <= R.lon1 + 1e-9; lo += R.step) rbits += geoContains(land50, [lo, la]) ? '1' : '0';
 const rbytes = Buffer.alloc(Math.ceil(rbits.length / 8)); for (let i = 0; i < rbits.length; i++) if (rbits[i] === '1') rbytes[i >> 3] |= 1 << (i & 7);

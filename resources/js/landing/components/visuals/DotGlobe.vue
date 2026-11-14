@@ -8,15 +8,16 @@ import world from './world.json';
 // + drapeau du pays destinataire) apparaît en 1,5 s ; il s'efface quand la transaction suivante démarre.
 // Une seule transaction à l'écran à la fois : l'animation reste sobre et laisse les cartes de cours lisibles.
 const props = defineProps({
-  focus: { type: Object, default: () => ({ lat: 11, lon: -7 }) }, // point du globe au centre de l'image
-  zoom: { type: Number, default: 1.75 }, // 1 = globe entier
-  sway: { type: Number, default: 2.5 }, // léger balancement est-ouest (degrés)
+  focus: { type: Object, default: () => ({ lat: 12.5, lon: -11 }) }, // point du globe au centre de l'image
+  zoom: { type: Number, default: 3.5 }, // 1 = globe entier
+  sway: { type: Number, default: 1.5 }, // léger balancement est-ouest (degrés)
   // Capitales du réseau (lat, lon, drapeau). Abidjan pour la Côte d'Ivoire (capitale économique).
   cities: {
     type: Array,
     default: () => [
       { iso: 'sn', at: [14.69, -17.45] }, // Dakar
       { iso: 'mr', at: [18.08, -15.98] }, // Nouakchott
+      { iso: 'cv', at: [14.93, -23.51] }, // Praia
       { iso: 'gm', at: [13.45, -16.58] }, // Banjul
       { iso: 'gn', at: [9.64, -13.58] }, // Conakry
       { iso: 'ml', at: [12.64, -8.0] }, // Bamako
@@ -272,6 +273,6 @@ useCanvasLoop(canvas, {
   width: 100%;
   height: 100%;
   /* gros plan : les bords du globe se fondent dans la page */
-  mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 82%, transparent 100%);
 }
 </style>
