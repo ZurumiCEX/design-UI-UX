@@ -310,8 +310,6 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'fingerprint', label: 'Secure biometric login' },
       ],
       video: { label: 'Animation: violet and blue liquid bubbles forming and merging.', ...media.liquid },
-      // DÉMO — chiffres à confirmer avant mise en ligne.
-      stats: [{ label: 'Total assets', value: '$500K' }, { label: 'Active wallets', value: '10K' }],
     },
   ];
 

@@ -317,8 +317,6 @@ export default function createContent(linkOverrides = {}) {
         { icon: 'fingerprint', label: 'Connexion biométrique sécurisée' },
       ],
       video: { label: 'Animation : bulles liquides violettes et bleues qui se forment et fusionnent.', ...media.liquid },
-      // DÉMO — chiffres à confirmer avant mise en ligne.
-      stats: [{ label: 'Actifs totaux', value: '$500K' }, { label: 'Portefeuilles actifs', value: '10K' }],
     },
   ];
 

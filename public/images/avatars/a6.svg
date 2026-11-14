@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+<defs><radialGradient id="bg" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#8FD1C2"/><stop offset="1" stop-color="#2C5F7A"/></radialGradient>
+<linearGradient id="cl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E7E9EF"/><stop offset="1" stop-color="#B9BCC8"/></linearGradient>
+<clipPath id="c"><circle cx="48" cy="48" r="48"/></clipPath></defs>
+<defs>
+<radialGradient id="sk" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#7A4A2E"/><stop offset=".65" stop-color="#4F2E19"/><stop offset="1" stop-color="#33190C"/></radialGradient>
+<radialGradient id="hl" cx="35%" cy="25%" r="40%"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+</defs>
+<g clip-path="url(#c)">
+<rect width="96" height="96" fill="url(#bg)"/>
+
+<path d="M14 100 C16 78 30 70 48 70 C66 70 80 78 82 100 Z" fill="url(#cl)"/>
+<path d="M40 60 L40 72 C44 76 52 76 56 72 L56 60 Z" fill="#4F2E19"/>
+<ellipse cx="29.5" cy="47" rx="4" ry="6" fill="#4F2E19"/><ellipse cx="66.5" cy="47" rx="4" ry="6" fill="#4F2E19"/>
+<ellipse cx="48" cy="45" rx="18" ry="21" fill="url(#sk)"/>
+<ellipse cx="48" cy="45" rx="18" ry="21" fill="url(#hl)"/>
+<ellipse cx="41" cy="46" rx="2.1" ry="2.5" fill="#1a0f08"/><ellipse cx="55" cy="46" rx="2.1" ry="2.5" fill="#1a0f08"/>
+<circle cx="41.7" cy="45.2" r=".7" fill="#fff" opacity=".9"/><circle cx="55.7" cy="45.2" r=".7" fill="#fff" opacity=".9"/>
+<path d="M37 40.5 Q41 38.5 44.5 40.2" stroke="#1a0f08" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+<path d="M51.5 40.2 Q55 38.5 59 40.5" stroke="#1a0f08" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+<path d="M46 50 Q48 53 50 50" stroke="#33190C" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+<path d="M42 56.5 Q48 61 54 56.5" stroke="#2a130a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<rect x="35" y="43" width="11" height="7" rx="3" fill="none" stroke="#141018" stroke-width="1.4"/><rect x="50" y="43" width="11" height="7" rx="3" fill="none" stroke="#141018" stroke-width="1.4"/><path d="M46 46 L50 46" stroke="#141018" stroke-width="1.4"/>
+<path d="M30.5 39 C31 27 39 23 48 23 C57 23 65 27 65.5 39 C61 32 55 30 48 30 C41 30 35 32 30.5 39 Z" fill="#3a2a22"/>
+</g></svg>

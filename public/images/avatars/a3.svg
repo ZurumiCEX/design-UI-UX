@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+<defs><radialGradient id="bg" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#E8C27A"/><stop offset="1" stop-color="#B4673A"/></radialGradient>
+<linearGradient id="cl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1F6B54"/><stop offset="1" stop-color="#0F3D30"/></linearGradient>
+<clipPath id="c"><circle cx="48" cy="48" r="48"/></clipPath></defs>
+<defs>
+<radialGradient id="sk" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#9B6340"/><stop offset=".65" stop-color="#6B4027"/><stop offset="1" stop-color="#462816"/></radialGradient>
+<radialGradient id="hl" cx="35%" cy="25%" r="40%"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+</defs>
+<g clip-path="url(#c)">
+<rect width="96" height="96" fill="url(#bg)"/>
+
+<path d="M14 100 C16 78 30 70 48 70 C66 70 80 78 82 100 Z" fill="url(#cl)"/>
+<path d="M40 60 L40 72 C44 76 52 76 56 72 L56 60 Z" fill="#6B4027"/>
+<ellipse cx="29.5" cy="47" rx="4" ry="6" fill="#6B4027"/><ellipse cx="66.5" cy="47" rx="4" ry="6" fill="#6B4027"/>
+<ellipse cx="48" cy="45" rx="18" ry="21" fill="url(#sk)"/>
+<ellipse cx="48" cy="45" rx="18" ry="21" fill="url(#hl)"/>
+<ellipse cx="41" cy="46" rx="2.1" ry="2.5" fill="#1a0f08"/><ellipse cx="55" cy="46" rx="2.1" ry="2.5" fill="#1a0f08"/>
+<circle cx="41.7" cy="45.2" r=".7" fill="#fff" opacity=".9"/><circle cx="55.7" cy="45.2" r=".7" fill="#fff" opacity=".9"/>
+<path d="M37 40.5 Q41 38.5 44.5 40.2" stroke="#1a0f08" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+<path d="M51.5 40.2 Q55 38.5 59 40.5" stroke="#1a0f08" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+<path d="M46 50 Q48 53 50 50" stroke="#462816" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+<path d="M42 56.5 Q48 61 54 56.5" stroke="#2a130a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+<path d="M27 42 C22 22 34 8 48 8 C62 8 74 22 69 42 C66 32 58 28 48 28 C38 28 30 32 27 42 Z" fill="#E08A3C"/><path d="M30 30 C36 14 60 12 68 26 C58 18 40 18 30 30 Z" fill="#F2B04F"/><path d="M44 8 C58 2 76 10 72 24 C66 14 56 10 44 8 Z" fill="#C46B26"/><path d="M34 34 C42 27 54 27 62 34" stroke="#C46B26" stroke-width="1.6" fill="none"/>
+</g></svg>
